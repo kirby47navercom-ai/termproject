@@ -252,6 +252,12 @@ def load_resources():
     image_action5 = load_image('Ramona\\Ramona_action5.png')
     image_action6 = load_image('Ramona\\Ramona_action6.png')
 
+    for i in range(16):
+        image_pattern.append(load_image(f'Pattern\\{str(i + 1)}.png'))
+        pattern_index_dict[i + 1] = image_pattern[i]
+        pattern_string_dict[pattern_name[i]] = i + 1
+
+
     pass
 
 
