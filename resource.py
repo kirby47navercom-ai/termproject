@@ -224,7 +224,9 @@ boss_ghost_die_coordinate = [[436,820-566-106,81,106,0,0],[530,820-571-102,82,10
 
 
 
-
+# 함수로 묶기
+def load_resources():
+    pass
 
 
 
