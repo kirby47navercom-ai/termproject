@@ -178,3 +178,22 @@ ramona_coordinate = {'idle': ramona_coordinate, 'walk': ramona_walk_coordinate, 
                      'dead': ramona_dead_coordinate, 'revive': ramona_revive_coordinate, 'stageclear': ramona_stageclear_coordinate,
                      'gameclear': ramona_gameclear_coordinate, 'action1': ramona_action1_coordinate, 'action2': ramona_action2_coordinate,
                      'action3': ramona_action3_coordinate, 'action4': ramona_action4_coordinate, 'action5': ramona_action5_coordinate, 'action6': ramona_action6_coordinate}
+
+image_idle = None
+image_walk = None
+image_run = None
+image_jump = None
+image_double_jump = None
+image_hit = None
+image_evade = None
+image_getup = None
+image_dead = None
+image_revived = None
+image_stageclear = None
+image_gameclear = None
+image_action1 = None
+image_action2 = None
+image_action3 = None
+image_action4 = None
+image_action5 = None
+image_action6 = None
