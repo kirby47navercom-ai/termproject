@@ -258,6 +258,19 @@ def load_resources():
         pattern_string_dict[pattern_name[i]] = i + 1
 
 
+
+
+
+    ramona_image = {
+        'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
+        'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
+        'getup': image_getup, 'dead': image_dead, 'revive': image_revived,
+        'stageclear': image_stageclear, 'gameclear': image_gameclear, 'action1': image_action1,
+        'action2': image_action2, 'action3': image_action3, 'action4': image_action4,
+        'action5': image_action5, 'action6': image_action6
+    }
+
+
     pass
 
 
