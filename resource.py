@@ -226,6 +226,14 @@ boss_ghost_die_coordinate = [[436,820-566-106,81,106,0,0],[530,820-571-102,82,10
 
 # 함수로 묶기
 def load_resources():
+    # 캐릭터
+    global image_idle, image_walk, image_run, image_jump, image_double_jump
+    global image_hit, image_evade, image_getup, image_dead, image_revived
+    global image_stageclear, image_gameclear
+    global image_action1, image_action2, image_action3, image_action4, image_action5, image_action6
+    global ramona_image, ghost_image
+    global image_pattern, pattern_string_dict, pattern_index_dict
+
     pass
 
 
