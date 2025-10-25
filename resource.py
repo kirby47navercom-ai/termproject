@@ -172,3 +172,9 @@ ramona_action6_coordinate =[
     (476, 0, 81, 57, 50, 0),
     (560, 0, 52, 65, 10, 8),
 ]
+ramona_coordinate = {'idle': ramona_coordinate, 'walk': ramona_walk_coordinate, 'run': ramona_run_coordinate,
+                     'jump': ramona_jump_coordinate, 'double_jump': ramona_double_jump_coordinate,
+                     'hit': ramona_hit_coordinate, 'evade': ramona_evade_coordinate, 'getup': ramona_getup_coordinate,
+                     'dead': ramona_dead_coordinate, 'revive': ramona_revive_coordinate, 'stageclear': ramona_stageclear_coordinate,
+                     'gameclear': ramona_gameclear_coordinate, 'action1': ramona_action1_coordinate, 'action2': ramona_action2_coordinate,
+                     'action3': ramona_action3_coordinate, 'action4': ramona_action4_coordinate, 'action5': ramona_action5_coordinate, 'action6': ramona_action6_coordinate}
