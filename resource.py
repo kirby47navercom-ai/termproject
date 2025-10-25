@@ -197,3 +197,9 @@ image_action3 = None
 image_action4 = None
 image_action5 = None
 image_action6 = None
+
+ramona_image = {}
+# 비어있는 dict 준비
+image_pattern = []
+pattern_string_dict = {}
+pattern_index_dict = {}
