@@ -198,8 +198,13 @@ image_action4 = None
 image_action5 = None
 image_action6 = None
 
-ramona_image = {}
-# 비어있는 dict 준비
+ramona_image = {}# 비어있는 dict 준비
+
 image_pattern = []
 pattern_string_dict = {}
 pattern_index_dict = {}
+
+#패턴 리소스 128*128
+pattern_name=['가로선','세로선','여우귀','브이','번개','N','별','Z','다이아몬드','네모','세모','검정1','검정2','검정3','검정4','검정5']
+pattern_number=15
+
