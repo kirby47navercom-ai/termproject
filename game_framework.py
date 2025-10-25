@@ -13,7 +13,8 @@ def ingame(game_manager):
     frame_time = 0.0
     current_time = time.time()
     while running:
-
+        frame_time = time.time() - current_time
+        current_time += frame_time
         pass
 
     pass
