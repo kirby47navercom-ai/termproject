@@ -233,6 +233,24 @@ def load_resources():
     global image_action1, image_action2, image_action3, image_action4, image_action5, image_action6
     global ramona_image, ghost_image
     global image_pattern, pattern_string_dict, pattern_index_dict
+    image_idle = load_image('Ramona\\Ramona_idle.png')
+    image_walk = load_image('Ramona\\Ramona_walk.png')
+    image_run = load_image('Ramona\\Ramona_run.png')
+    image_jump = load_image('Ramona\\Ramona_jump.png')
+    image_double_jump = load_image('Ramona\\Ramona_double_jump.png')
+    image_hit = load_image('Ramona\\Ramona_hit.png')
+    image_evade = load_image('Ramona\\Ramona_evade.png')
+    image_getup = load_image('Ramona\\Ramona_getup.png')
+    image_dead = load_image('Ramona\\Ramona_dead.png')
+    image_revived = load_image('Ramona\\Ramona_revived.png')
+    image_stageclear = load_image('Ramona\\Ramona_stageclear.png')
+    image_gameclear = load_image('Ramona\\Ramona_gameclear.png')
+    image_action1 = load_image('Ramona\\Ramona_action1.png')
+    image_action2 = load_image('Ramona\\Ramona_action2.png')
+    image_action3 = load_image('Ramona\\Ramona_action3.png')
+    image_action4 = load_image('Ramona\\Ramona_action4.png')
+    image_action5 = load_image('Ramona\\Ramona_action5.png')
+    image_action6 = load_image('Ramona\\Ramona_action6.png')
 
     pass
 
