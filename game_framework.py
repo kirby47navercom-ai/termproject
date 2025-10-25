@@ -12,6 +12,8 @@ def ingame(game_manager):
     global frame_time
     frame_time = 0.0
     current_time = time.time()
+    while running:
 
+        pass
 
     pass
