@@ -169,3 +169,5 @@ def path_length(points):
         if points[i].id == points[i - 1].id:
             d += euclidean_distance(points[i - 1], points[i])
     return d
+
+def make_int_coords(points):
