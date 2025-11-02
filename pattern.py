@@ -76,3 +76,8 @@ class Black1(Pattern):
         super().__init__()
         self.image = image_pattern[11]
         self.name = '검정1'
+class Black2(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[12]
+        self.name = '검정2'
