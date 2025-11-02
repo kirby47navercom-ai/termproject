@@ -13,4 +13,10 @@ class Point:
         self.int_y = 0
 
 class PointCloud:
-    pass
+    def __init__(self, name, points):
+        self.name = name
+        self.points = resample(points, NUM_POINTS)
+        self.points = scale(self.points)
+        self.points = translate_to(self.points, ORIGIN)
+        self.points = make_int_coords(self.points)
+        self.lut = compute_lut(self.points)
