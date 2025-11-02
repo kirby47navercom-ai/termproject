@@ -39,20 +39,20 @@ def quit():
     running = False
 
 
-def ingame(game_manager):
-    global running
+def ingame(start_mode):
+    global running, stack
     running = True
-
-    game_manager.init()
+    stack = [start_mode]
+    start_mode.init()
 
     global frame_time
     frame_time = 0.0
     current_time = time.time()
     while running:
-        game_manager.update(frame_time)
-        game_manager.render()
+        stack[-1].update(frame_time)
+        stack[-1].draw()
         frame_time = time.time() - current_time
         current_time += frame_time
-        pass
+
 
     pass
