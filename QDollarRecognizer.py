@@ -257,3 +257,21 @@ class QDollarRecognizer:
         return NUM_POINT_CLOUDS
 
     def load_gesture_from_xml(self, path, gesture_name=None):
+        if os.path.isdir(path):
+            for filename in os.listdir(path):
+                if filename.lower().endswith('.xml'):
+                    #ramona_idle_ani()
+                    xml_path = os.path.join(path, filename)
+                    self.load_gesture_from_xml(xml_path)
+        else:
+            tree = ET.parse(path)
+            root = tree.getroot()
+            file_base = os.path.splitext(os.path.basename(path))[0]
+            name = gesture_name or root.attrib.get('Name') or file_base
+            points = []
+            for stroke_id, stroke in enumerate(root.findall('Stroke'), start=1):
+                for pt in stroke.findall('Point'):
+                    x = float(pt.attrib['X'])
+                    y = float(pt.attrib['Y'])
+                    points.append(Point(x, y, stroke_id))
+            return self.add_gesture(name, points)
