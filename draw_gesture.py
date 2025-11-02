@@ -32,3 +32,16 @@ def draw_line(x1, y1, x2, y2):
 
 def draw_text_on_screen(x, y, text,font):
     font.draw(x, y, text, BLACK)
+
+class GestureRecognizer:
+    def __init__(self):
+        pass
+
+    def update(self, frame_time, events):
+        pass
+
+    def handle_event(self, events):
+        pass
+
+    def draw(self):
+        pass
