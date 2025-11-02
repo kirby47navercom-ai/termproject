@@ -81,10 +81,41 @@ class GestureRecognizer:
 
         if ramona.Ramona_invincible:
             f_pressed = True
-        pass
+
 
     def handle_event(self, events):
-        pass
+        global f_pressed, result
+        for event in events:
+            if event.type == SDL_KEYDOWN:
+                if event.key == SDLK_f:
+                    f_pressed = False
+
+            elif event.type == SDL_KEYUP:
+                if event.key == SDLK_f:
+                    f_pressed = True
+                    self.points = []
+                    self.result = None
+                    self.drawing = False
+                    result = None
+
+            if self.go == True:
+                if event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
+                    self.points, self.result, self.drawing = [], None, True
+                    self.stroke_id += 1
+                    result = None
+                elif event.type == SDL_MOUSEBUTTONUP and event.button == SDL_BUTTON_LEFT:
+                    self.drawing = False
+                    if len(self.points) > 10:
+                        self.result = self.recognizer.recognize(self.points)
+                        if self.result and self.result.score >= 0.25:
+
+                            result = self.result.name
+                        else:
+
+                            result = None
+                        self.points = []
+                elif event.type == SDL_MOUSEMOTION and self.drawing:
+                    self.points.append(Point(event.x, event.y, self.stroke_id))
 
     def draw(self):
         pass
