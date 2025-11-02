@@ -163,3 +163,4 @@ def centroid(points):
 
     return Point(x_sum / len(points), y_sum / len(points), 0)
 
+def path_length(points):
