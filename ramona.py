@@ -113,4 +113,10 @@ class Ramona:
 
 
     def draw(self):
-        pass
+        global Ramona_invincible
+
+        if Ramona_invincible:
+            if (get_time() % 0.2) > 0.1:
+                self.cur_state.draw(self)
+        else:
+            self.cur_state.draw(self)
