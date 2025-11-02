@@ -5,5 +5,10 @@ import os
 import pickle
 
 class Point:
-    pass
+    def __init__(self, x, y, id):
+        self.x = x
+        self.y = y
+        self.id = id
+        self.int_x = 0
+        self.int_y = 0
 
