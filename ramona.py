@@ -85,6 +85,9 @@ class Ramona:
 
         self.shift_pressed = False
 
+    def change_state(self, new_state, event):
+
+
     def update(self, frame_time, events):
         pass
 
