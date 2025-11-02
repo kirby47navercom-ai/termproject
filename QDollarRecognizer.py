@@ -26,3 +26,10 @@ class Result:
         self.name = name
         self.score = score
         self.time = ms
+
+NUM_POINT_CLOUDS = 16
+NUM_POINTS = 32
+ORIGIN = Point(0, 0, 0)
+MAX_INT_COORD = 1024
+LUT_SIZE = 64
+LUT_SCALE_FACTOR = MAX_INT_COORD / LUT_SIZE
