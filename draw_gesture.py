@@ -18,3 +18,14 @@ def draw_point(x, y):
     draw_rectangle(x, y, x + 1, y + 1)
 
 def draw_line(x1, y1, x2, y2):
+    dx, dy = x2 - x1, y2 - y1
+    steps = max(abs(dx), abs(dy))
+    if steps == 0:
+        draw_point(x1, y1)
+        return
+    x_inc, y_inc = dx / steps, dy / steps
+    x, y = x1, y1
+    for i in range(int(steps) + 1):
+        draw_point(int(x), int(y))
+        x += x_inc
+        y += y_inc
