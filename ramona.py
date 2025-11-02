@@ -204,6 +204,38 @@ class RunState:
             self.change_state(JumpState, event)
             Ramona_jump_speed = RUN_SPEED
 
+class EvadeState:
+    def enter(self, event):
+        global Ramona_roll_invincible
+        if event == A_D_TAP:
+            self.dir = -1
+        elif event == D_D_TAP:
+            self.dir = 1
+        self.evade_timer = EVADE_DURATION
+        self.evade_cooldown_timer = EVADE_COOLDOWN
+        Ramona_roll_invincible = True
+
+    def exit(self, event):
+        global Ramona_roll_invincible
+        Ramona_roll_invincible = False
+        pass
+
+    def do(self, frame_time):
+        self.x += self.dir * EVADE_SPEED * frame_time
+        self.evade_timer -= frame_time
+        if self.evade_timer <= 0:
+            if self.a_pressed or self.d_pressed:
+                self.change_state(WalkState, None)
+            else:
+                self.change_state(IdleState, None)
+        self.frame = (self.frame + self.animation_speed * 2.0 * frame_time) % 6
+
+    def draw(self):
+        self.draw_sprite('evade')
+
+    def handle_event(self, event):
+        pass
+
 class Ramona:
     image=None
 
