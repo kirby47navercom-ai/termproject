@@ -99,3 +99,6 @@ def compute_lower_bound(pts1, pts2, step, lut):
         lb[j] = lb[0] + i * sat[n - 1] - n * sat[i - 1]
 
     return lb
+
+def resample(points, n):
+    pass
