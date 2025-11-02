@@ -136,6 +136,39 @@ class Ramona:
                     if self.cur_state == IdleState:
                         self.change_state(WalkState, None)
 
+            self.y_velocity -= GRAVITY * frame_time
+            self.y += self.y_velocity * frame_time
+
+            on_ground = False
+            for bx, by, bw, bh in resource.blocks:
+                block_left, block_right = bx - bw / 2, bx + bw / 2
+                block_bottom, block_top = by - bh / 2, by + bh / 2
+
+                if resource.collide([self.x, self.y, Ramona_SIZE_X, Ramona_SIZE_Y],
+                                    [bx, by, bw, bh]):  # a. 아래로 떨어지며 발판을 밟았을 때
+                    dx = self.x - bx
+                    dy = self.y - by
+                    overlap_x = (Ramona_SIZE_X / 2 + bw / 2) - abs(dx)
+                    overlap_y = (Ramona_SIZE_Y / 2 + bh / 2) - abs(dy)
+
+                    if overlap_y < overlap_x:
+                        # 수직 충돌
+                        if self.y_velocity <= 0 and dy > 0:  # 아래로 떨어지며 위를 밟았을 때
+                            self.y = block_top + Ramona_SIZE_Y / 2
+                            self.y_velocity = 0
+                            self.jump_count = 0
+                            on_ground = True
+                            continue
+                        elif self.y_velocity > 0 and dy < 0:  # 위로 점프하며 아래를 박았을 때
+                            self.y = block_bottom - Ramona_SIZE_Y / 2
+                            self.y_velocity = 0
+                    else:
+                        # 수평 충돌
+                        if dx < 0:
+                            self.x = block_left - Ramona_SIZE_X / 2
+                        else:
+                            self.x = block_right + Ramona_SIZE_X / 2
+
     def handle_event(self, frame_time, events):
         for event in events:
             if (event.type, event.key) in key_event_table:
