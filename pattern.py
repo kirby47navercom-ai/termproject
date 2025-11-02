@@ -26,3 +26,8 @@ class Height(Pattern):
         super().__init__()
         self.image = image_pattern[1]
         self.name = '세로선'
+class FoxEar(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[2]
+        self.name = '여우귀'
