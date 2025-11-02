@@ -193,3 +193,5 @@ def compute_lut(points):
             lut[x][y] = u
 
     return lut
+
+def sqr_euclidean_distance(pt1, pt2):
