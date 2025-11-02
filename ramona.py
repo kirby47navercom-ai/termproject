@@ -57,6 +57,36 @@ key_event_table = {
     (SDL_KEYDOWN, SDLK_SPACE): SPACE_DOWN,
     (SDL_KEYUP, SDLK_SPACE): SPACE_UP, # SPACE_UP 추가
 }
+class DeadState:
+    def enter(self, event):
+        global Ramona_dead
+        self.frame = 0
+        Ramona_dead = True
+        self.knockback_timer = 2.0
+
+    def exit(self, event):
+        pass
+
+    def do(self, frame_time):
+        if self.knockback_timer > 0:
+            dir= 1 if self.flip else -1
+            self.x += dir * DEATH_KNOCKBACK_SPEED * frame_time
+            self.knockback_timer -= frame_time
+
+        total_frames = len(self.coordinate['dead'])
+        self.frame = self.frame + self.animation_speed * frame_time / 3
+        if self.frame >= total_frames:
+            self.frame = total_frames - 1
+
+        self.y_velocity -= GRAVITY * frame_time
+        self.y += self.y_velocity * frame_time
+
+    def draw(self):
+        self.draw_sprite('dead')
+
+    def handle_event(self, event):
+        pass
+
 
 class Ramona:
     image=None
@@ -192,6 +222,26 @@ class Ramona:
             self.flip = True
         elif self.dir == 1:
             self.flip = False
+        global hit_toggle
+
+        if Ramona_invincible:
+
+            Ramona_invincible_timer += frame_time
+
+            if not hit_toggle:
+                hit_toggle = True
+                if CURRENT_HP > 0:
+                    self.change_state(HitState, None)
+                else:
+                    self.change_state(DeadState, None)
+                    pass
+            if Ramona_invincible_timer >= 2.0:
+                Ramona_invincible = False
+                Ramona_invincible_timer = 0.0
+                hit_toggle = False
+
+        Ramona_POS_X = self.x
+        Ramona_POS_Y = self.y
 
 
     def handle_event(self, frame_time, events):
