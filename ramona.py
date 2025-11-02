@@ -40,3 +40,5 @@ Ramona_smash=False
 Ramona_smash_toggle=False
 #플레이어 점프할때 속도
 Ramona_jump_speed=0
+#플레이어 죽었다는 표시
+Ramona_dead=False
