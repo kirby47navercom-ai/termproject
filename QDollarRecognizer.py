@@ -164,3 +164,8 @@ def centroid(points):
     return Point(x_sum / len(points), y_sum / len(points), 0)
 
 def path_length(points):
+    d = 0.0
+    for i in range(1, len(points)):
+        if points[i].id == points[i - 1].id:
+            d += euclidean_distance(points[i - 1], points[i])
+    return d
