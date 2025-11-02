@@ -61,3 +61,8 @@ class diamond(Pattern):
         super().__init__()
         self.image = image_pattern[8]
         self.name = '다이아몬드'
+class square(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[9]
+        self.name = '네모'
