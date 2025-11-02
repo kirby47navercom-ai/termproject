@@ -246,3 +246,5 @@ class QDollarRecognizer:
         else:
             score = 1.0 / b if b > 1.0 else 1.0
             return Result(self.point_clouds[u].name, score, (t1 - t0) * 1000)
+
+    def add_gesture(self, name, points):
