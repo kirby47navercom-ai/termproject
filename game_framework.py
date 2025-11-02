@@ -34,6 +34,11 @@ def pop_mode():
         stack[-1].resume()
 
 
+def quit():
+    global running
+    running = False
+
+
 def ingame(game_manager):
     global running
     running = True
