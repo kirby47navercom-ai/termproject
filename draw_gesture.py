@@ -34,8 +34,11 @@ def draw_text_on_screen(x, y, text,font):
     font.draw(x, y, text, BLACK)
 
 class GestureRecognizer:
+    check_image = None
+    canvas_image = None
     def __init__(self):
-        pass
+        CACHE_PATH = 'gesture_cache.pkl'
+        self.recognizer = QDollarRecognizer()
 
     def update(self, frame_time, events):
         pass
