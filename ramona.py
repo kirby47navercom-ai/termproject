@@ -97,6 +97,39 @@ class Ramona:
         pass
 
     def handle_event(self, frame_time, events):
+        for event in events:
+            if (event.type, event.key) in key_event_table:
+                key_event = key_event_table[(event.type, event.key)]
+
+
+                if key_event == A_DOWN:
+                    self.a_pressed = True
+                elif key_event == A_UP:
+                    self.a_pressed = False
+                elif key_event == D_DOWN:
+                    self.d_pressed = True
+                elif key_event == D_UP:
+                    self.d_pressed = False
+                elif key_event == SHIFT_DOWN:
+                    self.shift_pressed = True
+                elif key_event == SHIFT_UP:
+                    self.shift_pressed = False
+
+
+                if key_event == A_DOWN and self.evade_cooldown_timer <= 0:
+                    if time.time() - self.last_key_time['a'] < DOUBLE_TAP_INTERVAL:
+                        self.cur_state.handle_event(self, A_D_TAP)
+                    else:
+                        self.cur_state.handle_event(self, A_DOWN)
+                    self.last_key_time['a'] = time.time()
+                elif key_event == D_DOWN and self.evade_cooldown_timer <= 0:
+                    if time.time() - self.last_key_time['d'] < DOUBLE_TAP_INTERVAL:
+                        self.cur_state.handle_event(self, D_D_TAP)
+                    else:
+                        self.cur_state.handle_event(self, D_DOWN)
+                    self.last_key_time['d'] = time.time()
+                else:
+                    self.cur_state.handle_event(self, key_event)
 
     def draw_sprite(self, state_name, frame_idx=None):
         if frame_idx is None:
