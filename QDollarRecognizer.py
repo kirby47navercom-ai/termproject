@@ -177,3 +177,19 @@ def make_int_coords(points):
     return points
 
 def compute_lut(points):
+    lut = [[0 for _ in range(LUT_SIZE)] for _ in range(LUT_SIZE)]
+
+    for x in range(LUT_SIZE):
+        for y in range(LUT_SIZE):
+            u = -1
+            b = float('inf')
+            for i, p in enumerate(points):
+                row = round(p.int_x / LUT_SCALE_FACTOR)
+                col = round(p.int_y / LUT_SCALE_FACTOR)
+                d = ((row - x) ** 2) + ((col - y) ** 2)
+                if d < b:
+                    b = d
+                    u = i
+            lut[x][y] = u
+
+    return lut
