@@ -154,3 +154,6 @@ def translate_to(points, pt):
         new_points.append(Point(qx, qy, p.id))
 
     return new_points
+
+def centroid(points):
+    pass
