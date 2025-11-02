@@ -12,3 +12,5 @@ class Point:
         self.int_x = 0
         self.int_y = 0
 
+class PointCloud:
+    pass
