@@ -62,7 +62,28 @@ class Ramona:
     image=None
 
     def __init__(self):
-        pass
+        self.x, self.y = canvas_size.canvaswidth // 2, GROUND_LEVEL
+        self.y_velocity = 0
+        self.frame = 0.0
+        self.dir = 0
+        self.flip = False
+        self.animation_speed = 8.0
+        if Ramona.image == None:
+            Ramona.image = resource.ramona_image
+        self.coordinate = resource.ramona_coordinate
+        self.attack_motion = None
+        self.last_key_time = {'a': 0, 'd': 0}
+        self.jump_count = 0
+        self.evade_cooldown_timer = 0.0
+        self.knockback_timer = 2.0
+        # 키 눌림 상태 추적
+        self.a_pressed = False
+        self.d_pressed = False
+
+        self.cur_state = IdleState
+        self.cur_state.enter(self, None)
+
+        self.shift_pressed = False
 
     def update(self, frame_time, events):
         pass
