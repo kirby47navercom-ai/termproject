@@ -82,4 +82,20 @@ def cloud_distance(pts1, pts2, start, min_so_far):
 
 
 def compute_lower_bound(pts1, pts2, step, lut):
-    pass
+    n = len(pts1)
+    lb = [0.0] * (math.floor(n / step) + 1)
+    sat = [0.0] * n
+
+    for i in range(n):
+        x = round(pts1[i].int_x / LUT_SCALE_FACTOR)
+        y = round(pts1[i].int_y / LUT_SCALE_FACTOR)
+        index = lut[x][y]
+        d = sqr_euclidean_distance(pts1[i], pts2[index])
+        sat[i] = d if i == 0 else sat[i - 1] + d
+        lb[0] += (n - i) * d
+
+    for i in range(step, n, step):
+        j = i // step
+        lb[j] = lb[0] + i * sat[n - 1] - n * sat[i - 1]
+
+    return lb
