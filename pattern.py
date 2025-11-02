@@ -21,3 +21,8 @@ class Width(Pattern):
         super().__init__()
         self.image = image_pattern[0]
         self.name = '가로선'
+class Height(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[1]
+        self.name = '세로선'
