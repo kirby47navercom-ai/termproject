@@ -281,7 +281,31 @@ class JumpState:
         elif event == SPACE_UP:
             if self.y_velocity > 0:
                 self.y_velocity *= 0.5
+class HitState:
+    def enter(self, event):
+        self.frame = 0
+        self.hit_timer = 0.5
+        self.x -= self.dir * 30
 
+    def exit(self, event):
+        pass
+
+    def do(self, frame_time):
+
+        self.frame = (self.frame + self.animation_speed * frame_time) % 4 # hit 애니메이션 프레임 수
+
+        self.y_velocity -= GRAVITY * frame_time
+        self.y += self.y_velocity * frame_time
+
+        self.hit_timer -= frame_time
+        if self.hit_timer <= 0:
+            self.change_state(IdleState, None)
+
+    def draw(self):
+        self.draw_sprite('hit')
+
+    def handle_event(self, event):
+        pass
 
 class Ramona:
     image=None
