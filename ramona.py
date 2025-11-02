@@ -42,3 +42,7 @@ Ramona_smash_toggle=False
 Ramona_jump_speed=0
 #플레이어 죽었다는 표시
 Ramona_dead=False
+
+A_DOWN, D_DOWN, A_UP, D_UP = range(4)
+SHIFT_DOWN, SHIFT_UP, SPACE_DOWN, SPACE_UP = range(4, 8)
+A_D_TAP, D_D_TAP = range(8, 10)
