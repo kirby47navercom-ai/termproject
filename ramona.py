@@ -57,3 +57,15 @@ key_event_table = {
     (SDL_KEYDOWN, SDLK_SPACE): SPACE_DOWN,
     (SDL_KEYUP, SDLK_SPACE): SPACE_UP, # SPACE_UP 추가
 }
+
+class Ramona:
+    image=None
+
+    def __init__(self):
+        pass
+
+    def update(self, frame_time, events):
+        pass
+
+    def draw(self):
+        pass
