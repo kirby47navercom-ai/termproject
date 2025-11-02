@@ -221,3 +221,5 @@ class QDollarRecognizer:
     def save_gesture_cache(self, cache_path):
         with open(cache_path, 'wb') as f:
             pickle.dump(self.point_clouds, f)
+
+    def load_gesture_cache(self, cache_path):
