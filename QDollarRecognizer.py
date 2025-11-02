@@ -227,3 +227,22 @@ class QDollarRecognizer:
             self.point_clouds = pickle.load(f)
 
     def recognize(self, points):
+        t0 = time.time()
+        candidate = PointCloud("", points)
+
+        u = -1
+        b = float('inf')
+
+        for i, template in enumerate(self.point_clouds):
+            d = cloud_match(candidate, template, b)
+            if d < b:
+                b = d
+                u = i
+
+        t1 = time.time()
+
+        if u == -1:
+            return Result("No match.", 0.0, (t1 - t0) * 1000)
+        else:
+            score = 1.0 / b if b > 1.0 else 1.0
+            return Result(self.point_clouds[u].name, score, (t1 - t0) * 1000)
