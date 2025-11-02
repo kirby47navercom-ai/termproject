@@ -146,3 +146,11 @@ def scale(points):
     return new_points
 
 def translate_to(points, pt):
+    c = centroid(points)
+    new_points = []
+    for p in points:
+        qx = p.x + pt.x - c.x
+        qy = p.y + pt.y - c.y
+        new_points.append(Point(qx, qy, p.id))
+
+    return new_points
