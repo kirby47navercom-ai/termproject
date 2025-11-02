@@ -31,3 +31,4 @@ def draw_line(x1, y1, x2, y2):
         y += y_inc
 
 def draw_text_on_screen(x, y, text,font):
+    font.draw(x, y, text, BLACK)
