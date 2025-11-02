@@ -46,3 +46,8 @@ class Night(Pattern):
         super().__init__()
         self.image = image_pattern[5]
         self.name = 'N'
+class Star(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[6]
+        self.name = '별'
