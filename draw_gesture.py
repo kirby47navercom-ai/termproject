@@ -64,6 +64,23 @@ class GestureRecognizer:
         self.go = False
 
     def update(self, frame_time, events):
+        global f_pressed, result
+        self.handle_event(events)
+
+        if not f_pressed:
+            if self.canvas_image_y > canvas_size.canvasheight // 2:
+                self.check_image_y -= SIZE
+                self.canvas_image_y -= SIZE
+            else:
+                self.go = True
+        else:
+            if self.canvas_image_y < canvas_size.canvasheight + canvas_size.canvasheight // 2:
+                self.check_image_y += SIZE
+                self.canvas_image_y += SIZE
+                self.go = False
+
+        if ramona.Ramona_invincible:
+            f_pressed = True
         pass
 
     def handle_event(self, events):
