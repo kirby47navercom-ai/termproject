@@ -122,6 +122,31 @@ class AttackState:
     def handle_event(self, event):
         pass
 
+class IdleState:
+    def enter(self, event):
+        self.dir = 0
+        self.frame = 0
+
+    def exit(self, event):
+        pass
+
+    def do(self, frame_time):
+        self.frame = (self.frame + self.animation_speed * frame_time) % 6
+
+    def draw(self):
+        self.draw_sprite('idle')
+
+    def handle_event(self, event):
+        global Ramona_jump_speed
+        if event == A_DOWN or event == D_DOWN:
+            self.change_state(WalkState, event)
+        elif event == SPACE_DOWN:
+            self.change_state(JumpState, event)
+            Ramona_jump_speed=WALK_SPEED
+        elif event == A_D_TAP or event == D_D_TAP:
+            self.change_state(EvadeState, event)
+
+
 
 class Ramona:
     image=None
