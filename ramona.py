@@ -38,3 +38,5 @@ Ramona_attack=20
 #플레이어의 공격
 Ramona_smash=False
 Ramona_smash_toggle=False
+#플레이어 점프할때 속도
+Ramona_jump_speed=0
