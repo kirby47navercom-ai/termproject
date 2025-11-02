@@ -22,7 +22,19 @@ class GestureBackground:
         pass
 
     def update(self, frame_time, events):
+        self.handle_event(events)
 
+        if self.f_pressed == False:
+            if self.canvas_image_y > canvasheight // 2:
+                self.check_image_y -= SIZE
+                self.canvas_image_y -= SIZE
+            else:
+                self.go = True
+        else:
+            if self.canvas_image_y < canvasheight + canvasheight // 2:
+                self.check_image_y += SIZE
+                self.canvas_image_y += SIZE
+                self.go = False
         pass
 
 
