@@ -205,4 +205,15 @@ def euclidean_distance(pt1, pt2):
 
 class QDollarRecognizer:
     def __init__(self):
-        pass
+        self.point_clouds = []
+        self.point_clouds.append(PointCloud("없어용", [
+            Point(382, 310, 1), Point(377, 308, 1), Point(373, 307, 1), Point(366, 307, 1), Point(360, 310, 1),
+            Point(356, 313, 1), Point(353, 316, 1), Point(349, 321, 1), Point(347, 326, 1), Point(344, 331, 1),
+            Point(342, 337, 1), Point(341, 343, 1), Point(341, 350, 1), Point(341, 358, 1), Point(342, 362, 1),
+            Point(344, 366, 1), Point(347, 370, 1), Point(351, 374, 1), Point(356, 379, 1), Point(361, 382, 1),
+            Point(368, 385, 1), Point(374, 387, 1), Point(381, 387, 1), Point(390, 387, 1), Point(397, 385, 1),
+            Point(404, 382, 1), Point(408, 378, 1), Point(412, 373, 1), Point(416, 367, 1), Point(418, 361, 1),
+            Point(419, 353, 1), Point(418, 346, 1), Point(417, 341, 1), Point(416, 336, 1), Point(413, 331, 1),
+            Point(410, 326, 1), Point(404, 320, 1), Point(400, 317, 1), Point(393, 313, 1), Point(392, 312, 1),
+            Point(418, 309, 2), Point(337, 390, 2)
+        ]))
