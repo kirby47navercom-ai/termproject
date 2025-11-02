@@ -200,3 +200,9 @@ def sqr_euclidean_distance(pt1, pt2):
     return dx * dx + dy * dy
 
 def euclidean_distance(pt1, pt2):
+    return math.sqrt(sqr_euclidean_distance(pt1, pt2))
+
+
+class QDollarRecognizer:
+    def __init__(self):
+        pass
