@@ -118,4 +118,29 @@ class GestureRecognizer:
                     self.points.append(Point(event.x, event.y, self.stroke_id))
 
     def draw(self):
-        pass
+        self.check_image.clip_draw(0, 0, check_image_width, check_image_height,
+                                   self.check_image_x - canvas_size.camera_x, self.check_image_y - canvas_size.camera_y,
+                                   check_image_width * 0.4, check_image_height * 0.4)
+        self.canvas_image.draw(self.canvas_image_x - canvas_size.camera_x, self.canvas_image_y - canvas_size.camera_y, )
+
+        if self.go:
+            if len(self.points) > 1:
+                for i in range(1, len(self.points)):
+                    if self.points[i].id == self.points[i - 1].id:
+                        draw_line(self.points[i - 1].x - canvas_size.camera_x,
+                                  canvas_size.canvasheight - self.points[i - 1].y - canvas_size.camera_y,
+                                  self.points[i].x - canvas_size.camera_x,
+                                  canvas_size.canvasheight - self.points[i].y - canvas_size.camera_y)
+
+            draw_text_on_screen(10 - canvas_size.camera_x, canvas_size.canvasheight - 90 - canvas_size.camera_y,
+                                "그림을 그리고 마우스를 떼세요.", self.font)
+            if self.result:
+                if self.result.score < 0.25:
+                    draw_text_on_screen(10 - canvas_size.camera_x,
+                                        canvas_size.canvasheight - 120 - canvas_size.camera_y,
+                                        f"인식 결과: 인식 실패 (Score: {self.result.score:.2f})", self.font)
+                else:
+                    draw_text_on_screen(10 - canvas_size.camera_x,
+                                        canvas_size.canvasheight - 120 - canvas_size.camera_y,
+                                        f"인식 결과: {self.result.name} (Score: {self.result.score:.2f})", self.font)
+
