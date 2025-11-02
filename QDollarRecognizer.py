@@ -125,3 +125,5 @@ def resample(points, n):
         new_points.append(Point(last_point.x, last_point.y, last_point.id))
 
     return new_points
+
+def scale(points):
