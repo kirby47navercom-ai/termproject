@@ -253,3 +253,7 @@ class QDollarRecognizer:
         return num
 
     def delete_user_gestures(self):
+        self.point_clouds = self.point_clouds[:NUM_POINT_CLOUDS]
+        return NUM_POINT_CLOUDS
+
+    def load_gesture_from_xml(self, path, gesture_name=None):
