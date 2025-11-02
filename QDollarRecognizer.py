@@ -248,3 +248,8 @@ class QDollarRecognizer:
             return Result(self.point_clouds[u].name, score, (t1 - t0) * 1000)
 
     def add_gesture(self, name, points):
+        self.point_clouds.append(PointCloud(name, points))
+        num = sum(1 for pc in self.point_clouds if pc.name == name)
+        return num
+
+    def delete_user_gestures(self):
