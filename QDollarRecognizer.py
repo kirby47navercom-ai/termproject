@@ -127,3 +127,22 @@ def resample(points, n):
     return new_points
 
 def scale(points):
+    min_x, max_x = float('inf'), float('-inf')
+    min_y, max_y = float('inf'), float('-inf')
+
+    for p in points:
+        min_x = min(min_x, p.x)
+        min_y = min(min_y, p.y)
+        max_x = max(max_x, p.x)
+        max_y = max(max_y, p.y)
+
+    size = max(max_x - min_x, max_y - min_y)
+    new_points = []
+    for p in points:
+        qx = (p.x - min_x) / size
+        qy = (p.y - min_y) / size
+        new_points.append(Point(qx, qy, p.id))
+
+    return new_points
+
+def translate_to(points, pt):
