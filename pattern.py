@@ -56,3 +56,8 @@ class Zzz(Pattern):
         super().__init__()
         self.image = image_pattern[7]
         self.name = 'Z'
+class diamond(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[8]
+        self.name = '다이아몬드'
