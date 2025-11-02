@@ -96,3 +96,9 @@ class Black5(Pattern):
         super().__init__()
         self.image = image_pattern[15]
         self.name = '검정5'
+def get_pattern_set():
+    return [
+        Width(), Height(), FoxEar(), Victory(), Thunder(),
+        Night(), Star(), Zzz(), diamond(), square(), triangle(),
+        Black1(), Black2(), Black3(), Black4(), Black5()
+    ]
