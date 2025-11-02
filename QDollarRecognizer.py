@@ -22,4 +22,7 @@ class PointCloud:
         self.lut = compute_lut(self.points)
 
 class Result:
-    pass
+    def __init__(self, name, score, ms):
+        self.name = name
+        self.score = score
+        self.time = ms
