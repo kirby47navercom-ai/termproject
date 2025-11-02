@@ -20,3 +20,6 @@ class PointCloud:
         self.points = translate_to(self.points, ORIGIN)
         self.points = make_int_coords(self.points)
         self.lut = compute_lut(self.points)
+
+class Result:
+    pass
