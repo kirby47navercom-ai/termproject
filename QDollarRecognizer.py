@@ -275,3 +275,44 @@ class QDollarRecognizer:
                     y = float(pt.attrib['Y'])
                     points.append(Point(x, y, stroke_id))
             return self.add_gesture(name, points)
+
+
+if __name__ == "__main__":
+
+    recognizer = QDollarRecognizer()
+
+
+    test_gesture_points = [
+        Point(20, 200, 1),
+        Point(35, 202, 1),
+        Point(50, 199, 1),
+        Point(70, 201, 1),
+        Point(90, 200, 1),
+        Point(110, 198, 1)
+    ]
+
+
+    result = recognizer.recognize(test_gesture_points)
+
+
+    print(f"Gesture Recognized: {result.name}")
+    print(f"Score (Confidence): {result.score:.2f}")
+    print(f"Time taken: {result.time:.2f} ms")
+
+    print("-" * 20)
+
+
+    print("Adding a new custom gesture: 'circle'")
+    circle_points = []
+    for i in range(0, 361, 10):
+        rad = math.radians(i)
+        x = 100 + 50 * math.cos(rad)
+        y = 100 + 50 * math.sin(rad)
+        circle_points.append(Point(x, y, 1))
+
+    num_circles = recognizer.add_gesture("circle", circle_points)
+    print(f"Number of 'circle' gestures stored: {num_circles}")
+
+    result_circle = recognizer.recognize(circle_points)
+    print(f"Recognizing the added gesture: {result_circle.name}")
+    print(f"Score: {result_circle.score:.2f}")
