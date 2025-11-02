@@ -101,4 +101,27 @@ def compute_lower_bound(pts1, pts2, step, lut):
     return lb
 
 def resample(points, n):
-    pass
+    I = path_length(points) / (n - 1)
+    D = 0.0
+    new_points = [points[0]]
+
+    i = 1
+    while i < len(points):
+        if points[i].id == points[i - 1].id:
+            d = euclidean_distance(points[i - 1], points[i])
+            if (D + d) >= I:
+                qx = points[i - 1].x + ((I - D) / d) * (points[i].x - points[i - 1].x)
+                qy = points[i - 1].y + ((I - D) / d) * (points[i].y - points[i - 1].y)
+                q = Point(qx, qy, points[i].id)
+                new_points.append(q)
+                points.insert(i, q)
+                D = 0.0
+            else:
+                D += d
+        i += 1
+
+    if len(new_points) == n - 1:
+        last_point = points[-1]
+        new_points.append(Point(last_point.x, last_point.y, last_point.id))
+
+    return new_points
