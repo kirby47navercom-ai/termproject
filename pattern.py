@@ -31,3 +31,8 @@ class FoxEar(Pattern):
         super().__init__()
         self.image = image_pattern[2]
         self.name = '여우귀'
+class Victory(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[3]
+        self.name = '브이'
