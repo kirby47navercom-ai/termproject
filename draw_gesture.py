@@ -81,6 +81,7 @@ class GestureRecognizer:
 
         if ramona.Ramona_invincible:
             f_pressed = True
+        pass
 
 
     def handle_event(self, events):
