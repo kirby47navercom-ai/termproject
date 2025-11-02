@@ -29,3 +29,5 @@ def draw_line(x1, y1, x2, y2):
         draw_point(int(x), int(y))
         x += x_inc
         y += y_inc
+
+def draw_text_on_screen(x, y, text,font):
