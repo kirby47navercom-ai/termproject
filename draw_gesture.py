@@ -13,3 +13,7 @@ BLACK = (0, 0, 0)
 f_pressed = True
 
 result = None
+
+def draw_point(x, y):
+    draw_rectangle(x, y, x + 1, y + 1)
+
