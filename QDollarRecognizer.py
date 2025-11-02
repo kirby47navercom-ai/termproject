@@ -217,3 +217,5 @@ class QDollarRecognizer:
             Point(410, 326, 1), Point(404, 320, 1), Point(400, 317, 1), Point(393, 313, 1), Point(392, 312, 1),
             Point(418, 309, 2), Point(337, 390, 2)
         ]))
+
+    def save_gesture_cache(self, cache_path):
