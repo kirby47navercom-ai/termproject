@@ -156,4 +156,10 @@ def translate_to(points, pt):
     return new_points
 
 def centroid(points):
-    pass
+    x_sum, y_sum = 0.0, 0.0
+    for p in points:
+        x_sum += p.x
+        y_sum += p.y
+
+    return Point(x_sum / len(points), y_sum / len(points), 0)
+
