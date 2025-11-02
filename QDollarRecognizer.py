@@ -175,3 +175,5 @@ def make_int_coords(points):
         p.int_x = round((p.x + 1.0) / 2.0 * (MAX_INT_COORD - 1))
         p.int_y = round((p.y + 1.0) / 2.0 * (MAX_INT_COORD - 1))
     return points
+
+def compute_lut(points):
