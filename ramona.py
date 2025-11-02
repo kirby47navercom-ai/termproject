@@ -94,7 +94,24 @@ class Ramona:
 
 
     def update(self, frame_time, events):
-        pass
+        global Ramona_POS_X, Ramona_POS_Y, Ramona_invincible_timer, Ramona_invincible, hit_toggle, CURRENT_HP, Ramona_smash, Ramona_smash_toggle
+        global WIDTH_LEVEL, GROUND_LEVEL
+
+        if Ramona_smash and self.cur_state not in [AttackState, HitState, EvadeState] and not Ramona_smash_toggle:
+            self.change_state(AttackState, None)
+            Ramona_smash = False
+            Ramona_smash_toggle = True
+        elif not draw_gesture.f_pressed and not Ramona_smash and not Ramona_smash_toggle:
+
+            self.a_pressed = False
+            self.d_pressed = False
+            self.shift_pressed = False
+            self.dir = 0
+
+            if self.cur_state != IdleState:
+                self.change_state(IdleState, None)
+
+            self.cur_state.do(self, frame_time)
 
     def handle_event(self, frame_time, events):
         for event in events:
