@@ -79,3 +79,7 @@ def cloud_distance(pts1, pts2, start, min_so_far):
             break
 
     return sum_dist
+
+
+def compute_lower_bound(pts1, pts2, step, lut):
+    pass
