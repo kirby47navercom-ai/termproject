@@ -46,3 +46,14 @@ Ramona_dead=False
 A_DOWN, D_DOWN, A_UP, D_UP = range(4)
 SHIFT_DOWN, SHIFT_UP, SPACE_DOWN, SPACE_UP = range(4, 8)
 A_D_TAP, D_D_TAP = range(8, 10)
+
+key_event_table = {
+    (SDL_KEYDOWN, SDLK_a): A_DOWN,
+    (SDL_KEYDOWN, SDLK_d): D_DOWN,
+    (SDL_KEYUP, SDLK_a): A_UP,
+    (SDL_KEYUP, SDLK_d): D_UP,
+    (SDL_KEYDOWN, SDLK_LSHIFT): SHIFT_DOWN,
+    (SDL_KEYUP, SDLK_LSHIFT): SHIFT_UP,
+    (SDL_KEYDOWN, SDLK_SPACE): SPACE_DOWN,
+    (SDL_KEYUP, SDLK_SPACE): SPACE_UP, # SPACE_UP 추가
+}
