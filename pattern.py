@@ -51,3 +51,8 @@ class Star(Pattern):
         super().__init__()
         self.image = image_pattern[6]
         self.name = '별'
+class Zzz(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[7]
+        self.name = 'Z'
