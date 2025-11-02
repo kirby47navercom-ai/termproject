@@ -86,6 +86,11 @@ class Ramona:
         self.shift_pressed = False
 
     def change_state(self, new_state, event):
+        if self.cur_state != new_state:
+            self.cur_state.exit(self, event)
+            self.cur_state = new_state
+            self.cur_state.enter(self, event)
+            self.frame = 0.0
 
 
     def update(self, frame_time, events):
