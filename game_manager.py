@@ -9,6 +9,6 @@ def update(frame_time):
     events = get_events()
     pass
 
-def render():
+def draw():
 
     pass
