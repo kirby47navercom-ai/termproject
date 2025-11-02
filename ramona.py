@@ -236,6 +236,53 @@ class EvadeState:
     def handle_event(self, event):
         pass
 
+
+class JumpState:
+    def enter(self, event):
+        if event is not None:
+            if self.jump_count < 2:
+                self.y_velocity = JUMP_POWER
+                self.jump_count += 1
+                if self.jump_count > 1:
+                    self.frame = 0
+        else:
+            if self.jump_count == 0:
+                self.jump_count = 1
+
+    def exit(self, event):
+        pass
+
+    def do(self, frame_time):
+        global Ramona_jump_speed
+        if self.a_pressed and not self.d_pressed:
+            self.dir = -1
+        elif self.d_pressed and not self.a_pressed:
+            self.dir = 1
+        else:
+            self.dir = 0
+
+        self.x += self.dir * Ramona_jump_speed * frame_time
+
+        if self.jump_count > 1:
+            self.frame = (self.frame + self.animation_speed*2.0 * frame_time) % 5
+
+
+
+    def draw(self):
+        if self.jump_count > 1:
+            self.draw_sprite('double_jump')
+        else:
+            self.draw_sprite('jump', frame_idx=2)
+
+    def handle_event(self, event):
+        if event == SPACE_DOWN and self.jump_count < 2:
+            self.cur_state.enter(self, event)
+
+        elif event == SPACE_UP:
+            if self.y_velocity > 0:
+                self.y_velocity *= 0.5
+
+
 class Ramona:
     image=None
 
