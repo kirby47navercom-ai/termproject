@@ -136,38 +136,63 @@ class Ramona:
                     if self.cur_state == IdleState:
                         self.change_state(WalkState, None)
 
-            self.y_velocity -= GRAVITY * frame_time
-            self.y += self.y_velocity * frame_time
+        self.y_velocity -= GRAVITY * frame_time
+        self.y += self.y_velocity * frame_time
 
-            on_ground = False
-            for bx, by, bw, bh in resource.blocks:
-                block_left, block_right = bx - bw / 2, bx + bw / 2
-                block_bottom, block_top = by - bh / 2, by + bh / 2
+        on_ground = False
+        for bx, by, bw, bh in resource.blocks:
+            block_left, block_right = bx - bw / 2, bx + bw / 2
+            block_bottom, block_top = by - bh / 2, by + bh / 2
 
-                if resource.collide([self.x, self.y, Ramona_SIZE_X, Ramona_SIZE_Y],
-                                    [bx, by, bw, bh]):  # a. 아래로 떨어지며 발판을 밟았을 때
-                    dx = self.x - bx
-                    dy = self.y - by
-                    overlap_x = (Ramona_SIZE_X / 2 + bw / 2) - abs(dx)
-                    overlap_y = (Ramona_SIZE_Y / 2 + bh / 2) - abs(dy)
+            if resource.collide([self.x, self.y, Ramona_SIZE_X, Ramona_SIZE_Y],
+                                [bx, by, bw, bh]):  # a. 아래로 떨어지며 발판을 밟았을 때
+                dx = self.x - bx
+                dy = self.y - by
+                overlap_x = (Ramona_SIZE_X / 2 + bw / 2) - abs(dx)
+                overlap_y = (Ramona_SIZE_Y / 2 + bh / 2) - abs(dy)
 
-                    if overlap_y < overlap_x:
-                        # 수직 충돌
-                        if self.y_velocity <= 0 and dy > 0:  # 아래로 떨어지며 위를 밟았을 때
-                            self.y = block_top + Ramona_SIZE_Y / 2
-                            self.y_velocity = 0
-                            self.jump_count = 0
-                            on_ground = True
-                            continue
-                        elif self.y_velocity > 0 and dy < 0:  # 위로 점프하며 아래를 박았을 때
-                            self.y = block_bottom - Ramona_SIZE_Y / 2
-                            self.y_velocity = 0
+                if overlap_y < overlap_x:
+                    # 수직 충돌
+                    if self.y_velocity <= 0 and dy > 0:  # 아래로 떨어지며 위를 밟았을 때
+                        self.y = block_top + Ramona_SIZE_Y / 2
+                        self.y_velocity = 0
+                        self.jump_count = 0
+                        on_ground = True
+                        continue
+                    elif self.y_velocity > 0 and dy < 0:  # 위로 점프하며 아래를 박았을 때
+                        self.y = block_bottom - Ramona_SIZE_Y / 2
+                        self.y_velocity = 0
+                else:
+                    # 수평 충돌
+                    if dx < 0:
+                        self.x = block_left - Ramona_SIZE_X / 2
                     else:
-                        # 수평 충돌
-                        if dx < 0:
-                            self.x = block_left - Ramona_SIZE_X / 2
-                        else:
-                            self.x = block_right + Ramona_SIZE_X / 2
+                        self.x = block_right + Ramona_SIZE_X / 2
+        # 3. 어떤 발판 위에도 있지 않다면, 최종 바닥(GROUND_LEVEL) 확인
+        if not on_ground and self.y <= GROUND_LEVEL:
+            self.y = GROUND_LEVEL
+            self.y_velocity = 0
+            self.jump_count = 0
+            on_ground = True
+
+        if on_ground:  # 땅이나 발판 위에 있다면
+            if self.cur_state == JumpState:  # 막 착지했다면
+                if self.a_pressed or self.d_pressed:
+                    self.change_state(WalkState, None)
+                else:
+                    self.change_state(IdleState, None)
+        else:  # 공중에 있다면
+            if self.cur_state in [IdleState, WalkState, RunState]:  # 발판에서 떨어졌다면
+                self.change_state(JumpState, None)
+
+        self.x = clamp(25, self.x, WIDTH_LEVEL)
+        self.y = clamp(GROUND_LEVEL, self.y, 720 - 50)
+
+        if self.dir == -1:
+            self.flip = True
+        elif self.dir == 1:
+            self.flip = False
+
 
     def handle_event(self, frame_time, events):
         for event in events:

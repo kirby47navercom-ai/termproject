@@ -208,6 +208,9 @@ pattern_index_dict = {}
 pattern_name=['가로선','세로선','여우귀','브이','번개','N','별','Z','다이아몬드','네모','세모','검정1','검정2','검정3','검정4','검정5']
 pattern_number=15
 
+#보스 체력
+boss_hp_coodinate = [0,0,288,16,0,0]
+
 #스테이지 1리소스
 ghost_idle_coordinate = [1981,820-265-76,59,76,0,0]
 ghost_hit_coordinate = [[1175,820-539-89,101,89,0,0],[1289,820-539-90,100,90,0,0], [1406,820-554-80,100,80,0,0],[1535,820-554-80,62,80,0,0]]
@@ -221,7 +224,19 @@ boss_ghost_die_coordinate = [[436,820-566-106,81,106,0,0],[530,820-571-102,82,10
 
 
 
+#블록
+blocks=[]
 
+def collide(a, b):
+    left_a, bottom_a, right_a, top_a = a[0] - a[2]/2, a[1] - a[3]/2, a[0] + a[2]/2, a[1] + a[3]/2
+    left_b, bottom_b, right_b, top_b = b[0] - b[2]/2, b[1] - b[3]/2, b[0] + b[2]/2, b[1] + b[3]/2
+
+    if left_a > right_b: return False
+    if right_a < left_b: return False
+    if top_a < bottom_b: return False
+    if bottom_a > top_b: return False
+
+    return True
 
 
 # 함수로 묶기
