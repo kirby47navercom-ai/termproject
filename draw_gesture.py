@@ -39,6 +39,18 @@ class GestureRecognizer:
     def __init__(self):
         CACHE_PATH = 'gesture_cache.pkl'
         self.recognizer = QDollarRecognizer()
+        if os.path.exists(CACHE_PATH):
+            self.recognizer.load_gesture_cache(CACHE_PATH)
+        else:
+            self.recognizer.load_gesture_from_xml('NewGestures')
+            self.recognizer.save_gesture_cache(CACHE_PATH)
+
+        self.font = load_font('Font\\경기천년제목_Bold.ttf', 30)
+        self.drawing = False
+        self.points = []
+        self.stroke_id = 0
+        self.result = None
+        self.shape = None
 
     def update(self, frame_time, events):
         pass
