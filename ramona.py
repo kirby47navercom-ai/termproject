@@ -112,6 +112,29 @@ class Ramona:
                 self.change_state(IdleState, None)
 
             self.cur_state.do(self, frame_time)
+        else:
+
+            self.handle_event(frame_time,events)
+            self.cur_state.do(self, frame_time)
+
+
+            if self.evade_cooldown_timer > 0:
+                self.evade_cooldown_timer -= frame_time
+
+
+            if self.cur_state in [IdleState, WalkState, RunState]:
+                if self.a_pressed == self.d_pressed:
+                    self.dir = 0
+                    if self.cur_state in [WalkState, RunState]:
+                        self.change_state(IdleState, None)
+                elif self.a_pressed:
+                    self.dir = -1
+                    if self.cur_state == IdleState:
+                        self.change_state(WalkState, None)
+                elif self.d_pressed:
+                    self.dir = 1
+                    if self.cur_state == IdleState:
+                        self.change_state(WalkState, None)
 
     def handle_event(self, frame_time, events):
         for event in events:
