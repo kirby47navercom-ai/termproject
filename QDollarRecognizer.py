@@ -35,4 +35,17 @@ LUT_SIZE = 64
 LUT_SCALE_FACTOR = MAX_INT_COORD / LUT_SIZE
 
 def cloud_match(candidate, template, min_so_far):
-    pass
+    n = len(candidate.points)
+    step = math.floor(n ** 0.5)
+
+    lb1 = compute_lower_bound(candidate.points, template.points, step, template.lut)
+    lb2 = compute_lower_bound(template.points, candidate.points, step, candidate.lut)
+
+    for i, (val1, val2) in enumerate(zip(lb1, lb2)):
+        j = i * step
+        if val1 < min_so_far:
+            min_so_far = min(min_so_far, cloud_distance(candidate.points, template.points, j, min_so_far))
+        if val2 < min_so_far:
+            min_so_far = min(min_so_far, cloud_distance(template.points, candidate.points, j, min_so_far))
+
+    return min_so_far
