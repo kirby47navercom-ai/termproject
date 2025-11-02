@@ -51,4 +51,31 @@ def cloud_match(candidate, template, min_so_far):
     return min_so_far
 
 def cloud_distance(pts1, pts2, start, min_so_far):
-    pass
+    n = len(pts1)
+    unmatched = list(range(n))
+
+    i = start
+    weight = n
+    sum_dist = 0.0
+
+    while True:
+        u = -1
+        b = float('inf')
+        for j_idx, j in enumerate(unmatched):
+            d = sqr_euclidean_distance(pts1[i], pts2[j])
+            if d < b:
+                b = d
+                u = j_idx
+
+        unmatched.pop(u)
+        sum_dist += weight * b
+
+        if sum_dist >= min_so_far:
+            return sum_dist
+
+        weight -= 1
+        i = (i + 1) % n
+        if i == start:
+            break
+
+    return sum_dist
