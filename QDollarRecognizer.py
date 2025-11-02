@@ -49,3 +49,6 @@ def cloud_match(candidate, template, min_so_far):
             min_so_far = min(min_so_far, cloud_distance(template.points, candidate.points, j, min_so_far))
 
     return min_so_far
+
+def cloud_distance(pts1, pts2, start, min_so_far):
+    pass
