@@ -27,6 +27,14 @@ class GestureBackground:
 
 
     def handle_event(self, events):
+        for event in events:
+            if event.type == SDL_KEYDOWN:
+                if event.key == SDLK_f:
+                    self.f_pressed=False
+
+            elif event.type == SDL_KEYUP:
+                if event.key == SDLK_f:
+                    self.f_pressed=True
         pass
 
 
