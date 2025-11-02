@@ -31,5 +31,7 @@ class GestureBackground:
 
 
     def draw(self):
-
+        self.check_image.clip_draw(0, 0, check_image_width, check_image_height, self.check_image_x, self.check_image_y,
+                                   check_image_width * 0.4, check_image_height * 0.4)
+        self.canvas_image.draw(self.canvas_image_x, self.canvas_image_y)
         pass
