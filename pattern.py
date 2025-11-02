@@ -36,3 +36,8 @@ class Victory(Pattern):
         super().__init__()
         self.image = image_pattern[3]
         self.name = '브이'
+class Thunder(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[4]
+        self.name = '번개'
