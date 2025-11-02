@@ -96,5 +96,8 @@ class Ramona:
     def update(self, frame_time, events):
         pass
 
+    def draw_sprite(self, state_name, frame_idx=None):
+
+
     def draw(self):
         pass
