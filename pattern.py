@@ -66,3 +66,8 @@ class square(Pattern):
         super().__init__()
         self.image = image_pattern[9]
         self.name = '네모'
+class triangle(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[10]
+        self.name = '세모'
