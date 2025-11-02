@@ -71,3 +71,8 @@ class triangle(Pattern):
         super().__init__()
         self.image = image_pattern[10]
         self.name = '세모'
+class Black1(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[11]
+        self.name = '검정1'
