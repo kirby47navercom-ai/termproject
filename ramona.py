@@ -28,3 +28,8 @@ Ramona_SIZE_Y=64
 #플레이어의 위치
 Ramona_POS_X=100
 Ramona_POS_Y=GROUND_LEVEL
+#플레이어 무적
+Ramona_invincible_timer=0.0
+Ramona_roll_invincible=False
+Ramona_invincible=False
+hit_toggle=False
