@@ -87,6 +87,41 @@ class DeadState:
     def handle_event(self, event):
         pass
 
+class AttackState:
+    def enter(self, event):
+        self.frame = 0
+        attack_num = random.randint(1, 6)
+
+        self.attack_motion = f'action{attack_num}'
+
+        self.dir = 0
+
+    def exit(self, event):
+        pass
+
+    def do(self, frame_time):
+        global Ramona_smash, Ramona_smash_toggle
+        total_frames = len(self.coordinate[self.attack_motion])
+
+        self.frame = (self.frame + self.animation_speed*1.5 * frame_time)
+
+        if self.frame+2 > total_frames and canvas_size.shake_timer<=0:
+            canvas_size.start_shake(0.5, 5.0)
+
+        if self.frame >= total_frames:
+            Ramona_smash_toggle = False
+            self.change_state(IdleState, None)
+
+    def draw(self):
+        total_frames = len(self.coordinate[self.attack_motion])
+        frame_idx = int(self.frame)
+        if frame_idx >= total_frames:
+            frame_idx = total_frames - 1
+        self.draw_sprite(self.attack_motion, frame_idx=frame_idx)
+
+    def handle_event(self, event):
+        pass
+
 
 class Ramona:
     image=None
