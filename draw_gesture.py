@@ -36,6 +36,7 @@ def draw_text_on_screen(x, y, text,font):
 class GestureRecognizer:
     check_image = None
     canvas_image = None
+    font = None
     def __init__(self):
         CACHE_PATH = 'gesture_cache.pkl'
         self.recognizer = QDollarRecognizer()
@@ -51,6 +52,16 @@ class GestureRecognizer:
         self.stroke_id = 0
         self.result = None
         self.shape = None
+
+        if GestureRecognizer.canvas_image is None:
+            GestureRecognizer.canvas_image = load_image('Canvas\\1.png')
+        if GestureRecognizer.check_image is None:
+            GestureRecognizer.check_image = load_image('Canvas\\2.png')
+        self.check_image_x = canvas_size.canvaswidth // 2
+        self.check_image_y = canvas_size.canvasheight - (check_image_height * 0.2)
+        self.canvas_image_x = canvas_size.canvaswidth // 2
+        self.canvas_image_y = canvas_size.canvasheight + canvas_size.canvasheight // 2
+        self.go = False
 
     def update(self, frame_time, events):
         pass
