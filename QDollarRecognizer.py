@@ -33,3 +33,6 @@ ORIGIN = Point(0, 0, 0)
 MAX_INT_COORD = 1024
 LUT_SIZE = 64
 LUT_SCALE_FACTOR = MAX_INT_COORD / LUT_SIZE
+
+def cloud_match(candidate, template, min_so_far):
+    pass
