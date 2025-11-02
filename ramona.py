@@ -25,3 +25,6 @@ CURRENT_HP = 3
 #플레이어의 크기
 Ramona_SIZE_X=30
 Ramona_SIZE_Y=64
+#플레이어의 위치
+Ramona_POS_X=100
+Ramona_POS_Y=GROUND_LEVEL
