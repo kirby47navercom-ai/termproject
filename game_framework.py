@@ -13,6 +13,14 @@ def change_mode(mode):
     stack.append(mode)
     mode.init()
 
+def push_mode(mode):
+    global stack
+    if (len(stack) > 0):
+        stack[-1].pause()
+    stack.append(mode)
+    mode.init()
+
+
 def ingame(game_manager):
     global running
     running = True
