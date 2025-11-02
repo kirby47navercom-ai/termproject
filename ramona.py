@@ -33,3 +33,5 @@ Ramona_invincible_timer=0.0
 Ramona_roll_invincible=False
 Ramona_invincible=False
 hit_toggle=False
+#플레이어의 공격력
+Ramona_attack=20
