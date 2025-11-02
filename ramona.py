@@ -22,3 +22,6 @@ EVADE_COOLDOWN = 1.5
 #플레이어 체력
 MAX_HP = 3
 CURRENT_HP = 3
+#플레이어의 크기
+Ramona_SIZE_X=30
+Ramona_SIZE_Y=64
