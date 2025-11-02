@@ -16,3 +16,8 @@ class Pattern:
     def draw(self,sizex=0.2,sizey=0.2):
         self.image.clip_draw(0, 0, 128, 128,self.x-canvas_size.camera_x, self.y-canvas_size.camera_y, self.width*sizex, self.height*sizey)
 
+class Width(Pattern):
+    def __init__(self):
+        super().__init__()
+        self.image = image_pattern[0]
+        self.name = '가로선'
