@@ -177,7 +177,32 @@ class WalkState:
         elif event == A_D_TAP or event == D_D_TAP:
             self.change_state(EvadeState, event)
 
+class RunState:
+    def enter(self, event):
 
+        pass
+
+    def exit(self, event):
+        pass
+
+    def do(self, frame_time):
+        self.x += self.dir * RUN_SPEED * frame_time
+        self.frame = (self.frame + self.animation_speed * 1.5 * frame_time) % 6
+
+    def draw(self):
+        self.draw_sprite('run')
+
+    def handle_event(self, event):
+        global Ramona_jump_speed
+        if event == A_UP and self.dir == -1:
+            self.change_state(IdleState, event)
+        elif event == D_UP and self.dir == 1:
+            self.change_state(IdleState, event)
+        elif event == SHIFT_UP:
+            self.change_state(WalkState, event)
+        elif event == SPACE_DOWN:
+            self.change_state(JumpState, event)
+            Ramona_jump_speed = RUN_SPEED
 
 class Ramona:
     image=None
