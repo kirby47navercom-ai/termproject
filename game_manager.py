@@ -1,14 +1,21 @@
 from pico2d import *
-import canvas_size
+import mouse_image
+import stage1_manager
 
 def init():
-
-    pass
+    global mouse
+    stage1_manager.init()
+    mouse = mouse_image.Mouse()
 
 def update(frame_time):
+    global mouse
     events = get_events()
-    pass
+    stage1_manager.update(frame_time, events)
+    mouse.update(frame_time,events)
 
 def draw():
-
-    pass
+    global mouse
+    clear_canvas()
+    stage1_manager.draw()
+    mouse.draw()
+    update_canvas()
