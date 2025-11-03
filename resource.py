@@ -286,7 +286,6 @@ def load_resources():
     }
 
 
-    pass
 
 
 
