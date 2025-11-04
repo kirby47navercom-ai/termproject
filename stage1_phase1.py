@@ -1,12 +1,40 @@
 from ghost_normal import *
 import draw_gesture
 
+ghost_phase_far=50
+ghost_phase_pos=[-1,-1,1,1,1]
 
 class Stage1_Phase1:
     def __init__(self):
-        pass
+        self.phase = [Ghost() for _ in range(5)]
+        for i in range(self.phase.__len__()):
+            self.phase[i].x = 0 if ghost_phase_pos[i] == -1 else canvaswidth + ghost_phase_pos[i] * ghost_phase_far
+            self.phase[i].y = random.randint(0, canvasheight)
+
+
+
     def update(self, frame_time, events=None):
-        pass
+        self.phase[self.phase.__len__() - 1].update(frame_time, events)
+
+        self.shape_check()
+        self.monster_die()
+
+
+    def shape_check(self):
+        if self.phase[self.phase.__len__() - 1].shape.name == draw_gesture.result:
+            self.phase[self.phase.__len__() - 1].hp -= ramona.Ramona_attack
+            self.phase[self.phase.__len__() - 1].hit_animation = True
+            self.phase[self.phase.__len__() - 1].hit_frame = 0
+            ramona.Ramona_smash = True
+
+        draw_gesture.result = None
+
+
+
+    def monster_die(self):
+        if self.phase[self.phase.__len__() - 1].die:
+            self.phase.pop(self.phase.__len__() - 1)
+
 
     def draw(self):
-        pass
+        self.phase[self.phase.__len__() - 1].draw()

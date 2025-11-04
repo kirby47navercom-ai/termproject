@@ -508,9 +508,9 @@ class Ramona:
         left, bottom, width, height, jx, jy = self.coordinate[state_name][frame_idx]
 
         if not self.flip:
-            self.image[state_name].clip_draw(left, bottom, width, height, self.x+jx-canvas_size.camera_x, self.y+jy-canvas_size.camera_y, width, height)
+            self.image[state_name].clip_draw(left, bottom, width, height, self.x+jx-canvas_size.shake_x, self.y+jy-canvas_size.shake_y, width, height)
         else:
-            self.image[state_name].clip_composite_draw(left, bottom, width, height, 0, 'h', self.x-jx-canvas_size.camera_x, self.y+jy-canvas_size.camera_y, width,
+            self.image[state_name].clip_composite_draw(left, bottom, width, height, 0, 'h', self.x-jx-canvas_size.shake_x, self.y+jy-canvas_size.shake_y, width,
                                                        height)
 
 

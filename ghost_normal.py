@@ -96,11 +96,11 @@ class Ghost:
                 left, bottom, width, height, jx, jy = ghost_idle_coordinate
 
             if ramona.Ramona_POS_X < self.x:
-                self.image.clip_composite_draw(left, bottom, width, height, 0, '', self.x + jx - canvas_size.camera_x,
-                                               self.y + jy - canvas_size.camera_y, width, height)
+                self.image.clip_composite_draw(left, bottom, width, height, 0, '', self.x + jx - canvas_size.shake_x,
+                                               self.y + jy - canvas_size.shake_y, width, height)
             else:
-                self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.camera_x,
-                                               self.y + jy - canvas_size.camera_y, width, height)
+                self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
+                                               self.y + jy - canvas_size.shake_y, width, height)
 
             if not self.die_animation:
                 self.shape.draw()
