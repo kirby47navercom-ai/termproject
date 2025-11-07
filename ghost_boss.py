@@ -107,11 +107,114 @@ class Boss_Ghost:
     image = None
 
     def __init__(self):
-        pass
+        if Boss_Ghost.image == None:
+            Boss_Ghost.image = load_image('1stage\\level1-png-sprite.png')
+        self.x, self.y = canvas_size.canvaswidth // 2, canvas_size.canvasheight + 100
+        self.boss_hp = 240
+        self.hp = self.boss_hp
+        self.hp_bar = Boss_HP()
+        self.width, self.height = 70 * SIZE, 104 * SIZE
+        self.frame = 0
+        self.dir = 1
+        self.timer = 0.0
+        self.speed = 50
+        self.shape = self.pattern_set[randint(0, pattern_number)]
+        self.shape.x = self.x
+        self.shape.y = self.y + self.height * 0.7
+        self.idle_frame = 0
+        self.die = False
+        self.die_animation = False
+        self.die_animation_speed = 2.0
+        self.die_frame = 0
+        self.hit = False
+        self.hit_animation = False
+        self.hit_animation_speed = 8.0
 
+        self.pattern_speed = 1
+        self.half_hp = False
+
+        self.cutscene = False
+        self.cutscene_time = 7
+        self.pattern_ready_time = 1.0
+        self.pattern_ready_speed = 1000
+        self.pattern0_ready_time = 0.5
+        self.hit_num = 3
+        self.attack_time = 8.0
+        self.prev_pattern = 0
+
+        self.pattern_num = -1
+        self.pattern_ready_timer = 0.0
+        self.pattern_ready = False
+        self.pattern_state = 0
+        self.pattern1_x = 0
+        self.pattern1_y = 0
+        self.pattern1_frame = 0
+
+        self.cur_state = CutsceneState
+        self.previous_state = CutsceneState
+        self.cur_state.enter(self, None)
+
+    def change_state(self, new_state, event):
+        if self.cur_state != new_state:
+            self.previous_state = self.cur_state
+            self.cur_state.exit(self, event)
+            self.cur_state = new_state
+            self.cur_state.enter(self, event)
 
     def update(self, frame_time, events=None):
-        pass
+        self.idle_frame = (self.idle_frame + self.hit_animation_speed * frame_time) % 4
+
+        if self.hit_animation and self.cur_state not in [HitState, DieState]:
+            self.change_state(HitState, None)
+
+        if self.hp <= 0 and self.cur_state != DieState:
+            self.die_animation = True
+            self.change_state(DieState, None)
+
+        self.cur_state.do(self, frame_time)
+
+        self.ramonatoghost()
+
+        if self.hp <= 120 and not self.half_hp:
+            self.pattern_speed = 2
+            self.half_hp = True
 
     def draw(self):
-        pass
+        if not self.die:
+            self.cur_state.draw(self)
+
+            if self.cur_state not in [DieState]:
+                self.hp_bar.draw(self.hp, self.boss_hp)
+
+            if not self.die_animation and self.cutscene and self.pattern_ready_timer >= self.pattern_ready_time and self.hit_num > 0 and self.cur_state == Pattern2State:
+                self.shape.draw()
+
+    def rereset(self, next_state_class):
+        self.pattern_ready = False
+        self.pattern0_ready_timer = 0.0
+        self.pattern_state = 0
+        self.x = randint(int(self.width), int(canvas_size.canvaswidth - self.width))
+        self.y = canvas_size.canvasheight + self.height
+
+        if next_state_class == Pattern2State:
+            remainder = self.hp % 60
+            if remainder > 40 or remainder == 0:
+                self.hit_num = 3
+            elif remainder > 20:
+                self.hit_num = 2
+            else:
+                self.hit_num = 1
+
+        self.change_state(next_state_class, None)
+
+    def ramonatoghost(self):
+        if self.cur_state == DieState: return
+
+        if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
+                   [self.x, self.y, self.width,
+                    self.height]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+            if ramona.CURRENT_HP > 0:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                ramona.invincible_timer = 0.0
+                canvas_size.start_shake(0.5, 5.0)
