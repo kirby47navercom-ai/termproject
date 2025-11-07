@@ -8,6 +8,20 @@ import ramona
 
 SIZE = 1.2
 
+class ReadyState:
+    def enter(self, event):
+        pass
+
+    def exit(self, event):
+        pass
+
+    def do(self, frame_time):
+        pass
+
+    def draw(self):
+        pass
+
+
 class Pattern0State:
     def enter(self, event):
         pass
