@@ -35,16 +35,22 @@ class CutsceneState:
 
 class ReadyState:
     def enter(self, event):
-        pass
+        self.pattern_ready_timer = 0.0
+        self.pattern_num = -1
 
     def exit(self, event):
         pass
 
     def do(self, frame_time):
-        pass
+        self.pattern_ready_timer += frame_time
+        if self.pattern_ready_timer >= self.pattern_ready_time:
+            self.change_state(Pattern0State, None)
 
     def draw(self):
-        pass
+        a = boss_ghost_idle_coordinate[int(self.idle_frame)]
+        left, bottom, width, height, jx, jy = a
+        self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
+                                       self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
 
 
 class Pattern0State:
