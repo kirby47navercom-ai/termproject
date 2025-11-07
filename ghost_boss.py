@@ -2,6 +2,7 @@ from boss_hp import Boss_HP
 from pattern import *
 from resource import *
 from random import randint
+from canvas_size import *
 import canvas_size
 import ramona
 
@@ -211,6 +212,7 @@ class Boss_Ghost:
     image = None
 
     def __init__(self):
+        self.pattern_set = get_pattern_set()
         if Boss_Ghost.image == None:
             Boss_Ghost.image = load_image('1stage\\level1-png-sprite.png')
         self.x, self.y = canvas_size.canvaswidth // 2, canvas_size.canvasheight + 100

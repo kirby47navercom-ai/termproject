@@ -71,6 +71,7 @@ class Ghost:
             self.hit_animation = False
             self.shape = self.pattern_set[randint(0, pattern_number - 5)]
             self.shape.x = self.x
+            self.shape.y = self.y + self.height * 0.7
 
     def die_ghost(self):
         if self.hp <= 0 and not self.die_animation:

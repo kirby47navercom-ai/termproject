@@ -42,6 +42,8 @@ Ramona_smash_toggle=False
 Ramona_jump_speed=0
 #플레이어 죽었다는 표시
 Ramona_dead=False
+#플레이어 리트라이 화면
+Ramona_retry=False
 
 A_DOWN, D_DOWN, A_UP, D_UP = range(4)
 SHIFT_DOWN, SHIFT_UP, SPACE_DOWN, SPACE_UP = range(4, 8)
@@ -77,6 +79,8 @@ class DeadState:
         self.frame = self.frame + self.animation_speed * frame_time / 3
         if self.frame >= total_frames:
             self.frame = total_frames - 1
+            global Ramona_retry
+            Ramona_retry = True
 
         self.y_velocity -= GRAVITY * frame_time
         self.y += self.y_velocity * frame_time

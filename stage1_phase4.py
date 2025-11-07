@@ -1,3 +1,4 @@
+from canvas_size import *
 from ghost_normal import *
 import draw_gesture
 import random
