@@ -55,16 +55,38 @@ class ReadyState:
 
 class Pattern0State:
     def enter(self, event):
-        pass
+        self.pattern_ready = False
+        self.pattern0_ready_timer = 0.0
+        self.pattern_state = 0
+        self.pattern_num = 0
 
     def exit(self, event):
-        pass
+        self.pattern_state = 0
 
     def do(self, frame_time):
-        pass
+        if not self.pattern_ready:
+            x, y = self.width, self.height
+            self.x, self.y = distance_funtion(self.x, self.y, x, y, frame_time, self.pattern_ready_speed)
+            if abs(self.x - x) <= 5 and abs(self.y - y) <= 5:
+                self.pattern_ready = True
+        elif self.pattern0_ready_timer < self.pattern0_ready_time:
+            self.pattern0_ready_timer += frame_time
+        else:
+            self.pattern_state = 2
+            self.x += self.speed * 6 * frame_time * self.pattern_speed
+            if self.x >= canvas_size.canvaswidth + 50:
+                self.rereset(Pattern2State)
 
     def draw(self):
-        pass
+        if self.pattern_state == 2:
+            a = boss_ghost_pattern1_coordinate[1]
+        else:
+            a = boss_ghost_idle_coordinate[int(self.idle_frame)]
+        left, bottom, width, height, jx, jy = a
+        self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
+                                       self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
+
+
 
 
 class Pattern1State:
