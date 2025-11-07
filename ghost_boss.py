@@ -91,16 +91,43 @@ class Pattern0State:
 
 class Pattern1State:
     def enter(self, event):
-        pass
+        self.pattern_ready = False
+        self.pattern0_ready_timer = 0.0
+        self.pattern_state = 0
+        self.pattern_num = 1
+        self.pattern1_x, self.pattern1_y = randint(int(self.width),
+                                                   int(canvas_size.canvaswidth - self.width)), canvas_size.canvasheight // 2 + canvas_size.canvasheight // 4
+        self.pattern1_frame = 0
 
     def exit(self, event):
-        pass
+        self.pattern_state = 0
 
     def do(self, frame_time):
-        pass
+        if not self.pattern_ready:
+            self.x, self.y = distance_funtion(self.x, self.y, self.pattern1_x, self.pattern1_y, frame_time,
+                                              self.pattern_ready_speed)
+            if abs(self.x - self.pattern1_x) <= 5 and abs(self.y - self.pattern1_y) <= 5:
+                self.pattern_ready = True
+        elif self.pattern0_ready_timer < self.pattern0_ready_time:
+            self.pattern0_ready_timer += frame_time
+            self.pattern1_x, self.pattern1_y = ramona.Ramona_POS_X, ramona.Ramona_POS_Y
+        else:
+            self.pattern_state = 3
+            self.x, self.y = distance_funtion(self.x, self.y, self.pattern1_x, self.pattern1_y, frame_time,
+                                              self.speed * 6 * self.pattern_speed)
+            self.pattern1_frame = (self.pattern1_frame + self.die_animation_speed * frame_time) % 5
+            if abs(self.x - self.pattern1_x) <= 5 and abs(self.y - self.pattern1_y) <= 5:
+                self.rereset(Pattern2State)
 
     def draw(self):
-        pass
+        if self.pattern_state == 3:
+            a = boss_ghost_pattern2_coordinate[int(self.pattern1_frame)]
+        else:
+            a = boss_ghost_idle_coordinate[int(self.idle_frame)]
+        left, bottom, width, height, jx, jy = a
+        self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
+                                       self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
+
 
 
 class Pattern2State:
