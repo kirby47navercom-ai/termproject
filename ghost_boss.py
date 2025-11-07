@@ -132,16 +132,34 @@ class Pattern1State:
 
 class Pattern2State:
     def enter(self, event):
-        pass
+        self.attack_timer = 0.0
+        self.pattern_num = 2
 
     def exit(self, event):
         pass
 
     def do(self, frame_time):
-        pass
+        self.x, self.y = distance_funtion(self.x, self.y, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, frame_time,
+                                          self.speed)
+        self.shape.x = self.x
+        self.shape.y = self.y + self.height * 0.7
+
+        self.attack_timer += frame_time
+        if self.attack_timer >= self.attack_time or self.hit_num <= 0:
+            self.attack_timer = 0
+            if self.prev_pattern == 0:
+                self.prev_pattern = 1
+                self.rereset(Pattern1State)
+            else:
+                self.prev_pattern = 0
+                self.rereset(Pattern0State)
 
     def draw(self):
-        pass
+        a = boss_ghost_idle_coordinate[int(self.idle_frame)]
+        left, bottom, width, height, jx, jy = a
+        self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
+                                       self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
+        self.shape.draw()
 
 class HitState:
     def enter(self, event):
