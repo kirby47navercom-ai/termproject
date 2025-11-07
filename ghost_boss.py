@@ -186,16 +186,26 @@ class HitState:
 
 class DieState:
     def enter(self, event):
-        pass
+        self.die_frame = 0
+        self.shape.name = 'No'
+        self.pattern_num = -1
 
     def exit(self, event):
         pass
 
     def do(self, frame_time):
-        pass
+        if not self.die:
+            self.die_frame = (self.die_frame + self.die_animation_speed * frame_time) % 8
+            canvas_size.start_shake(0.5, 5)
+            if int(self.die_frame) == 7:
+                self.die = True
 
     def draw(self):
-        pass
+        a = boss_ghost_die_coordinate[int(self.die_frame)]
+        left, bottom, width, height, jx, jy = a
+        self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
+                                       self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
+
 
 class Boss_Ghost:
     image = None
