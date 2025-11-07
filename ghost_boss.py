@@ -163,16 +163,26 @@ class Pattern2State:
 
 class HitState:
     def enter(self, event):
-        pass
+        self.hit_frame = 0
 
     def exit(self, event):
-        pass
+        self.hit_animation = False
+        self.shape = self.pattern_set[randint(0, pattern_number)]
+        self.shape.x = self.x
+        self.shape.y = self.y + self.height * 0.7
 
     def do(self, frame_time):
-        pass
+        self.hit_frame = (self.hit_frame + self.hit_animation_speed * frame_time) % 4
+        if int(self.hit_frame) == 3:
+            self.change_state(self.previous_state, None)
 
     def draw(self):
-        pass
+        a = boss_ghost_hit_coordinate[int(self.hit_frame)]
+        left, bottom, width, height, jx, jy = a
+        self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
+                                       self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
+
+
 
 class DieState:
     def enter(self, event):
