@@ -1,4 +1,4 @@
-from pico2d import *
+
 from pattern import *
 from resource import *
 from random import randint
