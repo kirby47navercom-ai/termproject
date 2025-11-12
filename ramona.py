@@ -289,8 +289,7 @@ class JumpState:
 class HitState:
     def enter(self, event):
         self.frame = 0
-        self.hit_timer = 0.5
-        self.x -= self.dir * 30
+        self.hit_timer = 0.2
 
     def exit(self, event):
         pass
