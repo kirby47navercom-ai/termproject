@@ -140,7 +140,10 @@ class IdleState:
     def handle_event(self, event):
         global Ramona_jump_speed
         if event == A_DOWN or event == D_DOWN:
-            self.change_state(WalkState, event)
+            if self.shift_pressed:
+                self.change_state(RunState, event)
+            else:
+                self.change_state(WalkState, event)
         elif event == SPACE_DOWN:
             self.change_state(JumpState, event)
             Ramona_jump_speed=WALK_SPEED
@@ -177,6 +180,7 @@ class WalkState:
             Ramona_jump_speed = WALK_SPEED
         elif event == A_D_TAP or event == D_D_TAP:
             self.change_state(EvadeState, event)
+
 
 class RunState:
     def enter(self, event):
@@ -428,9 +432,13 @@ class Ramona:
         if on_ground:  # 땅이나 발판 위에 있다면
             if self.cur_state == JumpState:  # 막 착지했다면
                 if self.a_pressed or self.d_pressed:
-                    self.change_state(WalkState, None)
+                    if self.shift_pressed:
+                        self.change_state(RunState, None)
+                    else:
+                        self.change_state(WalkState, None)
                 else:
                     self.change_state(IdleState, None)
+
         else:  # 공중에 있다면
             if self.cur_state in [IdleState, WalkState, RunState]:  # 발판에서 떨어졌다면
                 self.change_state(JumpState, None)
