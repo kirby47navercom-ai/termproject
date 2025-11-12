@@ -95,25 +95,22 @@ class AttackState:
     def enter(self, event):
         self.frame = 0
         attack_num = random.randint(1, 6)
-
         self.attack_motion = f'action{attack_num}'
-
         self.dir = 0
 
     def exit(self, event):
-        pass
+        global Ramona_smash_toggle
+        Ramona_smash_toggle = False
 
     def do(self, frame_time):
         global Ramona_smash, Ramona_smash_toggle
         total_frames = len(self.coordinate[self.attack_motion])
-
         self.frame = (self.frame + self.animation_speed*1.5 * frame_time)
 
         if self.frame+2 > total_frames and canvas_size.shake_timer<=0:
             canvas_size.start_shake(0.5, 5.0)
 
         if self.frame >= total_frames:
-            Ramona_smash_toggle = False
             self.change_state(IdleState, None)
 
     def draw(self):
