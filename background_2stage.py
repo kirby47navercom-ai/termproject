@@ -24,6 +24,10 @@ class Background:
         self.floor_width = [274, int(48 * 1.5)]
         self.floor_height = [63, int(32 * 1.2)]
 
+        for i in range(3):
+            resource.blocks.append((self.floor_pos[i+2][0], self.floor_pos[i+2][1], self.floor_width[1], self.floor_height[1]))
+
+
     def update(self, frame_time, events=None):
         pass
 
