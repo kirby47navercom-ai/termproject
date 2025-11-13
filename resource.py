@@ -250,6 +250,9 @@ def collide(a, b):
 
     return True
 
+def collide2(a, b):
+    pass
+
 
 # 함수로 묶기
 def load_resources():
