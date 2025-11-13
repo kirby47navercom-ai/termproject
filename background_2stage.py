@@ -54,6 +54,9 @@ class Background:
         for i in range(2):
             self.floor1.clip_composite_draw(0, 0, self.floor_width[0], self.floor_height[0],0,'h',self.floor_pos[i][0]-canvas_size.camera_x,self.floor_pos[i][1]-canvas_size.camera_y,self.floor_width[0], self.floor_height[0])
 
-
+        for i in range(3):
+            self.floor2.clip_composite_draw(0, 0, self.floor_width[1], self.floor_height[1], 0, '',
+                                            self.floor_pos[i + 2][0] - canvas_size.camera_x, self.floor_pos[i + 2][1],
+                                            self.floor_width[1] - canvas_size.camera_y, self.floor_height[1])
     def stage2_start(self):
         global start
