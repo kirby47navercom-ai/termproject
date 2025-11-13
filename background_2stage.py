@@ -3,6 +3,9 @@ import canvas_size
 import resource
 
 class Background:
+    background = None
+    floor1 = None
+    floor2 = None
     def __init__(self):
         pass
 
