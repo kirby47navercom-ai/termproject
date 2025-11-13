@@ -95,3 +95,5 @@ class Background:
                                   canvas_size.canvasheight // 2 - canvas_size.shake_y,
                                   self.background_size[1][0] * self.background_magnification[1],
                                   self.background_size[1][1] * self.background_magnification[1])
+        else:
+            pass
