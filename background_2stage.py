@@ -60,3 +60,7 @@ class Background:
                                             self.floor_width[1] - canvas_size.camera_y, self.floor_height[1])
     def stage2_start(self):
         global start
+
+        if not start:
+            image_A = self.background[0]  # 사라질 이미지 (1.png)
+            image_B = self.background[1]  # 나타날 이미지 (2.png)
