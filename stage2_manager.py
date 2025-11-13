@@ -12,3 +12,6 @@ def init():
 
 def update(frame_time,events):
     pass
+
+def draw():
+    pass
