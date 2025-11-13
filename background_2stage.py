@@ -51,5 +51,9 @@ class Background:
     def draw(self):
         self.stage2_start()
 
+        for i in range(2):
+            self.floor1.clip_composite_draw(0, 0, self.floor_width[0], self.floor_height[0],0,'h',self.floor_pos[i][0]-canvas_size.camera_x,self.floor_pos[i][1]-canvas_size.camera_y,self.floor_width[0], self.floor_height[0])
+
+
     def stage2_start(self):
         global start
