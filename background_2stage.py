@@ -2,6 +2,8 @@ from pico2d import *
 import canvas_size
 import resource
 
+start=False
+
 class Background:
     background = None
     floor1 = None
