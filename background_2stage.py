@@ -8,3 +8,6 @@ class Background:
 
     def update(self, frame_time, events=None):
         pass
+
+    def draw(self):
+        pass
