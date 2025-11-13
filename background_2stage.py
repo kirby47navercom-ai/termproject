@@ -20,6 +20,10 @@ class Background:
         if Background.floor2 == None:
             Background.floor2 = load_image('2stage\\floor_2.png')
 
+        self.floor_pos = [(80, 24), (200, 24), (80, 170), (80, 340), (80, 510)]
+        self.floor_width = [274, int(48 * 1.5)]
+        self.floor_height = [63, int(32 * 1.2)]
+
     def update(self, frame_time, events=None):
         pass
 
