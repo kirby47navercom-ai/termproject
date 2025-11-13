@@ -99,3 +99,7 @@ class Background:
             image = self.background[2]
             width = self.background_size[2][0] * self.background_magnification[2]
             height = self.background_size[2][1] * self.background_magnification[2]
+
+            # 2. 첫 번째 이미지 그리기
+            image.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2 + self.scroll_y, width, height)
+
