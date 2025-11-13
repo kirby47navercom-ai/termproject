@@ -96,4 +96,6 @@ class Background:
                                   self.background_size[1][0] * self.background_magnification[1],
                                   self.background_size[1][1] * self.background_magnification[1])
         else:
-            pass
+            image = self.background[2]
+            width = self.background_size[2][0] * self.background_magnification[2]
+            height = self.background_size[2][1] * self.background_magnification[2]
