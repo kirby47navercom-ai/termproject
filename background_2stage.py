@@ -50,3 +50,6 @@ class Background:
 
     def draw(self):
         self.stage2_start()
+
+    def stage2_start(self):
+        pass
