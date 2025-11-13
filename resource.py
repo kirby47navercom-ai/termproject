@@ -232,6 +232,9 @@ boss_kitty_attack_coordinate = [[0,0,27,27,0,0],[0,0,26,26,0,0],[0,0,25,25,0,0],
                                 [0,0,25,26,0,0],[0,0,26,26,0,0],[0,0,26,26,0,0],[0,0,26,26,0,0]]
 boss_kitty_uibim_coordinate = [[0,0,1280,32,0,0],[0,0,1280,48,0,0],[0,0,1280,288,0,0],[0,0,1280,300,0,0],[0,0,1280,288,0,0],[0,0,1280,48,0,0],[0,0,1280,32,0,0]]
 little_kitty_idle_coordinate = [0,0,32,32,0,0]
+boss_kitty_attack_image= []
+boss_kitty_die_image= []
+boss_kitty_uibim_image= []
 
 #블록
 blocks=[]
