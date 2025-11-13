@@ -86,3 +86,12 @@ class Background:
                                   canvas_size.canvasheight // 2 - canvas_size.shake_y,
                                   self.background_size[1][0] * self.background_magnification[1],
                                   self.background_size[1][1] * self.background_magnification[1])
+
+            else:  # 페이드가 끝났을 때 (progress >= 1.0)
+                # image_B만 완전히 선명하게 그림
+                image_B.opacify(1.0)
+                image_B.clip_draw(0, 0, self.background_size[1][0], self.background_size[1][1],
+                                  canvas_size.canvaswidth // 2 - canvas_size.shake_x,
+                                  canvas_size.canvasheight // 2 - canvas_size.shake_y,
+                                  self.background_size[1][0] * self.background_magnification[1],
+                                  self.background_size[1][1] * self.background_magnification[1])
