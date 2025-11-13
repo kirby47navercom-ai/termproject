@@ -296,6 +296,10 @@ def load_resources():
         pattern_string_dict[pattern_name[i]] = i + 1
 
 
+    for i in range(28):
+        boss_kitty_attack_image.append(load_image(f'2stage\\attack_{str(i+1)}.png'))
+
+
 
 
 
