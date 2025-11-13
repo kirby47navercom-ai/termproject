@@ -77,3 +77,12 @@ class Background:
                                   canvas_size.canvasheight // 2 - canvas_size.shake_y,
                                   self.background_size[0][0] * self.background_magnification[0],
                                   self.background_size[0][1] * self.background_magnification[0])
+
+                # 3-2. image_B를 점점 선명하게 겹쳐서 그림
+                opacity_B = progress
+                image_B.opacify(opacity_B)
+                image_B.clip_draw(0, 0, self.background_size[1][0], self.background_size[1][1],
+                                  canvas_size.canvaswidth // 2 - canvas_size.shake_x,
+                                  canvas_size.canvasheight // 2 - canvas_size.shake_y,
+                                  self.background_size[1][0] * self.background_magnification[1],
+                                  self.background_size[1][1] * self.background_magnification[1])
