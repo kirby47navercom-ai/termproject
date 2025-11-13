@@ -8,3 +8,7 @@ import game_framework
 
 def init():
     pass
+
+
+def update(frame_time,events):
+    pass
