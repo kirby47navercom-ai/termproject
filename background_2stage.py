@@ -64,3 +64,7 @@ class Background:
         if not start:
             image_A = self.background[0]  # 사라질 이미지 (1.png)
             image_B = self.background[1]  # 나타날 이미지 (2.png)
+
+            # 2. 페이드 진행률 계산 (0.0 ~ 1.0)
+            progress = self.background_change_time / self.background_change_timer
+            progress = min(1.0, progress)  # 값이 1.0을 넘지 않도록 고정
