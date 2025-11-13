@@ -40,6 +40,13 @@ class Background:
     def update(self, frame_time, events=None):
         if self.background_change_time < self.background_change_timer:
             self.background_change_time += frame_time
+        if start:
+            self.scroll_y += self.speed * frame_time*20
+
+            image_height = self.background_size[2][1] * self.background_magnification[2]
+
+            if self.scroll_y >= image_height:
+                self.scroll_y = 0
 
     def draw(self):
         pass
