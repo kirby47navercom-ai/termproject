@@ -49,4 +49,4 @@ class Background:
                 self.scroll_y = 0
 
     def draw(self):
-        pass
+        self.stage2_start()
