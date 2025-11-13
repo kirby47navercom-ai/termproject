@@ -103,3 +103,7 @@ class Background:
             # 2. 첫 번째 이미지 그리기
             image.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2 + self.scroll_y, width, height)
 
+            # 3. 두 번째 이미지를 첫 번째 이미지 바로 위에 이어 붙여 그리기
+            image.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2 + self.scroll_y - height, width,
+                       height)
+
