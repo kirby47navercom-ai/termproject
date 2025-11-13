@@ -52,4 +52,4 @@ class Background:
         self.stage2_start()
 
     def stage2_start(self):
-        pass
+        global start
