@@ -3,4 +3,5 @@ import canvas_size
 import resource
 
 class Background:
-    pass
+    def __init__(self):
+        pass
