@@ -251,7 +251,15 @@ def collide(a, b):
     return True
 
 def collide2(a, b):
-    pass
+    left_a, bottom_a, right_a, top_a = a[0] - a[2] / 2, a[1] - a[3] / 2, a[0] + a[2] / 2, a[1] + a[3] / 2
+    left_b, bottom_b, right_b, top_b = b[0], b[1], b[2], b[3]
+
+    if left_a > right_b: return False
+    if right_a < left_b: return False
+    if top_a < bottom_b: return False
+    if bottom_a > top_b: return False
+
+    return True
 
 
 # 함수로 묶기
