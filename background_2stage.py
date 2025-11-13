@@ -71,4 +71,9 @@ class Background:
 
             # 3. 그리기
             if progress < 1.0:  # 페이드가 진행 중일 때
-                pass
+                # 3-1. image_A를 점점 투명하게 그림
+                image_A.clip_draw(0, 0, self.background_size[0][0], self.background_size[0][1],
+                                  canvas_size.canvaswidth // 2 - canvas_size.shake_x,
+                                  canvas_size.canvasheight // 2 - canvas_size.shake_y,
+                                  self.background_size[0][0] * self.background_magnification[0],
+                                  self.background_size[0][1] * self.background_magnification[0])
