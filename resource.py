@@ -300,6 +300,8 @@ def load_resources():
         boss_kitty_attack_image.append(load_image(f'2stage\\attack_{str(i+1)}.png'))
     for i in range(4):
         boss_kitty_uibim_image.append(load_image(f'2stage\\lightAttack{str(i+1)}.png'))
+    for i in range(2,-1,-1):
+        boss_kitty_uibim_image.append(load_image(f'2stage\\lightAttack{str(i+1)}.png'))
 
 
 
