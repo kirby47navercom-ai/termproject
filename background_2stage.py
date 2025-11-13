@@ -68,3 +68,7 @@ class Background:
             # 2. 페이드 진행률 계산 (0.0 ~ 1.0)
             progress = self.background_change_time / self.background_change_timer
             progress = min(1.0, progress)  # 값이 1.0을 넘지 않도록 고정
+
+            # 3. 그리기
+            if progress < 1.0:  # 페이드가 진행 중일 때
+                pass
