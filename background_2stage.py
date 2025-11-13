@@ -30,7 +30,9 @@ class Background:
         self.background_num = 0
         self.background_change_time = 0
         self.background_change_timer = 4.0
-
+        self.speed = 100
+        self.background_magnification = [1.6, 1.8, 1.0]
+        self.scroll_y = 0
 
 
     def update(self, frame_time, events=None):
