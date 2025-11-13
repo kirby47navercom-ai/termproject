@@ -27,6 +27,11 @@ class Background:
         for i in range(3):
             resource.blocks.append((self.floor_pos[i+2][0], self.floor_pos[i+2][1], self.floor_width[1], self.floor_height[1]))
 
+        self.background_num = 0
+        self.background_change_time = 0
+        self.background_change_timer = 4.0
+
+
 
     def update(self, frame_time, events=None):
         pass
