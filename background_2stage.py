@@ -38,7 +38,8 @@ class Background:
 
 
     def update(self, frame_time, events=None):
-        pass
+        if self.background_change_time < self.background_change_timer:
+            self.background_change_time += frame_time
 
     def draw(self):
         pass
