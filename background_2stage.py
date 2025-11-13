@@ -7,7 +7,16 @@ class Background:
     floor1 = None
     floor2 = None
     def __init__(self):
-        pass
+        resource.blocks.clear()
+        if Background.background == None:
+            Background.background =  [load_image('2stage\\1.png'), load_image('2stage\\2.png'),
+                               load_image('2stage\\3.png')]
+
+            if Background.floor1 == None:
+                Background.floor1 = load_image('2stage\\floor_1.png')
+
+            if Background.floor2 == None:
+                Background.floor2 = load_image('2stage\\floor_2.png')
 
     def update(self, frame_time, events=None):
         pass
