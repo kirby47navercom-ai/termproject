@@ -9,3 +9,6 @@ import resource
 import math
 
 SIZE = 1
+
+
+class Boss_Kitty:
