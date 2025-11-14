@@ -36,7 +36,10 @@ class IdleState:
 
 class Pattern0_State:
     def enter(self, event):
-        pass
+        self.attack_init = False
+        self.attack1 = []
+        self.attack1_num = 8
+        self.attack1_effect = []
 
     def exit(self, event):
         pass
