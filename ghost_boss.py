@@ -186,6 +186,13 @@ class Pattern2State:
         left, bottom, width, height, jx, jy = a
         self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
                                        self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
+
+        if canvas_size.collide_check:
+            draw_rectangle(self.x - width * SIZE / 2,
+                           self.y - height * SIZE / 2,
+                           self.x + width * SIZE / 2,
+                           self.y + height * SIZE / 2)
+
         self.shape.draw()
 
 class HitState:
