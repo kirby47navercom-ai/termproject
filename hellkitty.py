@@ -174,7 +174,32 @@ class Boss_Kitty:
             self.change_state(DieState, None)
 
     def draw(self):
-        pass
+        bx, by = resource.boss_kitty_idle_coordinate[int(self.idle_frame)][2:4]
+
+        if background_2stage.start:
+            # 현재 상태의 draw() 로직 실행 (각 패턴 그리기)
+            self.cur_state.draw(self)
+
+            # 공통 그리기 (이펙트, 보스 본체, HP바)
+            if len(self.attack1_effect) > 0 and self.hp > 0 and self.cur_state != DieState:
+                for i in self.attack1_effect:
+                    ex, ey = resource.boss_kitty_attack_coordinate[int(i[4])][2:4]
+                    Boss_Kitty.attack1_image[int(i[2])].clip_draw(0, 0, ex, ey, i[0] - canvas_size.shake_x,
+                                                                  i[1] - canvas_size.shake_y, i[2], i[3])
+
+            if self.hit and self.cur_state != DieState:
+                if (get_time() % 0.2) > 0.1:
+                    self.image[int(self.idle_frame)].clip_draw(0, 0, bx, by, self.x - canvas_size.shake_x,
+                                                               self.y - canvas_size.shake_y, bx * SIZE, by * SIZE)
+
+            # DieState가 아닐 때만 보스 본체를 그림 (DieState는 스스로를 그림)
+            if self.cur_state != DieState:
+                self.image[int(self.idle_frame)].clip_draw(0, 0, bx, by, self.x - canvas_size.shake_x,
+                                                           self.y - canvas_size.shake_y, bx * SIZE, by * SIZE)
+
+            if self.hp > 0 and self.cur_state != DieState:
+                self.shape.draw(0.6, 0.6)
+                self.hp_bar.draw(self.hp, self.boss_hp)
 
     def move(self, frame_time):
         self.y += self.speed * frame_time * self.dir
