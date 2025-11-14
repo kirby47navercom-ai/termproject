@@ -34,6 +34,13 @@ class CutsceneState:
                                        self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
 
 
+        if canvas_size.collide_check:
+            draw_rectangle(self.x - width * SIZE / 2,
+                           self.y - height * SIZE / 2,
+                           self.x + width * SIZE / 2,
+                           self.y + height * SIZE / 2)
+
+
 class ReadyState:
     def enter(self, event):
         self.pattern_ready_timer = 0.0
