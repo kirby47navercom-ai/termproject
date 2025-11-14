@@ -34,4 +34,5 @@ class Stage2_Monster:
             pass
 
     def draw(self):
-        pass
+        if background_2stage.start:
+            self.boss.draw()
