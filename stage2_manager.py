@@ -47,5 +47,6 @@ def update(frame_time,events):
                 ramona.Ramona_POS_Y = ramona.GROUND_LEVEL
                 init()
 
+
 def draw():
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_

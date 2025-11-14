@@ -8,6 +8,8 @@ camera_x, camera_y = 0, 0
 shake_timer = 0.0  # 흔들림이 지속될 시간
 shake_magnitude = 10.0 # 흔들림의 강도
 
+collide_check=False
+
 def start_shake(duration, magnitude):
     global shake_timer, shake_magnitude
     shake_timer = duration
