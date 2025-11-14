@@ -16,6 +16,9 @@ class IdleState:
 class Pattern0_State:
     pass
 
+class Pattern1_State:
+    pass
+
 
 
 class Boss_Kitty:
