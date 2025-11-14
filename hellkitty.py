@@ -45,6 +45,10 @@ class Boss_Kitty:
         self.idle_frame = 0
         self.animation_speed = 4.0
 
+        # 상태 전환 관련 변수
+        self.attack_start = False
+        self.attack_init = False
+
     def change_state(self, new_state, event):
         pass
 
