@@ -539,3 +539,9 @@ class Ramona:
                 self.cur_state.draw(self)
         else:
             self.cur_state.draw(self)
+
+        if canvas_size.collide_check:
+            draw_rectangle(self.x - Ramona_SIZE_X / 2 - canvas_size.camera_x,
+                           self.y - Ramona_SIZE_Y / 2 - canvas_size.camera_y,
+                           self.x + Ramona_SIZE_X / 2 - canvas_size.camera_x,
+                           self.y + Ramona_SIZE_Y / 2 - canvas_size.camera_y)
