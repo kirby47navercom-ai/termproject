@@ -12,7 +12,8 @@ SIZE = 1
 
 class IdleState:
     def enter(self, event):
-        pass
+        self.attack_start = True  # Idle이 끝나면 바로 공격 시작
+        self.frame = 0
 
     def exit(self, event):
         pass
