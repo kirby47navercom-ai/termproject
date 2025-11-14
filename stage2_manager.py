@@ -8,11 +8,11 @@ import canvas_size
 import game_framework
 
 def init():
-    pass
+    global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
 
 
 def update(frame_time,events):
-    pass
+    global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
 
 def draw():
-    pass
+    global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
