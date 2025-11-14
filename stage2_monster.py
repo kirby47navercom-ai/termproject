@@ -18,5 +18,8 @@ class Stage2_Monster:
             self.shape_check()
             self.monster_die()
 
+    def shape_check(self):
+
+
     def draw(self):
         pass
