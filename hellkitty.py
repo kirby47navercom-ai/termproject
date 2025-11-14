@@ -144,7 +144,7 @@ class Boss_Kitty:
             self.cur_state.enter(self, event)
 
     def update(self, frame_time, events=None):
-        pass
+        self.idle_frame = (self.idle_frame + self.animation_speed * frame_time) % 2
 
     def draw(self):
         pass
