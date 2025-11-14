@@ -154,5 +154,10 @@ class Boss_Kitty:
         self.shape.x = self.x
         self.shape.y = self.y + self.height * 0.2
 
+        if self.hit_animation:
+            self.hit_kitty_animation()
+        if self.hit:
+            self.hit_timer(frame_time)
+
     def draw(self):
         pass
