@@ -10,6 +10,10 @@ import math
 
 SIZE = 1
 
+class IdleState:
+    pass
+
+
 
 class Boss_Kitty:
     image = None
