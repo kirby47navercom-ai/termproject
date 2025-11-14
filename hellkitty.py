@@ -173,4 +173,8 @@ class Boss_Kitty:
             self.dir = 1
 
     def hit_kitty_animation(self):
-        pass
+        self.shape = self.pattern_set[randint(0, pattern_number)]
+        self.shape.x = self.x
+        self.shape.y = self.y + self.height * 0.2
+        self.hit_animation = False
+        self.hit = True
