@@ -159,5 +159,8 @@ class Boss_Kitty:
         if self.hit:
             self.hit_timer(frame_time)
 
+        if self.hp <= 0 and self.cur_state != DieState:
+            self.change_state(DieState, None)
+
     def draw(self):
         pass
