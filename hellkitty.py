@@ -171,3 +171,6 @@ class Boss_Kitty:
             self.dir = -1
         elif self.y <= self.height // 2:
             self.dir = 1
+
+    def hit_kitty_animation(self):
+        pass
