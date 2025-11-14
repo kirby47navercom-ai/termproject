@@ -138,7 +138,10 @@ class Boss_Kitty:
         self.die_frame = 0
 
     def change_state(self, new_state, event):
-        pass
+        if self.cur_state != new_state:
+            self.cur_state.exit(self, event)
+            self.cur_state = new_state
+            self.cur_state.enter(self, event)
 
     def update(self, frame_time, events=None):
         pass
