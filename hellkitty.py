@@ -71,7 +71,16 @@ class Pattern0_State:
                     self.attack1.append([self.x, self.y, 0, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, 0.0])
 
     def draw(self):
-        pass
+        if len(self.attack1) > 0:
+            for i in self.attack1:
+                ax, ay = resource.boss_kitty_attack_coordinate[int(i[2])][2:4]
+                Boss_Kitty.attack1_image[int(i[2])].clip_draw(0, 0, ax, ay, i[0] - canvas_size.shake_x,
+                                                              i[1] - canvas_size.shake_y, ax * 1.5, ay * 1.5)
+                if canvas_size.collide_check:
+                    draw_rectangle(i[0] - ax * 1.5 / 2,
+                                   i[1] - ay * 1.5 / 2,
+                                   i[0] + ax * 1.5 / 2,
+                                   i[1] + ay * 1.5 / 2)
 
 class Pattern1_State:
     def enter(self, event):
