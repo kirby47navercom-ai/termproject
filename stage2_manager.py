@@ -25,6 +25,9 @@ def init():
 
     background_2stage.start = False
 
+    canvas_size.camera_x = 0
+    canvas_size.camera_y = 0
+
 
 def update(frame_time,events):
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
