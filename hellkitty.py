@@ -149,5 +149,7 @@ class Boss_Kitty:
         if self.cur_state != DieState:
             self.move(frame_time)
 
+        self.cur_state.do(self, frame_time)
+
     def draw(self):
         pass
