@@ -164,3 +164,6 @@ class Boss_Kitty:
 
     def draw(self):
         pass
+
+    def move(self, frame_time):
+        pass
