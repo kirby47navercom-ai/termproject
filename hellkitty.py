@@ -12,3 +12,6 @@ SIZE = 1
 
 
 class Boss_Kitty:
+
+    def __init__(self):
+        pass
