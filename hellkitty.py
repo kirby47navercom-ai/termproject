@@ -16,6 +16,9 @@ class Boss_Kitty:
     def __init__(self):
         pass
 
+    def change_state(self, new_state, event):
+        pass
+
     def update(self, frame_time, events=None):
         pass
 
