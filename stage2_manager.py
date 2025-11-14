@@ -39,7 +39,13 @@ def update(frame_time,events):
         ramona_ui_.update(frame_time, events)
         draw_gest.update(frame_time, events)
     elif ramona.Ramona_retry:
-        pass
+        for event in events:
+            if event.type == SDL_KEYDOWN and event.key == SDLK_r:
+                ramona.Ramona_dead = False
+                ramona.CURRENT_HP = ramona.MAX_HP
+                ramona.Ramona_POS_X = 50
+                ramona.Ramona_POS_Y = ramona.GROUND_LEVEL
+                init()
 
 def draw():
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
