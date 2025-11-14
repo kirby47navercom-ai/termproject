@@ -54,10 +54,10 @@ def update(frame_time,events):
         elif event.key == SDLK_ESCAPE:
             game_framework.quit()
 
-        player.update(frame_time, events)
+    player.update(frame_time, events)
 
-        if canvas_size.shake_timer > 0:
-            canvas_size.update_shake(frame_time)
+    if canvas_size.shake_timer > 0:
+        canvas_size.update_shake(frame_time)
 
 
 def draw():
