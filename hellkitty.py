@@ -39,6 +39,9 @@ class Boss_Kitty:
         self.dir = 1
         self.timer = 0.0
         self.speed = 300
+        self.shape = self.pattern_set[randint(0, pattern_number)]
+        self.shape.x = self.x
+        self.shape.y = self.y + self.height * 0.2
 
     def change_state(self, new_state, event):
         pass
