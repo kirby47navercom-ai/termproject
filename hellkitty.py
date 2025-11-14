@@ -166,4 +166,8 @@ class Boss_Kitty:
         pass
 
     def move(self, frame_time):
-        pass
+        self.y += self.speed * frame_time * self.dir
+        if self.y >= canvas_size.canvasheight - self.height // 2:
+            self.dir = -1
+        elif self.y <= self.height // 2:
+            self.dir = 1
