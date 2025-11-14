@@ -10,3 +10,6 @@ class Stage2_Monster:
 
     def update(self, frame_time, events=None):
         pass
+
+    def draw(self):
+        pass
