@@ -42,6 +42,8 @@ class Boss_Kitty:
         self.shape = self.pattern_set[randint(0, pattern_number)]
         self.shape.x = self.x
         self.shape.y = self.y + self.height * 0.2
+        self.idle_frame = 0
+        self.animation_speed = 4.0
 
     def change_state(self, new_state, event):
         pass
