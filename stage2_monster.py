@@ -5,4 +5,5 @@ import ramona
 
 
 class Stage2_Monster:
-    pass
+    def __init__(self):
+        pass
