@@ -203,6 +203,15 @@ class Boss_Kitty:
 
         self.cur_state.do(self, frame_time)
 
+
+        if len(self.attack1_effect) > 0:
+            for i in range(len(self.attack1_effect) - 1, -1, -1):
+                self.attack1_effect[i][4] = (self.attack1_effect[i][4] + self.attack1_speed * frame_time) % 28
+                self.attack1_effect[i][2] -= self.attack1_effect_speed * frame_time
+                self.attack1_effect[i][3] -= self.attack1_effect_speed * frame_time
+                if self.attack1_effect[i][2] <= 0 or self.attack1_effect[i][3] <= 0:
+                    self.attack1_effect.pop(i)
+
         self.shape.x = self.x
         self.shape.y = self.y + self.height * 0.2
 
