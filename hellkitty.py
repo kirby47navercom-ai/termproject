@@ -19,7 +19,9 @@ class IdleState:
         self.attack_start = False
 
     def do(self, frame_time):
-        pass
+        self.move(frame_time)  # Idle 중에도 위아래로 움직임
+        if self.attack_start:
+            self.change_state(Pattern0_State, None)
 
     def draw(self):
         pass
