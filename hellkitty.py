@@ -30,6 +30,8 @@ class Boss_Kitty:
         if Boss_Kitty.little_image == None:
             Boss_Kitty.little_image = load_image('2stage\\157.png')
 
+        self.x, self.y = canvas_size.canvaswidth - 300, canvas_size.canvasheight // 2
+
     def change_state(self, new_state, event):
         pass
 
