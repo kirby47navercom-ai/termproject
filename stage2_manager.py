@@ -15,6 +15,9 @@ def init():
     ramona_ui_ = ramona_ui.Ramona_UI()
     draw_gest = draw_gesture.GestureRecognizer()
 
+    ramona.GROUND_LEVEL = 70
+    ramona.WIDTH_LEVEL = 320
+
 
 def update(frame_time,events):
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
