@@ -29,6 +29,9 @@ class Stage2_Monster:
 
         draw_gesture.result = None
 
+    def monster_die(self):
+        if self.boss.die:
+            pass
 
     def draw(self):
         pass
