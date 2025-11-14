@@ -35,6 +35,10 @@ class Boss_Kitty:
         self.hp = self.boss_hp
         self.hp_bar = Boss_HP()
         self.width, self.height = 386 * SIZE, 299 * SIZE
+        self.frame = 0
+        self.dir = 1
+        self.timer = 0.0
+        self.speed = 300
 
     def change_state(self, new_state, event):
         pass
