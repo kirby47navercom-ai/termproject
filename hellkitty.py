@@ -151,5 +151,8 @@ class Boss_Kitty:
 
         self.cur_state.do(self, frame_time)
 
+        self.shape.x = self.x
+        self.shape.y = self.y + self.height * 0.2
+
     def draw(self):
         pass
