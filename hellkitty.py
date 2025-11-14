@@ -146,5 +146,8 @@ class Boss_Kitty:
     def update(self, frame_time, events=None):
         self.idle_frame = (self.idle_frame + self.animation_speed * frame_time) % 2
 
+        if self.cur_state != DieState:
+            self.move(frame_time)
+
     def draw(self):
         pass
