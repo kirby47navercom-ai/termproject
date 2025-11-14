@@ -53,6 +53,10 @@ class Boss_Kitty:
         self.hit = False
         self.hit_animation = False
         self.hit_time = 0.0
+        self.die = False
+        self.die_animation = False
+        self.die_animation_speed = 2.0
+        self.die_frame = 0
 
     def change_state(self, new_state, event):
         pass
