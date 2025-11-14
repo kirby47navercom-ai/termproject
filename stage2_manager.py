@@ -18,6 +18,11 @@ def init():
     ramona.GROUND_LEVEL = 70
     ramona.WIDTH_LEVEL = 320
 
+    player.x = 50
+    player.y = ramona.GROUND_LEVEL
+    ramona.Ramona_POS_X = player.x
+    ramona.Ramona_POS_Y = player.y
+
 
 def update(frame_time,events):
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
