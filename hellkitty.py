@@ -46,7 +46,29 @@ class Pattern0_State:
         self.attack1_effect = []
 
     def do(self, frame_time):
-        pass
+        if not self.attack_init:
+            self.attack1.append([self.x, self.y, 0, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, 0.0])
+            canvas_size.start_shake(0.1, 5)
+            self.attack_init = True
+
+        for i in range(len(self.attack1) - 1, -1, -1):
+            self.attack1[i][2] = (self.attack1[i][2] + self.attack1_speed * frame_time) % 28
+            self.attack1[i][0], self.attack1[i][1], self.attack1[i][3], self.attack1[i][
+                4] = canvas_size.distance_funtion2(self.attack1[i][0], self.attack1[i][1], self.attack1[i][3],
+                                                   self.attack1[i][4], frame_time, self.attack1_player_speed,
+                                                   self.attack1[i][3], self.attack1[i][4])
+            self.attack1[i][5] += frame_time
+
+            if self.attack1[i][5] > self.attack1_timer:
+                self.attack1_effect.append([self.attack1[i][0], self.attack1[i][1], 20, 20, 0])
+                self.attack1[i][5] = 0
+
+            if self.attack1[i][0] < -50 or self.ramonatoattack0(i):
+                canvas_size.start_shake(0.1, 5)
+                self.attack1_num -= 1
+                self.attack1.pop(i)
+                if self.attack1_num > 0:
+                    self.attack1.append([self.x, self.y, 0, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, 0.0])
 
     def draw(self):
         pass
