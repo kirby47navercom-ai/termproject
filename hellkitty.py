@@ -12,7 +12,11 @@ SIZE = 1
 
 
 class Boss_Kitty:
-
+    image = None
+    attack1_image = None
+    attack2_image = None
+    little_image = None
+    die_image = None
     def __init__(self):
         pass
 
