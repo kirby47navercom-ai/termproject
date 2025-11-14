@@ -7,3 +7,5 @@ import canvas_size
 import ramona
 import resource
 import math
+
+SIZE = 1
