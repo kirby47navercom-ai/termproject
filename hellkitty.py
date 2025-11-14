@@ -24,7 +24,15 @@ class IdleState:
             self.change_state(Pattern0_State, None)
 
     def draw(self):
-        pass
+        bx, by = resource.boss_kitty_idle_coordinate[int(self.idle_frame)][2:4]
+        self.image[int(self.idle_frame)].clip_draw(0, 0, bx, by, self.x - canvas_size.shake_x,
+                                                   self.y - canvas_size.shake_y, bx * SIZE, by * SIZE)
+
+        if canvas_size.collide_check:
+            draw_rectangle(self.x - bx * SIZE,
+                           self.y - by * SIZE,
+                           self.x + bx * SIZE,
+                           self.y + by * SIZE)
 
 class Pattern0_State:
     def enter(self, event):
