@@ -9,7 +9,10 @@ class Stage2_Monster:
         self.boss = hellkitty.Boss_Kitty()
 
     def update(self, frame_time, events=None):
-        pass
+        if '하트' == draw_gesture.result:
+            background_2stage.start = True
+            draw_gesture.result = None
+            self.boss.attack_start = True
 
     def draw(self):
         pass
