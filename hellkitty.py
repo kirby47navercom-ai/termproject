@@ -16,7 +16,7 @@ class IdleState:
         self.frame = 0
 
     def exit(self, event):
-        pass
+        self.attack_start = False
 
     def do(self, frame_time):
         pass
