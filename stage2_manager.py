@@ -38,6 +38,8 @@ def update(frame_time,events):
         stage2_monster_.update(frame_time, events)
         ramona_ui_.update(frame_time, events)
         draw_gest.update(frame_time, events)
+    elif ramona.Ramona_retry:
+        pass
 
 def draw():
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
