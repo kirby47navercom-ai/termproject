@@ -54,6 +54,11 @@ def update(frame_time,events):
         elif event.key == SDLK_ESCAPE:
             game_framework.quit()
 
+        player.update(frame_time, events)
+
+        if canvas_size.shake_timer > 0:
+            canvas_size.update_shake(frame_time)
+
 
 def draw():
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
