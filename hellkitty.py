@@ -22,6 +22,9 @@ class Pattern1_State:
 class Pattern2_State:
     pass
 
+class Pattern3_State:
+    pass
+
 
 
 class Boss_Kitty:
