@@ -34,6 +34,7 @@ class Boss_Kitty:
         self.boss_hp = 240
         self.hp = self.boss_hp
         self.hp_bar = Boss_HP()
+        self.width, self.height = 386 * SIZE, 299 * SIZE
 
     def change_state(self, new_state, event):
         pass
