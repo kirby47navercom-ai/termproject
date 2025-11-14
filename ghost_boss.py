@@ -101,6 +101,13 @@ class Pattern0State:
                                        self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
 
 
+        if canvas_size.collide_check:
+            draw_rectangle(self.x - width * SIZE / 2,
+                           self.y - height * SIZE / 2,
+                           self.x + width * SIZE / 2,
+                           self.y + height * SIZE / 2)
+
+
 
 
 class Pattern1State:
