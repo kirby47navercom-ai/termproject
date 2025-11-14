@@ -13,6 +13,9 @@ SIZE = 1
 class IdleState:
     pass
 
+class Pattern0_State:
+    pass
+
 
 
 class Boss_Kitty:
