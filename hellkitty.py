@@ -148,6 +148,12 @@ class Boss_Kitty:
         self.die_animation_speed = 2.0
         self.die_frame = 0
 
+        self.attack1_speed = 40.0  # 공통 변수는 유지
+        self.attack1_player_speed = 1200.0
+        self.attack1_timer = 0.2
+        self.attack1_effect_speed = 8.0
+        self.attack1_effect = []
+
     def change_state(self, new_state, event):
         if self.cur_state != new_state:
             self.cur_state.exit(self, event)
