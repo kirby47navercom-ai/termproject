@@ -13,6 +13,10 @@ class Stage2_Monster:
             background_2stage.start = True
             draw_gesture.result = None
             self.boss.attack_start = True
+        elif background_2stage.start:
+            self.boss.update(frame_time, events)
+            self.shape_check()
+            self.monster_die()
 
     def draw(self):
         pass
