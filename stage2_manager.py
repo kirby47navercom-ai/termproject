@@ -23,6 +23,8 @@ def init():
     ramona.Ramona_POS_X = player.x
     ramona.Ramona_POS_Y = player.y
 
+    background_2stage.start = False
+
 
 def update(frame_time,events):
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
