@@ -42,7 +42,8 @@ class Pattern0_State:
         self.attack1_effect = []
 
     def exit(self, event):
-        pass
+        self.attack1 = []
+        self.attack1_effect = []
 
     def do(self, frame_time):
         pass
