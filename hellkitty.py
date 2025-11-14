@@ -49,6 +49,11 @@ class Boss_Kitty:
         self.attack_start = False
         self.attack_init = False
 
+
+        self.hit = False
+        self.hit_animation = False
+        self.hit_time = 0.0
+
     def change_state(self, new_state, event):
         pass
 
