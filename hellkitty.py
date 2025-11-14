@@ -11,7 +11,17 @@ import math
 SIZE = 1
 
 class IdleState:
-    pass
+    def enter(self, event):
+        pass
+
+    def exit(self, event):
+        pass
+
+    def do(self, frame_time):
+        pass
+
+    def draw(self):
+        pass
 
 class Pattern0_State:
     pass
