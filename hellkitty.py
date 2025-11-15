@@ -439,7 +439,19 @@ class Boss_Kitty:
             self.dir = 1
 
     def ramonatoattack0(self, i):
-        pass
+        ax, ay = self.attack1[i][0], self.attack1[i][1]
+        rx, ry = ramona.Ramona_POS_X, ramona.Ramona_POS_Y
+        threshold = 40
+        dx, dy = ax - rx, ay - ry
+        b = (
+                    dx * dx + dy * dy <= threshold * threshold) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
+        if b:
+            if ramona.CURRENT_HP > 0:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                ramona.invincible_timer = 0.0
+                canvas_size.start_shake(0.5, 5.0)
+        return b
 
     def hit_kitty_animation(self):
         self.shape = self.pattern_set[randint(0, pattern_number)]
