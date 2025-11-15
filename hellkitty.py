@@ -131,7 +131,17 @@ class Pattern1_State:
                 self.change_state(Pattern2_State, None)
 
     def draw(self):
-        pass
+        if len(self.attack2) > 0:
+            for i in self.attack2:
+                ax, ay = resource.boss_kitty_uibim_coordinate[int(i[1])][2:4]
+                Boss_Kitty.attack2_image[int(i[1])].clip_draw(0, 0, ax, ay, self.x - 100 - canvas_size.shake_x,
+                                                              i[0] - canvas_size.shake_y, ax * 1.5, ay * 0.7)
+
+                if canvas_size.collide_check:
+                    draw_rectangle(self.x - 100 - ax * 1.5 / 2,
+                                   i[0] - ay * 1.5 / 2,
+                                   self.x - 100 + ax * 1.5 / 2,
+                                   i[0] + ay * 1.5 / 2)
 
 class Pattern2_State:
     def enter(self, event):
