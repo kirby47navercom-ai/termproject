@@ -251,6 +251,10 @@ class Boss_Kitty:
         self.attack3_num = 8
         self.attack3_init_timer = 2.0
 
+        # 상태 머신 초기화
+        self.cur_state = IdleState
+        self.cur_state.enter(self, None)
+
 
 
     def change_state(self, new_state, event):
