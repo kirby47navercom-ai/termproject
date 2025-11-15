@@ -454,7 +454,16 @@ class Boss_Kitty:
         return b
 
     def ramonatoattack1(self, i):
-        pass
+        b = resource.collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
+                             [canvas_size.canvaswidth // 2, i[0], resource.boss_kitty_uibim_coordinate[int(i[1])][2],
+                              int(resource.boss_kitty_uibim_coordinate[int(i[1])][
+                                      3] * 0.7)]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
+        if b:
+            if ramona.CURRENT_HP > 0:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                ramona.invincible_timer = 0.0
+                canvas_size.start_shake(0.5, 5.0)
 
     def hit_kitty_animation(self):
         self.shape = self.pattern_set[randint(0, pattern_number)]
