@@ -207,7 +207,7 @@ class Pattern3_State:
         self.attack4 = []
 
     def exit(self, event):
-        pass
+        self.attack4 = []
 
     def do(self, frame_time):
         pass
