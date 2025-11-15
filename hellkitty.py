@@ -438,6 +438,9 @@ class Boss_Kitty:
         elif self.y <= self.height // 2:
             self.dir = 1
 
+    def ramonatoattack0(self, i):
+        pass
+
     def hit_kitty_animation(self):
         self.shape = self.pattern_set[randint(0, pattern_number)]
         self.shape.x = self.x
