@@ -242,6 +242,17 @@ class Boss_Kitty:
         self.attack2_timer = 2.0
         self.attack2_speed = 40.0
 
+        self.attack3_spawn_interval = 0.5
+        self.attack3_vertical_speed = 150.0
+        self.attack3_dance_amplitude = 50.0
+        self.attack3_dance_frequency = 3.0
+        w, h = resource.little_kitty_idle_coordinate[2:4]
+        self.attack3_kitty_size = (w, h)
+        self.attack3_num = 8
+        self.attack3_init_timer = 2.0
+
+
+
     def change_state(self, new_state, event):
         if self.cur_state != new_state:
             self.cur_state.exit(self, event)
