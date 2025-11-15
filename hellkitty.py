@@ -453,6 +453,9 @@ class Boss_Kitty:
                 canvas_size.start_shake(0.5, 5.0)
         return b
 
+    def ramonatoattack1(self, i):
+        pass
+
     def hit_kitty_animation(self):
         self.shape = self.pattern_set[randint(0, pattern_number)]
         self.shape.x = self.x
