@@ -294,6 +294,13 @@ class Boss_Kitty:
         self.attack3_num = 8
         self.attack3_init_timer = 2.0
 
+        self.attack4_init_timer = 1.5
+        self.attack4_duration = 8.0
+        self.attack4_spawn_interval = 0.05
+        self.attack4_bullet_speed = 200.0
+        self.attack4_wave_amplitude = 250.0
+        self.attack4_wave_frequency = 5.0
+
         # 상태 머신 초기화
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
