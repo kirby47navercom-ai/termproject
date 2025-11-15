@@ -265,7 +265,8 @@ class Pattern3_State:
 
 class DieState:
     def enter(self, event):
-        pass
+        self.die_animation = True
+        self.die_frame = 0
 
     def exit(self, event):
         pass
