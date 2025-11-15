@@ -3,6 +3,7 @@ from boss_hp import Boss_HP
 from pattern import *
 from resource import *
 from random import randint
+import random
 import canvas_size
 import ramona
 import resource
@@ -249,7 +250,18 @@ class Pattern3_State:
             self.change_state(IdleState, None)  # (임시로 Idle로, 원하면 Pattern0_State로)
 
     def draw(self):
-        pass
+        if len(self.attack4) > 0:
+            for bullet in self.attack4:
+                frame_idx = int(bullet[4])
+                ax, ay = resource.boss_kitty_attack_coordinate[frame_idx][2:4]
+                Boss_Kitty.attack1_image[frame_idx].clip_draw(0, 0, ax, ay, bullet[0] - canvas_size.shake_x,
+                                                              bullet[1] - canvas_size.shake_y, ax * 1.5, ay * 1.5)
+
+                if canvas_size.collide_check:
+                    draw_rectangle(bullet[0] - ax * 1.5 / 2,
+                                   bullet[1] - ay * 1.5 / 2,
+                                   bullet[0] + ax * 1.5 / 2,
+                                   bullet[1] + ay * 1.5 / 2)
 
 class DieState:
     def enter(self, event):
