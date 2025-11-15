@@ -189,6 +189,11 @@ class Boss_Kitty:
         self.attack1_effect_speed = 8.0
         self.attack1_effect = []
 
+        self.attack2_init_speed = 300
+        self.attack2_init_timer = 2.0
+        self.attack2_timer = 2.0
+        self.attack2_speed = 40.0
+
     def change_state(self, new_state, event):
         if self.cur_state != new_state:
             self.cur_state.exit(self, event)
