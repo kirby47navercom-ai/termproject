@@ -145,7 +145,10 @@ class Pattern1_State:
 
 class Pattern2_State:
     def enter(self, event):
-        pass
+        self.attack_init = False
+        self.attack3_time = 0.0
+        self.attack3_spawned_count = 0
+        self.attack3 = []
 
     def exit(self, event):
         pass
