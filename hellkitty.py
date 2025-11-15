@@ -272,7 +272,11 @@ class DieState:
         pass
 
     def do(self, frame_time):
-        pass
+        self.y += self.speed * frame_time * -1 / 2
+        self.die_frame = (self.die_frame + self.die_animation_speed * frame_time * 2) % 4
+        canvas_size.start_shake(0.5, 5)
+        if self.y < -200:
+            self.die = True
 
     def draw(self):
         pass
