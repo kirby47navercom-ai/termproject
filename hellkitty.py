@@ -279,8 +279,14 @@ class DieState:
             self.die = True
 
     def draw(self):
-        pass
-
+        left, bottom, width, height = boss_kitty_die_coordinate[0:4]
+        self.die_image[int(self.die_frame)].draw(self.x - canvas_size.shake_x, self.y - canvas_size.shake_y,
+                                                 width * SIZE * 1.5, height * SIZE * 1.5)
+        if canvas_size.collide_check:
+            draw_rectangle(self.x - width * SIZE * 1.5 / 2,
+                           self.y - height * SIZE * 1.5 / 2,
+                           self.x + width * SIZE * 1.5 / 2,
+                           self.y + height * SIZE * 1.5 / 2)
 
 
 class Boss_Kitty:
