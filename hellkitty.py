@@ -154,7 +154,34 @@ class Pattern2_State:
         self.attack3 = []
 
     def do(self, frame_time):
-        pass
+        self.attack3_time += frame_time
+        if self.attack3_spawned_count < self.attack3_num and self.attack3_time >= self.attack3_spawn_interval:
+            origin_x = randint(5, canvas_size.canvaswidth // 2 - 20)
+            self.attack3.append([origin_x, canvas_size.canvasheight + 50, 0.0])
+            self.attack3_time = 0.0
+            self.attack3_spawned_count += 1
+
+        for i in range(len(self.attack3) - 1, -1, -1):
+            kitty = self.attack3[i]
+            kitty[2] += frame_time
+            kitty[1] -= self.attack3_vertical_speed * frame_time
+            current_x = kitty[0] + self.attack3_dance_amplitude * math.sin(kitty[2] * self.attack3_dance_frequency)
+
+            kitty_w, kitty_h = self.attack3_kitty_size
+            kitty_box = (current_x, kitty[1], kitty_w, kitty_h)
+            player_box = (ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y)
+
+            if resource.collide(player_box,
+                                kitty_box) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                canvas_size.start_shake(0.5, 5.0)
+
+            elif kitty[1] < -50:
+                self.attack3.pop(i)
+
+        if self.attack3_spawned_count == self.attack3_num and len(self.attack3) == 0:
+            self.change_state(Pattern3_State, None)
 
     def draw(self):
         pass
