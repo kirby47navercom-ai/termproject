@@ -184,7 +184,20 @@ class Pattern2_State:
             self.change_state(Pattern3_State, None)
 
     def draw(self):
-        pass
+        if len(self.attack3) > 0:
+            w, h = self.attack3_kitty_size
+            left, bottom, width, height, jx, jy = resource.little_kitty_idle_coordinate
+            for kitty in self.attack3:
+                origin_x, current_y, internal_time = kitty
+                current_x = origin_x + self.attack3_dance_amplitude * math.sin(
+                    internal_time * self.attack3_dance_frequency)
+                self.little_image.clip_draw(left, bottom, width, height, current_x - canvas_size.shake_x,
+                                            current_y - canvas_size.shake_y, w * 1.5, h * 1.5)
+                if canvas_size.collide_check:
+                    draw_rectangle(current_x - w * 1.5 / 2,
+                                   current_y - h * 1.5 / 2,
+                                   current_x + w * 1.5 / 2,
+                                   current_y + h * 1.5 / 2)
 
 class Pattern3_State:
     def enter(self, event):
