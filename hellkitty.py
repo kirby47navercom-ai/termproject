@@ -1,15 +1,19 @@
+from pico2d import *
+
 import background_2stage
 from boss_hp import Boss_HP
 from pattern import *
 from resource import *
 from random import randint
-import random
 import canvas_size
+from canvas_size import cout
+import random
 import ramona
 import resource
 import math
 
 SIZE = 1
+
 
 class IdleState:
     def enter(self, event):
@@ -18,9 +22,11 @@ class IdleState:
 
     def exit(self, event):
         self.attack_start = False
+        pass
 
     def do(self, frame_time):
         self.move(frame_time)  # Idle 중에도 위아래로 움직임
+        # (필요하다면 Idle 상태에서 다음 패턴으로 넘어가는 타이머 추가)
         if self.attack_start:
             self.change_state(Pattern0_State, None)
 
@@ -35,7 +41,8 @@ class IdleState:
                            self.x + bx * SIZE,
                            self.y + by * SIZE)
 
-class Pattern0_State:
+
+class Pattern0_State:  # 하트 유도탄
     def enter(self, event):
         self.attack_init = False
         self.attack1 = []
@@ -71,6 +78,9 @@ class Pattern0_State:
                 if self.attack1_num > 0:
                     self.attack1.append([self.x, self.y, 0, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, 0.0])
 
+        if self.attack1_num == 0:
+            self.change_state(Pattern1_State, None)
+
     def draw(self):
         if len(self.attack1) > 0:
             for i in self.attack1:
@@ -82,8 +92,10 @@ class Pattern0_State:
                                    i[1] - ay * 1.5 / 2,
                                    i[0] + ax * 1.5 / 2,
                                    i[1] + ay * 1.5 / 2)
+        # (이펙트 그리기 로직은 Boss_Kitty.draw()로 이동)
 
-class Pattern1_State:
+
+class Pattern1_State:  # 레이저
     def enter(self, event):
         self.attack_init = True
         self.attack2_init = True
@@ -144,7 +156,8 @@ class Pattern1_State:
                                    self.x - 100 + ax * 1.5 / 2,
                                    i[0] + ay * 1.5 / 2)
 
-class Pattern2_State:
+
+class Pattern2_State:  # 꼬마 키티
     def enter(self, event):
         self.attack_init = False
         self.attack3_time = 0.0
@@ -155,6 +168,7 @@ class Pattern2_State:
         self.attack3 = []
 
     def do(self, frame_time):
+
         self.attack3_time += frame_time
         if self.attack3_spawned_count < self.attack3_num and self.attack3_time >= self.attack3_spawn_interval:
             origin_x = randint(5, canvas_size.canvaswidth // 2 - 20)
@@ -200,7 +214,8 @@ class Pattern2_State:
                                    current_x + w * 1.5 / 2,
                                    current_y + h * 1.5 / 2)
 
-class Pattern3_State:
+
+class Pattern3_State:  # 부채꼴 탄막
     def enter(self, event):
         self.attack_init = False
         self.attack4_spawn_time = 0.0
@@ -236,7 +251,7 @@ class Pattern3_State:
             threshold = 40
             dx, dy = ax - rx, ay - ry
             is_collided = (
-                                  dx * dx + dy * dy <= threshold * threshold) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
+                                      dx * dx + dy * dy <= threshold * threshold) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
             if is_collided:
                 if ramona.CURRENT_HP > 0:
                     ramona.CURRENT_HP -= 1
@@ -263,6 +278,7 @@ class Pattern3_State:
                                    bullet[0] + ax * 1.5 / 2,
                                    bullet[1] + ay * 1.5 / 2)
 
+
 class DieState:
     def enter(self, event):
         self.die_animation = True
@@ -272,11 +288,12 @@ class DieState:
         pass
 
     def do(self, frame_time):
-        self.y += self.speed * frame_time * -1 / 2
-        self.die_frame = (self.die_frame + self.die_animation_speed * frame_time * 2) % 4
-        canvas_size.start_shake(0.5, 5)
         if self.y < -200:
             self.die = True
+        else:
+            self.y += self.speed * frame_time * -1 / 2
+            self.die_frame = (self.die_frame + self.die_animation_speed * frame_time * 2) % 4
+            canvas_size.start_shake(0.5, 5)
 
     def draw(self):
         left, bottom, width, height = boss_kitty_die_coordinate[0:4]
@@ -295,6 +312,7 @@ class Boss_Kitty:
     attack2_image = None
     little_image = None
     die_image = None
+
     def __init__(self):
         self.pattern_set = get_pattern_set()
         if Boss_Kitty.image == None:
@@ -324,10 +342,10 @@ class Boss_Kitty:
         self.animation_speed = 4.0
 
         # 상태 전환 관련 변수
-        self.attack_start = False
-        self.attack_init = False
+        self.attack_start = False  # (IdleState에서 True로 바뀜)
+        self.attack_init = False  # (각 패턴 상태가 관리함)
 
-
+        # 피격/죽음 관련
         self.hit = False
         self.hit_animation = False
         self.hit_time = 0.0
@@ -336,11 +354,15 @@ class Boss_Kitty:
         self.die_animation_speed = 2.0
         self.die_frame = 0
 
+        # 각 패턴의 상태 변수들은 __init__에서 제거
+        # (각 상태 클래스의 enter 함수에서 초기화됨)
         self.attack1_speed = 40.0  # 공통 변수는 유지
         self.attack1_player_speed = 1200.0
         self.attack1_timer = 0.2
         self.attack1_effect_speed = 8.0
         self.attack1_effect = []
+
+
 
         self.attack2_init_speed = 300
         self.attack2_init_timer = 2.0
@@ -367,8 +389,6 @@ class Boss_Kitty:
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
 
-
-
     def change_state(self, new_state, event):
         if self.cur_state != new_state:
             self.cur_state.exit(self, event)
@@ -378,12 +398,14 @@ class Boss_Kitty:
     def update(self, frame_time, events=None):
         self.idle_frame = (self.idle_frame + self.animation_speed * frame_time) % 2
 
+        # 현재 상태가 DieState가 아니면, 위아래로 움직이는 로직 실행
         if self.cur_state != DieState:
             self.move(frame_time)
 
+        # 현재 상태의 do() 로직 실행 (각 패턴 로직)
         self.cur_state.do(self, frame_time)
 
-
+        # 공통 로직 (이펙트, 피격 판정)
         if len(self.attack1_effect) > 0:
             for i in range(len(self.attack1_effect) - 1, -1, -1):
                 self.attack1_effect[i][4] = (self.attack1_effect[i][4] + self.attack1_speed * frame_time) % 28
@@ -400,6 +422,7 @@ class Boss_Kitty:
         if self.hit:
             self.hit_timer(frame_time)
 
+        # 죽음 판정 (체력이 0 이하이고, 아직 죽음 상태가 아니라면)
         if self.hp <= 0 and self.cur_state != DieState:
             self.change_state(DieState, None)
 
@@ -431,6 +454,7 @@ class Boss_Kitty:
                 self.shape.draw(0.6, 0.6)
                 self.hp_bar.draw(self.hp, self.boss_hp)
 
+    # --- 나머지 Helper 함수들 ---
     def move(self, frame_time):
         self.y += self.speed * frame_time * self.dir
         if self.y >= canvas_size.canvasheight - self.height // 2:
@@ -444,7 +468,7 @@ class Boss_Kitty:
         threshold = 40
         dx, dy = ax - rx, ay - ry
         b = (
-                    dx * dx + dy * dy <= threshold * threshold) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
+                        dx * dx + dy * dy <= threshold * threshold) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
         if b:
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
@@ -457,7 +481,7 @@ class Boss_Kitty:
         b = resource.collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
                              [canvas_size.canvaswidth // 2, i[0], resource.boss_kitty_uibim_coordinate[int(i[1])][2],
                               int(resource.boss_kitty_uibim_coordinate[int(i[1])][
-                                      3] * 0.7)]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
+                                      3] *0.7)]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
         if b:
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
@@ -471,9 +495,12 @@ class Boss_Kitty:
         self.shape.y = self.y + self.height * 0.2
         self.hit_animation = False
         self.hit = True
+        pass
 
     def hit_timer(self, frame_time):
         self.hit_time += frame_time
         if self.hit_time > 0.5:
             self.hit = False
             self.hit_time = 0.0
+        pass
+
