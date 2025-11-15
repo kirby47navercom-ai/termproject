@@ -95,7 +95,40 @@ class Pattern1_State:
         self.attack2 = []
 
     def do(self, frame_time):
-        pass
+        if self.attack_init:
+            x, self.y = canvas_size.distance_funtion(0, self.y, 0, ramona.Ramona_POS_Y, frame_time,
+                                                     self.attack2_init_speed)
+            self.attack2_init_time += frame_time
+            if self.attack2_init_time > self.attack2_init_timer:
+                self.attack_init = False
+                self.attack2_init_time = 0.0
+                self.attack2.append([ramona.Ramona_POS_Y, 0, 0.0, 0])
+        else:
+            for i in range(len(self.attack2) - 1, -1, -1):
+                if self.attack2[i][3] == 0:
+                    self.attack2[i][2] += frame_time
+                    if self.attack2[i][2] > self.attack2_timer:
+                        self.attack2_init = False
+                        self.attack2[i][3] = 1
+                        self.attack2[i][2] = 0.0
+                        self.attack2[i][1] = 0
+                        canvas_size.start_shake(1, 10)
+                        if self.attack2_num > 0:
+                            self.attack2_num -= 1
+                            self.attack2.append([ramona.Ramona_POS_Y, 0, 0.0, 0])
+                elif self.attack2[i][3] == 1:
+                    if self.attack2[i][2] < self.attack2_timer - 1.0:
+                        if self.attack2[i][1] < 3:
+                            self.attack2[i][1] = (self.attack2[i][1] + self.attack2_speed * frame_time)
+                        self.ramonatoattack1(self.attack2[i])
+                        self.attack2[i][2] += frame_time
+                    else:
+                        self.attack2[i][1] = (self.attack2[i][1] + self.attack2_speed * frame_time * 0.7)
+                        if int(self.attack2[i][1]) > 6:
+                            self.attack2.pop(i)
+
+            if self.attack2_num == 0 and len(self.attack2) == 0:
+                self.change_state(Pattern2_State, None)
 
     def draw(self):
         pass
