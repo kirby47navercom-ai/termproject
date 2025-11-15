@@ -210,7 +210,43 @@ class Pattern3_State:
         self.attack4 = []
 
     def do(self, frame_time):
-        pass
+        is_spawning = self.attack4_duration_timer < self.attack4_duration
+        if is_spawning:
+            self.attack4_spawn_time += frame_time
+            self.attack4_duration_timer += frame_time
+            if self.attack4_spawn_time >= self.attack4_spawn_interval:
+                self.attack4_spawn_time = 0.0
+                spawn_x = self.x
+                spawn_y = canvas_size.canvasheight // 2
+                angle_deg = random.uniform(135, 225)
+                angle_rad = math.radians(angle_deg)
+                dir_x = math.cos(angle_rad)
+                dir_y = math.sin(angle_rad)
+                self.attack4.append([spawn_x, spawn_y, dir_x, dir_y, 0.0])
+
+        for i in range(len(self.attack4) - 1, -1, -1):
+            bullet = self.attack4[i]
+            bullet[0] += bullet[2] * self.attack4_bullet_speed * frame_time
+            bullet[1] += bullet[3] * self.attack4_bullet_speed * frame_time
+            bullet[4] = (bullet[4] + self.attack1_speed * frame_time) % 28
+
+            ax, ay = bullet[0], bullet[1]
+            rx, ry = ramona.Ramona_POS_X, ramona.Ramona_POS_Y
+            threshold = 40
+            dx, dy = ax - rx, ay - ry
+            is_collided = (
+                                  dx * dx + dy * dy <= threshold * threshold) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible
+            if is_collided:
+                if ramona.CURRENT_HP > 0:
+                    ramona.CURRENT_HP -= 1
+                    ramona.Ramona_invincible = True
+                    canvas_size.start_shake(0.5, 5.0)
+                self.attack4.pop(i)
+            elif bullet[0] < -50 or bullet[1] < -50 or bullet[1] > canvas_size.canvasheight + 50:
+                self.attack4.pop(i)
+
+        if not is_spawning and len(self.attack4) == 0:
+            self.change_state(IdleState, None)  # (임시로 Idle로, 원하면 Pattern0_State로)
 
     def draw(self):
         pass
