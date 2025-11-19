@@ -5,6 +5,7 @@ from random import randint
 from canvas_size import *
 import canvas_size
 import ramona
+import resource
 
 
 SIZE = 1.2
@@ -201,7 +202,7 @@ class HitState:
 
     def exit(self, event):
         self.hit_animation = False
-        self.shape = self.pattern_set[randint(0, pattern_number)]
+        self.shape = self.pattern_set[randint(0, resource.pattern_number)]
         self.shape.x = self.x
         self.shape.y = self.y + self.height * 0.7
 
@@ -263,7 +264,7 @@ class Boss_Ghost:
         self.dir = 1
         self.timer = 0.0
         self.speed = 50
-        self.shape = self.pattern_set[randint(0, pattern_number)]
+        self.shape = self.pattern_set[randint(0, resource.pattern_number)]
         self.shape.x = self.x
         self.shape.y = self.y + self.height * 0.7
         self.idle_frame = 0
