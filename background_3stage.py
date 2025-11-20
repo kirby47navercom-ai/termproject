@@ -49,6 +49,9 @@ class Background:
         target_camera_x = ramona.Ramona_POS_X - canvas_size.canvaswidth // 2
         target_camera_y = ramona.Ramona_POS_Y - canvas_size.canvasheight // 2
 
+        canvas_size.scroll_x = clamp(0, target_camera_x, self.map_width - canvas_size.canvaswidth)
+        canvas_size.scroll_y = clamp(0, target_camera_y, self.map_height - canvas_size.canvasheight)
+
 
 def draw(self):
         pass
