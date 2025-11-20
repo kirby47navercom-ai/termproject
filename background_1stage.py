@@ -1,5 +1,6 @@
 from pico2d import *
 import canvas_size
+import resource
 
 stage1width = 1980
 stage1height = 1080
@@ -9,6 +10,7 @@ start=False
 class Background:
     background = None
     def __init__(self):
+        resource.blocks.clear()
         if Background.background == None:
             Background.background = [load_image('1stage\\1.png'), load_image('1stage\\2.png'),
                                      load_image('1stage\\3.png'),
