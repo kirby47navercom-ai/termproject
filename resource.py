@@ -321,6 +321,9 @@ boss_fox_burning_a_image = []
 boss_fox_burning_b_image = []
 boss_fox_burning_c_image = []
 
+boss_fox_burning_idle_coordinate = [0,0,96,64,0,0]
+boss_fox_burning_idle_image = []
+
 
 #블록
 blocks=[]
