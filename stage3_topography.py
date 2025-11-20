@@ -29,6 +29,16 @@ class Stage3_Terrain:
         self.speed = 15
         self.camerax = canvas_size.camera_x
         self.cameray = canvas_size.camera_y
+
+        if Stage3_Terrain.vine_image == None:
+            Stage3_Terrain.vine_image = resource.fox_vine_background_image
+            Stage3_Terrain.water_image = resource.fox_water_background_image
+            Stage3_Terrain.flame_image = resource.fox_flame_background_image
+            Stage3_Terrain.vine_needle_appear_image = resource.fox_vine_needle_appear_image
+            Stage3_Terrain.vine_needle_disappear_image = resource.fox_vine_needle_disappear_image
+            Stage3_Terrain.water_wave_image = resource.fox_water_wave_image
+            Stage3_Terrain.flame_ball_image = resource.fox_flame_ball_image
+            Stage3_Terrain.white_background_image = resource.white_image[0]
     def update(self, frame_time, events=None):
         pass
     def draw(self):
