@@ -114,6 +114,28 @@ class Stage3_Terrain:
                 ramona.Ramona_invincible_timer = 0.0  # 변수명 수정
                 canvas_size.start_shake(0.5, 5.0)
 
+    def needle_move(self, frame_time):
+        if self.vine_needle_mode == 0:
+            self.vine_needle_appear_frame = (self.vine_needle_appear_frame + frame_time * self.vine_needle_speed) % 12
+            if int(self.vine_needle_appear_frame) == 11:
+                self.vine_needle_mode = 1  # 지속 모드로 전환
+                self.vine_needle_appear_frame = 0  # 프레임 초기화
+        elif self.vine_needle_mode == 1:
+            self.vine_needle_duration_timer += frame_time
+            self.ramonatoneedle()
+            if self.vine_needle_duration_timer >= self.vine_needle_duration_time:
+                self.vine_needle_mode = 2  # 사라짐 모드로 전환
+                self.vine_needle_duration_timer = 0.0  # 타이머 초기화
+        elif self.vine_needle_mode == 2:
+            self.vine_needle_disappear_frame = (self.vine_needle_disappear_frame + frame_time * self.vine_needle_speed) % 12
+            if int(self.vine_needle_disappear_frame) == 11:
+                self.vine_needle_mode = 0  # 다시 등장 모드로 전환
+                self.vine_needle_disappear_frame = 0  # 프레임 초기화
+                self.vine_needle_x = random.randint(558, 1422)  # 새로운 위치 설정
+        self.vine_needle_getbb = [int(self.vine_needle_x) - self.camerax - 88, 140 - self.cameray - 176,
+                                  int(self.vine_needle_x) - self.camerax + 88,
+                                  140 - self.cameray + 146]
+
 
 
     def draw(self):
