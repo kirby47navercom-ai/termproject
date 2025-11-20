@@ -332,6 +332,31 @@ boss_fox_rush_over_image = []
 boss_fox_die_coordinate = [0,0,96,64,0,0]
 boss_fox_die_image = []
 
+#공격
+boss_siho_scratch_coordinate = [0,0,128,256,0,0]
+boss_siho_scratch_image = []
+
+boss_siho_rush_scratch_coordinate = [0,0,128,128,0,0]
+boss_siho_rush_scratch_image = []
+
+boss_siho_fire_coordinate = [0,0,32,32,0,0]
+boss_siho_fire_a_appear_image = []
+boss_siho_fire_a_image = []
+boss_siho_fire_b_appear_image = []
+boss_siho_fire_b_image = []
+
+boss_siho_bite_coordinate = [0,0,160,160,0,0]
+boss_siho_bite_image = []
+
+boss_siho_rush_warning_coordinate = [0,0,16,16,0,0]
+boss_siho_rush_warning_image = []
+
+boss_siho_rush_particle_coordinate = [0,0,32,32,0,0]
+boss_siho_rush_particle_image = []
+
+#씬전환용
+white_image=[]
+
 
 #블록
 blocks=[]
