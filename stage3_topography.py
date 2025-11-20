@@ -65,6 +65,18 @@ class Stage3_Terrain:
         self.water_wave_getbb4 = [int(self.water_wave_x) - self.camerax - 40, 260 - self.cameray - 160,
                                   int(self.water_wave_x) - self.camerax + 60, 260 - self.cameray + 0]
 
+        self.flame_frame = 0
+        self.flame_ball_frame = 0
+        self.flame_ball_x = -100
+        self.flame_ball_y = -50
+        self.flame_ball_speed = 800
+        self.flame_ball_getbb1 = [int(self.flame_ball_x) - self.camerax - 34, int(self.flame_ball_y) - self.cameray + 4,
+                                  int(self.flame_ball_x) - self.camerax + 34,
+                                  int(self.flame_ball_y) - self.cameray + 64]
+        self.flame_ball_getbb2 = [int(self.flame_ball_x) - self.camerax - 19, int(self.flame_ball_y) - self.cameray + 4,
+                                  int(self.flame_ball_x) - self.camerax + 19,
+                                  int(self.flame_ball_y) - self.cameray + 74]
+
     def update(self, frame_time, events=None):
         pass
     def draw(self):
