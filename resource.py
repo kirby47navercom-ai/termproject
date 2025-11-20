@@ -447,6 +447,18 @@ def load_resources():
 
 
 
+    for i in range(3):
+        boss_siho_scratch_prepare_image.append(load_image(f'3stage\\Fox Human Scratch Prepare{str(i + 1)}.png'))
+
+    for i in range(4):
+        boss_siho_scratch_cast_image.append(load_image(f'3stage\\Fox Human Scratch Cast{str(i + 1)}.png'))
+
+    for i in range(3):
+        boss_siho_scratch_over_image.append(load_image(f'3stage\\Fox Human Scratch Over{str(i + 1)}.png'))
+
+
+
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
