@@ -90,6 +90,20 @@ class Stage3_Terrain:
 
         self.update_transition(frame_time)
 
+        if not self.pattern_transition:
+            if self.pattern[self.current_pattern] == 1:
+                self.needle_move(frame_time)
+            elif self.pattern[self.current_pattern] == 2:
+                self.water_frame = (self.water_frame + frame_time * self.speed) % 8
+                self.water_wave_frame = (self.water_wave_frame + frame_time * self.speed) % 8
+                self.wave_move(frame_time)
+                self.ramonatowave()
+            elif self.pattern[self.current_pattern] == 3:
+                self.flame_frame = (self.flame_frame + frame_time * self.speed) % 5
+                self.flame_ball_frame = (self.flame_ball_frame + frame_time * self.speed) % 5
+                self.ball_move(frame_time)
+                self.ramonatoball()
+
 
 
     def draw(self):
