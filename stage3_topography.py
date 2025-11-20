@@ -84,6 +84,8 @@ class Stage3_Terrain:
         self.transition_phase = 0
 
     def update(self, frame_time, events=None):
-        pass
+        if self.pattern[self.current_pattern] != self.old_pattern:
+            if not self.pattern_transition:
+                self.start_transition()
     def draw(self):
         pass
