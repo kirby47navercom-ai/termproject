@@ -269,6 +269,10 @@ boss_siho_scratch_prepare_image = []
 boss_siho_scratch_cast_image = []
 boss_siho_scratch_over_image = []
 
+boss_siho_scratch_rush_prepare_image = []
+boss_siho_scratch_rush_cast_image = []
+boss_siho_scratch_rush_over_image = []
+
 
 #블록
 blocks=[]
