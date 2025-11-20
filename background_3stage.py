@@ -42,6 +42,9 @@ class Background:
         self.scroll_x = 0
         self.scroll_y = 0
 
+        self.map_width = width
+        self.map_height = 864
+
     def update(self, frame_time, events=None):
         pass
     def draw(self):
