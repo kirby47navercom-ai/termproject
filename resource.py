@@ -250,6 +250,9 @@ fox_vine_needle_disappear_image = []
 fox_water_wave_coordinate = [0,0,224,160,0,0]
 fox_water_wave_image = []
 
+fox_flame_ball_coordinate = [0,0,64,80,0,0]
+fox_flame_ball_image = []
+
 
 #블록
 blocks=[]
