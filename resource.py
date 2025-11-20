@@ -477,6 +477,24 @@ def load_resources():
     for i in range(3):
         boss_siho_fire_over_image.append(load_image(f'3stage\\Fox Human Spread Fire Over{str(i + 1)}.png'))
 
+        # 시호 여우
+    for i in range(18):
+        boss_fox_change_image.append(load_image(f'3stage\\Change Phase 1-{str(i + 1)}.png'))
+
+    for i in range(8):
+        boss_fox_idle_image.append(load_image(f'3stage\\Idle{str(i + 1)}.png'))
+
+    boss_fox_bite_prepare_image.append(load_image(f'3stage\\Bite Prepare 1.png'))
+
+    for i in range(3):
+        boss_fox_bite_cast_image.append(load_image(f'3stage\\Bite Cast {str(i + 1)}.png'))
+
+    for i in range(3):
+        boss_fox_bite_over_image.append(load_image(f'3stage\\Bite Over {str(i + 1)}.png'))
+
+    for i in range(2):
+        boss_fox_jump_prepare_image.append(load_image(f'3stage\\Jump Prepare{str(i + 1)}.png'))
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
