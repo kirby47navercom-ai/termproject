@@ -329,6 +329,9 @@ boss_fox_rush_prepare_image = []
 boss_fox_rush_over_coordinate = [0,0,192,64,0,0]
 boss_fox_rush_over_image = []
 
+boss_fox_die_coordinate = [0,0,96,64,0,0]
+boss_fox_die_image = []
+
 
 #블록
 blocks=[]
