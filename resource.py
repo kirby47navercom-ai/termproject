@@ -265,6 +265,10 @@ boss_siho_jump_up_image = []
 boss_siho_jump_cast_image = []
 boss_siho_jump_over_image = []
 
+boss_siho_scratch_prepare_image = []
+boss_siho_scratch_cast_image = []
+boss_siho_scratch_over_image = []
+
 
 #블록
 blocks=[]
