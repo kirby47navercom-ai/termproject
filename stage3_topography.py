@@ -136,6 +136,17 @@ class Stage3_Terrain:
                                   int(self.vine_needle_x) - self.camerax + 88,
                                   140 - self.cameray + 146]
 
+    def ramonatoneedle(self):
+        if resource.collide2(
+                [ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray, ramona.Ramona_SIZE_X,
+                 ramona.Ramona_SIZE_Y],
+                self.vine_needle_getbb) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+            if ramona.CURRENT_HP > 0:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                ramona.invincible_timer = 0.0
+                canvas_size.start_shake(0.5, 5.0)
+
 
 
     def draw(self):
