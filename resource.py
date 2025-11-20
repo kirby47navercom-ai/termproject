@@ -316,6 +316,11 @@ boss_fox_spread_cast_image = []
 boss_fox_spread_over_coordinate = [0,0,96,64,0,0]
 boss_fox_spread_over_image = []
 
+boss_fox_burning_coordinate =  [0,0,96,64,0,0]
+boss_fox_burning_a_image = []
+boss_fox_burning_b_image = []
+boss_fox_burning_c_image = []
+
 
 #블록
 blocks=[]
