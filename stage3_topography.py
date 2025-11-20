@@ -9,4 +9,9 @@ import random
 width = 1980
 
 class Stage3_Terrain:
-    pass
+    def __init__(self):
+        pass
+    def update(self, frame_time, events=None):
+        pass
+    def draw(self):
+        pass
