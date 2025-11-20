@@ -278,6 +278,10 @@ boss_siho_fire_cast_a_image = []
 boss_siho_fire_cast_b_image = []
 boss_siho_fire_over_image = []
 
+#시호 여우
+boss_fox_change_coordinate = [0,0,128,64,0,0]
+boss_fox_change_image = []
+
 
 #블록
 blocks=[]
