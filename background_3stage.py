@@ -29,6 +29,12 @@ class Background:
         self.bg_parallax_ratio_x2 = 0.3
         self.bg_parallax_ratio_y2 = 0.1
 
+        if Background.fox_background3 == None:
+            Background.fox_background3 = load_image('3stage\\Fox BackGround 3.png')
+
+        self.bg_parallax_ratio_x3 = 0.15
+        self.bg_parallax_ratio_y3 = 0.05
+
 
     def update(self, frame_time, events=None):
         pass
