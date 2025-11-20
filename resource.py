@@ -243,6 +243,10 @@ fox_vine_background_image = []
 fox_water_background_image = []
 fox_flame_background_image = []
 
+fox_vine_needle_coordinate = [0,0,128,176,0,0]
+fox_vine_needle_appear_image = []
+fox_vine_needle_disappear_image = []
+
 
 #블록
 blocks=[]
