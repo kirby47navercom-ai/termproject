@@ -39,6 +39,9 @@ class Background:
             (width // 2, 0, self.fox_platform_size[0] * 1.5 + 80,
              self.fox_platform_size[1] * 3.8))
 
+        self.scroll_x = 0
+        self.scroll_y = 0
+
     def update(self, frame_time, events=None):
         pass
     def draw(self):
