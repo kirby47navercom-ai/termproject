@@ -575,6 +575,20 @@ def load_resources():
 
     white_image.append(load_image(f'3stage\\White.png'))
 
+    #3 배경
+
+    fox_vine_background_image.append(load_image(f'3stage\\Fox Vine1.png'))
+
+    for i in range(8):
+        fox_water_background_image.append(load_image(f'3stage\\Fox Water{str(i + 1)}.png'))
+
+    for i in range(5):
+        fox_flame_background_image.append(load_image(f'3stage\\Fox Flame{str(i + 1)}.png'))
+
+
+    for i in range(12):
+        fox_vine_needle_appear_image.append(load_image(f'3stage\\Fox Vine Needle Appear{str(i + 1)}.png'))
+
 
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
