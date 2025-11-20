@@ -495,6 +495,14 @@ def load_resources():
     for i in range(2):
         boss_fox_jump_prepare_image.append(load_image(f'3stage\\Jump Prepare{str(i + 1)}.png'))
 
+    boss_fox_jump_up_image.append(load_image(f'3stage\\Jump Cast a1.png'))
+
+    for i in range(5):
+        boss_fox_jump_cast_image.append(load_image(f'3stage\\Jump Cast b{str(i + 1)}.png'))
+
+    for i in range(6):
+        boss_fox_jump_over_image.append(load_image(f'3stage\\Jump Over{str(i + 1)}.png'))
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
