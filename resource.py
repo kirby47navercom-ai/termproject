@@ -542,7 +542,38 @@ def load_resources():
     for i in range(8):
         boss_fox_rush_over_image.append(load_image(f'3stage\\Rush Over{str(i + 1)}.png'))
 
+        # 시호 공격
+    boss_siho_scratch_image.append(load_image(f'3stage\\Fox Scratch Warning.png'))
+    for i in range(3):
+        boss_siho_scratch_image.append(load_image(f'3stage\\Fox Scratch{str(i + 1)}.png'))
 
+    for i in range(11):
+        boss_siho_rush_scratch_image.append(load_image(f'3stage\\Fox Rushed Scratch{str(i + 1)}.png'))
+
+    for i in range(4):
+        boss_siho_fire_a_appear_image.append(load_image(f'3stage\\Fox Fire Appear{str(i + 1)}.png'))
+
+    for i in range(4):
+        boss_siho_fire_a_image.append(load_image(f'3stage\\Fox Fire{str(i + 1)}.png'))
+
+    for i in range(4):
+        boss_siho_fire_b_appear_image.append(load_image(f'3stage\\Fox Fire b Appear{str(i + 1)}.png'))
+
+    for i in range(4):
+        boss_siho_fire_b_image.append(load_image(f'3stage\\Fox Fire b{str(i + 1)}.png'))
+
+    boss_siho_bite_image.append(load_image(f'3stage\\Fox Bite Warning.png'))
+    for i in range(5):
+        boss_siho_bite_image.append(load_image(f'3stage\\Fox Bite{str(i + 1)}.png'))
+
+    for i in range(18):
+        boss_fox_die_image.append(load_image(f'3stage\\Die{str(i + 1)}.png'))
+
+    boss_siho_rush_warning_image.append(load_image(f'3stage\\Rush Warning.png'))
+
+    boss_siho_rush_particle_image.append(load_image(f'3stage\\Rush Particle.png'))
+
+    white_image.append(load_image(f'3stage\\White.png'))
 
 
     ramona_image = {
