@@ -285,6 +285,13 @@ boss_fox_change_image = []
 boss_fox_idle_coordinate = [0,0,96,64,0,0]
 boss_fox_idle_image = []
 
+boss_fox_bite_prepare_coordinate = [0,0,96,64,0,0]
+boss_fox_bite_prepare_image = []
+boss_fox_bite_cast_coordinate = [0,0,128,64,0,0]
+boss_fox_bite_cast_image = []
+boss_fox_bite_over_coordinate = [0,0,96,64,0,0]
+boss_fox_bite_over_image = []
+
 
 #블록
 blocks=[]
