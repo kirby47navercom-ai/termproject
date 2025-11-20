@@ -5,3 +5,6 @@ import ramona
 
 start = False
 width = 1980
+
+class Background:
+    pass
