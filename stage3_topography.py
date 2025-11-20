@@ -51,6 +51,20 @@ class Stage3_Terrain:
                                   int(self.vine_needle_x) - self.camerax + 88,
                                   140 - self.cameray + 146]
 
+        self.water_frame = 0
+        self.water_wave_frame = 0
+        self.water_wave_x = -200
+        self.water_wave_speed = 400
+        self.water_wave_dir = 1
+        self.water_wave_getbb1 = [int(self.water_wave_x) - self.camerax - 20, 260 - self.cameray - 40,
+                                  int(self.water_wave_x) - self.camerax + 150, 260 - self.cameray + 20]
+        self.water_wave_getbb2 = [int(self.water_wave_x) - self.camerax + 70, 260 - self.cameray - 50,
+                                  int(self.water_wave_x) - self.camerax + 170, 260 - self.cameray + 0]
+        self.water_wave_getbb3 = [int(self.water_wave_x) - self.camerax + 10, 260 - self.cameray - 40,
+                                  int(self.water_wave_x) - self.camerax + 120, 260 - self.cameray + 40]
+        self.water_wave_getbb4 = [int(self.water_wave_x) - self.camerax - 40, 260 - self.cameray - 160,
+                                  int(self.water_wave_x) - self.camerax + 60, 260 - self.cameray + 0]
+
     def update(self, frame_time, events=None):
         pass
     def draw(self):
