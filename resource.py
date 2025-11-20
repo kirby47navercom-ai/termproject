@@ -589,6 +589,14 @@ def load_resources():
     for i in range(12):
         fox_vine_needle_appear_image.append(load_image(f'3stage\\Fox Vine Needle Appear{str(i + 1)}.png'))
 
+    for i in range(12):
+        fox_vine_needle_disappear_image.append(load_image(f'3stage\\Fox Vine Needle Disappear{str(i + 1)}.png'))
+
+    for i in range(8):
+        fox_water_wave_image.append(load_image(f'3stage\\Fox Wave{str(i + 1)}.png'))
+
+    for i in range(5):
+        fox_flame_ball_image.append(load_image(f'3stage\\Fox Flame Ball{str(i + 1)}.png'))
 
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
