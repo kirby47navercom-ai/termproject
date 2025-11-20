@@ -533,10 +533,14 @@ def load_resources():
     for i in range(8):
         boss_fox_burning_c_image.append(load_image(f'3stage\\Change Phase 2-c{str(i + 1)}.png'))
 
+    for i in range(8):
+        boss_fox_burning_idle_image.append(load_image(f'3stage\\Fox Burning Idle{str(i + 1)}.png'))
 
+    for i in range(3):
+        boss_fox_rush_prepare_image.append(load_image(f'3stage\\Rush Prepare{str(i + 1)}.png'))
 
-
-
+    for i in range(8):
+        boss_fox_rush_over_image.append(load_image(f'3stage\\Rush Over{str(i + 1)}.png'))
 
 
 
