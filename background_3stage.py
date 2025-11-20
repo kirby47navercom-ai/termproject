@@ -17,6 +17,12 @@ class Background:
             Background.fox_platform = load_image('3stage\\Fox Platform.png')
         self.fox_platform_size = (752, 128)
 
+        if Background.fox_background1 == None:
+            Background.fox_background1 = load_image('3stage\\Fox BackGround 1.png')
+
+        self.bg_parallax_ratio_x1 = 0.5  # 배경은 x축으로 50% 느리게
+        self.bg_parallax_ratio_y1 = 0.2  # 배경은 y축으로 20% 느리게
+
     def update(self, frame_time, events=None):
         pass
     def draw(self):
