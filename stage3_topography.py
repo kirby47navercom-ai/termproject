@@ -77,6 +77,12 @@ class Stage3_Terrain:
                                   int(self.flame_ball_x) - self.camerax + 19,
                                   int(self.flame_ball_y) - self.cameray + 74]
 
+        self.pattern_transition = False
+        self.pattern_start = False
+        self.transition_opacity = 0.0
+        self.transition_speed = 1.0
+        self.transition_phase = 0
+
     def update(self, frame_time, events=None):
         pass
     def draw(self):
