@@ -253,6 +253,9 @@ fox_water_wave_image = []
 fox_flame_ball_coordinate = [0,0,64,80,0,0]
 fox_flame_ball_image = []
 
+#시호 인간
+boss_siho_coordinate = [0,0,64,64,0,0]
+
 
 #블록
 blocks=[]
