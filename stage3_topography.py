@@ -39,6 +39,18 @@ class Stage3_Terrain:
             Stage3_Terrain.water_wave_image = resource.fox_water_wave_image
             Stage3_Terrain.flame_ball_image = resource.fox_flame_ball_image
             Stage3_Terrain.white_background_image = resource.white_image[0]
+
+        self.vine_needle_appear_frame = 0
+        self.vine_needle_disappear_frame = 0
+        self.vine_needle_x = random.randint(558, 1422)
+        self.vine_needle_speed = 8
+        self.vine_needle_duration_timer = 0.0
+        self.vine_needle_duration_time = 4.0
+        self.vine_needle_mode = 0  # 0: 등장 1: 지속 2: 사라짐
+        self.vine_needle_getbb = [int(self.vine_needle_x) - self.camerax - 88, 140 - self.cameray - 176,
+                                  int(self.vine_needle_x) - self.camerax + 88,
+                                  140 - self.cameray + 146]
+
     def update(self, frame_time, events=None):
         pass
     def draw(self):
