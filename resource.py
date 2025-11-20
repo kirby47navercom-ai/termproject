@@ -247,6 +247,9 @@ fox_vine_needle_coordinate = [0,0,128,176,0,0]
 fox_vine_needle_appear_image = []
 fox_vine_needle_disappear_image = []
 
+fox_water_wave_coordinate = [0,0,224,160,0,0]
+fox_water_wave_image = []
+
 
 #블록
 blocks=[]
