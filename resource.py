@@ -236,6 +236,14 @@ boss_kitty_attack_image= []
 boss_kitty_die_image= []
 boss_kitty_uibim_image= []
 
+#스테이지 3리소스
+#배경
+fox_background_coordinate = [0,0,960,128,0,0]
+fox_vine_background_image = []
+fox_water_background_image = []
+fox_flame_background_image = []
+
+
 #블록
 blocks=[]
 
