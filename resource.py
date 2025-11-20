@@ -515,6 +515,15 @@ def load_resources():
     for i in range(2):
         boss_fox_scratch_over_image.append(load_image(f'3stage\\Scratch Over{str(i + 1)}.png'))
 
+    for i in range(3):
+        boss_fox_spread_prepare_image.append(load_image(f'3stage\\Spread Fire Prepare{str(i + 1)}.png'))
+
+    for i in range(8):
+        boss_fox_spread_cast_image.append(load_image(f'3stage\\Spread Fire Cast{str(i + 1)}.png'))
+
+    for i in range(3):
+        boss_fox_spread_over_image.append(load_image(f'3stage\\Spread Fire Over{str(i + 1)}.png'))
+
 
 
 
