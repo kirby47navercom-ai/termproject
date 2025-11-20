@@ -70,3 +70,11 @@ def draw(self):
                                    800 * 3,
                                    480 * 3)
 
+    bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x1)
+    bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y1)
+    self.fox_background1.clip_draw(0, 0, 800, 480,
+                                   bg_draw_x,
+                                   bg_draw_y,
+                                   800 * 2,
+                                   480 * 2)
+
