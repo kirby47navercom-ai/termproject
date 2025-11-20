@@ -324,6 +324,11 @@ boss_fox_burning_c_image = []
 boss_fox_burning_idle_coordinate = [0,0,96,64,0,0]
 boss_fox_burning_idle_image = []
 
+boss_fox_rush_prepare_coordinate = [0,0,192,64,0,0]
+boss_fox_rush_prepare_image = []
+boss_fox_rush_over_coordinate = [0,0,192,64,0,0]
+boss_fox_rush_over_image = []
+
 
 #블록
 blocks=[]
