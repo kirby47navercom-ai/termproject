@@ -54,4 +54,11 @@ class Background:
 
 
 def draw(self):
-        pass
+    bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x3)
+    bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y3)
+    self.fox_background3.clip_draw(0, 0, 800, 480,
+                                   bg_draw_x,
+                                   bg_draw_y,
+                                   800 * 3,
+                                   480 * 3)
+
