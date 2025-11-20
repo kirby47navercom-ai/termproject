@@ -7,3 +7,6 @@ import resource
 import random
 
 width = 1980
+
+class Stage3_Terrain:
+    pass
