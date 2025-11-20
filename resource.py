@@ -301,6 +301,14 @@ boss_fox_jump_cast_image = []
 boss_fox_jump_over_coordinate = [0,0,96,64,0,0]
 boss_fox_jump_over_image = []
 
+boss_fox_scratch_prepare_coordinate = [0,0,96,64,0,0]
+boss_fox_scratch_prepare_image = []
+boss_fox_scratch_cast_coordinate = [0,0,96,64,0,0]
+boss_fox_scratch_cast_a_image = []
+boss_fox_scratch_cast_b_image = []
+boss_fox_scratch_over_coordinate = [0,0,96,64,0,0]
+boss_fox_scratch_over_image = []
+
 
 #블록
 blocks=[]
