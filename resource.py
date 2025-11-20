@@ -309,6 +309,13 @@ boss_fox_scratch_cast_b_image = []
 boss_fox_scratch_over_coordinate = [0,0,96,64,0,0]
 boss_fox_scratch_over_image = []
 
+boss_fox_spread_prepare_coordinate = [0,0,96,64,0,0]
+boss_fox_spread_prepare_image = []
+boss_fox_spread_cast_coordinate = [0,0,96,64,0,0]
+boss_fox_spread_cast_image = []
+boss_fox_spread_over_coordinate = [0,0,96,64,0,0]
+boss_fox_spread_over_image = []
+
 
 #블록
 blocks=[]
