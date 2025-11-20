@@ -46,6 +46,9 @@ class Background:
         self.map_height = 864
 
     def update(self, frame_time, events=None):
-        pass
-    def draw(self):
+        target_camera_x = ramona.Ramona_POS_X - canvas_size.canvaswidth // 2
+        target_camera_y = ramona.Ramona_POS_Y - canvas_size.canvasheight // 2
+
+
+def draw(self):
         pass
