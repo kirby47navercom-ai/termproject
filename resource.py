@@ -456,6 +456,17 @@ def load_resources():
     for i in range(3):
         boss_siho_scratch_over_image.append(load_image(f'3stage\\Fox Human Scratch Over{str(i + 1)}.png'))
 
+    for i in range(3):
+        boss_siho_scratch_rush_prepare_image.append(load_image(f'3stage\\Fox Human Scratch Rush Prepare{str(i + 1)}.png'))
+
+    for i in range(3):
+        boss_siho_scratch_rush_cast_image.append(load_image(f'3stage\\Fox Human Scratch Rush Cast{str(i + 1)}.png'))
+
+    for i in range(3):
+        boss_siho_scratch_rush_over_image.append(load_image(f'3stage\\Fox Human Scratch Rush Over{str(i + 1)}.png'))
+
+
+
 
 
 
