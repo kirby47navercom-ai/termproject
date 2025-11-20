@@ -23,6 +23,13 @@ class Background:
         self.bg_parallax_ratio_x1 = 0.5  # 배경은 x축으로 50% 느리게
         self.bg_parallax_ratio_y1 = 0.2  # 배경은 y축으로 20% 느리게
 
+        if Background.fox_background2 == None:
+            Background.fox_background2 = load_image('3stage\\Fox BackGround 2.png')
+
+        self.bg_parallax_ratio_x2 = 0.3
+        self.bg_parallax_ratio_y2 = 0.1
+
+
     def update(self, frame_time, events=None):
         pass
     def draw(self):
