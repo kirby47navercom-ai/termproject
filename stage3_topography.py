@@ -104,6 +104,16 @@ class Stage3_Terrain:
                 self.ball_move(frame_time)
                 self.ramonatoball()
 
+        self.falldown()
+
+    def falldown(self):
+        if ramona.Ramona_POS_Y < self.terrain_height - 10:
+            if not ramona.Ramona_invincible:  # 무적 상태가 아닐 때만 피해
+                ramona.CURRENT_HP -= 3
+                ramona.Ramona_invincible = True
+                ramona.Ramona_invincible_timer = 0.0  # 변수명 수정
+                canvas_size.start_shake(0.5, 5.0)
+
 
 
     def draw(self):
