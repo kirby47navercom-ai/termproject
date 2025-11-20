@@ -78,3 +78,11 @@ def draw(self):
                                    800 * 2,
                                    480 * 2)
 
+    self.fox_platform.clip_draw(
+        0, 0, self.fox_platform_size[0], self.fox_platform_size[1],
+        width // 2 - canvas_size.camera_x,
+        self.fox_platform_size[1] - canvas_size.camera_y,
+        self.fox_platform_size[0] * 2,
+        self.fox_platform_size[1] * 2
+    )
+
