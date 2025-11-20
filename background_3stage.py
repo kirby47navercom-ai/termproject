@@ -35,6 +35,9 @@ class Background:
         self.bg_parallax_ratio_x3 = 0.15
         self.bg_parallax_ratio_y3 = 0.05
 
+        resource.blocks.append(
+            (width // 2, 0, self.fox_platform_size[0] * 1.5 + 80,
+             self.fox_platform_size[1] * 3.8))
 
     def update(self, frame_time, events=None):
         pass
