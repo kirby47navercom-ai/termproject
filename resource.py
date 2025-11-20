@@ -465,10 +465,17 @@ def load_resources():
     for i in range(3):
         boss_siho_scratch_rush_over_image.append(load_image(f'3stage\\Fox Human Scratch Rush Over{str(i + 1)}.png'))
 
+    for i in range(4):
+        boss_siho_fire_prepare_image.append(load_image(f'3stage\\Fox Human Spread Fire Prepare{str(i + 1)}.png'))
 
+    for i in range(3):
+        boss_siho_fire_cast_a_image.append(load_image(f'3stage\\Fox Human Spread Fire Cast a{str(i + 1)}.png'))
 
+    for i in range(4):
+        boss_siho_fire_cast_b_image.append(load_image(f'3stage\\Fox Human Spread Fire Cast b{str(i + 1)}.png'))
 
-
+    for i in range(3):
+        boss_siho_fire_over_image.append(load_image(f'3stage\\Fox Human Spread Fire Over{str(i + 1)}.png'))
 
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
