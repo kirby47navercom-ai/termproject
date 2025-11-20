@@ -260,6 +260,11 @@ boss_siho_appear_image = []
 
 boss_siho_idle_image = []
 
+boss_siho_jump_prepare_image = []
+boss_siho_jump_up_image = []
+boss_siho_jump_cast_image = []
+boss_siho_jump_over_image = []
+
 
 #블록
 blocks=[]
