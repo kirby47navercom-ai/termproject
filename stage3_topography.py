@@ -5,3 +5,5 @@ import canvas_size
 import ramona
 import resource
 import random
+
+width = 1980
