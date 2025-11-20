@@ -292,6 +292,15 @@ boss_fox_bite_cast_image = []
 boss_fox_bite_over_coordinate = [0,0,96,64,0,0]
 boss_fox_bite_over_image = []
 
+boss_fox_jump_prepare_coordinate = [0,0,96,64,0,0]
+boss_fox_jump_prepare_image = []
+boss_fox_jump_up_coordinate = [0,0,96,96,0,0]
+boss_fox_jump_up_image = []
+boss_fox_jump_cast_coordinate = [0,0,96,96,0,0]
+boss_fox_jump_cast_image = []
+boss_fox_jump_over_coordinate = [0,0,96,64,0,0]
+boss_fox_jump_over_image = []
+
 
 #블록
 blocks=[]
