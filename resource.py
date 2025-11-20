@@ -282,6 +282,9 @@ boss_siho_fire_over_image = []
 boss_fox_change_coordinate = [0,0,128,64,0,0]
 boss_fox_change_image = []
 
+boss_fox_idle_coordinate = [0,0,96,64,0,0]
+boss_fox_idle_image = []
+
 
 #블록
 blocks=[]
