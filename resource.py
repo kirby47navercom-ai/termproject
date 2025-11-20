@@ -258,6 +258,8 @@ boss_siho_coordinate = [0,0,64,64,0,0]
 
 boss_siho_appear_image = []
 
+boss_siho_idle_image = []
+
 
 #블록
 blocks=[]
