@@ -17,6 +17,9 @@ def init():
 
     canvas_size.start_shake(0, 0)
 
+    ramona.GROUND_LEVEL = 25
+    ramona.WIDTH_LEVEL = background_3stage.width - 25
+
 
 def update(frame_time,events):
     pass
