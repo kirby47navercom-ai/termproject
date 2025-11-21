@@ -293,6 +293,11 @@ class Stage3_Terrain:
                 draw_rectangle(*self.flame_ball_getbb1)
                 draw_rectangle(*self.flame_ball_getbb2)
 
+            self.flame_image[int(self.flame_frame)].clip_draw(0, 0, self.terrain_width, self.terrain_height,
+                                                              width // 2 - self.camerax,
+                                                              -10 - self.cameray,
+                                                              self.terrain_width * 2.5, self.terrain_height * 2)
+
 
 
 
