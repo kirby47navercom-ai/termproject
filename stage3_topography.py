@@ -147,7 +147,30 @@ class Stage3_Terrain:
                 ramona.invincible_timer = 0.0
                 canvas_size.start_shake(0.5, 5.0)
 
+    def wave_move(self, frame_time):
+        self.water_wave_x += self.water_wave_speed * frame_time * self.water_wave_dir
+        if self.water_wave_x > 2780:
+            self.water_wave_dir = -1
+        elif self.water_wave_x < -800:
+            self.water_wave_dir = 1
 
+        self.water_wave_getbb1 = [
+            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax - 20,
+            260 - self.cameray - 40,
+            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 150,
+            260 - self.cameray + 20]
+        self.water_wave_getbb2 = [
+            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 70,
+            260 - self.cameray - 50,
+            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 170,
+            260 - self.cameray + 0]
+        self.water_wave_getbb3 = [
+            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 10,
+            260 - self.cameray - 40,
+            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 120,
+            260 - self.cameray + 40]
+        self.water_wave_getbb4 = [int(self.water_wave_x) - self.camerax - 40, 260 - self.cameray - 160,
+                                  int(self.water_wave_x) - self.camerax + 60, 260 - self.cameray + 0]
 
     def draw(self):
         pass
