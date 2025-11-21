@@ -5,7 +5,7 @@ import resource
 
 class Stage3_Monster:
     def __init__(self):
-        pass
+        self.floor = stage3_topography.Stage3_Terrain()
 
     def update(self, frame_time, events=None):
         pass
