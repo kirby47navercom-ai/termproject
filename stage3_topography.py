@@ -255,3 +255,12 @@ class Stage3_Terrain:
                                                                                                   int(self.vine_needle_x) - self.camerax,
                                                                                                   140 - self.cameray,
                                                                                                   128 * 2, 176 * 2)
+
+            if canvas_size.collide_check:
+                draw_rectangle(*self.vine_needle_getbb)
+
+            self.vine_image[0].clip_draw(0, 0, self.terrain_width, self.terrain_height,
+                                         width // 2 - self.camerax,
+                                         -10 - self.cameray,
+                                         self.terrain_width * 2.5, self.terrain_height * 2)
+
