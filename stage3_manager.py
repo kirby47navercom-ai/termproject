@@ -20,6 +20,11 @@ def init():
     ramona.GROUND_LEVEL = 25
     ramona.WIDTH_LEVEL = background_3stage.width - 25
 
+    player.x = canvas_size.canvaswidth // 2
+    player.y = 260
+    ramona.Ramona_POS_X = player.x
+    ramona.Ramona_POS_Y = player.y
+
 
 def update(frame_time,events):
     pass
