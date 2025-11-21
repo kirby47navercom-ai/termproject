@@ -53,36 +53,36 @@ class Background:
         canvas_size.scroll_y = clamp(0, target_camera_y, self.map_height - canvas_size.canvasheight)
 
 
-def draw(self):
-    bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x3)
-    bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y3)
-    self.fox_background3.clip_draw(0, 0, 800, 480,
-                                   bg_draw_x,
-                                   bg_draw_y,
-                                   800 * 3,
-                                   480 * 3)
+    def draw(self):
+        bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x3)
+        bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y3)
+        self.fox_background3.clip_draw(0, 0, 800, 480,
+                                       bg_draw_x,
+                                       bg_draw_y,
+                                       800 * 3,
+                                       480 * 3)
 
-    bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x2)
-    bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y2)
-    self.fox_background2.clip_draw(0, 0, 800, 480,
-                                   bg_draw_x,
-                                   bg_draw_y,
-                                   800 * 3,
-                                   480 * 3)
+        bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x2)
+        bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y2)
+        self.fox_background2.clip_draw(0, 0, 800, 480,
+                                       bg_draw_x,
+                                       bg_draw_y,
+                                       800 * 3,
+                                       480 * 3)
 
-    bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x1)
-    bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y1)
-    self.fox_background1.clip_draw(0, 0, 800, 480,
-                                   bg_draw_x,
-                                   bg_draw_y,
-                                   800 * 2,
-                                   480 * 2)
+        bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x1)
+        bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y1)
+        self.fox_background1.clip_draw(0, 0, 800, 480,
+                                       bg_draw_x,
+                                       bg_draw_y,
+                                       800 * 2,
+                                       480 * 2)
 
-    self.fox_platform.clip_draw(
-        0, 0, self.fox_platform_size[0], self.fox_platform_size[1],
-        width // 2 - canvas_size.camera_x,
-        self.fox_platform_size[1] - canvas_size.camera_y,
-        self.fox_platform_size[0] * 2,
-        self.fox_platform_size[1] * 2
-    )
+        self.fox_platform.clip_draw(
+            0, 0, self.fox_platform_size[0], self.fox_platform_size[1],
+            width // 2 - canvas_size.camera_x,
+            self.fox_platform_size[1] - canvas_size.camera_y,
+            self.fox_platform_size[0] * 2,
+            self.fox_platform_size[1] * 2
+        )
 
