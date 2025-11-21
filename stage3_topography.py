@@ -277,3 +277,34 @@ class Stage3_Terrain:
                 draw_rectangle(*self.water_wave_getbb3)
                 draw_rectangle(*self.water_wave_getbb4)
 
+            self.water_image[int(self.water_frame)].clip_draw(0, 0, self.terrain_width, self.terrain_height,
+                                                              width // 2 - self.camerax,
+                                                              -10 - self.cameray,
+                                                              self.terrain_width * 2.5, self.terrain_height * 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
