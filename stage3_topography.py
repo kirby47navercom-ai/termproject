@@ -172,5 +172,26 @@ class Stage3_Terrain:
         self.water_wave_getbb4 = [int(self.water_wave_x) - self.camerax - 40, 260 - self.cameray - 160,
                                   int(self.water_wave_x) - self.camerax + 60, 260 - self.cameray + 0]
 
+    def ramonatowave(self):
+        if ((resource.collide2(
+                [ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray, ramona.Ramona_SIZE_X,
+                 ramona.Ramona_SIZE_Y],
+                self.water_wave_getbb1) or
+             resource.collide2([ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray,
+                                ramona.Ramona_SIZE_X - self.camerax, ramona.Ramona_SIZE_Y - self.cameray],
+                               self.water_wave_getbb2) or
+             resource.collide2([ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray,
+                                ramona.Ramona_SIZE_X - self.camerax, ramona.Ramona_SIZE_Y - self.cameray],
+                               self.water_wave_getbb3) or
+             resource.collide2([ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray,
+                                ramona.Ramona_SIZE_X - self.camerax, ramona.Ramona_SIZE_Y - self.cameray],
+                               self.water_wave_getbb4)) and
+                not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible):
+            if ramona.CURRENT_HP > 0:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                ramona.invincible_timer = 0.0
+                canvas_size.start_shake(0.5, 5.0)
+
     def draw(self):
         pass
