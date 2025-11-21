@@ -240,3 +240,18 @@ class Stage3_Terrain:
     def draw(self):
         self.camerax = canvas_size.camera_x
         self.cameray = canvas_size.camera_y
+
+        if self.pattern[self.current_pattern] == 1:
+            if self.vine_needle_mode == 0:
+                self.vine_needle_appear_image[int(self.vine_needle_appear_frame)].clip_draw(0, 0, 128, 176,
+                                                                                            int(self.vine_needle_x) - self.camerax,
+                                                                                            140 - self.cameray, 128 * 2,
+                                                                                            176 * 2)
+            elif self.vine_needle_mode == 1:
+                self.vine_needle_appear_image[11].clip_draw(0, 0, 128, 176, int(self.vine_needle_x) - self.camerax,
+                                                            140 - self.cameray, 128 * 2, 176 * 2)
+            elif self.vine_needle_mode == 2:
+                self.vine_needle_disappear_image[int(self.vine_needle_disappear_frame)].clip_draw(0, 0, 128, 176,
+                                                                                                  int(self.vine_needle_x) - self.camerax,
+                                                                                                  140 - self.cameray,
+                                                                                                  128 * 2, 176 * 2)
