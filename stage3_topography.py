@@ -264,3 +264,11 @@ class Stage3_Terrain:
                                          -10 - self.cameray,
                                          self.terrain_width * 2.5, self.terrain_height * 2)
 
+        elif self.pattern[self.current_pattern] == 2:
+            self.water_wave_image[int(self.water_wave_frame)].clip_composite_draw(0, 0, 224, 160, 0,
+                                                                              '' if self.water_wave_dir == 1 else 'h',
+                                                                              int(self.water_wave_x) - self.camerax,
+                                                                              200 - self.cameray,
+                                                                              224 * 2,
+                                                                              160 * 2)
+
