@@ -3,6 +3,7 @@ import math
 canvaswidth = 1280
 canvasheight = 720
 
+scroll_x, scroll_y = 0, 0
 shake_x, shake_y = 0, 0
 camera_x, camera_y = 0, 0
 shake_timer = 0.0  # 흔들림이 지속될 시간
