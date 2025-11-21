@@ -14,6 +14,7 @@ def init():
     ramona_ui_ = ramona_ui.Ramona_UI()
     stage1_monster_ = stage1_monster.Stage1_Monster()
     draw_gest = draw_gesture.GestureRecognizer()
+    canvas_size.start_shake(0, 0)
 
     ramona.GROUND_LEVEL = 100
     ramona.WIDTH_LEVEL = canvas_size.canvaswidth - 25

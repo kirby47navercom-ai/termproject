@@ -15,6 +15,8 @@ def init():
     ramona_ui_ = ramona_ui.Ramona_UI()
     draw_gest = draw_gesture.GestureRecognizer()
 
+    canvas_size.start_shake(0, 0)
+
 
 def update(frame_time,events):
     pass
