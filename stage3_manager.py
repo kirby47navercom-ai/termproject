@@ -45,6 +45,13 @@ def update(frame_time,events):
                 ramona.CURRENT_HP = ramona.MAX_HP
                 init()
 
+    for event in events:
+        if event.type == SDL_KEYDOWN:
+            if event.key == SDLK_F1:
+                canvas_size.collide_check= not canvas_size.collide_check
+        elif event.key == SDLK_ESCAPE:
+            game_framework.quit()
+
 
 
 
