@@ -32,7 +32,12 @@ def init():
 
 
 def update(frame_time,events):
-    pass
+    global player, stage_background, draw_gest, ramona_ui_, stage3_monster_
+    if not ramona.Ramona_dead:
+        stage_background.update(frame_time, events)
+        stage3_monster_.update(frame_time, events)
+        ramona_ui_.update(frame_time, events)
+        draw_gest.update(frame_time, events)
 
 
 
