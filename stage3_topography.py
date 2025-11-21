@@ -301,9 +301,14 @@ class Stage3_Terrain:
             draw_rectangle(self.terrain_width- self.camerax-self.terrain_width*2.5/2, -self.terrain_height+10- self.cameray,
                        self.terrain_width- self.camerax+self.terrain_width*2.5/2, self.terrain_height-10- self.cameray)
 
-
-
-
+        if self.pattern_transition:
+            self.white_background_image.opacify(self.transition_opacity)
+            self.white_background_image.draw(
+                canvas_size.canvaswidth // 2,
+                canvas_size.canvasheight // 2,
+                canvas_size.canvaswidth,
+                canvas_size.canvasheight
+            )
 
 
 
