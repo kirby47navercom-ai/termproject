@@ -193,5 +193,19 @@ class Stage3_Terrain:
                 ramona.invincible_timer = 0.0
                 canvas_size.start_shake(0.5, 5.0)
 
+    def ball_move(self, frame_time):
+        self.flame_ball_y += self.flame_ball_speed * frame_time
+        if self.flame_ball_y > 900:
+            self.flame_ball_x = ramona.Ramona_POS_X
+            self.flame_ball_y = -50
+            self.flame_ball_speed = 200
+
+        self.flame_ball_getbb1 = [int(self.flame_ball_x) - self.camerax - 34, int(self.flame_ball_y) - self.cameray + 4,
+                                  int(self.flame_ball_x) - self.camerax + 34,
+                                  int(self.flame_ball_y) - self.cameray + 64]
+        self.flame_ball_getbb2 = [int(self.flame_ball_x) - self.camerax - 19, int(self.flame_ball_y) - self.cameray + 4,
+                                  int(self.flame_ball_x) - self.camerax + 19,
+                                  int(self.flame_ball_y) - self.cameray + 74]
+
     def draw(self):
         pass
