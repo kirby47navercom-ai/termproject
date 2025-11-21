@@ -54,6 +54,8 @@ def update(frame_time,events):
 
     player.update(frame_time, events)
 
+    canvas_size.camera_x = canvas_size.scroll_x + canvas_size.shake_x
+    canvas_size.camera_y = canvas_size.scroll_y + canvas_size.shake_y
 
     if canvas_size.shake_timer > 0:
         canvas_size.update_shake(frame_time)
