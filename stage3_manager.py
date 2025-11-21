@@ -52,6 +52,8 @@ def update(frame_time,events):
         elif event.key == SDLK_ESCAPE:
             game_framework.quit()
 
+    player.update(frame_time, events)
+
 
 
 
