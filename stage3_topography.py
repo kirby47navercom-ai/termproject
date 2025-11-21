@@ -289,6 +289,10 @@ class Stage3_Terrain:
                                                                         int(self.flame_ball_y) - self.cameray,
                                                                         64 * 2, 80 * 2)
 
+            if canvas_size.collide_check:
+                draw_rectangle(*self.flame_ball_getbb1)
+                draw_rectangle(*self.flame_ball_getbb2)
+
 
 
 
