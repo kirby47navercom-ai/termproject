@@ -297,6 +297,9 @@ class Stage3_Terrain:
                                                               width // 2 - self.camerax,
                                                               -10 - self.cameray,
                                                               self.terrain_width * 2.5, self.terrain_height * 2)
+        if canvas_size.collide_check:
+            draw_rectangle(self.terrain_width- self.camerax-self.terrain_width*2.5/2, -self.terrain_height+10- self.cameray,
+                       self.terrain_width- self.camerax+self.terrain_width*2.5/2, self.terrain_height-10- self.cameray)
 
 
 
