@@ -271,4 +271,9 @@ class Stage3_Terrain:
                                                                               200 - self.cameray,
                                                                               224 * 2,
                                                                               160 * 2)
+            if canvas_size.collide_check:
+                draw_rectangle(*self.water_wave_getbb1)
+                draw_rectangle(*self.water_wave_getbb2)
+                draw_rectangle(*self.water_wave_getbb3)
+                draw_rectangle(*self.water_wave_getbb4)
 
