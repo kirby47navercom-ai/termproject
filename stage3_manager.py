@@ -25,6 +25,11 @@ def init():
     ramona.Ramona_POS_X = player.x
     ramona.Ramona_POS_Y = player.y
 
+    canvas_size.camera_x = 0
+    canvas_size.camera_y = 0
+    ramona.Ramona_retry = False
+    ramona.Ramona_dead = False
+
 
 def update(frame_time,events):
     pass
