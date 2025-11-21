@@ -217,6 +217,10 @@ class Stage3_Terrain:
                 ramona.Ramona_invincible = True
                 ramona.invincible_timer = 0.0
                 canvas_size.start_shake(0.5, 5.0)
+    def start_transition(self):
+        self.pattern_transition = True
+        self.transition_opacity = 0.0
+        self.transition_phase = 0
 
     def draw(self):
         pass
