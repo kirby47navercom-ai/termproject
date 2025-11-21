@@ -238,4 +238,5 @@ class Stage3_Terrain:
                 self.pattern_transition = False
 
     def draw(self):
-        pass
+        self.camerax = canvas_size.camera_x
+        self.cameray = canvas_size.camera_y
