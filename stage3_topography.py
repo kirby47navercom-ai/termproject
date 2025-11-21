@@ -207,5 +207,16 @@ class Stage3_Terrain:
                                   int(self.flame_ball_x) - self.camerax + 19,
                                   int(self.flame_ball_y) - self.cameray + 74]
 
+    def ramonatoball(self):
+        if (resource.collide2([ramona.Ramona_POS_X- self.camerax, ramona.Ramona_POS_Y- self.cameray, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
+                   self.flame_ball_getbb1) or
+                resource.collide2([ramona.Ramona_POS_X- self.camerax, ramona.Ramona_POS_Y- self.cameray, ramona.Ramona_SIZE_X- self.camerax, ramona.Ramona_SIZE_Y- self.cameray],
+                                 self.flame_ball_getbb2)) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+            if ramona.CURRENT_HP > 0:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                ramona.invincible_timer = 0.0
+                canvas_size.start_shake(0.5, 5.0)
+
     def draw(self):
         pass
