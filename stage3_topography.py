@@ -222,5 +222,20 @@ class Stage3_Terrain:
         self.transition_opacity = 0.0
         self.transition_phase = 0
 
+    def update_transition(self, frame_time):
+        if not self.pattern_transition:
+            return
+
+        if self.transition_phase == 0:  # 즉시 하얗게
+            self.transition_opacity = 1.0  # 바로 완전 불투명
+            self.transition_phase = 1
+            self.old_pattern = self.pattern[self.current_pattern]
+
+        elif self.transition_phase == 1:
+            self.transition_opacity -= self.transition_speed * frame_time
+            if self.transition_opacity <= 0.0:
+                self.transition_opacity = 0.0
+                self.pattern_transition = False
+
     def draw(self):
         pass
