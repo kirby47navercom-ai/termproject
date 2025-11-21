@@ -38,6 +38,12 @@ def update(frame_time,events):
         stage3_monster_.update(frame_time, events)
         ramona_ui_.update(frame_time, events)
         draw_gest.update(frame_time, events)
+    elif ramona.Ramona_retry:
+        for event in events:
+            if event.type == SDL_KEYDOWN and event.key == SDLK_r:
+                ramona.Ramona_dead = False
+                ramona.CURRENT_HP = ramona.MAX_HP
+                init()
 
 
 
