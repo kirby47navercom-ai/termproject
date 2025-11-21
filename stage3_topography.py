@@ -283,6 +283,11 @@ class Stage3_Terrain:
                                                               self.terrain_width * 2.5, self.terrain_height * 2)
 
 
+        elif self.pattern[self.current_pattern] == 3:
+            self.flame_ball_image[int(self.flame_ball_frame)].clip_draw(0, 0, 64, 80,
+                                                                        int(self.flame_ball_x) - self.camerax,
+                                                                        int(self.flame_ball_y) - self.cameray,
+                                                                        64 * 2, 80 * 2)
 
 
 
