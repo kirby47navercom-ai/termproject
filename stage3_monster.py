@@ -8,8 +8,8 @@ class Stage3_Monster:
         self.floor = stage3_topography.Stage3_Terrain()
 
     def update(self, frame_time, events=None):
-        pass
+        self.floor.update(frame_time, events)
 
     def draw(self):
-        pass
+        self.floor.draw()
 
