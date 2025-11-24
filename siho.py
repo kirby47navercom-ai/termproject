@@ -64,4 +64,8 @@ class Boss_Siho:
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
-            pass
+            if not self.appear_animation:
+                boss_siho_appear_image[int(self.appear_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                                                                   self.x - canvas_size.camera_x,
+                                                                                   self.y - canvas_size.camera_y,
+                                                                                   64 * SIZE, 64 * SIZE)
