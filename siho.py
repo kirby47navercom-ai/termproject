@@ -40,7 +40,10 @@ class Boss_Siho:
 
     def update(self, frame_time, events=None):
         if not self.appear_animation:
-            pass
+            self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
+            self.appear_timer += frame_time
+            if self.appear_timer >= self.appear_time:
+                self.appear_animation = True
         pass
     def draw(self):
         pass
