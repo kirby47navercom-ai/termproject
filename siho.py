@@ -31,6 +31,12 @@ class Boss_Siho:
         self.pattern_num = 0
         self.change_graphycs = False
 
+        # 패턴 0
+        self.appear_animation = False
+        self.appear_frame = 0
+        self.appear_timer = 0.0
+        self.appear_time = 4.0
+
 
     def update(self, frame_time, events=None):
         pass
