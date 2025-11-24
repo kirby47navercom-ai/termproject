@@ -17,6 +17,9 @@ class Boss_Siho:
         self.boss_hp = 800
         self.hp = self.boss_hp
         self.hp_bar = Boss_HP()
+        self.width, self.height = 386 * SIZE, 299 * SIZE
+        self.frame = 0
+        self.dir = ''
 
     def update(self, frame_time, events=None):
         pass
