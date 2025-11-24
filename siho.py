@@ -11,4 +11,9 @@ SIZE = 1.8
 
 
 class Boss_Siho:
-    pass
+    def __init__(self):
+        pass
+    def update(self, frame_time, events=None):
+        pass
+    def draw(self):
+        pass
