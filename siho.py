@@ -86,3 +86,6 @@ class Boss_Siho:
         self.shape.y = self.y + self.height * 0.2
         self.hit_animation = False
         self.hit = True
+
+    def hit_timer(self, frame_time):
+        pass
