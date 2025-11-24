@@ -20,6 +20,12 @@ class Boss_Siho:
         self.width, self.height = 386 * SIZE, 299 * SIZE
         self.frame = 0
         self.dir = ''
+        self.timer = 0.0
+        self.speed = 100
+        self.shape = self.pattern_set[randint(0, resource.pattern_number)]
+        self.shape.x = self.x - canvas_size.camera_x
+        self.shape.y = self.y - canvas_size.camera_y + self.height * 0.2
+
 
     def update(self, frame_time, events=None):
         pass
