@@ -8,3 +8,7 @@ import resource
 import math
 
 SIZE = 1.8
+
+
+class Boss_Siho:
+    pass
