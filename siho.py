@@ -37,6 +37,11 @@ class Boss_Siho:
         self.appear_timer = 0.0
         self.appear_time = 4.0
 
+        # 패턴 1
+        self.idle_frame = 0
+        self.idle_timer = 0.0
+        self.idle_time = 1.0
+
 
     def update(self, frame_time, events=None):
         if not self.appear_animation:
