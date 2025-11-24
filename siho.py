@@ -25,6 +25,11 @@ class Boss_Siho:
         self.shape = self.pattern_set[randint(0, resource.pattern_number)]
         self.shape.x = self.x - canvas_size.camera_x
         self.shape.y = self.y - canvas_size.camera_y + self.height * 0.2
+        self.idle_frame = 0
+        self.animation_speed = 8.0
+
+        self.pattern_num = 0
+        self.change_graphycs = False
 
 
     def update(self, frame_time, events=None):
