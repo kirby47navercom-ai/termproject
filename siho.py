@@ -69,3 +69,8 @@ class Boss_Siho:
                                                                                    self.x - canvas_size.camera_x,
                                                                                    self.y - canvas_size.camera_y,
                                                                                    64 * SIZE, 64 * SIZE)
+        elif self.appear_animation and self.pattern_num == 0:
+            boss_siho_appear_image[int(self.appear_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                                                               self.x - canvas_size.camera_x,
+                                                                               self.y - canvas_size.camera_y,
+                                                                               64 * SIZE, 64 * SIZE)
