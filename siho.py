@@ -63,4 +63,5 @@ class Boss_Siho:
             self.pattern_num = 1
 
     def draw(self):
-        pass
+        if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
+            pass
