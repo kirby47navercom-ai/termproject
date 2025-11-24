@@ -80,4 +80,5 @@ class Boss_Siho:
             self.shape.draw(0.4, 0.4)
             self.hp_bar.draw(self.hp, self.boss_hp)
 
-
+    def hit_shio_animation(self):
+        pass
