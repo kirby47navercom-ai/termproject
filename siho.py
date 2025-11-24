@@ -76,3 +76,8 @@ class Boss_Siho:
                                                                                64 * SIZE, 64 * SIZE)
 
         if self.hp >= 0 and self.pattern_num != 14:
+
+            self.shape.draw(0.4, 0.4)
+            self.hp_bar.draw(self.hp, self.boss_hp)
+
+
