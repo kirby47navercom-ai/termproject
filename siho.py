@@ -57,6 +57,8 @@ class Boss_Siho:
         if self.hit:
             self.hit_timer(frame_time)
 
+        def pattern0(self, frame_time):
+            pass
 
     def draw(self):
         pass
