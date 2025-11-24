@@ -44,6 +44,11 @@ class Boss_Siho:
             self.appear_timer += frame_time
             if self.appear_timer >= self.appear_time:
                 self.appear_animation = True
-        pass
+        else:
+            pattern_method = getattr(self, f'pattern{self.pattern_num}', None)
+            if pattern_method:
+                pattern_method(frame_time)
+
+
     def draw(self):
         pass
