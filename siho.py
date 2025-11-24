@@ -52,6 +52,11 @@ class Boss_Siho:
         self.shape.x = self.x - canvas_size.camera_x
         self.shape.y = self.y - canvas_size.camera_y + self.height * 0.2
 
+        if self.hit_animation:
+            self.hit_shio_animation()
+        if self.hit:
+            self.hit_timer(frame_time)
+
 
     def draw(self):
         pass
