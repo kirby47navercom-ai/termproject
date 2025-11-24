@@ -57,8 +57,10 @@ class Boss_Siho:
         if self.hit:
             self.hit_timer(frame_time)
 
-        def pattern0(self, frame_time):
-            pass
+    def pattern0(self, frame_time):
+        self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 8
+        if int(self.appear_frame) == 7:
+            self.pattern_num = 1
 
     def draw(self):
         pass
