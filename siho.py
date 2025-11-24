@@ -81,4 +81,8 @@ class Boss_Siho:
             self.hp_bar.draw(self.hp, self.boss_hp)
 
     def hit_shio_animation(self):
-        pass
+        self.shape = self.pattern_set[randint(0, resource.pattern_number)]
+        self.shape.x = self.x
+        self.shape.y = self.y + self.height * 0.2
+        self.hit_animation = False
+        self.hit = True
