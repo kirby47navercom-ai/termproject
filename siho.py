@@ -39,6 +39,8 @@ class Boss_Siho:
 
 
     def update(self, frame_time, events=None):
+        if not self.appear_animation:
+            pass
         pass
     def draw(self):
         pass
