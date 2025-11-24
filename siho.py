@@ -88,4 +88,7 @@ class Boss_Siho:
         self.hit = True
 
     def hit_timer(self, frame_time):
-        pass
+        self.hit_time += frame_time
+        if self.hit_time > 0.5:
+            self.hit = False
+            self.hit_time = 0.0
