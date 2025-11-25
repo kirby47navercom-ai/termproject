@@ -98,6 +98,9 @@ class Boss_Siho:
 
     def pattern2(self, frame_time):
         if self.pattern2_state == 0:
+            self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 3
+
+            if self.jump_frame >= 2.9:
 
     def launch_fireballs(self):
         pass
