@@ -428,6 +428,9 @@ class Boss_Siho:
             self.pattern_num=randint(8, 10)
             self.fox_idle_timer = 0.0
 
+        if self.hp<=300:
+            self.pattern_num=11
+
 
 
 
