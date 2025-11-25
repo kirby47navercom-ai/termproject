@@ -423,6 +423,10 @@ class Boss_Siho:
     def pattern7(self, frame_time):
         self.fox_idle_frame = (self.fox_idle_frame + self.animation_speed * frame_time) % 8
         self.fox_idle_timer += frame_time
+        if self.fox_idle_timer >= self.fox_idle_time:
+            self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
+            self.pattern_num=randint(8, 10)
+            self.fox_idle_timer = 0.0
 
 
 
