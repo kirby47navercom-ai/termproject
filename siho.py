@@ -81,6 +81,10 @@ class Boss_Siho:
             if pattern_method:
                 pattern_method(frame_time)
 
+        if self.pattern_num != 14:
+            self.update_fireballs(frame_time)
+
+
         self.shape.x = self.x - canvas_size.camera_x
         self.shape.y = self.y - canvas_size.camera_y + self.height * 0.2
 
