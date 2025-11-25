@@ -532,6 +532,13 @@ class Boss_Siho:
                                    self.pattern5_player_x - canvas_size.camera_x + 54,
                                    300 - canvas_size.camera_y + 220)
 
+        elif self.appear_animation and self.pattern_num == 6:
+            resource.boss_fox_change_image[int(self.change_phase_1_frame)].clip_composite_draw(0, 0, 128, 64, 0,
+                                                                                               self.dir,
+                                                                                               self.x - canvas_size.camera_x,
+                                                                                               self.y - canvas_size.camera_y,
+                                                                                               128 * SIZE, 64 * SIZE)
+
 
         if self.hp >= 0 and self.pattern_num != 14:
             for ball_a in self.fireballs:
