@@ -486,6 +486,33 @@ class Boss_Siho:
                                    self.x - canvas_size.camera_x + 128,
                                    self.y - canvas_size.camera_y + 128)
 
+        elif self.appear_animation and self.pattern_num == 5:
+            if self.pattern5_state == 0:
+                frame_list = resource.boss_siho_scratch_prepare_image
+            elif self.pattern5_state == 1:
+                frame_list = resource.boss_siho_scratch_cast_image
+            elif self.pattern5_state == 2:
+                frame_list = resource.boss_siho_scratch_over_image
+            else:
+                return
+            current_frame = frame_list[min(int(self.scratch_frame2), len(frame_list) - 1)]
+            current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                              self.x - canvas_size.camera_x,
+                                              self.y - canvas_size.camera_y,
+                                              64 * SIZE, 64 * SIZE)
+            if self.pattern5_attack:
+                resource.boss_siho_scratch_image[int(self.pattern5_attack_frame)].clip_composite_draw(0, 0, 128, 256,
+                                                                                                      math.radians(-30),
+                                                                                                      '',
+                                                                                                      self.pattern5_player_x - canvas_size.camera_x,
+                                                                                                      300 - canvas_size.camera_y,
+                                                                                                      128 * 2, 256 * 2)
+                if canvas_size.collide_check:
+                    draw_rectangle(self.pattern5_player_x - canvas_size.camera_x - 54,
+                                   300 - canvas_size.camera_y - 220,
+                                   self.pattern5_player_x - canvas_size.camera_x + 54,
+                                   300 - canvas_size.camera_y + 220)
+
 
         if self.hp >= 0 and self.pattern_num != 14:
             for ball_a in self.fireballs:
