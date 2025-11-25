@@ -74,6 +74,8 @@ class Boss_Siho:
             self.pattern_num = randint(2, 5)
             self.idle_timer = 0.0
             self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
+            if self.hp <= 550:
+                self.pattern_num = 6
 
 
     def draw(self):
