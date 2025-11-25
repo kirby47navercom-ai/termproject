@@ -322,7 +322,9 @@ class Boss_Siho:
                     self.pattern4_attack_frame = 0.0
                     self.pattern4_state = 2
                     self.scratch_frame = 0.0
-        e
+
+        elif self.pattern4_state == 2:
+            
 
 
     def ramonatoscratch(self):
