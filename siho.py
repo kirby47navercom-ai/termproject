@@ -218,6 +218,26 @@ class Boss_Siho:
                                                                            self.y - canvas_size.camera_y,
                                                                            64 * SIZE, 64 * SIZE)
 
+        elif self.appear_animation and self.pattern_num == 2:
+            # 0: 준비 (3프레임), 1: 상승 (1프레임), 2: 착지/발사 (4프레임), 3: 정리 (5프레임)
+            if self.pattern2_state == 0:
+                frame_list = resource.boss_siho_jump_prepare_image
+            elif self.pattern2_state == 1:
+                frame_list = resource.boss_siho_jump_up_image  # 단일 프레임
+            elif self.pattern2_state == 2:
+                frame_list = resource.boss_siho_jump_cast_image
+            elif self.pattern2_state == 3:
+                frame_list = resource.boss_siho_jump_over_image
+            else:
+                return
+
+            current_frame = frame_list[min(int(self.jump_frame), len(frame_list) - 1)]
+
+            current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                              self.x - canvas_size.camera_x,
+                                              self.y - canvas_size.camera_y,
+                                              64 * SIZE, 64 * SIZE)
+
         if self.hp >= 0 and self.pattern_num != 14:
 
             self.shape.draw(0.4, 0.4)
