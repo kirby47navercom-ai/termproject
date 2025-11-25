@@ -107,6 +107,12 @@ class Boss_Siho:
         self.fox_idle_timer = 0.0
         self.fox_idle_time = 1.0
 
+        # 패턴 8
+        self.pattern8_state = 0
+        self.pattern8_timer = 0.0
+        self.pattern8_target_x = 0
+        self.pattern8_landing_x = 0
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
