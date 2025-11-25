@@ -293,6 +293,9 @@ class Boss_Siho:
                     self.pattern3_fireball[i][2] = ramona.Ramona_POS_X
                     self.pattern3_fireball[i][3] = ramona.Ramona_POS_Y
 
+    def pattern4(self, frame_time):
+
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
