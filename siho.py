@@ -57,6 +57,11 @@ class Boss_Siho:
 
         self.jump_frame = 0.0
 
+        self.fireballs = []
+        self.fireball_speed = 100.0
+        self.fireball_jump_power = 1000.0
+        self.fireball_gravity = 2500.0
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
