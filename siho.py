@@ -437,6 +437,9 @@ class Boss_Siho:
         if self.hp<=300:
             self.pattern_num=11
 
+    def pattern8(self, frame_time):
+
+
 
 
 
