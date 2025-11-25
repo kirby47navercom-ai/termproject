@@ -453,6 +453,8 @@ class Boss_Siho:
 
                 self.jump_frame = 0
 
+        elif self.pattern8_state == 1:
+
 
 
 
