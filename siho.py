@@ -551,6 +551,9 @@ class Boss_Siho:
                         self.pattern9_attack.pop(i)
                         continue
 
+    def ramonatoscratch3(self,attack):
+
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
