@@ -530,6 +530,8 @@ class Boss_Siho:
                 self.pattern9_state = 3
                 self.scratch_frame3 = 0
 
+        elif self.pattern9_state == 3:
+
 
 
 
