@@ -502,6 +502,9 @@ class Boss_Siho:
                 self.pattern8_landing_x = 0
                 self.jump_frame = 0.0
 
+    def pattern9(self, frame_time):
+
+
 
 
 
