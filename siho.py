@@ -269,6 +269,15 @@ class Boss_Siho:
                                                     4] + self.animation_speed * 0.5 * frame_time) % 4
 
 
+            else:
+                self.ramonatofireballs(self.pattern3_fireball[i])
+                self.pattern3_fireball[i][4] = (self.pattern3_fireball[i][4] + self.animation_speed * frame_time) % 4
+                if self.current_idx >= 5 and self.pattern3_fireball[len(self.pattern3_fireball) - 1][5]:
+                    self.pattern3_fireball[i][6] = True
+                    self.pattern3_fireball[i][2] = ramona.Ramona_POS_X
+                    self.pattern3_fireball[i][3] = ramona.Ramona_POS_Y
+
+
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
             if not self.appear_animation:
