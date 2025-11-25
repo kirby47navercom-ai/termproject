@@ -355,6 +355,20 @@ class Boss_Siho:
 
     def pattern5(self, frame_time):
         if self.pattern5_state == 0:
+            if not self.pattern5_enter:
+                self.pattern5_player_x = ramona.Ramona_POS_X
+                self.pattern5_enter = True
+                self.pattern5_attack = True
+            self.scratch_frame2 = min((self.scratch_frame2 + self.animation_speed * frame_time),2)
+            self.pattern5_attack_prepare_timer += frame_time
+            if self.pattern5_attack_prepare_timer >= self.pattern5_attack_prepare_duration:
+                resource.stage3_effect_sound[15].set_volume(
+                    (resource.stage3_effect_sound_offset[15] * resource.effect) // 2)
+                resource.stage3_effect_sound[15].play(1)
+                self.pattern5_state = 1
+                self.pattern5_attack_prepare_timer = 0.0
+                self.scratch_frame2=0
+                self.pattern5_enter = False
 
     def ramonatoscratch2(self):
 
