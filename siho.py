@@ -353,6 +353,9 @@ class Boss_Siho:
                 ramona.invincible_timer = 0.0
                 canvas_size.start_shake(0.5, 5.0)
 
+    def pattern5(self, frame_time):
+
+
 
 
     def draw(self):
