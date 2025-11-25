@@ -52,7 +52,7 @@ class Boss_Siho:
 
         self.pattern2_state = 0
         self.pattern2_timer = 0.0
-        self.pattern2_target_x = 0  # ★★★ 점프 목표 X좌표
+        self.pattern2_target_x = 0
         self.pattern2_landing_x = 0
 
         self.jump_frame = 0.0
@@ -61,6 +61,14 @@ class Boss_Siho:
         self.fireball_speed = 100.0
         self.fireball_jump_power = 1000.0
         self.fireball_gravity = 2500.0
+
+        # 패턴 3
+        self.pattern3_state = 0
+        self.pattern3_fireball = []
+        self.pattern3_fireball_index = 0
+        self.pattern3_fireball_speed = 600.0
+        self.spread_frame = 0
+        self.current_idx = 0
 
     def update(self, frame_time, events=None):
         if not self.appear_animation:
