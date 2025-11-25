@@ -540,8 +540,16 @@ class Boss_Siho:
 
     def update_pattern9_scratch(self, frame_time):
         for i in range(len(self.pattern9_attack) - 1, -1, -1):
-
-
+            self.pattern9_attack[i][3] += frame_time
+            if self.pattern9_attack[i][3] >= self.pattern9_attack_prepare_duration:
+                self.pattern9_attack[i][2] = min((self.pattern9_attack[i][2] + self.animation_speed * frame_time * 2),
+                                                 3)
+                if self.pattern9_attack[i][2] >= 3:
+                    self.pattern9_attack[i][4] += frame_time
+                    self.ramonatoscratch3(self.pattern9_attack[i])
+                    if self.pattern9_attack[i][4] >= self.pattern9_attack_duration:
+                        self.pattern9_attack.pop(i)
+                        continue
 
 
     def draw(self):
