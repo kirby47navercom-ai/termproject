@@ -539,7 +539,7 @@ class Boss_Siho:
                 self.pattern9_attack_num = 0
 
     def update_pattern9_scratch(self, frame_time):
-
+        for i in range(len(self.pattern9_attack) - 1, -1, -1):
 
 
 
