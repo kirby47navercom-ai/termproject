@@ -153,7 +153,25 @@ class Boss_Siho:
                 self.jump_frame = 0.0
 
     def launch_fireballs(self):
-        pass
+        if self.pattern_num == 2:
+            start_x = self.pattern2_landing_x
+        if self.pattern_num == 8:
+            start_x = self.pattern8_landing_x
+        start_y = self.boss_ground_level
+
+
+        angles_deg = [-60, -30, 0, 30, 60]
+
+        for i, angle_deg in enumerate(angles_deg):
+            angle_rad = math.radians(angle_deg)
+
+
+            dir_x = math.sin(angle_rad) * self.fireball_speed * 5
+
+
+            dir_y = self.fireball_jump_power
+
+            self.fireballs.append([start_x, start_y, dir_x, dir_y, 0, 0.0, True])
 
     def update_fireballs(self, frame_time):
         pass
