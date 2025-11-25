@@ -531,6 +531,12 @@ class Boss_Siho:
                 self.scratch_frame3 = 0
 
         elif self.pattern9_state == 3:
+            self.scratch_frame3 = (self.scratch_frame3 + self.animation_speed * frame_time)
+            if self.scratch_frame3 >= 3:
+                self.pattern9_state = 0
+                self.scratch_frame3 = 0.0
+                self.pattern_num = 7
+                self.pattern9_attack_num = 0
 
 
 
