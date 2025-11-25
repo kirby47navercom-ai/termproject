@@ -55,6 +55,7 @@ class Boss_Siho:
         self.pattern2_target_x = 0  # ★★★ 점프 목표 X좌표
         self.pattern2_landing_x = 0
 
+        self.jump_frame = 0.0
 
     def update(self, frame_time, events=None):
         if not self.appear_animation:
