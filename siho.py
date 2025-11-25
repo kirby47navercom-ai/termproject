@@ -625,6 +625,31 @@ class Boss_Siho:
                                                                                        self.y - canvas_size.camera_y,
                                                                                        96 * SIZE, 64 * SIZE)
 
+        elif self.appear_animation and self.pattern_num == 8:
+            if self.pattern8_state == 0:
+                frame_list = resource.boss_fox_jump_prepare_image
+            elif self.pattern8_state == 1:
+                frame_list = resource.boss_fox_jump_up_image  # 단일 프레임
+            elif self.pattern8_state == 2:
+                frame_list = resource.boss_fox_jump_cast_image
+            elif self.pattern8_state == 3:
+                frame_list = resource.boss_fox_jump_over_image
+            else:
+                return
+
+            current_frame = frame_list[min(int(self.jump_frame), len(frame_list) - 1)]
+
+            if self.pattern8_state == 0:
+                current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  96 * SIZE, 64 * SIZE)
+            else:
+                current_frame.clip_composite_draw(0, 0, 96, 96, 0, self.dir,
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  96 * SIZE, 96 * SIZE)
+
 
 
         if self.hp >= 0 and self.pattern_num != 14:
