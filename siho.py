@@ -121,6 +121,9 @@ class Boss_Siho:
                 self.pattern2_state = 2
                 self.jump_frame = 0
 
+        elif self.pattern2_state == 2:
+            pass
+
     def launch_fireballs(self):
         pass
 
