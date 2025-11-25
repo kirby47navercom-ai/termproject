@@ -381,6 +381,11 @@ class Boss_Siho:
                 self.scratch_frame2 = 0
                 self.pattern5_attack = False
         elif self.pattern5_state == 2:
+            self.scratch_frame2 = (self.scratch_frame2 + self.animation_speed * frame_time)
+            if self.scratch_frame2 >= 3:
+                self.pattern5_state = 0
+                self.scratch_frame2 = 0.0
+                self.pattern_num = 1
 
     def ramonatoscratch2(self):
 
