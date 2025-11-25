@@ -112,6 +112,15 @@ class Boss_Siho:
 
                 self.jump_frame = 0
 
+        elif self.pattern2_state == 1:
+            self.x += self.v_x * frame_time
+            self.y_velocity -= self.gravity * frame_time
+            self.y += self.y_velocity * frame_time
+
+            if self.y_velocity < 0:
+                self.pattern2_state = 2
+                self.jump_frame = 0
+
     def launch_fireballs(self):
         pass
 
