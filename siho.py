@@ -295,6 +295,22 @@ class Boss_Siho:
 
     def pattern4(self, frame_time):
         if self.pattern4_state == 0:
+            if not self.pattern4_enter:
+                self.pattern4_player_x = ramona.Ramona_POS_X
+                self.pattern4_enter = True
+                resource.stage3_effect_sound[16].set_volume(
+                    (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
+                resource.stage3_effect_sound[16].play(1)
+            self.pattern4_move_timer += frame_time
+            if math.fabs(self.x - ramona.Ramona_POS_X) > 0.5:
+                self.x, non = canvas_size.distance_funtion(self.x, 0, self.pattern4_player_x, 0, frame_time,
+                                                           self.pattern4_speed)
+            self.scratch_frame = min((self.scratch_frame + self.animation_speed * frame_time), 2)
+            if self.pattern4_move_timer >= self.pattern4_move_duration:
+                self.pattern4_state = 1
+                self.pattern4_move_timer = 0.0
+                self.scratch_frame = 0
+                self.pattern4_enter = False
 
 
     def ramonatoscratch(self):
