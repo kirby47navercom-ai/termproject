@@ -324,7 +324,11 @@ class Boss_Siho:
                     self.scratch_frame = 0.0
 
         elif self.pattern4_state == 2:
-            
+            self.scratch_frame = (self.scratch_frame + self.animation_speed * frame_time)
+            if self.scratch_frame >= 3:
+                self.pattern4_state = 0
+                self.scratch_frame = 0.0
+                self.pattern_num = 1
 
 
     def ramonatoscratch(self):
