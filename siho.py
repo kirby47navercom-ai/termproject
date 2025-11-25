@@ -70,6 +70,11 @@ class Boss_Siho:
     def pattern1(self, frame_time):
         self.idle_frame = (self.idle_frame + self.animation_speed * frame_time) % 2
         self.idle_timer += frame_time
+        if self.idle_timer >= self.idle_time:
+            self.pattern_num = randint(2, 5)
+            self.idle_timer = 0.0
+            self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
