@@ -421,6 +421,8 @@ class Boss_Siho:
                 self.change_phase_1_frame_timer = 0.0
 
     def pattern7(self, frame_time):
+        self.fox_idle_frame = (self.fox_idle_frame + self.animation_speed * frame_time) % 8
+        self.fox_idle_timer += frame_time
 
 
 
