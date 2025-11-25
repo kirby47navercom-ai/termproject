@@ -503,6 +503,8 @@ class Boss_Siho:
                 self.jump_frame = 0.0
 
     def pattern9(self, frame_time):
+        if self.pattern9_state == 0:
+            pass
 
 
 
