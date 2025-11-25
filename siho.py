@@ -239,7 +239,7 @@ class Boss_Siho:
                 self.pattern_num = 1
 
     def update_pattern3_fireball(self, frame_time):
-        pass
+        ball_idx = [[-50, 100], [-100, 0], [-50, -100], [50, -100], [100, 0]]
 
 
 
