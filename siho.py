@@ -401,6 +401,35 @@ class Boss_Siho:
                                               self.y - canvas_size.camera_y,
                                               64 * SIZE, 64 * SIZE)
 
+        elif self.appear_animation and self.pattern_num == 4:
+            if self.pattern4_state == 0:
+                frame_list = resource.boss_siho_scratch_rush_prepare_image
+            elif self.pattern4_state == 1:
+                frame_list = resource.boss_siho_scratch_rush_cast_image
+            elif self.pattern4_state == 2:
+                frame_list = resource.boss_siho_scratch_rush_over_image
+            else:
+                return
+
+            current_frame = frame_list[min(int(self.scratch_frame), len(frame_list) - 1)]
+
+            current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                              self.x - canvas_size.camera_x,
+                                              self.y - canvas_size.camera_y,
+                                              64 * SIZE, 64 * SIZE)
+            if self.pattern4_attack:
+                resource.boss_siho_rush_scratch_image[int(self.pattern4_attack_frame)].clip_composite_draw(0, 0, 128,128, 0,
+                                                                                                           self.dir,
+                                                                                                           self.x - canvas_size.camera_x,
+                                                                                                           self.y - canvas_size.camera_y,
+                                                                                                           128 * 2,
+                                                                                                           128 * 2)
+                if canvas_size.collide_check:
+                    draw_rectangle(self.x - canvas_size.camera_x - 128,
+                                   self.y - canvas_size.camera_y - 128,
+                                   self.x - canvas_size.camera_x + 128,
+                                   self.y - canvas_size.camera_y + 128)
+
 
         if self.hp >= 0 and self.pattern_num != 14:
             for ball_a in self.fireballs:
