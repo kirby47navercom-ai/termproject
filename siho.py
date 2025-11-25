@@ -70,6 +70,10 @@ class Boss_Siho:
         self.spread_frame = 0
         self.current_idx = 0
 
+        self.hit = False
+        self.hit_animation = False
+        self.hit_time = 0.0
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
