@@ -239,6 +239,21 @@ class Boss_Siho:
                                               64 * SIZE, 64 * SIZE)
 
         if self.hp >= 0 and self.pattern_num != 14:
+            for ball_a in self.fireballs:
+                if ball_a[6]:
+                    frame_idx = int(ball_a[5])
+                    fire_image = resource.boss_siho_fire_a_image[frame_idx]
+
+                    fire_image.draw(ball_a[0] - canvas_size.camera_x,
+                                    ball_a[1] - canvas_size.camera_y,
+                                    32 * 2, 32 * 2)
+
+                    if canvas_size.collide_check:
+                        draw_rectangle(ball_a[0] - 16 - canvas_size.camera_x,
+                                       ball_a[1] - 16 - canvas_size.camera_y,
+                                       ball_a[0] + 16 - canvas_size.camera_x,
+                                       ball_a[1] + 16 - canvas_size.camera_y)
+
 
             self.shape.draw(0.4, 0.4)
             self.hp_bar.draw(self.hp, self.boss_hp)
