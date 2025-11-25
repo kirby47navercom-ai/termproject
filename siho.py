@@ -96,6 +96,9 @@ class Boss_Siho:
             if self.hp <= 550:
                 self.pattern_num = 6
 
+    def pattern2(self, frame_time):
+        pass
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
