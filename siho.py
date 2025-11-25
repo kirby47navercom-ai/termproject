@@ -141,7 +141,7 @@ class Boss_Siho:
                 self.jump_frame = 0
                 canvas_size.start_shake(0.5, 2.5)
 
-
+        elif self.pattern2_state == 3:
 
     def launch_fireballs(self):
         pass
