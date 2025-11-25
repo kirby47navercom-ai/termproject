@@ -504,7 +504,12 @@ class Boss_Siho:
 
     def pattern9(self, frame_time):
         if self.pattern9_state == 0:
-            pass
+            self.scratch_frame3 = min((self.scratch_frame3 + self.animation_speed * frame_time), 2)
+            if self.scratch_frame3 >= 2:
+                self.pattern9_state = 1
+                self.scratch_frame3 = 0
+                self.pattern9_attack.append([ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
+                self.pattern9_attack_num += 1
 
 
 
