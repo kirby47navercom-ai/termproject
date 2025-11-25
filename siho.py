@@ -190,7 +190,13 @@ class Boss_Siho:
             ball[5] = (ball[5] + self.animation_speed * 0.5 * frame_time) % 4
 
     def ramonatofireballs(self, ball):
-        pass
+        if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
+                   [ball[0], ball[1], 32, 32]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+            if ramona.CURRENT_HP > 0:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                ramona.invincible_timer = 0.0
+                canvas_size.start_shake(0.5, 5.0)
 
 
     def draw(self):
