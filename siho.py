@@ -102,6 +102,11 @@ class Boss_Siho:
         self.change_phase_1_frame_timer = 0.0
         self.change_phase_1_frame_duration = 3.0
 
+        # 패턴 7
+        self.fox_idle_frame = 0
+        self.fox_idle_timer = 0.0
+        self.fox_idle_time = 1.0
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
