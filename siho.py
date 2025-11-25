@@ -97,7 +97,7 @@ class Boss_Siho:
                 self.pattern_num = 6
 
     def pattern2(self, frame_time):
-        pass
+        if self.pattern2_state == 0:
 
     def launch_fireballs(self):
         pass
