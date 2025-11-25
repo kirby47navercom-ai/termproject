@@ -252,6 +252,22 @@ class Boss_Siho:
                              False, False])
                         self.current_idx += 1
 
+            elif self.pattern3_fireball[i][6]:
+                self.pattern3_fireball[i][:4] = canvas_size.distance_funtion2(self.pattern3_fireball[i][0],
+                                                                              self.pattern3_fireball[i][1],
+                                                                              self.pattern3_fireball[i][2],
+                                                                              self.pattern3_fireball[i][3],
+                                                                              frame_time, self.pattern3_fireball_speed,
+                                                                              self.pattern3_fireball[i][2],
+                                                                              self.pattern3_fireball[i][3])
+                if self.pattern3_fireball[i][1] < -50 or self.pattern3_fireball[i][1] > 2000:
+                    self.pattern3_fireball.pop(i)
+                    self.pattern3_fireball_index = -1
+                    continue
+                self.ramonatofireballs(self.pattern3_fireball[i])
+                self.pattern3_fireball[i][4] = (self.pattern3_fireball[i][
+                                                    4] + self.animation_speed * 0.5 * frame_time) % 4
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
