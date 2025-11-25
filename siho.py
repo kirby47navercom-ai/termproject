@@ -68,6 +68,8 @@ class Boss_Siho:
             self.pattern_num = 1
 
     def pattern1(self, frame_time):
+        self.idle_frame = (self.idle_frame + self.animation_speed * frame_time) % 2
+        self.idle_timer += frame_time
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
