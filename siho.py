@@ -294,6 +294,10 @@ class Boss_Siho:
                     self.pattern3_fireball[i][3] = ramona.Ramona_POS_Y
 
     def pattern4(self, frame_time):
+        pass
+
+    def ramonatoscratch(self):
+        pass
 
 
 
