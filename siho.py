@@ -483,6 +483,8 @@ class Boss_Siho:
                 self.jump_frame = 0
                 canvas_size.start_shake(0.5, 2.5)
 
+        elif self.pattern8_state == 3:
+
 
 
 
