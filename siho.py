@@ -311,6 +311,7 @@ class Boss_Siho:
                 self.pattern4_move_timer = 0.0
                 self.scratch_frame = 0
                 self.pattern4_enter = False
+        elif self.pattern4_state == 1:
 
 
     def ramonatoscratch(self):
