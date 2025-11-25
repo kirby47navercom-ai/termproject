@@ -484,6 +484,15 @@ class Boss_Siho:
                 canvas_size.start_shake(0.5, 2.5)
 
         elif self.pattern8_state == 3:
+            self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 6
+
+            if int(self.jump_frame) == 5:
+                self.pattern_num = 7
+                self.pattern8_state = 0
+                self.pattern8_timer = 0.0
+                self.pattern8_target_x = 0
+                self.pattern8_landing_x = 0
+                self.jump_frame = 0.0
 
 
 
