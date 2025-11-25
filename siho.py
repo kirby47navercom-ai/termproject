@@ -522,6 +522,13 @@ class Boss_Siho:
                 self.pattern9_state = 2
                 self.scratch_frame3 = 0
         elif self.pattern9_state == 2:
+            self.scratch_frame3 = min((self.scratch_frame3 + self.animation_speed * frame_time), 1)
+            if self.pattern9_attack_num == 3 and self.pattern9_attack[-1][2] > 0.0:
+                self.pattern9_attack.append([ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
+                self.pattern9_attack_num += 1
+            elif self.pattern9_attack_num == 4 and self.pattern9_attack[-1][2] >= 3:
+                self.pattern9_state = 3
+                self.scratch_frame3 = 0
 
 
 
