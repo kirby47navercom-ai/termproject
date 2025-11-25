@@ -174,7 +174,20 @@ class Boss_Siho:
             self.fireballs.append([start_x, start_y, dir_x, dir_y, 0, 0.0, True])
 
     def update_fireballs(self, frame_time):
-        pass
+        for i in range(len(self.fireballs) - 1, -1, -1):
+            ball = self.fireballs[i]
+
+            ball[0] += ball[2] * frame_time
+            ball[1] += ball[3] * frame_time
+
+            ball[3] -= self.fireball_gravity * frame_time
+
+            if ball[1] < 0:
+                self.fireballs.pop(i)
+                continue
+
+            self.ramonatofireballs(ball)
+            ball[5] = (ball[5] + self.animation_speed * 0.5 * frame_time) % 4
 
     def ramonatofireballs(self, ball):
         pass
