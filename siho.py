@@ -232,6 +232,11 @@ class Boss_Siho:
                 self.spread_frame = 0
 
         elif self.pattern3_state == 3:
+            self.spread_frame = (self.spread_frame + self.animation_speed * frame_time)
+            if self.spread_frame >= 3:
+                self.pattern3_state = 0
+                self.spread_frame = 0
+                self.pattern_num = 1
 
     def update_pattern3_fireball(self, frame_time):
         pass
