@@ -67,6 +67,8 @@ class Boss_Siho:
         if int(self.appear_frame) == 7:
             self.pattern_num = 1
 
+    def pattern1(self, frame_time):
+
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
             if not self.appear_animation:
