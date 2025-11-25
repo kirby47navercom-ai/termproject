@@ -355,6 +355,8 @@ class Boss_Siho:
 
     def pattern5(self, frame_time):
 
+    def ramonatoscratch2(self):
+
 
 
 
