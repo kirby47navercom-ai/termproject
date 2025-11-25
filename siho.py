@@ -380,6 +380,7 @@ class Boss_Siho:
                 self.pattern5_state = 2
                 self.scratch_frame2 = 0
                 self.pattern5_attack = False
+        elif self.pattern5_state == 2:
 
     def ramonatoscratch2(self):
 
