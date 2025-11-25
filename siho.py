@@ -113,6 +113,14 @@ class Boss_Siho:
         self.pattern8_target_x = 0
         self.pattern8_landing_x = 0
 
+        # 패턴 9
+        self.pattern9_state = 0
+        self.pattern9_attack_num = 0
+        self.scratch_frame3 = 0.0
+        self.pattern9_attack = []  # 플레이어 위치 x, 300 ,프레임, 준비시간, 지속시간
+        self.pattern9_attack_prepare_duration = 0.5
+        self.pattern9_attack_duration = 0.2
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
