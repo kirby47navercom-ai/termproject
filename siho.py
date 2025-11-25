@@ -420,6 +420,8 @@ class Boss_Siho:
                 self.change_graphycs = True
                 self.change_phase_1_frame_timer = 0.0
 
+    def pattern7(self, frame_time):
+
 
 
 
