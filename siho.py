@@ -403,7 +403,7 @@ class Boss_Siho:
                 canvas_size.start_shake(0.5, 5.0)
 
     def pattern6(self, frame_time):
-
+        if self.change_phase_1_frame_timer < self.change_phase_1_frame_duration:
 
 
 
