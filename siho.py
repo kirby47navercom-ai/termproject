@@ -218,6 +218,7 @@ class Boss_Siho:
                 self.spread_frame = 0
                 self.pattern3_fireball_index += 6  ##이거 이용하기
                 self.current_idx = 0
+        elif self.pattern3_state == 1:
 
     def update_pattern3_fireball(self, frame_time):
         pass
