@@ -438,6 +438,7 @@ class Boss_Siho:
             self.pattern_num=11
 
     def pattern8(self, frame_time):
+        if self.pattern8_state == 0:
 
 
 
