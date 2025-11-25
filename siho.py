@@ -370,6 +370,16 @@ class Boss_Siho:
                 self.scratch_frame2=0
                 self.pattern5_enter = False
         elif self.pattern5_state == 1:
+            self.scratch_frame2 = self.scratch_frame2 + self.animation_speed * frame_time
+            self.pattern5_attack_frame = min((self.pattern5_attack_frame + self.animation_speed * frame_time * 2), 3)
+            self.ramonatoscratch2()
+            self.pattern5_attack_timer += frame_time
+            if self.pattern5_attack_timer >= self.pattern5_attack_duration:
+                self.pattern5_attack_frame = 0.0
+                self.pattern5_attack_timer = 0.0
+                self.pattern5_state = 2
+                self.scratch_frame2 = 0
+                self.pattern5_attack = False
 
     def ramonatoscratch2(self):
 
