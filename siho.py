@@ -211,7 +211,7 @@ class Boss_Siho:
                 canvas_size.start_shake(0.5, 5.0)
 
     def pattern3(self, frame_time):
-        pass
+        if self.pattern3_state == 0:
 
     def update_pattern3_fireball(self, frame_time):
         pass
