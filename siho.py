@@ -439,6 +439,19 @@ class Boss_Siho:
 
     def pattern8(self, frame_time):
         if self.pattern8_state == 0:
+            self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 2
+
+            if self.jump_frame >= 1.9:
+                self.pattern8_state = 1
+
+                self.pattern8_target_x = ramona.Ramona_POS_X
+
+                distance_x = self.pattern8_target_x - self.x
+                self.v_x = distance_x / self.jump_duration
+
+                self.y_velocity = (self.gravity * (self.jump_duration / 2.0))
+
+                self.jump_frame = 0
 
 
 
