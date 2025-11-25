@@ -241,6 +241,16 @@ class Boss_Siho:
     def update_pattern3_fireball(self, frame_time):
         ball_idx = [[-50, 100], [-100, 0], [-50, -100], [50, -100], [100, 0]]
         for i in range(len(self.pattern3_fireball) - 1, -1, -1):
+            if not self.pattern3_fireball[i][5]:
+                self.pattern3_fireball[i][4] = self.pattern3_fireball[i][4] + self.animation_speed * frame_time
+                if self.pattern3_fireball[i][4] >= 3:
+                    self.pattern3_fireball[i][5] = True
+                    self.pattern3_fireball[i][4] = 0
+                    if self.current_idx < 5:  # 이거 왜 안댐??
+                        self.pattern3_fireball.append(
+                            [self.x + ball_idx[self.current_idx][0], self.y + ball_idx[self.current_idx][1], 0, 0, 0,
+                             False, False])
+                        self.current_idx += 1
 
 
     def draw(self):
