@@ -404,6 +404,17 @@ class Boss_Siho:
 
     def pattern6(self, frame_time):
         if self.change_phase_1_frame_timer < self.change_phase_1_frame_duration:
+            self.change_phase_1_frame = min((self.change_phase_1_frame + self.animation_speed * frame_time), 2)
+            self.change_phase_1_frame_timer += frame_time
+
+        elif self.change_phase_1_frame_timer >= self.change_phase_1_frame_duration:
+            self.change_phase_1_frame = self.change_phase_1_frame + self.animation_speed * frame_time
+            if self.change_phase_1_frame >= 17:
+                self.pattern_num = 7
+                self.change_phase_1_frame = 0.0
+                self.change_graphycs = True
+                self.change_phase_1_frame_timer = 0.0
+
 
 
 
