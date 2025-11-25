@@ -97,6 +97,11 @@ class Boss_Siho:
         self.pattern5_attack_timer = 0.0
         self.pattern5_attack_duration = 0.5
 
+        # 패턴 6
+        self.change_phase_1_frame = 0.0
+        self.change_phase_1_frame_timer = 0.0
+        self.change_phase_1_frame_duration = 3.0
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
@@ -529,6 +534,23 @@ class Boss_Siho:
                                        ball_a[1] - 16 - canvas_size.camera_y,
                                        ball_a[0] + 16 - canvas_size.camera_x,
                                        ball_a[1] + 16 - canvas_size.camera_y)
+
+            for ball_b in self.pattern3_fireball:
+                frame_idx = int(ball_b[4])
+                if ball_b[5]:
+                    fire_image = resource.boss_siho_fire_b_image[frame_idx]
+                else:
+                    fire_image = resource.boss_siho_fire_b_appear_image[frame_idx]
+
+                fire_image.draw(ball_b[0] - canvas_size.camera_x,
+                                ball_b[1] - canvas_size.camera_y,
+                                32 * 2, 32 * 2)
+
+                if canvas_size.collide_check:
+                    draw_rectangle(ball_b[0] - 16 - canvas_size.camera_x,
+                                   ball_b[1] - 16 - canvas_size.camera_y,
+                                   ball_b[0] + 16 - canvas_size.camera_x,
+                                   ball_b[1] + 16 - canvas_size.camera_y)
 
 
             self.shape.draw(0.4, 0.4)
