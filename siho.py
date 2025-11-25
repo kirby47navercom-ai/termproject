@@ -521,6 +521,7 @@ class Boss_Siho:
                 self.pattern9_attack_num += 1
                 self.pattern9_state = 2
                 self.scratch_frame3 = 0
+        elif self.pattern9_state == 2:
 
 
 
