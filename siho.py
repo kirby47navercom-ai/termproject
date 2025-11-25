@@ -769,6 +769,18 @@ class Boss_Siho:
                                    ball_b[0] + 16 - canvas_size.camera_x,
                                    ball_b[1] + 16 - canvas_size.camera_y)
 
+            for attack in self.pattern9_attack:
+                resource.boss_siho_scratch_image[int(attack[2])].clip_composite_draw(0, 0, 128, 256, math.radians(-30),
+                                                                                     '',
+                                                                                     attack[0] - canvas_size.camera_x,
+                                                                                     attack[1] - canvas_size.camera_y,
+                                                                                     128 * 2, 256 * 2)
+                if canvas_size.collide_check:
+                    draw_rectangle(attack[0] - canvas_size.camera_x - 54,
+                                   attack[1] - canvas_size.camera_y - 220,
+                                   attack[0] - canvas_size.camera_x + 54,
+                                   attack[1] - canvas_size.camera_y + 220)
+
 
             self.shape.draw(0.4, 0.4)
             self.hp_bar.draw(self.hp, self.boss_hp)
