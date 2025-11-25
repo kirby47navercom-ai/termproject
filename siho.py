@@ -511,6 +511,8 @@ class Boss_Siho:
                 self.pattern9_attack.append([ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
                 self.pattern9_attack_num += 1
 
+        elif self.pattern9_state == 1:
+
 
 
 
