@@ -42,6 +42,14 @@ class Boss_Siho:
         self.idle_timer = 0.0
         self.idle_time = 1.0
 
+        # 패턴 2
+        self.y_velocity = 0.0
+        self.gravity = 2000.0
+        self.jump_power = 200.0
+        self.boss_ground_level = 300
+        self.jump_duration = 1.2
+        self.v_x = 0.0
+
 
     def update(self, frame_time, events=None):
         if not self.appear_animation:
