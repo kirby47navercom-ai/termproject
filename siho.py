@@ -105,6 +105,9 @@ class Boss_Siho:
     def update_fireballs(self, frame_time):
         pass
 
+    def ramonatofireballs(self, ball):
+        pass
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
