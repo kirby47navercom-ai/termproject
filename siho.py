@@ -354,6 +354,7 @@ class Boss_Siho:
                 canvas_size.start_shake(0.5, 5.0)
 
     def pattern5(self, frame_time):
+        if self.pattern5_state == 0:
 
     def ramonatoscratch2(self):
 
