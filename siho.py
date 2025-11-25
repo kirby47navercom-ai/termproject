@@ -122,7 +122,26 @@ class Boss_Siho:
                 self.jump_frame = 0
 
         elif self.pattern2_state == 2:
-            pass
+            self.x += self.v_x * frame_time
+            self.y_velocity -= self.gravity * frame_time
+            self.y += self.y_velocity * frame_time
+
+            self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 4
+
+            if self.y <= self.boss_ground_level:
+                self.y = self.boss_ground_level  #
+                self.y_velocity = 0
+                self.v_x = 0
+
+                self.pattern2_landing_x = self.x
+                self.launch_fireballs()
+
+                self.pattern2_state = 3
+                self.pattern2_timer = 0.0
+                self.jump_frame = 0
+                canvas_size.start_shake(0.5, 2.5)
+
+
 
     def launch_fireballs(self):
         pass
