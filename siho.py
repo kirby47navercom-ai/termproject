@@ -240,7 +240,7 @@ class Boss_Siho:
 
     def update_pattern3_fireball(self, frame_time):
         ball_idx = [[-50, 100], [-100, 0], [-50, -100], [50, -100], [100, 0]]
-
+        for i in range(len(self.pattern3_fireball) - 1, -1, -1):
 
 
     def draw(self):
