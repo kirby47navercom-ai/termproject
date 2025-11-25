@@ -714,6 +714,26 @@ class Boss_Siho:
                                                   self.y - canvas_size.camera_y,
                                                   96 * SIZE, 96 * SIZE)
 
+        elif self.appear_animation and self.pattern_num == 9:
+            if self.pattern9_state == 0:
+                frame_list = resource.boss_fox_scratch_prepare_image
+            elif self.pattern9_state == 1:
+                frame_list = resource.boss_fox_scratch_cast_a_image
+            elif self.pattern9_state == 2:
+                frame_list = resource.boss_fox_scratch_cast_b_image
+            elif self.pattern9_state == 3:
+                frame_list = resource.boss_fox_scratch_over_image
+
+            else:
+                return
+
+            current_frame = frame_list[min(int(self.scratch_frame3), len(frame_list) - 1)]
+
+            current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
+                                              self.x - canvas_size.camera_x,
+                                              self.y - canvas_size.camera_y,
+                                              96 * SIZE, 64 * SIZE)
+
 
 
         if self.hp >= 0 and self.pattern_num != 14:
