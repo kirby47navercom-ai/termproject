@@ -538,6 +538,7 @@ class Boss_Siho:
                 self.pattern_num = 7
                 self.pattern9_attack_num = 0
 
+    def update_pattern9_scratch(self, frame_time):
 
 
 
