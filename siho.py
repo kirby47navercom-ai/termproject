@@ -317,6 +317,26 @@ class Boss_Siho:
                                               self.y - canvas_size.camera_y,
                                               64 * SIZE, 64 * SIZE)
 
+        elif self.appear_animation and self.pattern_num == 3:
+            if self.pattern3_state == 0:
+                frame_list = resource.boss_siho_fire_prepare_image
+            elif self.pattern3_state == 1:
+                frame_list = resource.boss_siho_fire_cast_a_image  # 단일 프레임
+            elif self.pattern3_state == 2:
+                frame_list = resource.boss_siho_fire_cast_b_image
+            elif self.pattern3_state == 3:
+                frame_list = resource.boss_siho_fire_over_image
+            else:
+                return
+
+            current_frame = frame_list[min(int(self.spread_frame), len(frame_list) - 1)]
+
+            current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                              self.x - canvas_size.camera_x,
+                                              self.y - canvas_size.camera_y,
+                                              64 * SIZE, 64 * SIZE)
+
+
         if self.hp >= 0 and self.pattern_num != 14:
             for ball_a in self.fireballs:
                 if ball_a[6]:
