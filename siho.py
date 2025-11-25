@@ -101,6 +101,16 @@ class Boss_Siho:
             self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 3
 
             if self.jump_frame >= 2.9:
+                self.pattern2_state = 1
+
+                self.pattern2_target_x = ramona.Ramona_POS_X
+
+                distance_x = self.pattern2_target_x - self.x
+                self.v_x = distance_x / self.jump_duration
+
+                self.y_velocity = (self.gravity * (self.jump_duration / 2.0))
+
+                self.jump_frame = 0
 
     def launch_fireballs(self):
         pass
