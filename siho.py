@@ -85,6 +85,18 @@ class Boss_Siho:
         self.pattern4_attack = False
         self.pattern4_attack_frame = 0.0
 
+        # 패턴 5
+        self.pattern5_state = 0
+        self.pattern5_enter = False
+        self.pattern5_player_x = 0.0
+        self.scratch_frame2 = 0.0
+        self.pattern5_attack_frame = 0.0
+        self.pattern5_attack_prepare_timer = 0.0
+        self.pattern5_attack_prepare_duration = 1.0
+        self.pattern5_attack = False
+        self.pattern5_attack_timer = 0.0
+        self.pattern5_attack_duration = 0.5
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
