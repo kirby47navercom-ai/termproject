@@ -212,6 +212,12 @@ class Boss_Siho:
 
     def pattern3(self, frame_time):
         if self.pattern3_state == 0:
+            self.spread_frame = (self.spread_frame + self.animation_speed * frame_time)
+            if self.spread_frame >= 3:
+                self.pattern3_state = 1
+                self.spread_frame = 0
+                self.pattern3_fireball_index += 6  ##이거 이용하기
+                self.current_idx = 0
 
     def update_pattern3_fireball(self, frame_time):
         pass
