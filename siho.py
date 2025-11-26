@@ -569,6 +569,10 @@ class Boss_Siho:
 
     def pattern10(self, frame_time):
         if self.pattern10_state == 0:
+            self.bite_frame = self.bite_frame + self.animation_speed * frame_time
+            if self.bite_frame >= 0:
+                self.pattern10_state = 1
+                self.bite_frame = 0
 
 
     def draw(self):
