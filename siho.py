@@ -133,6 +133,11 @@ class Boss_Siho:
         self.change_phase_2_frame_timer = 0.0
         self.change_phase_2_frame_duration = 3.0
 
+        # 패턴 12
+        self.burn_idle_frame = 0
+        self.burn_idle_timer = 0.0
+        self.burn_idle_time = 2.0
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
@@ -400,9 +405,6 @@ class Boss_Siho:
             self.scratch_frame2 = min((self.scratch_frame2 + self.animation_speed * frame_time),2)
             self.pattern5_attack_prepare_timer += frame_time
             if self.pattern5_attack_prepare_timer >= self.pattern5_attack_prepare_duration:
-                resource.stage3_effect_sound[15].set_volume(
-                    (resource.stage3_effect_sound_offset[15] * resource.effect) // 2)
-                resource.stage3_effect_sound[15].play(1)
                 self.pattern5_state = 1
                 self.pattern5_attack_prepare_timer = 0.0
                 self.scratch_frame2=0
