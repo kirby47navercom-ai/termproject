@@ -644,6 +644,9 @@ class Boss_Siho:
                 self.change_phase_2_frame = 0.0
                 self.change_phase_2_frame_timer = 0.0
 
+    def pattern12(self, frame_time):
+
+
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
             if not self.appear_animation:
