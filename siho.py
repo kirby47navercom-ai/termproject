@@ -620,6 +620,9 @@ class Boss_Siho:
                 ramona.invincible_timer = 0.0
                 canvas_size.start_shake(0.5, 5.0)
 
+    def pattern11(self, frame_time):
+
+
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
             if not self.appear_animation:
