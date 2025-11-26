@@ -724,6 +724,9 @@ class Boss_Siho:
                 self.rush_frame = 0.0
                 self.pattern_num = 7
 
+    def ramonatosiho_rush(self):
+
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
