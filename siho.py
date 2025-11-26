@@ -670,6 +670,59 @@ class Boss_Siho:
                 canvas_size.start_shake(4.0, 5.0)
 
     def pattern13(self, frame_time):
+        if self.pattern13_state == 0:
+            self.rush_frame = (self.rush_frame + self.animation_speed * frame_time)
+            if self.rush_frame >= 2.8:
+                del self.rush_direction
+                if randint(0, 1) == 0:
+                    self.rush_direction = [0, 1, 0]  # 아래 위 아래
+                else:
+                    self.rush_direction = [1, 0, 1]  # 위 아래 위
+                self.pattern13_state = 1
+                self.x = -500 if self.dir == 'h' else 2480
+                self.y = 300 if self.rush_direction[0] == 0 else 380
+                self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
+                self.check = self.x < 0
+                self.rush_frame = 0
+                self.rush_fire_direction = randint(0, 1)
+                self.rush_fire_num = 15
+        elif self.pattern13_state < 4:
+            self.rush_prepare_timer += frame_time
+            self.ramonatosiho_rush()
+            if self.rush_prepare_timer >= self.rush_prepare_time:
+
+                if not self.sound_check:
+                    self.sound_check = True
+                    resource.stage3_effect_sound[12].set_volume(
+                        (resource.stage3_effect_sound_offset[12] * resource.effect) // 2)
+                    resource.stage3_effect_sound[12].play(1)
+
+                if self.check:
+                    self.x += self.rush_speed * frame_time
+                else:
+                    self.x -= self.rush_speed * frame_time
+
+                if self.pattern13_state == 3 and (
+                        (self.check and self.x >= 2480) or (not self.check and self.x <= -500)):
+                    self.pattern13_state = 4
+                    self.rush_frame = 0.0
+                    self.rush_prepare_timer = 0.0
+                    self.x = 1000
+                    self.y = 300
+
+                elif (self.check and self.x >= 2480) or (not self.check and self.x <= -500):
+                    self.pattern13_state += 1
+                    self.rush_prepare_timer = 0.0
+                    self.y = 300 if self.rush_direction[self.pattern13_state - 1] == 0 else 380
+                    self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
+                    self.check = self.x < 0
+                    self.sound_check = False
+        elif self.pattern13_state == 4:
+            self.rush_frame = (self.rush_frame + self.animation_speed * frame_time)
+            if self.rush_frame >= 7:
+                self.pattern13_state = 0
+                self.rush_frame = 0.0
+                self.pattern_num = 7
 
 
     def draw(self):
