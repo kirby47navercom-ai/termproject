@@ -980,6 +980,35 @@ class Boss_Siho:
                                                                                                 self.y - canvas_size.camera_y,
                                                                                                 96 * SIZE, 64 * SIZE)
 
+        elif self.appear_animation and self.pattern_num == 13:
+            if self.pattern13_state < 4:
+                frame_list = resource.boss_fox_rush_prepare_image
+            elif self.pattern13_state == 4:
+                frame_list = resource.boss_fox_rush_over_image
+            else:
+                return
+
+            current_frame = frame_list[min(int(self.rush_frame), len(frame_list) - 1)]
+
+            current_frame.clip_composite_draw(0, 0, 192, 64, 0, self.dir,
+                                              self.x - canvas_size.camera_x,
+                                              self.y - canvas_size.camera_y,
+                                              192 * SIZE, 64 * SIZE)
+            if self.rush_prepare_timer <= self.rush_prepare_time and 4 > self.pattern13_state > 0:
+                x = 0
+                y = self.y
+                for i in range(40):
+                    boss_siho_rush_warning_image[0].clip_composite_draw(0, 0, 32, 32, 0, self.dir,
+                                                                        x - canvas_size.camera_x + i * 64,
+                                                                        y - canvas_size.camera_y,
+                                                                        32 * 2, 32 * 2)
+
+            if canvas_size.collide_check and 4 > self.pattern13_state > 0:
+                draw_rectangle(self.x - canvas_size.camera_x - 192 / 2,
+                               self.y - canvas_size.camera_y - 64 / 2,
+                               self.x - canvas_size.camera_x + 192 / 2,
+                               self.y - canvas_size.camera_y + 64 / 2)
+
 
 
         if self.hp >= 0 and self.pattern_num != 14:
