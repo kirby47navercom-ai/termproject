@@ -860,6 +860,13 @@ class Boss_Siho:
                                               self.y - canvas_size.camera_y,
                                               96 * SIZE, 64 * SIZE)
 
+        elif self.appear_animation and self.pattern_num == 12:
+            resource.boss_fox_burning_idle_image[int(self.burn_idle_frame)].clip_composite_draw(0, 0, 96, 64, 0,
+                                                                                                self.dir,
+                                                                                                self.x - canvas_size.camera_x,
+                                                                                                self.y - canvas_size.camera_y,
+                                                                                                96 * SIZE, 64 * SIZE)
+
 
 
         if self.hp >= 0 and self.pattern_num != 14:
