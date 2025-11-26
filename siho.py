@@ -699,11 +699,7 @@ class Boss_Siho:
             self.ramonatosiho_rush()
             if self.rush_prepare_timer >= self.rush_prepare_time:
 
-                if not self.sound_check:
-                    self.sound_check = True
-                    resource.stage3_effect_sound[12].set_volume(
-                        (resource.stage3_effect_sound_offset[12] * resource.effect) // 2)
-                    resource.stage3_effect_sound[12].play(1)
+
 
                 if self.check:
                     self.x += self.rush_speed * frame_time
@@ -792,9 +788,6 @@ class Boss_Siho:
             if self.die_timer >= self.die_time / 2:
                 self.die = True
 
-
-
-
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
             if not self.appear_animation:
@@ -802,246 +795,243 @@ class Boss_Siho:
                                                                                    self.x - canvas_size.camera_x,
                                                                                    self.y - canvas_size.camera_y,
                                                                                    64 * SIZE, 64 * SIZE)
-        elif self.appear_animation and self.pattern_num == 0:
-            boss_siho_appear_image[int(self.appear_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+            elif self.appear_animation and self.pattern_num == 0:
+                boss_siho_appear_image[int(self.appear_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                                                                   self.x - canvas_size.camera_x,
+                                                                                   self.y - canvas_size.camera_y,
+                                                                                   64 * SIZE, 64 * SIZE)
+            elif self.appear_animation and self.pattern_num == 1:
+                boss_siho_idle_image[int(self.idle_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
                                                                                self.x - canvas_size.camera_x,
                                                                                self.y - canvas_size.camera_y,
                                                                                64 * SIZE, 64 * SIZE)
+            elif self.appear_animation and self.pattern_num == 2:
+                # 0: 준비 (3프레임), 1: 상승 (1프레임), 2: 착지/발사 (4프레임), 3: 정리 (5프레임)
+                if self.pattern2_state == 0:
+                    frame_list = resource.boss_siho_jump_prepare_image
+                elif self.pattern2_state == 1:
+                    frame_list = resource.boss_siho_jump_up_image  # 단일 프레임
+                elif self.pattern2_state == 2:
+                    frame_list = resource.boss_siho_jump_cast_image
+                elif self.pattern2_state == 3:
+                    frame_list = resource.boss_siho_jump_over_image
+                else:
+                    return
 
-        elif self.appear_animation and self.pattern_num == 1:
-            boss_siho_idle_image[int(self.idle_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
-                                                                           self.x - canvas_size.camera_x,
-                                                                           self.y - canvas_size.camera_y,
-                                                                           64 * SIZE, 64 * SIZE)
+                current_frame = frame_list[min(int(self.jump_frame), len(frame_list) - 1)]
 
-        elif self.appear_animation and self.pattern_num == 2:
-            # 0: 준비 (3프레임), 1: 상승 (1프레임), 2: 착지/발사 (4프레임), 3: 정리 (5프레임)
-            if self.pattern2_state == 0:
-                frame_list = resource.boss_siho_jump_prepare_image
-            elif self.pattern2_state == 1:
-                frame_list = resource.boss_siho_jump_up_image  # 단일 프레임
-            elif self.pattern2_state == 2:
-                frame_list = resource.boss_siho_jump_cast_image
-            elif self.pattern2_state == 3:
-                frame_list = resource.boss_siho_jump_over_image
-            else:
-                return
+                current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  64 * SIZE, 64 * SIZE)
 
-            current_frame = frame_list[min(int(self.jump_frame), len(frame_list) - 1)]
+            elif self.appear_animation and self.pattern_num == 3:
+                if self.pattern3_state == 0:
+                    frame_list = resource.boss_siho_fire_prepare_image
+                elif self.pattern3_state == 1:
+                    frame_list = resource.boss_siho_fire_cast_a_image  # 단일 프레임
+                elif self.pattern3_state == 2:
+                    frame_list = resource.boss_siho_fire_cast_b_image
+                elif self.pattern3_state == 3:
+                    frame_list = resource.boss_siho_fire_over_image
+                else:
+                    return
 
-            current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
-                                              self.x - canvas_size.camera_x,
-                                              self.y - canvas_size.camera_y,
-                                              64 * SIZE, 64 * SIZE)
+                current_frame = frame_list[min(int(self.spread_frame), len(frame_list) - 1)]
 
-        elif self.appear_animation and self.pattern_num == 3:
-            if self.pattern3_state == 0:
-                frame_list = resource.boss_siho_fire_prepare_image
-            elif self.pattern3_state == 1:
-                frame_list = resource.boss_siho_fire_cast_a_image  # 단일 프레임
-            elif self.pattern3_state == 2:
-                frame_list = resource.boss_siho_fire_cast_b_image
-            elif self.pattern3_state == 3:
-                frame_list = resource.boss_siho_fire_over_image
-            else:
-                return
+                current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  64 * SIZE, 64 * SIZE)
+            elif self.appear_animation and self.pattern_num == 4:
+                if self.pattern4_state == 0:
+                    frame_list = resource.boss_siho_scratch_rush_prepare_image
+                elif self.pattern4_state == 1:
+                    frame_list = resource.boss_siho_scratch_rush_cast_image
+                elif self.pattern4_state == 2:
+                    frame_list = resource.boss_siho_scratch_rush_over_image
+                else:
+                    return
 
-            current_frame = frame_list[min(int(self.spread_frame), len(frame_list) - 1)]
+                current_frame = frame_list[min(int(self.scratch_frame), len(frame_list) - 1)]
 
-            current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
-                                              self.x - canvas_size.camera_x,
-                                              self.y - canvas_size.camera_y,
-                                              64 * SIZE, 64 * SIZE)
+                current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  64 * SIZE, 64 * SIZE)
+                if self.pattern4_attack:
+                    resource.boss_siho_rush_scratch_image[int(self.pattern4_attack_frame)].clip_composite_draw(0, 0,
+                                                                                                               128, 128,
+                                                                                                               0,
+                                                                                                               self.dir,
+                                                                                                               self.x - canvas_size.camera_x,
+                                                                                                               self.y - canvas_size.camera_y,
+                                                                                                               128 * 2,
+                                                                                                               128 * 2)
+                    if canvas_size.collide_check:
+                        draw_rectangle(self.x - canvas_size.camera_x - 128,
+                                       self.y - canvas_size.camera_y - 128,
+                                       self.x - canvas_size.camera_x + 128,
+                                       self.y - canvas_size.camera_y + 128)
+            elif self.appear_animation and self.pattern_num == 5:
+                if self.pattern5_state == 0:
+                    frame_list = resource.boss_siho_scratch_prepare_image
+                elif self.pattern5_state == 1:
+                    frame_list = resource.boss_siho_scratch_cast_image
+                elif self.pattern5_state == 2:
+                    frame_list = resource.boss_siho_scratch_over_image
+                else:
+                    return
+                current_frame = frame_list[min(int(self.scratch_frame2), len(frame_list) - 1)]
+                current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  64 * SIZE, 64 * SIZE)
+                if self.pattern5_attack:
+                    resource.boss_siho_scratch_image[int(self.pattern5_attack_frame)].clip_composite_draw(0, 0, 128,
+                                                                                                          256,
+                                                                                                          math.radians(
+                                                                                                              -30), '',
+                                                                                                          self.pattern5_player_x - canvas_size.camera_x,
+                                                                                                          300 - canvas_size.camera_y,
+                                                                                                          128 * 2,
+                                                                                                          256 * 2)
+                    if canvas_size.collide_check:
+                        draw_rectangle(self.pattern5_player_x - canvas_size.camera_x - 54,
+                                       300 - canvas_size.camera_y - 220,
+                                       self.pattern5_player_x - canvas_size.camera_x + 54,
+                                       300 - canvas_size.camera_y + 220)
 
-        elif self.appear_animation and self.pattern_num == 4:
-            if self.pattern4_state == 0:
-                frame_list = resource.boss_siho_scratch_rush_prepare_image
-            elif self.pattern4_state == 1:
-                frame_list = resource.boss_siho_scratch_rush_cast_image
-            elif self.pattern4_state == 2:
-                frame_list = resource.boss_siho_scratch_rush_over_image
-            else:
-                return
+            elif self.appear_animation and self.pattern_num == 6:
+                resource.boss_fox_change_image[int(self.change_phase_1_frame)].clip_composite_draw(0, 0, 128, 64, 0,
+                                                                                                   self.dir,
+                                                                                                   self.x - canvas_size.camera_x,
+                                                                                                   self.y - canvas_size.camera_y,
+                                                                                                   128 * SIZE,
+                                                                                                   64 * SIZE)
+            elif self.appear_animation and self.pattern_num == 7:
+                resource.boss_fox_idle_image[int(self.fox_idle_frame)].clip_composite_draw(0, 0, 96, 64, 0, self.dir,
+                                                                                           self.x - canvas_size.camera_x,
+                                                                                           self.y - canvas_size.camera_y,
+                                                                                           96 * SIZE, 64 * SIZE)
+            elif self.appear_animation and self.pattern_num == 8:
+                if self.pattern8_state == 0:
+                    frame_list = resource.boss_fox_jump_prepare_image
+                elif self.pattern8_state == 1:
+                    frame_list = resource.boss_fox_jump_up_image  # 단일 프레임
+                elif self.pattern8_state == 2:
+                    frame_list = resource.boss_fox_jump_cast_image
+                elif self.pattern8_state == 3:
+                    frame_list = resource.boss_fox_jump_over_image
+                else:
+                    return
 
-            current_frame = frame_list[min(int(self.scratch_frame), len(frame_list) - 1)]
+                current_frame = frame_list[min(int(self.jump_frame), len(frame_list) - 1)]
 
-            current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
-                                              self.x - canvas_size.camera_x,
-                                              self.y - canvas_size.camera_y,
-                                              64 * SIZE, 64 * SIZE)
-            if self.pattern4_attack:
-                resource.boss_siho_rush_scratch_image[int(self.pattern4_attack_frame)].clip_composite_draw(0, 0, 128,128, 0,
-                                                                                                           self.dir,
-                                                                                                           self.x - canvas_size.camera_x,
-                                                                                                           self.y - canvas_size.camera_y,
-                                                                                                           128 * 2,
-                                                                                                           128 * 2)
-                if canvas_size.collide_check:
-                    draw_rectangle(self.x - canvas_size.camera_x - 128,
-                                   self.y - canvas_size.camera_y - 128,
-                                   self.x - canvas_size.camera_x + 128,
-                                   self.y - canvas_size.camera_y + 128)
+                if self.pattern8_state == 0:
+                    current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
+                                                      self.x - canvas_size.camera_x,
+                                                      self.y - canvas_size.camera_y,
+                                                      96 * SIZE, 64 * SIZE)
+                else:
+                    current_frame.clip_composite_draw(0, 0, 96, 96, 0, self.dir,
+                                                      self.x - canvas_size.camera_x,
+                                                      self.y - canvas_size.camera_y,
+                                                      96 * SIZE, 96 * SIZE)
 
-        elif self.appear_animation and self.pattern_num == 5:
-            if self.pattern5_state == 0:
-                frame_list = resource.boss_siho_scratch_prepare_image
-            elif self.pattern5_state == 1:
-                frame_list = resource.boss_siho_scratch_cast_image
-            elif self.pattern5_state == 2:
-                frame_list = resource.boss_siho_scratch_over_image
-            else:
-                return
-            current_frame = frame_list[min(int(self.scratch_frame2), len(frame_list) - 1)]
-            current_frame.clip_composite_draw(0, 0, 64, 64, 0, self.dir,
-                                              self.x - canvas_size.camera_x,
-                                              self.y - canvas_size.camera_y,
-                                              64 * SIZE, 64 * SIZE)
-            if self.pattern5_attack:
-                resource.boss_siho_scratch_image[int(self.pattern5_attack_frame)].clip_composite_draw(0, 0, 128, 256,
-                                                                                                      math.radians(-30),
-                                                                                                      '',
-                                                                                                      self.pattern5_player_x - canvas_size.camera_x,
-                                                                                                      300 - canvas_size.camera_y,
-                                                                                                      128 * 2, 256 * 2)
-                if canvas_size.collide_check:
-                    draw_rectangle(self.pattern5_player_x - canvas_size.camera_x - 54,
-                                   300 - canvas_size.camera_y - 220,
-                                   self.pattern5_player_x - canvas_size.camera_x + 54,
-                                   300 - canvas_size.camera_y + 220)
+            elif self.appear_animation and self.pattern_num == 9:
+                if self.pattern9_state == 0:
+                    frame_list = resource.boss_fox_scratch_prepare_image
+                elif self.pattern9_state == 1:
+                    frame_list = resource.boss_fox_scratch_cast_a_image
+                elif self.pattern9_state == 2:
+                    frame_list = resource.boss_fox_scratch_cast_b_image
+                elif self.pattern9_state == 3:
+                    frame_list = resource.boss_fox_scratch_over_image
 
-        elif self.appear_animation and self.pattern_num == 6:
-            resource.boss_fox_change_image[int(self.change_phase_1_frame)].clip_composite_draw(0, 0, 128, 64, 0,
-                                                                                               self.dir,
-                                                                                               self.x - canvas_size.camera_x,
-                                                                                               self.y - canvas_size.camera_y,
-                                                                                               128 * SIZE, 64 * SIZE)
+                else:
+                    return
 
-        elif self.appear_animation and self.pattern_num == 7:
-            resource.boss_fox_idle_image[int(self.fox_idle_frame)].clip_composite_draw(0, 0, 96, 64, 0, self.dir,
-                                                                                       self.x - canvas_size.camera_x,
-                                                                                       self.y - canvas_size.camera_y,
-                                                                                       96 * SIZE, 64 * SIZE)
+                current_frame = frame_list[min(int(self.scratch_frame3), len(frame_list) - 1)]
 
-        elif self.appear_animation and self.pattern_num == 8:
-            if self.pattern8_state == 0:
-                frame_list = resource.boss_fox_jump_prepare_image
-            elif self.pattern8_state == 1:
-                frame_list = resource.boss_fox_jump_up_image  # 단일 프레임
-            elif self.pattern8_state == 2:
-                frame_list = resource.boss_fox_jump_cast_image
-            elif self.pattern8_state == 3:
-                frame_list = resource.boss_fox_jump_over_image
-            else:
-                return
-
-            current_frame = frame_list[min(int(self.jump_frame), len(frame_list) - 1)]
-
-            if self.pattern8_state == 0:
                 current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
                                                   self.x - canvas_size.camera_x,
                                                   self.y - canvas_size.camera_y,
                                                   96 * SIZE, 64 * SIZE)
-            else:
-                current_frame.clip_composite_draw(0, 0, 96, 96, 0, self.dir,
+
+            elif self.appear_animation and self.pattern_num == 10:
+                if self.pattern10_state == 0:
+                    frame_list = resource.boss_fox_bite_prepare_image
+                elif self.pattern10_state == 1:
+                    frame_list = resource.boss_fox_bite_cast_image
+                elif self.pattern10_state == 2:
+                    frame_list = resource.boss_fox_bite_over_image
+                else:
+                    return
+                current_frame = frame_list[min(int(self.bite_frame), len(frame_list) - 1)]
+
+                current_frame.clip_composite_draw(0, 0, 96 if self.pattern10_state != 1 else 128, 64,
+                                                  0, self.dir,
                                                   self.x - canvas_size.camera_x,
                                                   self.y - canvas_size.camera_y,
-                                                  96 * SIZE, 96 * SIZE)
+                                                  (96 if self.pattern10_state != 1 else 128) * SIZE, 64 * SIZE)
 
-        elif self.appear_animation and self.pattern_num == 9:
-            if self.pattern9_state == 0:
-                frame_list = resource.boss_fox_scratch_prepare_image
-            elif self.pattern9_state == 1:
-                frame_list = resource.boss_fox_scratch_cast_a_image
-            elif self.pattern9_state == 2:
-                frame_list = resource.boss_fox_scratch_cast_b_image
-            elif self.pattern9_state == 3:
-                frame_list = resource.boss_fox_scratch_over_image
+            elif self.appear_animation and self.pattern_num == 11:
+                if self.pattern11_state == 0:
+                    frame_list = resource.boss_fox_burning_a_image
+                elif self.pattern11_state == 1:
+                    frame_list = resource.boss_fox_burning_b_image
+                elif self.pattern11_state == 2:
+                    frame_list = resource.boss_fox_burning_c_image
+                else:
+                    return
+                current_frame = frame_list[min(int(self.change_phase_2_frame), len(frame_list) - 1)]
+                current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  96 * SIZE, 64 * SIZE)
 
-            else:
-                return
+            elif self.appear_animation and self.pattern_num == 12:
+                resource.boss_fox_burning_idle_image[int(self.burn_idle_frame)].clip_composite_draw(0, 0, 96, 64, 0,
+                                                                                                    self.dir,
+                                                                                                    self.x - canvas_size.camera_x,
+                                                                                                    self.y - canvas_size.camera_y,
+                                                                                                    96 * SIZE,
+                                                                                                    64 * SIZE)
+            elif self.appear_animation and self.pattern_num == 13:
+                if self.pattern13_state < 4:
+                    frame_list = resource.boss_fox_rush_prepare_image
+                elif self.pattern13_state == 4:
+                    frame_list = resource.boss_fox_rush_over_image
+                else:
+                    return
 
-            current_frame = frame_list[min(int(self.scratch_frame3), len(frame_list) - 1)]
+                current_frame = frame_list[min(int(self.rush_frame), len(frame_list) - 1)]
 
-            current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
-                                              self.x - canvas_size.camera_x,
-                                              self.y - canvas_size.camera_y,
-                                              96 * SIZE, 64 * SIZE)
+                current_frame.clip_composite_draw(0, 0, 192, 64, 0, self.dir,
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  192 * SIZE, 64 * SIZE)
+                if self.rush_prepare_timer <= self.rush_prepare_time and 4 > self.pattern13_state > 0:
+                    x = 0
+                    y = self.y
+                    for i in range(40):
+                        boss_siho_rush_warning_image[0].clip_composite_draw(0, 0, 32, 32, 0, self.dir,
+                                                                            x - canvas_size.camera_x + i * 64,
+                                                                            y - canvas_size.camera_y,
+                                                                            32 * 2, 32 * 2)
 
-        elif self.appear_animation and self.pattern_num == 10:
-            if self.pattern10_state == 0:
-                frame_list = resource.boss_fox_bite_prepare_image
-            elif self.pattern10_state == 1:
-                frame_list = resource.boss_fox_bite_cast_image
-            elif self.pattern10_state == 2:
-                frame_list = resource.boss_fox_bite_over_image
-            else:
-                return
-            current_frame = frame_list[min(int(self.bite_frame), len(frame_list) - 1)]
+                if canvas_size.collide_check and 4 > self.pattern13_state > 0:
+                    draw_rectangle(self.x - canvas_size.camera_x - 192 / 2,
+                                   self.y - canvas_size.camera_y - 64 / 2,
+                                   self.x - canvas_size.camera_x + 192 / 2,
+                                   self.y - canvas_size.camera_y + 64 / 2)
 
-            current_frame.clip_composite_draw(0, 0, 96 if self.pattern10_state != 1 else 128, 64,
-                                              0, self.dir,
-                                              self.x - canvas_size.camera_x,
-                                              self.y - canvas_size.camera_y,
-                                              (96 if self.pattern10_state != 1 else 128) * SIZE, 64 * SIZE)
-
-        elif self.appear_animation and self.pattern_num == 11:
-            if self.pattern11_state == 0:
-                frame_list = resource.boss_fox_burning_a_image
-            elif self.pattern11_state == 1:
-                frame_list = resource.boss_fox_burning_b_image
-            elif self.pattern11_state == 2:
-                frame_list = resource.boss_fox_burning_c_image
-            else:
-                return
-            current_frame = frame_list[min(int(self.change_phase_2_frame), len(frame_list) - 1)]
-            current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
-                                              self.x - canvas_size.camera_x,
-                                              self.y - canvas_size.camera_y,
-                                              96 * SIZE, 64 * SIZE)
-
-        elif self.appear_animation and self.pattern_num == 12:
-            resource.boss_fox_burning_idle_image[int(self.burn_idle_frame)].clip_composite_draw(0, 0, 96, 64, 0,
-                                                                                                self.dir,
-                                                                                                self.x - canvas_size.camera_x,
-                                                                                                self.y - canvas_size.camera_y,
-                                                                                                96 * SIZE, 64 * SIZE)
-
-        elif self.appear_animation and self.pattern_num == 13:
-            if self.pattern13_state < 4:
-                frame_list = resource.boss_fox_rush_prepare_image
-            elif self.pattern13_state == 4:
-                frame_list = resource.boss_fox_rush_over_image
-            else:
-                return
-
-            current_frame = frame_list[min(int(self.rush_frame), len(frame_list) - 1)]
-
-            current_frame.clip_composite_draw(0, 0, 192, 64, 0, self.dir,
-                                              self.x - canvas_size.camera_x,
-                                              self.y - canvas_size.camera_y,
-                                              192 * SIZE, 64 * SIZE)
-            if self.rush_prepare_timer <= self.rush_prepare_time and 4 > self.pattern13_state > 0:
-                x = 0
-                y = self.y
-                for i in range(40):
-                    boss_siho_rush_warning_image[0].clip_composite_draw(0, 0, 32, 32, 0, self.dir,
-                                                                        x - canvas_size.camera_x + i * 64,
-                                                                        y - canvas_size.camera_y,
-                                                                        32 * 2, 32 * 2)
-
-            if canvas_size.collide_check and 4 > self.pattern13_state > 0:
-                draw_rectangle(self.x - canvas_size.camera_x - 192 / 2,
-                               self.y - canvas_size.camera_y - 64 / 2,
-                               self.x - canvas_size.camera_x + 192 / 2,
-                               self.y - canvas_size.camera_y + 64 / 2)
-
-        elif self.appear_animation and self.pattern_num == 14:
-            resource.boss_fox_die_image[int(self.die_frame)].clip_composite_draw(0, 0, 96, 64, 0, self.dir,
-                                                                                 self.x - canvas_size.camera_x,
-                                                                                 self.y - canvas_size.camera_y,
-                                                                                 96 * SIZE, 64 * SIZE)
-
-
+            elif self.appear_animation and self.pattern_num == 14:
+                resource.boss_fox_die_image[int(self.die_frame)].clip_composite_draw(0, 0, 96, 64, 0, self.dir,
+                                                                                     self.x - canvas_size.camera_x,
+                                                                                     self.y - canvas_size.camera_y,
+                                                                                     96 * SIZE, 64 * SIZE)
 
         if self.hp >= 0 and self.pattern_num != 14:
             for ball_a in self.fireballs:
@@ -1133,3 +1123,11 @@ class Boss_Siho:
         if self.hit_time > 0.5:
             self.hit = False
             self.hit_time = 0.0
+
+
+
+
+
+
+
+
