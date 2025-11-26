@@ -70,10 +70,6 @@ class Boss_Siho:
         self.spread_frame = 0
         self.current_idx = 0
 
-        self.hit = False
-        self.hit_animation = False
-        self.hit_time = 0.0
-
         # 패턴 4
         self.pattern4_state = 0
         self.pattern4_enter = False
@@ -151,6 +147,17 @@ class Boss_Siho:
         self.rush_speed = 2000.0
         self.check = False
         self.sound_check = False
+
+        # 패턴 14
+        self.pattern14_state = 0
+        self.die = False
+        self.die_frame = 0
+        self.die_timer = 0.0
+        self.die_time = 4.0
+
+        self.hit = False
+        self.hit_animation = False
+        self.hit_time = 0.0
 
     def update(self, frame_time, events=None):
         if not self.appear_animation:
@@ -766,6 +773,24 @@ class Boss_Siho:
                     if self.rush_fire[i][0] < -50 or self.rush_fire[i][0] > 2100:
                         self.rush_fire.pop(i)
                         continue
+
+    def pattern14(self, frame_time):
+        if self.pattern14_state == 0:
+            self.die_frame = min((self.die_frame + self.animation_speed * frame_time), 8)
+
+            if self.die_frame >= 8:
+                self.die_timer += frame_time
+
+            if self.die_timer >= self.die_time:
+                self.pattern14_state = 1
+                self.die_timer = 0.0
+
+        elif self.pattern14_state == 1:
+            self.die_frame = min((self.die_frame + self.animation_speed * frame_time), 17)
+            if self.die_frame >= 17:
+                self.die_timer += frame_time
+            if self.die_timer >= self.die_time / 2:
+                self.die = True
 
 
 
