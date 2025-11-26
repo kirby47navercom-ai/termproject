@@ -669,6 +669,8 @@ class Boss_Siho:
                 self.pattern_num=14
                 canvas_size.start_shake(4.0, 5.0)
 
+    def pattern13(self, frame_time):
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
