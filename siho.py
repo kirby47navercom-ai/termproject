@@ -603,6 +603,14 @@ class Boss_Siho:
                     continue
 
     def ramonatobite(self, attack):
+        if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
+                   [attack[0], attack[1], 160,
+                    160]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+            if ramona.CURRENT_HP > 0:
+                ramona.CURRENT_HP -= 1
+                ramona.Ramona_invincible = True
+                ramona.invincible_timer = 0.0
+                canvas_size.start_shake(0.5, 5.0)
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
