@@ -1067,6 +1067,25 @@ class Boss_Siho:
                                    bite[0] - canvas_size.camera_x + 80,
                                    bite[1] - canvas_size.camera_y + 80)
 
+            for fire in self.rush_fire:
+                if fire[4] == 0:
+                    frame_list = resource.boss_siho_fire_a_appear_image
+                elif fire[4] == 1:
+                    frame_list = resource.boss_siho_fire_a_image
+                else:
+                    continue
+                current_frame = frame_list[min(int(fire[2]), len(frame_list) - 1)]
+
+                current_frame.draw(fire[0] - canvas_size.camera_x,
+                                   fire[1] - canvas_size.camera_y,
+                                   32 * 2, 32 * 2)
+
+                if canvas_size.collide_check and fire[4] == 1:
+                    draw_rectangle(fire[0] - canvas_size.camera_x - 16,
+                                   fire[1] - canvas_size.camera_y - 16,
+                                   fire[0] - canvas_size.camera_x + 16,
+                                   fire[1] - canvas_size.camera_y + 16)
+
             self.shape.draw(0.4, 0.4)
             self.hp_bar.draw(self.hp, self.boss_hp)
 
