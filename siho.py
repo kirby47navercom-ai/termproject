@@ -647,6 +647,10 @@ class Boss_Siho:
     def pattern12(self, frame_time):
         self.burn_idle_frame = (self.burn_idle_frame + self.animation_speed * frame_time) % 7
         self.burn_idle_timer += frame_time
+        if self.burn_idle_timer >= self.burn_idle_time:
+            self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
+            self.pattern_num = 13
+            self.burn_idle_timer = 0.0
 
 
     def draw(self):
