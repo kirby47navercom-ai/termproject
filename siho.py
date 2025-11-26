@@ -574,6 +574,15 @@ class Boss_Siho:
                 self.pattern10_state = 1
                 self.bite_frame = 0
         elif self.pattern10_state == 1:
+            self.bite_frame = self.bite_frame + self.animation_speed * frame_time
+            if self.bite_frame >= 3:
+                self.pattern10_state = 2
+                self.bite_frame = 0
+                self.pattern10_attack.extend([
+                    [self.x + (1 if self.dir == '' else -1) * (i + 1) * 320, self.y, 0.0, 0.0,
+                     True if i == 0 else False]
+                    for i in range(0, 3)
+                ])
 
 
     def draw(self):
