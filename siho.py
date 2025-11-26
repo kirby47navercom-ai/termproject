@@ -590,6 +590,8 @@ class Boss_Siho:
                 self.bite_frame = 0.0
                 self.pattern_num = 7
 
+    def update_pattern10_bite(self, frame_time):
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
