@@ -141,6 +141,8 @@ class Boss_Siho:
         if self.pattern_num != 14:
             self.update_fireballs(frame_time)
             self.update_pattern3_fireball(frame_time)
+            self.update_pattern9_scratch(frame_time)
+            self.update_pattern10_bite(frame_time)
 
 
         self.shape.x = self.x - canvas_size.camera_x
