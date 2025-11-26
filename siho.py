@@ -734,6 +734,37 @@ class Boss_Siho:
                 canvas_size.start_shake(0.5, 5.0)
 
     def update_pattern13_rush(self, frame_time):
+        if self.rush_fire_num == 15:
+            # x y 프레임 방향 스테이트 갈지말지
+            self.rush_fire.append(
+                [100 if self.rush_fire_direction == 0 else 1900, 50, 0.0, self.rush_fire_direction, 0, False])
+            self.rush_fire_num -= 1
+        for i in range(len(self.rush_fire) - 1, -1, -1):
+            if self.rush_fire[i][4] == 0:
+                self.rush_fire[i][2] = self.rush_fire[i][2] + self.animation_speed * frame_time
+                if self.rush_fire[i][2] >= 4 and self.rush_fire_num > 0:
+                    if self.rush_fire_num > 1:
+                        self.rush_fire.append(
+                            [self.rush_fire[i][0] - 30 if self.rush_fire_num % 2 == 1 else self.rush_fire[i][0] + 30,
+                             50 + (15 - self.rush_fire_num) * 50, 0.0, self.rush_fire_direction, 0, False])
+                    self.rush_fire_num -= 1
+                    self.rush_fire[i][4] = 1
+                    self.rush_fire[i][2] = 0.0
+                    if self.rush_fire_num == 0:
+                        for j in range(len(self.rush_fire) - 1, -1, -1):
+                            self.rush_fire[j][5] = True
+
+            elif self.rush_fire[i][4] == 1:
+                self.rush_fire[i][2] = (self.rush_fire[i][2] + self.animation_speed * frame_time) % 4
+                self.ramonatofireballs(self.rush_fire[i])
+                if self.rush_fire[i][5]:
+                    if self.rush_fire[i][3] == 0:
+                        self.rush_fire[i][0] += self.rush_fire_speed * frame_time
+                    else:
+                        self.rush_fire[i][0] -= self.rush_fire_speed * frame_time
+                    if self.rush_fire[i][0] < -50 or self.rush_fire[i][0] > 2100:
+                        self.rush_fire.pop(i)
+                        continue
 
 
 
