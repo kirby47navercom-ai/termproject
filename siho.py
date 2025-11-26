@@ -621,6 +621,7 @@ class Boss_Siho:
                 canvas_size.start_shake(0.5, 5.0)
 
     def pattern11(self, frame_time):
+        if self.pattern11_state == 0:
 
 
     def draw(self):
