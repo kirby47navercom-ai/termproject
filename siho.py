@@ -591,6 +591,7 @@ class Boss_Siho:
                 self.pattern_num = 7
 
     def update_pattern10_bite(self, frame_time):
+        for i in range(len(self.pattern10_attack) - 1, -1, -1):
 
 
     def draw(self):
