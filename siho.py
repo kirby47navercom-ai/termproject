@@ -651,6 +651,9 @@ class Boss_Siho:
             self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
             self.pattern_num = 13
             self.burn_idle_timer = 0.0
+            if self.hp<=0:
+                self.pattern_num=14
+                canvas_size.start_shake(4.0, 5.0)
 
 
     def draw(self):
