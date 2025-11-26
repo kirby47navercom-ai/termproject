@@ -627,6 +627,7 @@ class Boss_Siho:
                 self.pattern11_state = 1
                 self.change_phase_2_frame = 0.0
                 canvas_size.start_shake(3.0, 5.0)
+        elif self.pattern11_state == 1:
 
 
     def draw(self):
