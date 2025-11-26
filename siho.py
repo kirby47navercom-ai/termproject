@@ -168,6 +168,7 @@ class Boss_Siho:
             self.update_pattern3_fireball(frame_time)
             self.update_pattern9_scratch(frame_time)
             self.update_pattern10_bite(frame_time)
+            self.update_pattern13_rush(frame_time)
 
 
         self.shape.x = self.x - canvas_size.camera_x
