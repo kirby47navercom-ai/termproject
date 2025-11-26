@@ -127,6 +127,12 @@ class Boss_Siho:
         self.pattern10_attack = []  # x,y,프레임,준비시간,첫번째
         self.pattern10_attack_prepare_duration = 0.5
 
+        # 패턴 11
+        self.pattern11_state = 0
+        self.change_phase_2_frame = 0.0
+        self.change_phase_2_frame_timer = 0.0
+        self.change_phase_2_frame_duration = 3.0
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
