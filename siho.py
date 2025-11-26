@@ -848,6 +848,16 @@ class Boss_Siho:
                                    attack[0] - canvas_size.camera_x + 54,
                                    attack[1] - canvas_size.camera_y + 220)
 
+            for bite in self.pattern10_attack:
+                resource.boss_siho_bite_image[int(bite[2])].clip_composite_draw(0, 0, 160, 160, 0, '',
+                                                                                bite[0] - canvas_size.camera_x,
+                                                                                bite[1] - canvas_size.camera_y,
+                                                                                160 * 2, 160 * 2)
+                if canvas_size.collide_check:
+                    draw_rectangle(bite[0] - canvas_size.camera_x - 80,
+                                   bite[1] - canvas_size.camera_y - 80,
+                                   bite[0] - canvas_size.camera_x + 80,
+                                   bite[1] - canvas_size.camera_y + 80)
 
             self.shape.draw(0.4, 0.4)
             self.hp_bar.draw(self.hp, self.boss_hp)
