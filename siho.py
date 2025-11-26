@@ -583,6 +583,7 @@ class Boss_Siho:
                      True if i == 0 else False]
                     for i in range(0, 3)
                 ])
+        elif self.pattern10_state == 2:
 
 
     def draw(self):
