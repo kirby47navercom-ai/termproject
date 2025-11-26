@@ -573,6 +573,7 @@ class Boss_Siho:
             if self.bite_frame >= 0:
                 self.pattern10_state = 1
                 self.bite_frame = 0
+        elif self.pattern10_state == 1:
 
 
     def draw(self):
