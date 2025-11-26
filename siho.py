@@ -592,7 +592,16 @@ class Boss_Siho:
 
     def update_pattern10_bite(self, frame_time):
         for i in range(len(self.pattern10_attack) - 1, -1, -1):
-
+            if self.pattern10_attack[i][4] or self.pattern10_attack[i - 1][3] > 0.2:
+                self.pattern10_attack[i][3] += frame_time
+            if self.pattern10_attack[i][3] >= self.pattern10_attack_prepare_duration:
+                if self.pattern10_attack[i][2] == 0.0:
+                self.pattern10_attack[i][2] = self.pattern10_attack[i][2] + self.animation_speed * frame_time
+                if self.pattern10_attack[i][2] < 3:
+                    self.ramonatobite(self.pattern10_attack[i])
+                if self.pattern10_attack[i][2] >= 6:
+                    self.pattern10_attack.pop(i)
+                    continue
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
