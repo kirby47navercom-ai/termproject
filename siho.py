@@ -138,6 +138,20 @@ class Boss_Siho:
         self.burn_idle_timer = 0.0
         self.burn_idle_time = 2.0
 
+        # 패턴 13
+        self.pattern13_state = 0
+        self.rush_frame = 0.0
+        self.rush_fire = []  # x y 프레임 방향 스테이트
+        self.rush_fire_direction = 0
+        self.rush_direction = []
+        self.rush_fire_speed = 200.0
+        self.rush_fire_num = 0
+        self.rush_prepare_timer = 0.0
+        self.rush_prepare_time = 1.0
+        self.rush_speed = 2000.0
+        self.check = False
+        self.sound_check = False
+
     def update(self, frame_time, events=None):
         if not self.appear_animation:
             self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 4
