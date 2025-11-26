@@ -584,6 +584,11 @@ class Boss_Siho:
                     for i in range(0, 3)
                 ])
         elif self.pattern10_state == 2:
+            self.bite_frame = (self.bite_frame + self.animation_speed * frame_time)
+            if self.bite_frame >= 3:
+                self.pattern10_state = 0
+                self.bite_frame = 0.0
+                self.pattern_num = 7
 
 
     def draw(self):
