@@ -645,6 +645,8 @@ class Boss_Siho:
                 self.change_phase_2_frame_timer = 0.0
 
     def pattern12(self, frame_time):
+        self.burn_idle_frame = (self.burn_idle_frame + self.animation_speed * frame_time) % 7
+        self.burn_idle_timer += frame_time
 
 
     def draw(self):
