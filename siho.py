@@ -831,6 +831,21 @@ class Boss_Siho:
                                               self.y - canvas_size.camera_y,
                                               (96 if self.pattern10_state != 1 else 128) * SIZE, 64 * SIZE)
 
+        elif self.appear_animation and self.pattern_num == 11:
+            if self.pattern11_state == 0:
+                frame_list = resource.boss_fox_burning_a_image
+            elif self.pattern11_state == 1:
+                frame_list = resource.boss_fox_burning_b_image
+            elif self.pattern11_state == 2:
+                frame_list = resource.boss_fox_burning_c_image
+            else:
+                return
+            current_frame = frame_list[min(int(self.change_phase_2_frame), len(frame_list) - 1)]
+            current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
+                                              self.x - canvas_size.camera_x,
+                                              self.y - canvas_size.camera_y,
+                                              96 * SIZE, 64 * SIZE)
+
 
 
         if self.hp >= 0 and self.pattern_num != 14:
