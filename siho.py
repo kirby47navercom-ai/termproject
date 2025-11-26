@@ -635,7 +635,7 @@ class Boss_Siho:
                 self.change_phase_2_frame = 0.0
                 self.change_phase_2_frame_timer = 0.0
                 self.change_graphycs = True
-
+        elif self.pattern11_state == 2:
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
