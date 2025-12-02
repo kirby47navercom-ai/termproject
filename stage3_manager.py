@@ -72,11 +72,6 @@ def update(frame_time,events):
 
 
 
-
 def draw():
-    global player, stage_background, draw_gest, ramona_ui_, stage3_monster_
-    stage_background.draw()
-    stage3_monster_.draw()
-    player.draw()
-    ramona_ui_.draw()
-    draw_gest.draw()
+    game_world.render()
+
