@@ -6,6 +6,10 @@ import ramona_ui
 import stage2_monster
 import canvas_size
 import game_framework
+import game_world
+import stage_clear_mode
+import resource
+import stage_fail_mode
 
 def init():
     global player,stage_background,draw_gest,ramona_ui_,stage2_monster_
