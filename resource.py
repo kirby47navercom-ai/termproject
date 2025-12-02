@@ -380,6 +380,9 @@ weapon2=2
 weapon3=2
 weapon4=2
 
+#talk
+talk = 0
+
 
 #블록
 blocks=[]
