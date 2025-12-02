@@ -11,6 +11,9 @@ import stage_clear_mode
 import resource
 import stage_fail_mode
 
+ramona_instance = None
+monster_instance = None
+
 def init():
     global player, stage_background, draw_gest, ramona_ui_, stage3_monster_
     stage_background = background_3stage.Background()
