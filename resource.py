@@ -357,6 +357,12 @@ boss_siho_rush_particle_image = []
 #씬전환용
 white_image=[]
 
+#소리 설정
+bgm=2
+bgm_volume=[0,32,64,96,128]
+effect=2
+effect_volume=[0,32,64,128,256]
+
 
 #블록
 blocks=[]
