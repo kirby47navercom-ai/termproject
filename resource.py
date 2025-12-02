@@ -374,6 +374,12 @@ stage1_coin=0
 stage2_coin=0
 stage3_coin=0
 
+#weapon
+weapon1=1
+weapon2=2
+weapon3=2
+weapon4=2
+
 
 #블록
 blocks=[]
