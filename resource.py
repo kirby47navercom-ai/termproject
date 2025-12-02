@@ -368,6 +368,12 @@ stage1_clear=0
 stage2_clear=0
 stage3_clear=0
 
+#coin
+coin=0
+stage1_coin=0
+stage2_coin=0
+stage3_coin=0
+
 
 #블록
 blocks=[]
