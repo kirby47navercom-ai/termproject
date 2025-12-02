@@ -13,31 +13,31 @@ class Background:
         if Background.background == None:
             Background.background =  [load_image('2stage\\1.png'), load_image('2stage\\2.png'),
                                load_image('2stage\\3.png')]
-
-        self.background_size = [(872, 479), (726, 574), (1280 * 1.5, 2048 * 1.5)]
+        self.background_size=[(872, 479), (726, 574), (1280*1.5, 2048*1.5)]
 
         if Background.floor1 == None:
-            Background.floor1 = load_image('2stage\\floor_1.png')
+            Background.floor1 =  load_image('2stage\\floor_1.png')
 
         if Background.floor2 == None:
             Background.floor2 = load_image('2stage\\floor_2.png')
 
         self.floor_pos = [(80, 24), (200, 24), (80, 170), (80, 340), (80, 510)]
-        self.floor_width = [274, int(48 * 1.5)]
-        self.floor_height = [63, int(32 * 1.2)]
+        self.floor_width=[274,int(48*1.5)]
+        self.floor_height=[63,int(32*1.2)]
 
         for i in range(3):
             resource.blocks.append((self.floor_pos[i+2][0], self.floor_pos[i+2][1], self.floor_width[1], self.floor_height[1]))
 
-        self.background_num = 0
-        self.background_change_time = 0
-        self.background_change_timer = 4.0
-        self.speed = 100
+        self.background_num=0
+        self.background_change_time=0
+        self.background_change_timer=4.0
+        self.speed=100
         self.background_magnification = [1.6, 1.8, 1.0]
+
         self.scroll_y = 0
 
 
-    def update(self, frame_time, events=None):
+    def update(self, frame_time,events=None):
         if self.background_change_time < self.background_change_timer:
             self.background_change_time += frame_time
         if start:
@@ -48,6 +48,7 @@ class Background:
             if self.scroll_y >= image_height:
                 self.scroll_y = 0
 
+
     def draw(self):
         self.stage2_start()
 
@@ -55,12 +56,9 @@ class Background:
             self.floor1.clip_composite_draw(0, 0, self.floor_width[0], self.floor_height[0],0,'h',self.floor_pos[i][0]-canvas_size.shake_x,self.floor_pos[i][1]-canvas_size.shake_y,self.floor_width[0], self.floor_height[0])
 
         for i in range(3):
-            self.floor2.clip_composite_draw(0, 0, self.floor_width[1], self.floor_height[1], 0, '',
-                                            self.floor_pos[i + 2][0] - canvas_size.shake_x, self.floor_pos[i + 2][1],
-                                            self.floor_width[1] - canvas_size.shake_y, self.floor_height[1])
+            self.floor2.clip_composite_draw(0, 0, self.floor_width[1], self.floor_height[1],0,'',self.floor_pos[i+2][0]-canvas_size.shake_x,self.floor_pos[i+2][1],self.floor_width[1]-canvas_size.shake_y, self.floor_height[1])
     def stage2_start(self):
         global start
-
         if not start:
             image_A = self.background[0]  # 사라질 이미지 (1.png)
             image_B = self.background[1]  # 나타날 이미지 (2.png)
@@ -104,6 +102,6 @@ class Background:
             image.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2 + self.scroll_y, width, height)
 
             # 3. 두 번째 이미지를 첫 번째 이미지 바로 위에 이어 붙여 그리기
-            image.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2 + self.scroll_y - height, width,
-                       height)
+            image.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2 + self.scroll_y - height,width, height)
 
+            pass
