@@ -15,25 +15,34 @@ ramona_instance = None
 monster_instance = None
 
 def init():
-    global player, stage_background, draw_gest, ramona_ui_, stage3_monster_
-    stage_background = background_3stage.Background()
-    player = ramona.Ramona()
-    stage3_monster_ = stage3_monster.Stage3_Monster()
-    ramona_ui_ = ramona_ui.Ramona_UI()
-    draw_gest = draw_gesture.GestureRecognizer()
+    global ramona_instance, monster_instance
+    game_world.clear()
 
     canvas_size.start_shake(0, 0)
 
+    stage_background = background_3stage.Background()
     ramona.GROUND_LEVEL = 25
     ramona.WIDTH_LEVEL = background_3stage.width - 25
 
-    player.x = canvas_size.canvaswidth // 2
-    player.y = 260
-    ramona.Ramona_POS_X = player.x
-    ramona.Ramona_POS_Y = player.y
+    ramona_instance = ramona.Ramona()
+    monster_instance = stage3_monster.Stage3_Monster()
+
+    ramona_ui_instance = ramona_ui.Ramona_UI()
+    draw_gest_instance = draw_gesture.GestureRecognizer()
+
+    game_world.add_object(stage_background, 0)
+    game_world.add_object(monster_instance, 1)
+    game_world.add_object(ramona_instance, 2)
+    game_world.add_object(ramona_ui_instance, 3)
+    game_world.add_object(draw_gest_instance, 3)
 
     canvas_size.camera_x = 0
     canvas_size.camera_y = 0
+    ramona_instance.x = canvas_size.canvaswidth // 2
+    ramona_instance.y = 260
+    ramona.Ramona_POS_X = ramona_instance.x
+    ramona.Ramona_POS_Y = ramona_instance.y
+
     ramona.Ramona_retry = False
     ramona.Ramona_dead = False
 
