@@ -77,3 +77,5 @@ def finish():
     game_world.clear()
 
 def pause(): pass
+
+def resume(): pass
