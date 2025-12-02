@@ -1,11 +1,15 @@
 from pico2d import *
 import ramona
+import background_3stage
 import draw_gesture
 import ramona_ui
 import canvas_size
-import game_framework
-import background_3stage
 import stage3_monster
+import game_framework
+import game_world
+import stage_clear_mode
+import resource
+import stage_fail_mode
 
 def init():
     global player, stage_background, draw_gest, ramona_ui_, stage3_monster_
