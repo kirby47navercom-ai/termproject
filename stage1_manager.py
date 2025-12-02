@@ -72,3 +72,6 @@ def update(frame_time,events):
 
 def draw():
     game_world.render()
+
+def finish():
+    game_world.clear()
