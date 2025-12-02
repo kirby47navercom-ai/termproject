@@ -363,6 +363,11 @@ bgm_volume=[0,32,64,96,128]
 effect=2
 effect_volume=[0,32,64,128,256]
 
+#스테이지 클리어 여부
+stage1_clear=0
+stage2_clear=0
+stage3_clear=0
+
 
 #블록
 blocks=[]
