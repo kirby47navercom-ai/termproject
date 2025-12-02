@@ -383,6 +383,8 @@ weapon4=2
 #talk
 talk = 0
 
+#nanahira
+nanahira = 0
 
 #블록
 blocks=[]
