@@ -391,6 +391,10 @@ boss1=False
 boss2=False
 boss3=False
 
+#엔딩
+end_image=[]
+ending=False
+
 #블록
 blocks=[]
 
