@@ -48,29 +48,20 @@ def init():
 
 
 def update(frame_time,events):
-    global player, stage_background, draw_gest, ramona_ui_, stage1_monster_
     if not ramona.Ramona_dead:
-        stage_background.update(frame_time, events)
-        ramona_ui_.update(frame_time, events)
-        stage1_monster_.update(frame_time, events)
-        draw_gest.update(frame_time, events)
+        game_world.update(frame_time, events)
     elif ramona.Ramona_retry:
-        for event in events:
-            if event.type == SDL_KEYDOWN and event.key == SDLK_r:
-                ramona.Ramona_dead = False
-                ramona.CURRENT_HP = ramona.MAX_HP
-                ramona.Ramona_POS_X = 100
-                ramona.Ramona_POS_Y = ramona.GROUND_LEVEL
-                init()
+        resource.boss1 = True
+        ramona.Ramona_dead = False
+        ramona.CURRENT_HP = ramona.MAX_HP
+        game_framework.push_mode(stage_fail_mode)
 
-    for event in events:
-        if event.type == SDL_KEYDOWN:
-            if event.key == SDLK_F1:
-                canvas_size.collide_check = not canvas_size.collide_check
-            elif event.key == SDLK_ESCAPE:
-                game_framework.quit()
+    if ramona.Ramona_dead:
+        if ramona_instance:
+            ramona_instance.update(frame_time, events)
 
-    player.update(frame_time, events)
+    if resource.boss1 and not ramona.Ramona_retry:
+        game_framework.push_mode(stage_clear_mode)
 
     if canvas_size.shake_timer > 0:
         canvas_size.update_shake(frame_time)
