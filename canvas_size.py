@@ -11,6 +11,7 @@ shake_magnitude = 10.0 # 흔들림의 강도
 
 collide_check=False
 
+
 def start_shake(duration, magnitude):
     global shake_timer, shake_magnitude
     shake_timer = duration
@@ -40,5 +41,6 @@ def distance_funtion2(x1, y1, x2, y2,frame_time,speed,x4,y4):
     y4 = y4 + (y2 - y1) * speed * frame_time / distance
     return x3, y3,x4, y4
 
-def cout(a):
-    print(a)
+
+
+
