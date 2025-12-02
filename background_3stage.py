@@ -6,11 +6,13 @@ import ramona
 start = False
 width = 1980
 
+
 class Background:
     fox_platform = None
     fox_background1 = None
     fox_background2 = None
     fox_background3 = None
+
     def __init__(self):
         resource.blocks.clear()
         if Background.fox_platform == None:
@@ -35,9 +37,16 @@ class Background:
         self.bg_parallax_ratio_x3 = 0.15
         self.bg_parallax_ratio_y3 = 0.05
 
+
         resource.blocks.append(
-            (width // 2, 0, self.fox_platform_size[0] * 1.5 + 80,
+            (width // 2, 0, self.fox_platform_size[0] * 1.5+80,
              self.fox_platform_size[1] * 3.8))
+
+        self.background_num = 0
+        self.background_change_time = 0
+        self.background_change_timer = 4.0
+        self.speed = 100
+        self.background_magnification = [1.6, 1.8, 1.0]
 
         self.scroll_x = 0
         self.scroll_y = 0
@@ -46,6 +55,7 @@ class Background:
         self.map_height = 864
 
     def update(self, frame_time, events=None):
+
         target_camera_x = ramona.Ramona_POS_X - canvas_size.canvaswidth // 2
         target_camera_y = ramona.Ramona_POS_Y - canvas_size.canvasheight // 2
 
@@ -54,21 +64,24 @@ class Background:
 
 
     def draw(self):
+
         bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x3)
         bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y3)
         self.fox_background3.clip_draw(0, 0, 800, 480,
-                                       bg_draw_x,
-                                       bg_draw_y,
-                                       800 * 3,
-                                       480 * 3)
+                                        bg_draw_x,
+                                        bg_draw_y,
+                                        800 * 3,
+                                        480 * 3)
+
+
 
         bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x2)
         bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y2)
         self.fox_background2.clip_draw(0, 0, 800, 480,
-                                       bg_draw_x,
-                                       bg_draw_y,
-                                       800 * 3,
-                                       480 * 3)
+                                        bg_draw_x,
+                                        bg_draw_y,
+                                        800 * 3,
+                                        480 * 3)
 
         bg_draw_x = width // 2 - (canvas_size.camera_x * self.bg_parallax_ratio_x1)
         bg_draw_y = 450 - (canvas_size.camera_y * self.bg_parallax_ratio_y1)
@@ -77,7 +90,6 @@ class Background:
                                        bg_draw_y,
                                        800 * 2,
                                        480 * 2)
-
         self.fox_platform.clip_draw(
             0, 0, self.fox_platform_size[0], self.fox_platform_size[1],
             width // 2 - canvas_size.camera_x,
@@ -85,4 +97,3 @@ class Background:
             self.fox_platform_size[0] * 2,
             self.fox_platform_size[1] * 2
         )
-
