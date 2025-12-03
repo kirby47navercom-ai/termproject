@@ -36,3 +36,6 @@ def init():
 
 
 def update(frame_time,events):
+    if not resource.ending and resource.stage1_clear != 0 and resource.stage2_clear != 0 and resource.stage3_clear != 0:
+        resource.ending = True
+        game_framework.push_mode(ending_mode)
