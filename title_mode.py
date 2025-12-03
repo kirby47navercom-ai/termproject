@@ -6,3 +6,6 @@ import  home_mode
 import resource
 
 image = None
+
+def init():
+    pass
