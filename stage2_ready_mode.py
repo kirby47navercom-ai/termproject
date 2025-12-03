@@ -7,3 +7,5 @@ import stage2_manager
 black_background = None
 choose = None
 stage1 = None
+
+def init():
