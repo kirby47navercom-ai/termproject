@@ -18,3 +18,5 @@ sugar = None
 water = None
 lemon = None
 coin_font = None
+
+def init():
