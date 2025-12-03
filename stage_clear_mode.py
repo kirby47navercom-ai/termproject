@@ -68,3 +68,5 @@ def init(): # 로고 이미지를 로드
             elif resource.stage3_coin == 1:
                 resource.coin += 1
                 resource.stage3_coin = 2
+
+def update(frame_time,events):
