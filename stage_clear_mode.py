@@ -38,3 +38,18 @@ def init(): # 로고 이미지를 로드
             elif resource.stage1_coin == 1:
                 resource.coin += 1
                 resource.stage1_coin = 2
+    elif resource.boss2:
+        if ramona.MAX_HP != ramona.CURRENT_HP:
+            if resource.stage2_clear != 2:
+                resource.stage2_clear = 1
+            if resource.stage2_coin == 0:
+                resource.coin += 1
+                resource.stage2_coin = 1
+        else:
+            resource.stage2_clear = 2
+            if resource.stage2_coin == 0:
+                resource.coin += 2
+                resource.stage2_coin = 2
+            elif resource.stage2_coin == 1:
+                resource.coin += 1
+                resource.stage2_coin = 2
