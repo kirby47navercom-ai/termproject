@@ -8,3 +8,6 @@ logo_start_time = 0
 
 def init():
     pass
+
+def update(frame_time,events):
+    pass
