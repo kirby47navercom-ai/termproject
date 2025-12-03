@@ -25,3 +25,5 @@ def update(frame_time,events):
             elif 750 <= x <= 1040 and 230 <= y <= 360:
 
                 game_framework.pop_mode()
+
+def draw():
