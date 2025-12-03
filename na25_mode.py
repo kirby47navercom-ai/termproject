@@ -60,3 +60,81 @@ def update(frame_time,events):
 
                     resource.nanahira = 1
                     resource.talk = 4
+            elif 860 <= x <= 1010 and 318 <= y <= 390:
+                if resource.weapon1 == 0:
+                    resource.weapon1 = 1
+                    resource.weapon2 = 0 if resource.weapon2 != 2 else 2
+                    resource.weapon3 = 0 if resource.weapon3 != 2 else 2
+                    resource.weapon4 = 0 if resource.weapon4 != 2 else 2
+
+                    ramona.MAX_HP = 3
+                    ramona.CURRENT_HP = 3
+
+                    ramona.Ramona_attack = 20
+
+                    resource.pattern_number = 15
+
+
+
+            elif 1090 <= x <= 1240 and 318 <= y <= 390:
+                if resource.weapon2 == 0:
+                    resource.weapon2 = 1
+                    resource.weapon1 = 0
+                    resource.weapon3 = 0 if resource.weapon3 != 2 else 2
+                    resource.weapon4 = 0 if resource.weapon4 != 2 else 2
+
+                    ramona.MAX_HP = 4
+                    ramona.CURRENT_HP = 4
+
+                    ramona.Ramona_attack = 20
+
+                    resource.pattern_number = 15
+
+
+
+                elif resource.weapon2 == 2 and resource.coin >= 1:
+
+                    resource.coin -= 1
+                    resource.weapon2 = 0
+
+            elif 860 <= x <= 1010 and 28 <= y <= 100:
+                if resource.weapon3 == 0:
+                    resource.weapon3 = 1
+                    resource.weapon1 = 0
+                    resource.weapon2 = 0 if resource.weapon2 != 2 else 2
+                    resource.weapon4 = 0 if resource.weapon4 != 2 else 2
+
+                    ramona.MAX_HP = 3
+                    ramona.CURRENT_HP = 3
+
+                    ramona.Ramona_attack = 30
+
+                    resource.pattern_number = 15
+
+
+
+                elif resource.weapon3 == 2 and resource.coin >= 2:
+
+                    resource.coin -= 2
+                    resource.weapon3 = 0
+            elif 1090 <= x <= 1240 and 28 <= y <= 100:
+                if resource.weapon4 == 0:
+                    resource.weapon4 = 1
+                    resource.weapon1 = 0
+                    resource.weapon2 = 0 if resource.weapon2 != 2 else 2
+                    resource.weapon3 = 0 if resource.weapon3 != 2 else 2
+
+                    ramona.MAX_HP = 3
+                    ramona.CURRENT_HP = 3
+
+                    ramona.Ramona_attack = 20
+
+                    resource.pattern_number = 10
+
+                elif resource.weapon4 == 2 and resource.coin >= 3:
+
+                    resource.coin -= 3
+                    resource.weapon4 = 0
+            else:
+                resource.nanahira = 0
+                resource.talk = 0
