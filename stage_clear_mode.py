@@ -9,3 +9,5 @@ black_background = None
 clear = None
 food = []
 perfect = None
+
+def init():
