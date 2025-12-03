@@ -15,3 +15,5 @@ weapon2 = []
 weapon3 = []
 weapon4 = []
 talk = []
+
+def init():
