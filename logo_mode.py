@@ -14,7 +14,9 @@ def init():
     logo_start_time = get_time()
 
 def update(frame_time,events):
-    pass
+    # 시간 체크를 해주고
+    if get_time() - logo_start_time > 2.0:
+        game_framework.change_mode(title_mode)
 
 def draw():
     pass
