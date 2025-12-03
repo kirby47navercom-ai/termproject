@@ -74,3 +74,7 @@ def draw():
         draw_rectangle(830, 190, 905, 260)  # 9
         draw_rectangle(955, 190, 1025, 260)  # 10
         draw_rectangle(1055, 515, 1185, 640)  # 끄기
+
+def finish():
+
+    pass
