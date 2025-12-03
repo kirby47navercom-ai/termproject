@@ -37,3 +37,21 @@ def update(frame_time,events):
             elif 955 <= x <= 1025 and 360 <= y <= 430:
 
                 resource.bgm = 4
+            elif 475 <= x <= 545 and 190 <= y <= 260:
+
+                resource.effect = 0
+            elif 585 <= x <= 655 and 190 <= y <= 260:
+
+                resource.effect = 1
+            elif 705 <= x <= 775 and 190 <= y <= 260:
+
+                resource.effect = 2
+            elif 830 <= x <= 905 and 190 <= y <= 260:
+
+                resource.effect = 3
+            elif 955 <= x <= 1025 and 190 <= y <= 260:
+
+                resource.effect = 4
+            elif 1055 <= x <= 1185 and 515 <= y <= 640:
+
+                game_framework.pop_mode()
