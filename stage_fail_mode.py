@@ -84,3 +84,6 @@ def finish():
 
     pass
 
+def pause():
+    pass
+
