@@ -39,4 +39,17 @@ def update(frame_time, events):
         if alpha > 255:
             alpha = 255
 
+def draw():
+    global ending_image, current_image, alpha,black_background
+
+    black_background.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    for i in range(current_image):
+        ending_image[i].opacify(1.0)
+        ending_image[i].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    ending_image[current_image].opacify(alpha / 255.0)
+    ending_image[current_image].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+
+
 
