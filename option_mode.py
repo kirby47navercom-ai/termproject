@@ -21,3 +21,19 @@ def init():
 def update(frame_time,events):
     for event in events:
         if event.type == SDL_MOUSEBUTTONDOWN:
+            x, y = event.x, canvas_size.canvasheight - 1 - event.y
+            if 475 <= x <= 545 and 360 <= y <= 430:
+
+                resource.bgm = 0
+            elif 585 <= x <= 655 and 360 <= y <= 430:
+
+                resource.bgm = 1
+            elif 705 <= x <= 775 and 360 <= y <= 430:
+
+                resource.bgm = 2
+            elif 830 <= x <= 905 and 360 <= y <= 430:
+
+                resource.bgm = 3
+            elif 955 <= x <= 1025 and 360 <= y <= 430:
+
+                resource.bgm = 4
