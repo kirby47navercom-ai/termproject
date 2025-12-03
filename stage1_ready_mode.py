@@ -16,3 +16,13 @@ def init():
     stage1 = load_image('배경\\stage1.png')
 
 def update(frame_time,events):
+    for event in events:
+        if event.type == SDL_MOUSEBUTTONDOWN:
+            x, y = event.x, canvas_size.canvasheight - 1 - event.y
+            if 240 <= x <= 530 and 230 <= y <= 360:
+
+                game_framework.pop_mode()
+                game_framework.change_mode(stage1_manager)
+            elif 750 <= x <= 1040 and 230 <= y <= 360:
+
+                game_framework.pop_mode()
