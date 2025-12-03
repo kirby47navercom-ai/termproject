@@ -7,3 +7,5 @@ option = None
 black_background= None
 circle0 = []
 circle1 = []
+
+def init():
