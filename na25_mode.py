@@ -32,3 +32,5 @@ def init():
                 load_image('배경\\talk3.png'), load_image('배경\\talk4.png')]
         coin = load_image('배경\\coin.png')
         coin_font = load_font('Font\\경기천년바탕_Bold.ttf', 80)
+
+def update(frame_time,events):
