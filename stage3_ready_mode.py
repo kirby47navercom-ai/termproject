@@ -40,3 +40,5 @@ def finish():
     global black_background, choose, stage1
     del black_background,choose,stage1
     pass
+def pause():
+    pass
