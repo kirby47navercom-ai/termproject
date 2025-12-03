@@ -34,3 +34,29 @@ def init():
         coin_font = load_font('Font\\경기천년바탕_Bold.ttf', 80)
 
 def update(frame_time,events):
+    for event in events:
+        if event.type == SDL_MOUSEBUTTONDOWN:
+            x, y = event.x, canvas_size.canvasheight - 1 - event.y
+            if 495 <= x <= 855 and 605 <= y <= 670:
+
+                game_framework.change_mode(home_mode)
+            elif 833 <= x <= 873 and 540 <= y <= 580:
+                if resource.talk != 1:
+
+                    resource.nanahira = 1
+                    resource.talk = 1
+            elif 1060 <= x <= 1100 and 540 <= y <= 580:
+                if resource.talk != 2:
+
+                    resource.nanahira = 1
+                    resource.talk = 2
+            elif 835 <= x <= 875 and 245 <= y <= 285:
+                if resource.talk != 3:
+
+                    resource.nanahira = 1
+                    resource.talk = 3
+            elif 1060 <= x <= 1100 and 245 <= y <= 285:
+                if resource.talk != 4:
+
+                    resource.nanahira = 1
+                    resource.talk = 4
