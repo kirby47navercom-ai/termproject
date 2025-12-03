@@ -92,3 +92,7 @@ def draw():
         draw_rectangle(965, 130, 1255, 545)
         draw_rectangle(1145, 585, 1255, 690)
         draw_rectangle(495, 605, 855, 670)
+
+def finish():
+
+    pass
