@@ -19,3 +19,5 @@ def init():
 
 
 def update(frame_time,events):
+    for event in events:
+        if event.type == SDL_MOUSEBUTTONDOWN:
