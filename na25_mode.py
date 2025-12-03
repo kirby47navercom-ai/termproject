@@ -196,3 +196,7 @@ def draw():
         draw_rectangle(860, 28, 1010, 100)  # 망치 3 고르기
 
         draw_rectangle(1090, 28, 1240, 100)  # 망치 4 고르기
+
+def finish():
+
+    pass
