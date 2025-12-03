@@ -28,3 +28,11 @@ def update(frame_time,events):
                 game_framework.pop_mode()
 
 def draw():
+    black_background.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    choose.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    stage1.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    if canvas_size.collide_check:
+        draw_rectangle(240, 230, 530, 360)
+
+        draw_rectangle(750, 230, 1040, 360)
