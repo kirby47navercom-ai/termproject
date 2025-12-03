@@ -57,3 +57,5 @@ def update(frame_time,events):
             elif 495 <= x <= 855 and 605 <= y <= 670:
 
                 game_framework.change_mode(na25_mode)
+
+def draw():
