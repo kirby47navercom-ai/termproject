@@ -5,3 +5,6 @@ import title_mode
 
 image = None
 logo_start_time = 0
+
+def init():
+    pass
