@@ -23,7 +23,8 @@ def draw():
 
 
 def finish():
-    pass
+    global image
+    del image
 
 
 def pause():
