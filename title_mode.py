@@ -36,7 +36,8 @@ def draw():
         draw_rectangle(660, 30, 868, 100)  # 설정
 
 def finish():
-    pass
+    global image
+    del image
 
 def pause():
     pass
