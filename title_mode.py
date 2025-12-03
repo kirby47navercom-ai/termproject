@@ -8,7 +8,11 @@ import resource
 image = None
 
 def init():
-    pass
+    # 로고 이미지를 로드
+    global image
+
+    image = load_image('배경//main.png')
+
 
 def update(frame_time,events):
     pass
