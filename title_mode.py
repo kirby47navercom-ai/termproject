@@ -15,7 +15,16 @@ def init():
 
 
 def update(frame_time,events):
-    pass
+    for event in events:
+        if event.type == SDL_MOUSEBUTTONDOWN:
+            x, y = event.x, get_canvas_height() - 1 - event.y
+            if 410 <= x <= 618 and 30 <= y <= 100:
+                game_framework.change_mode(home_mode)
+
+
+            elif 660 <= x <= 868 and 30 <= y <= 100:
+                game_framework.push_mode(option_mode)
+
 
 def draw():
     pass
