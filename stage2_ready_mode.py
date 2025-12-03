@@ -36,3 +36,8 @@ def draw():
         draw_rectangle(240, 230, 530, 360)
 
         draw_rectangle(750, 230, 1040, 360)
+
+def finish():
+    global black_background, choose, stage1
+    del black_background,choose,stage1
+    pass
