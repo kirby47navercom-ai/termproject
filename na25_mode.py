@@ -138,3 +138,5 @@ def update(frame_time,events):
             else:
                 resource.nanahira = 0
                 resource.talk = 0
+
+def draw():
