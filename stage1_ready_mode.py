@@ -14,3 +14,5 @@ def init():
     black_background = load_image('배경\\black_background.png')
     choose = load_image('배경\\choose.png')
     stage1 = load_image('배경\\stage1.png')
+
+def update(frame_time,events):
