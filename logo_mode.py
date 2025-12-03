@@ -14,3 +14,7 @@ def update(frame_time,events):
 
 def draw():
     pass
+
+
+def finish():
+    pass
