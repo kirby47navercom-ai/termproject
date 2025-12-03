@@ -19,7 +19,7 @@ def update(frame_time,events):
         game_framework.change_mode(title_mode)
 
 def draw():
-    pass
+    image.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
 
 
 def finish():
