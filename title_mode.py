@@ -21,3 +21,6 @@ def finish():
 
 def pause():
     pass
+
+def resume():
+    pass
