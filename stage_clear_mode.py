@@ -104,3 +104,24 @@ def update(frame_time,events):
                 game_framework.change_mode(stage3_manager)
 
 def draw():
+    if black_background:
+        black_background.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+
+    if clear:
+        clear.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    if resource.boss1:
+        food[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    elif resource.boss2:
+        food[1].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    elif resource.boss3:
+        food[2].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    if ramona.MAX_HP != ramona.CURRENT_HP:
+        perfect.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    if canvas_size.collide_check:
+        draw_rectangle(478, 67, 584, 175)
+
+        draw_rectangle(678, 67, 784, 175)
