@@ -17,3 +17,26 @@ def init():
     current_image = 0
     alpha = 0
 
+def update(frame_time, events):
+    global current_image, alpha
+
+    for event in events:
+        if event.type == SDL_MOUSEBUTTONDOWN:
+            if alpha < 255:
+                alpha = 255  # 현재 이미지 바로 다 보이게
+
+            else:
+                if current_image < 6:
+                    current_image += 1
+                    alpha = 0
+
+                else:
+
+                    game_framework.pop_mode()
+
+    if alpha < 255:
+        alpha += FADE_SPEED*frame_time*60
+        if alpha > 255:
+            alpha = 255
+
+
