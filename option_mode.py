@@ -57,3 +57,20 @@ def update(frame_time,events):
                 game_framework.pop_mode()
 
 def draw():
+    black_background.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    option.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    circle0[resource.bgm].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    circle1[resource.effect].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    if canvas_size.collide_check:
+        draw_rectangle(475, 360, 545, 430)  # 1
+        draw_rectangle(585, 360, 655, 430)  # 2
+        draw_rectangle(705, 360, 775, 430)  # 3
+        draw_rectangle(830, 360, 905, 430)  # 4
+        draw_rectangle(955, 360, 1025, 430)  # 5
+        draw_rectangle(475, 190, 545, 260)  # 6
+        draw_rectangle(585, 190, 655, 260)  # 7
+        draw_rectangle(705, 190, 775, 260)  # 8
+        draw_rectangle(830, 190, 905, 260)  # 9
+        draw_rectangle(955, 190, 1025, 260)  # 10
+        draw_rectangle(1055, 515, 1185, 640)  # 끄기
