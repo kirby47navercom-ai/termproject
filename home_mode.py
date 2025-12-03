@@ -59,3 +59,36 @@ def update(frame_time,events):
                 game_framework.change_mode(na25_mode)
 
 def draw():
+    home.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    # print(resource.stage1_clear,resource.stage2_clear,resource.stage3_clear)
+
+    if resource.stage1_clear == 1:
+        stage1[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    elif resource.stage1_clear == 2:
+        stage1[1].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    if resource.stage1_clear >= 1:
+        sugar.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    if resource.stage2_clear == 1:
+        stage2[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    elif resource.stage2_clear == 2:
+        stage2[1].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    if resource.stage2_clear >= 1:
+        water.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    if resource.stage3_clear == 1:
+        stage3[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    elif resource.stage3_clear == 2:
+        stage3[1].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    if resource.stage3_clear >= 1:
+        lemon.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+
+    coin.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    coin_font.draw(80, canvas_size.canvasheight - 40, 'X ' + str(resource.coin), (0, 0, 0))
+    if canvas_size.collide_check:
+        draw_rectangle(15, 130, 305, 545)
+        draw_rectangle(500, 130, 790, 545)
+        draw_rectangle(965, 130, 1255, 545)
+        draw_rectangle(1145, 585, 1255, 690)
+        draw_rectangle(495, 605, 855, 670)
