@@ -18,3 +18,7 @@ def draw():
 
 def finish():
     pass
+
+
+def pause():
+    pass
