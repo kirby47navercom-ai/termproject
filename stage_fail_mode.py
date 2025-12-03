@@ -80,3 +80,7 @@ def draw():
 
         draw_rectangle(678, 67, 784, 175)
 
+def finish():
+
+    pass
+
