@@ -33,3 +33,6 @@ def init():
         water = load_image('배경\\clear2.png')
         lemon = load_image('배경\\clear3.png')
         coin_font = load_font('Font\\경기천년바탕_Bold.ttf', 80)
+
+
+def update(frame_time,events):
