@@ -102,3 +102,5 @@ def update(frame_time,events):
                 game_framework.pop_mode()
 
                 game_framework.change_mode(stage3_manager)
+
+def draw():
