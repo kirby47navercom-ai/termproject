@@ -36,6 +36,9 @@ def update(frame_time, events):
                 if current_image < 6:
                     current_image += 1
                     alpha = 0
+                    resource.ui_effect_sound[0].set_volume(
+                        (resource.ui_effect_sound_offset[0] * resource.effect) // 2)
+                    resource.ui_effect_sound[0].play(1)
 
                 else:
 
