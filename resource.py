@@ -689,6 +689,15 @@ def load_resources():
         background_sound.append(load_music('sound\\mari.mp3'))
         background_sound_offset.append(32)
 
+        attack_effect_sound.append(load_wav('sound\\hamer-90566.mp3'))
+        attack_effect_sound_offset.append(32)
+        attack_effect_sound.append(load_wav('sound\\Hammer.wav'))
+        attack_effect_sound_offset.append(32)
+        attack_effect_sound.append(load_wav('sound\\Needle Sound.wav'))
+        attack_effect_sound_offset.append(32)
+        attack_effect_sound.append(load_wav('sound\\mixkit-samurai-sword-impact-2789.wav'))
+        attack_effect_sound_offset.append(32)
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
