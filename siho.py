@@ -217,6 +217,10 @@ class Boss_Siho:
 
                 self.jump_frame = 0
 
+                resource.stage3_effect_sound[4].set_volume(
+                    (resource.stage3_effect_sound_offset[4] * resource.effect) // 2)
+                resource.stage3_effect_sound[4].play(1)
+
         elif self.pattern2_state == 1:
             self.x += self.v_x * frame_time
             self.y_velocity -= self.gravity * frame_time
