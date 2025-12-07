@@ -13,6 +13,10 @@ def init():
 
     image = load_image('배경//main.png')
 
+    resource.background_sound[0].set_volume(
+        (resource.background_sound_offset[0] * resource.bgm) // 2)
+    resource.background_sound[0].play(-1)
+
 
 def update(frame_time,events):
     for event in events:
