@@ -1,8 +1,12 @@
+from pico2d import *
+
+import background_2stage
 from boss_hp import Boss_HP
 from pattern import *
 from resource import *
 from random import randint
 import canvas_size
+from canvas_size import cout
 import ramona
 import resource
 import math
@@ -10,11 +14,18 @@ import math
 SIZE = 1.8
 
 
+
+
+
 class Boss_Siho:
     def __init__(self):
         self.pattern_set = get_pattern_set()
+
         self.x, self.y = 1000, 300
         self.boss_hp = 800
+        #self.boss_hp = 550
+        #self.boss_hp = 250
+        #self.boss_hp = 0
         self.hp = self.boss_hp
         self.hp_bar = Boss_HP()
         self.width, self.height = 386 * SIZE, 299 * SIZE
@@ -24,35 +35,35 @@ class Boss_Siho:
         self.speed = 100
         self.shape = self.pattern_set[randint(0, resource.pattern_number)]
         self.shape.x = self.x - canvas_size.camera_x
-        self.shape.y = self.y - canvas_size.camera_y + self.height * 0.2
+        self.shape.y = self.y- canvas_size.camera_y + self.height * 0.2
         self.idle_frame = 0
         self.animation_speed = 8.0
 
-        self.pattern_num = 0
-        self.change_graphycs = False
+        self.pattern_num=0
+        self.change_graphycs=False
 
-        # 패턴 0
+        #패턴 0
         self.appear_animation = False
         self.appear_frame = 0
         self.appear_timer = 0.0
         self.appear_time = 4.0
 
-        # 패턴 1
+        #패턴 1
         self.idle_frame = 0
         self.idle_timer = 0.0
         self.idle_time = 1.0
 
-        # 패턴 2
+        #패턴 2
         self.y_velocity = 0.0
         self.gravity = 2000.0
-        self.jump_power = 200.0
-        self.boss_ground_level = 300
-        self.jump_duration = 1.2
-        self.v_x = 0.0
+        self.jump_power = 200.0  # (이 값은 이제 자동 계산되므로 삭제해도 됨)
+        self.boss_ground_level = 300  # ★★★ 보스의 바닥 높이 (요청 사항)
+        self.jump_duration = 1.2  # ★★★ 점프에 걸리는 총 시간 (1.5초)
+        self.v_x = 0.0  # 점프 시 수평 속도
 
         self.pattern2_state = 0
         self.pattern2_timer = 0.0
-        self.pattern2_target_x = 0
+        self.pattern2_target_x = 0  # ★★★ 점프 목표 X좌표
         self.pattern2_landing_x = 0
 
         self.jump_frame = 0.0
@@ -62,30 +73,30 @@ class Boss_Siho:
         self.fireball_jump_power = 1000.0
         self.fireball_gravity = 2500.0
 
-        # 패턴 3
+        #패턴 3
         self.pattern3_state = 0
-        self.pattern3_fireball = []
-        self.pattern3_fireball_index = 0
+        self.pattern3_fireball=[]
+        self.pattern3_fireball_index=0
         self.pattern3_fireball_speed = 600.0
         self.spread_frame = 0
-        self.current_idx = 0
+        self.current_idx=0
 
-        # 패턴 4
+        #패턴 4
         self.pattern4_state = 0
-        self.pattern4_enter = False
-        self.pattern4_player_x = 0.0
+        self.pattern4_enter=False
+        self.pattern4_player_x=0.0
         self.pattern4_move_timer = 0.0
         self.pattern4_move_duration = 0.5
         self.pattern4_speed = 1000.0
-        self.scratch_frame = 0.0
-        self.pattern4_attack = False
-        self.pattern4_attack_frame = 0.0
+        self.scratch_frame=0.0
+        self.pattern4_attack=False
+        self.pattern4_attack_frame=0.0
 
-        # 패턴 5
+        #패턴 5
         self.pattern5_state = 0
         self.pattern5_enter = False
         self.pattern5_player_x = 0.0
-        self.scratch_frame2 = 0.0
+        self.scratch_frame2=0.0
         self.pattern5_attack_frame = 0.0
         self.pattern5_attack_prepare_timer = 0.0
         self.pattern5_attack_prepare_duration = 1.0
@@ -93,37 +104,37 @@ class Boss_Siho:
         self.pattern5_attack_timer = 0.0
         self.pattern5_attack_duration = 0.5
 
-        # 패턴 6
-        self.change_phase_1_frame = 0.0
+        #패턴 6
+        self.change_phase_1_frame=0.0
         self.change_phase_1_frame_timer = 0.0
         self.change_phase_1_frame_duration = 3.0
 
-        # 패턴 7
+        #패턴 7
         self.fox_idle_frame = 0
         self.fox_idle_timer = 0.0
         self.fox_idle_time = 1.0
 
-        # 패턴 8
+        #패턴 8
         self.pattern8_state = 0
         self.pattern8_timer = 0.0
         self.pattern8_target_x = 0
         self.pattern8_landing_x = 0
 
-        # 패턴 9
+        #패턴 9
         self.pattern9_state = 0
         self.pattern9_attack_num = 0
         self.scratch_frame3 = 0.0
-        self.pattern9_attack = []  # 플레이어 위치 x, 300 ,프레임, 준비시간, 지속시간
+        self.pattern9_attack=[] # 플레이어 위치 x, 300 ,프레임, 준비시간, 지속시간
         self.pattern9_attack_prepare_duration = 0.5
         self.pattern9_attack_duration = 0.2
 
-        # 패턴 10
+        #패턴 10
         self.pattern10_state = 0
         self.bite_frame = 0.0
-        self.pattern10_attack = []  # x,y,프레임,준비시간,첫번째
+        self.pattern10_attack = [] # x,y,프레임,준비시간,첫번째
         self.pattern10_attack_prepare_duration = 0.5
 
-        # 패턴 11
+        #패턴 11
         self.pattern11_state = 0
         self.change_phase_2_frame = 0.0
         self.change_phase_2_frame_timer = 0.0
@@ -137,27 +148,40 @@ class Boss_Siho:
         # 패턴 13
         self.pattern13_state = 0
         self.rush_frame = 0.0
-        self.rush_fire = []  # x y 프레임 방향 스테이트
+        self.rush_fire=[] #x y 프레임 방향 스테이트
         self.rush_fire_direction = 0
-        self.rush_direction = []
+        self.rush_direction=[]
         self.rush_fire_speed = 200.0
-        self.rush_fire_num = 0
-        self.rush_prepare_timer = 0.0
-        self.rush_prepare_time = 1.0
+        self.rush_fire_num=0
+        self.rush_prepare_timer=0.0
+        self.rush_prepare_time=1.0
         self.rush_speed = 2000.0
-        self.check = False
-        self.sound_check = False
+        self.check=False
+        self.sound_check=False
+
+
 
         # 패턴 14
         self.pattern14_state = 0
         self.die = False
         self.die_frame = 0
-        self.die_timer = 0.0
-        self.die_time = 4.0
+        self.die_timer=0.0
+        self.die_time= 4.0
+
+
+
 
         self.hit = False
         self.hit_animation = False
         self.hit_time = 0.0
+
+
+
+
+
+
+
+
 
     def update(self, frame_time, events=None):
         if not self.appear_animation:
@@ -170,12 +194,18 @@ class Boss_Siho:
             if pattern_method:
                 pattern_method(frame_time)
 
-        if self.pattern_num != 14:
+
+        if self.pattern_num!=14:
             self.update_fireballs(frame_time)
             self.update_pattern3_fireball(frame_time)
             self.update_pattern9_scratch(frame_time)
             self.update_pattern10_bite(frame_time)
             self.update_pattern13_rush(frame_time)
+
+
+
+
+
 
 
         self.shape.x = self.x - canvas_size.camera_x
@@ -186,27 +216,30 @@ class Boss_Siho:
         if self.hit:
             self.hit_timer(frame_time)
 
+
     def pattern0(self, frame_time):
         self.appear_frame = (self.appear_frame + self.animation_speed * frame_time) % 8
         if int(self.appear_frame) == 7:
-            self.pattern_num = 1
+            self.pattern_num=1
 
     def pattern1(self, frame_time):
         self.idle_frame = (self.idle_frame + self.animation_speed * frame_time) % 2
         self.idle_timer += frame_time
         if self.idle_timer >= self.idle_time:
-            self.pattern_num = randint(2, 5)
+            self.pattern_num=random.randint(2, 5)
             self.idle_timer = 0.0
             self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
-            if self.hp <= 550:
-                self.pattern_num = 6
+            if self.hp<=550:
+                self.pattern_num=6
 
     def pattern2(self, frame_time):
+
         if self.pattern2_state == 0:
             self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 3
 
             if self.jump_frame >= 2.9:
                 self.pattern2_state = 1
+
 
                 self.pattern2_target_x = ramona.Ramona_POS_X
 
@@ -221,6 +254,7 @@ class Boss_Siho:
                     (resource.stage3_effect_sound_offset[4] * resource.effect) // 2)
                 resource.stage3_effect_sound[4].play(1)
 
+        # State 1: 점프 및 상승
         elif self.pattern2_state == 1:
             self.x += self.v_x * frame_time
             self.y_velocity -= self.gravity * frame_time
@@ -233,12 +267,14 @@ class Boss_Siho:
                     (resource.stage3_effect_sound_offset[9] * resource.effect) // 2)
                 resource.stage3_effect_sound[9].play(1)
 
+        # State 2: 하강 및 착지
         elif self.pattern2_state == 2:
             self.x += self.v_x * frame_time
             self.y_velocity -= self.gravity * frame_time
             self.y += self.y_velocity * frame_time
 
             self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 4
+
 
             if self.y <= self.boss_ground_level:
                 resource.stage3_effect_sound[3].set_volume(
@@ -256,16 +292,18 @@ class Boss_Siho:
                 self.jump_frame = 0
                 canvas_size.start_shake(0.5, 2.5)
 
+        # State 3: 정리 및 다음 패턴 대기
         elif self.pattern2_state == 3:
             self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 5
 
-            if int(self.jump_frame) == 4:
+            if  int(self.jump_frame) == 4:
                 self.pattern_num = 1
                 self.pattern2_state = 0
                 self.pattern2_timer = 0.0
                 self.pattern2_target_x = 0
                 self.pattern2_landing_x = 0
                 self.jump_frame = 0.0
+
 
     def launch_fireballs(self):
         if self.pattern_num == 2:
@@ -274,23 +312,24 @@ class Boss_Siho:
             start_x = self.pattern8_landing_x
         start_y = self.boss_ground_level
 
-
+        # ★★★ 중앙(0도)을 기준으로 좌우로 퍼지는 각도 ★★★
         angles_deg = [-60, -30, 0, 30, 60]
 
         for i, angle_deg in enumerate(angles_deg):
             angle_rad = math.radians(angle_deg)
 
-
+            # X축 속도만 각도에 따라 다르게
             dir_x = math.sin(angle_rad) * self.fireball_speed * 5
 
-
+            # Y축 속도는 모두 동일
             dir_y = self.fireball_jump_power
 
-            self.fireballs.append([start_x, start_y, dir_x, dir_y, 0, 0.0, True])
+            self.fireballs.append([start_x, start_y, dir_x, dir_y, 0, 0.0,True])
 
     def update_fireballs(self, frame_time):
         for i in range(len(self.fireballs) - 1, -1, -1):
             ball = self.fireballs[i]
+
 
             ball[0] += ball[2] * frame_time
             ball[1] += ball[3] * frame_time
@@ -302,9 +341,13 @@ class Boss_Siho:
                 continue
 
             self.ramonatofireballs(ball)
-            ball[5] = (ball[5] + self.animation_speed * 0.5 * frame_time) % 4
+            ball[5] = (ball[5] + self.animation_speed* 0.5 * frame_time) % 4
 
-    def ramonatofireballs(self, ball):
+
+
+
+
+    def ramonatofireballs(self,ball):
         if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
                    [ball[0], ball[1], 32, 32]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
             if ramona.CURRENT_HP > 0:
@@ -313,30 +356,29 @@ class Boss_Siho:
                 ramona.invincible_timer = 0.0
                 canvas_size.start_shake(0.5, 5.0)
 
+
     def pattern3(self, frame_time):
         if self.pattern3_state == 0:
             self.spread_frame = (self.spread_frame + self.animation_speed * frame_time)
             if self.spread_frame >= 3:
                 self.pattern3_state = 1
                 self.spread_frame = 0
-                self.pattern3_fireball_index += 6  ##이거 이용하기
-                self.current_idx = 0
+                self.pattern3_fireball_index +=6 ##이거 이용하기
+                self.current_idx=0
         elif self.pattern3_state == 1:
             self.spread_frame = (self.spread_frame + self.animation_speed * frame_time)
             if self.spread_frame >= 2:
                 self.pattern3_state = 2
                 self.spread_frame = 0
-                self.pattern3_fireball.append([self.x + 50, self.y + 100, 0, 0, 0, False, False])
+                self.pattern3_fireball.append([self.x+50,self.y+100,0,0,0,False,False])
                 resource.stage3_effect_sound[16].set_volume(
                     (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
                 resource.stage3_effect_sound[16].play(1)
-
         elif self.pattern3_state == 2:
-            self.spread_frame = (self.spread_frame + self.animation_speed * frame_time) % 4
+            self.spread_frame = (self.spread_frame + self.animation_speed * frame_time)%4
             if self.pattern3_fireball[-1][6]:
-                self.pattern3_state = 3
-                self.spread_frame = 0
-
+                self.pattern3_state=3
+                self.spread_frame=0
         elif self.pattern3_state == 3:
             self.spread_frame = (self.spread_frame + self.animation_speed * frame_time)
             if self.spread_frame >= 3:
@@ -344,47 +386,41 @@ class Boss_Siho:
                 self.spread_frame = 0
                 self.pattern_num = 1
 
+
+
     def update_pattern3_fireball(self, frame_time):
-        ball_idx = [[-50, 100], [-100, 0], [-50, -100], [50, -100], [100, 0]]
+        ball_idx =[[-50,100],[-100,0],[-50,-100],[50,-100],[100,0]]
         for i in range(len(self.pattern3_fireball) - 1, -1, -1):
             if not self.pattern3_fireball[i][5]:
-                self.pattern3_fireball[i][4] = self.pattern3_fireball[i][4] + self.animation_speed * frame_time
-                if self.pattern3_fireball[i][4] >= 3:
-                    self.pattern3_fireball[i][5] = True
-                    self.pattern3_fireball[i][4] = 0
-                    if self.current_idx < 5:  # 이거 왜 안댐??
-                        self.pattern3_fireball.append(
-                            [self.x + ball_idx[self.current_idx][0], self.y + ball_idx[self.current_idx][1], 0, 0, 0,
-                             False, False])
-                        self.current_idx += 1
+                self.pattern3_fireball[i][4]= self.pattern3_fireball[i][4] + self.animation_speed  * frame_time
+                if self.pattern3_fireball[i][4]>=3:
+                    self.pattern3_fireball[i][5]=True
+                    self.pattern3_fireball[i][4]=0
+                    if self.current_idx<5:#이거 왜 안댐??
+                        self.pattern3_fireball.append([self.x + ball_idx[self.current_idx][0], self.y + ball_idx[self.current_idx][1], 0, 0, 0, False, False])
+                        self.current_idx+=1
                         resource.stage3_effect_sound[16].set_volume(
                             (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
                         resource.stage3_effect_sound[16].play(1)
-
             elif self.pattern3_fireball[i][6]:
-                self.pattern3_fireball[i][:4] = canvas_size.distance_funtion2(self.pattern3_fireball[i][0],
-                                                                              self.pattern3_fireball[i][1],
-                                                                              self.pattern3_fireball[i][2],
-                                                                              self.pattern3_fireball[i][3],
-                                                                              frame_time, self.pattern3_fireball_speed,
-                                                                              self.pattern3_fireball[i][2],
-                                                                              self.pattern3_fireball[i][3])
-                if self.pattern3_fireball[i][1] < -50 or self.pattern3_fireball[i][1] > 2000:
+                self.pattern3_fireball[i][:4]=canvas_size.distance_funtion2(self.pattern3_fireball[i][0],self.pattern3_fireball[i][1],
+                self.pattern3_fireball[i][2],self.pattern3_fireball[i][3],
+                frame_time,self.pattern3_fireball_speed,self.pattern3_fireball[i][2],self.pattern3_fireball[i][3])
+                if self.pattern3_fireball[i][1]<-50 or self.pattern3_fireball[i][1]>2000:
                     self.pattern3_fireball.pop(i)
-                    self.pattern3_fireball_index = -1
+                    self.pattern3_fireball_index=-1
                     continue
                 self.ramonatofireballs(self.pattern3_fireball[i])
-                self.pattern3_fireball[i][4] = (self.pattern3_fireball[i][
-                                                    4] + self.animation_speed * 0.5 * frame_time) % 4
+                self.pattern3_fireball[i][4] = (self.pattern3_fireball[i][4] + self.animation_speed * 0.5 * frame_time)%4
 
 
             else:
                 self.ramonatofireballs(self.pattern3_fireball[i])
-                self.pattern3_fireball[i][4] = (self.pattern3_fireball[i][4] + self.animation_speed * frame_time) % 4
-                if self.current_idx >= 5 and self.pattern3_fireball[len(self.pattern3_fireball) - 1][5]:
+                self.pattern3_fireball[i][4] = (self.pattern3_fireball[i][4] + self.animation_speed * frame_time)%4
+                if self.current_idx>=5 and  self.pattern3_fireball[len(self.pattern3_fireball)-1][5]:
                     self.pattern3_fireball[i][6] = True
-                    self.pattern3_fireball[i][2] = ramona.Ramona_POS_X
-                    self.pattern3_fireball[i][3] = ramona.Ramona_POS_Y
+                    self.pattern3_fireball[i][2]=ramona.Ramona_POS_X
+                    self.pattern3_fireball[i][3]=ramona.Ramona_POS_Y
 
     def pattern4(self, frame_time):
         if self.pattern4_state == 0:
@@ -394,34 +430,31 @@ class Boss_Siho:
                 resource.stage3_effect_sound[16].set_volume(
                     (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
                 resource.stage3_effect_sound[16].play(1)
-
             self.pattern4_move_timer += frame_time
-            if math.fabs(self.x - ramona.Ramona_POS_X) > 0.5:
-                self.x, non = canvas_size.distance_funtion(self.x, 0, self.pattern4_player_x, 0, frame_time,
-                                                           self.pattern4_speed)
-            self.scratch_frame = min((self.scratch_frame + self.animation_speed * frame_time), 2)
+            if math.fabs(self.x - ramona.Ramona_POS_X) >0.5:
+                self.x,non=canvas_size.distance_funtion(self.x,0,self.pattern4_player_x,0,frame_time,self.pattern4_speed)
+            self.scratch_frame = min((self.scratch_frame + self.animation_speed * frame_time),2)
             if self.pattern4_move_timer >= self.pattern4_move_duration:
                 self.pattern4_state = 1
                 self.pattern4_move_timer = 0.0
-                self.scratch_frame = 0
+                self.scratch_frame=0
                 self.pattern4_enter = False
         elif self.pattern4_state == 1:
-            self.scratch_frame = min((self.scratch_frame + self.animation_speed * frame_time), 2)
+            self.scratch_frame = min((self.scratch_frame + self.animation_speed * frame_time),2)
             if int(self.scratch_frame) == 2 and not self.pattern4_attack:
-                self.pattern4_attack = True
+                self.pattern4_attack=True
                 resource.stage3_effect_sound[14].set_volume(
                     (resource.stage3_effect_sound_offset[14] * resource.effect) // 2)
                 resource.stage3_effect_sound[14].play(1)
 
             if self.pattern4_attack:
-                self.pattern4_attack_frame = (self.pattern4_attack_frame + self.animation_speed * frame_time * 2)
+                self.pattern4_attack_frame = (self.pattern4_attack_frame + self.animation_speed * frame_time*2)
                 self.ramonatoscratch()
                 if self.pattern4_attack_frame >= 11:
                     self.pattern4_attack = False
                     self.pattern4_attack_frame = 0.0
                     self.pattern4_state = 2
                     self.scratch_frame = 0.0
-
         elif self.pattern4_state == 2:
             self.scratch_frame = (self.scratch_frame + self.animation_speed * frame_time)
             if self.scratch_frame >= 3:
@@ -429,11 +462,10 @@ class Boss_Siho:
                 self.scratch_frame = 0.0
                 self.pattern_num = 1
 
-
     def ramonatoscratch(self):
         if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
-                   [self.x, self.y, 128 * 2,
-                    128 * 2]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+                   [self.x,self.y,128 * 2,
+                        128 * 2]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
                 ramona.Ramona_invincible = True
@@ -454,11 +486,11 @@ class Boss_Siho:
                 resource.stage3_effect_sound[15].play(1)
                 self.pattern5_state = 1
                 self.pattern5_attack_prepare_timer = 0.0
-                self.scratch_frame2 = 0
+                self.scratch_frame2=0
                 self.pattern5_enter = False
         elif self.pattern5_state == 1:
             self.scratch_frame2 = self.scratch_frame2 + self.animation_speed * frame_time
-            self.pattern5_attack_frame = min((self.pattern5_attack_frame + self.animation_speed * frame_time * 2), 3)
+            self.pattern5_attack_frame = min((self.pattern5_attack_frame + self.animation_speed * frame_time*2),3)
             self.ramonatoscratch2()
             self.pattern5_attack_timer += frame_time
             if self.pattern5_attack_timer >= self.pattern5_attack_duration:
@@ -466,7 +498,7 @@ class Boss_Siho:
                 self.pattern5_attack_timer = 0.0
                 self.pattern5_state = 2
                 self.scratch_frame2 = 0
-                self.pattern5_attack = False
+                self.pattern5_attack= False
         elif self.pattern5_state == 2:
             self.scratch_frame2 = (self.scratch_frame2 + self.animation_speed * frame_time)
             if self.scratch_frame2 >= 3:
@@ -476,13 +508,13 @@ class Boss_Siho:
 
     def ramonatoscratch2(self):
         if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
-                   [self.pattern5_player_x, 300, 54 * 2,
-                    220 * 2]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+                   [self.pattern5_player_x, 300, 54 * 2,220 * 2]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
                 ramona.Ramona_invincible = True
                 ramona.invincible_timer = 0.0
                 canvas_size.start_shake(0.5, 5.0)
+
 
     def pattern6(self, frame_time):
         if self.change_phase_1_frame_timer < self.change_phase_1_frame_duration:
@@ -497,19 +529,21 @@ class Boss_Siho:
             if self.change_phase_1_frame >= 17:
                 self.pattern_num = 7
                 self.change_phase_1_frame = 0.0
-                self.change_graphycs = True
-                self.change_phase_1_frame_timer = 0.0
+                self.change_graphycs=True
+                self.change_phase_1_frame_timer=0.0
+
 
     def pattern7(self, frame_time):
         self.fox_idle_frame = (self.fox_idle_frame + self.animation_speed * frame_time) % 8
         self.fox_idle_timer += frame_time
         if self.fox_idle_timer >= self.fox_idle_time:
             self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
-            self.pattern_num=randint(8, 10)
+            self.pattern_num=random.randint(8, 10)
             self.fox_idle_timer = 0.0
-
         if self.hp<=300:
             self.pattern_num=11
+
+
 
     def pattern8(self, frame_time):
         if self.pattern8_state == 0:
@@ -531,8 +565,8 @@ class Boss_Siho:
                     (resource.stage3_effect_sound_offset[4] * resource.effect) // 2)
                 resource.stage3_effect_sound[4].play(1)
 
+        # State 1: 점프 및 상승
         elif self.pattern8_state == 1:
-
             self.x += self.v_x * frame_time
             self.y_velocity -= self.gravity * frame_time
             self.y += self.y_velocity * frame_time
@@ -544,6 +578,7 @@ class Boss_Siho:
                     (resource.stage3_effect_sound_offset[4] * resource.effect) // 2)
                 resource.stage3_effect_sound[4].play(1)
 
+        # State 2: 하강 및 착지
         elif self.pattern8_state == 2:
             self.x += self.v_x * frame_time
             self.y_velocity -= self.gravity * frame_time
@@ -568,6 +603,7 @@ class Boss_Siho:
                     (resource.stage3_effect_sound_offset[3] * resource.effect) // 2)
                 resource.stage3_effect_sound[3].play(1)
 
+        # State 3: 정리 및 다음 패턴 대기
         elif self.pattern8_state == 3:
             self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 6
 
@@ -578,64 +614,60 @@ class Boss_Siho:
                 self.pattern8_target_x = 0
                 self.pattern8_landing_x = 0
                 self.jump_frame = 0.0
-
     def pattern9(self, frame_time):
         if self.pattern9_state == 0:
-            self.scratch_frame3 = min((self.scratch_frame3 + self.animation_speed * frame_time), 2)
+            self.scratch_frame3 = min((self.scratch_frame3 + self.animation_speed * frame_time),2)
             if self.scratch_frame3 >= 2:
                 self.pattern9_state = 1
-                self.scratch_frame3 = 0
-                self.pattern9_attack.append([ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
-                self.pattern9_attack_num += 1
-
+                self.scratch_frame3=0
+                self.pattern9_attack.append( [ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
+                self.pattern9_attack_num+=1
         elif self.pattern9_state == 1:
-            self.scratch_frame3 = min((self.scratch_frame3 + self.animation_speed * frame_time), 1)
-            if self.pattern9_attack_num == 1 and self.pattern9_attack[-1][2] > 0.0:
-                self.pattern9_attack.append([ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
-                self.pattern9_attack_num += 1
-            elif self.pattern9_attack_num == 2 and self.pattern9_attack[-1][2] > 0.0:
-                self.pattern9_attack.append([ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
+            self.scratch_frame3 = min((self.scratch_frame3 + self.animation_speed * frame_time),1)
+            if self.pattern9_attack_num == 1 and self.pattern9_attack[-1][2]>0.0:
+                self.pattern9_attack.append( [ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
+                self.pattern9_attack_num+=1
+            elif self.pattern9_attack_num == 2 and self.pattern9_attack[-1][2]>0.0:
+                self.pattern9_attack.append( [ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
                 self.pattern9_attack_num += 1
                 self.pattern9_state = 2
                 self.scratch_frame3 = 0
         elif self.pattern9_state == 2:
             self.scratch_frame3 = min((self.scratch_frame3 + self.animation_speed * frame_time), 1)
-            if self.pattern9_attack_num == 3 and self.pattern9_attack[-1][2] > 0.0:
-                self.pattern9_attack.append([ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
+            if self.pattern9_attack_num == 3 and self.pattern9_attack[-1][2] >0.0:
+                self.pattern9_attack.append( [ramona.Ramona_POS_X, 300, 0.0, 0.0, 0.0])
                 self.pattern9_attack_num += 1
             elif self.pattern9_attack_num == 4 and self.pattern9_attack[-1][2] >= 3:
                 self.pattern9_state = 3
                 self.scratch_frame3 = 0
-
         elif self.pattern9_state == 3:
             self.scratch_frame3 = (self.scratch_frame3 + self.animation_speed * frame_time)
             if self.scratch_frame3 >= 3:
                 self.pattern9_state = 0
                 self.scratch_frame3 = 0.0
                 self.pattern_num = 7
-                self.pattern9_attack_num = 0
+                self.pattern9_attack_num=0
 
     def update_pattern9_scratch(self, frame_time):
-        for i in range(len(self.pattern9_attack) - 1, -1, -1):
-            self.pattern9_attack[i][3] += frame_time
-            if self.pattern9_attack[i][3] >= self.pattern9_attack_prepare_duration:
-                if self.pattern9_attack[i][2] == 0.0:
-                    resource.stage3_effect_sound[15].set_volume(
-                        (resource.stage3_effect_sound_offset[15] * resource.effect) // 2)
-                    resource.stage3_effect_sound[15].play(1)
-                self.pattern9_attack[i][2] = min((self.pattern9_attack[i][2] + self.animation_speed * frame_time * 2),
-                                                 3)
-                if self.pattern9_attack[i][2] >= 3:
-                    self.pattern9_attack[i][4] += frame_time
-                    self.ramonatoscratch3(self.pattern9_attack[i])
-                    if self.pattern9_attack[i][4] >= self.pattern9_attack_duration:
-                        self.pattern9_attack.pop(i)
-                        continue
+       for i in range(len(self.pattern9_attack) - 1, -1, -1):
+              self.pattern9_attack[i][3] +=frame_time
+              if self.pattern9_attack[i][3] >= self.pattern9_attack_prepare_duration:
+                    if self.pattern9_attack[i][2]==0.0:
+                        resource.stage3_effect_sound[15].set_volume(
+                            (resource.stage3_effect_sound_offset[15] * resource.effect) // 2)
+                        resource.stage3_effect_sound[15].play(1)
+                    self.pattern9_attack[i][2] = min((self.pattern9_attack[i][2] + self.animation_speed * frame_time*2),3)
+                    if self.pattern9_attack[i][2]>=3:
+                        self.pattern9_attack[i][4] +=frame_time
+                        self.ramonatoscratch3(self.pattern9_attack[i])
+                        if self.pattern9_attack[i][4]>=self.pattern9_attack_duration:
+                            self.pattern9_attack.pop(i)
+                            continue
 
     def ramonatoscratch3(self,attack):
         if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
                    [attack[0], attack[1], 54 * 2,
-                    220 * 2]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+                        220 * 2]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
                 ramona.Ramona_invincible = True
@@ -644,15 +676,15 @@ class Boss_Siho:
 
     def pattern10(self, frame_time):
         if self.pattern10_state == 0:
-            self.bite_frame = self.bite_frame + self.animation_speed * frame_time
+            self.bite_frame =self.bite_frame + self.animation_speed * frame_time
             if self.bite_frame >= 0:
                 self.pattern10_state = 1
-                self.bite_frame = 0
+                self.bite_frame=0
         elif self.pattern10_state == 1:
             self.bite_frame = self.bite_frame + self.animation_speed * frame_time
             if self.bite_frame >= 3:
                 self.pattern10_state = 2
-                self.bite_frame = 0
+                self.bite_frame=0
                 self.pattern10_attack.extend([
                     [self.x + (1 if self.dir == '' else -1) * (i + 1) * 320, self.y, 0.0, 0.0,
                      True if i == 0 else False]
@@ -681,15 +713,17 @@ class Boss_Siho:
                     self.pattern10_attack.pop(i)
                     continue
 
-    def ramonatobite(self, attack):
+    def ramonatobite(self,attack):
         if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
                    [attack[0], attack[1], 160,
-                    160]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+                        160]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
                 ramona.Ramona_invincible = True
                 ramona.invincible_timer = 0.0
                 canvas_size.start_shake(0.5, 5.0)
+
+
 
     def pattern11(self, frame_time):
         if self.pattern11_state == 0:
@@ -703,10 +737,11 @@ class Boss_Siho:
                     (resource.stage3_effect_sound_offset[6] * resource.effect) // 2)
                 resource.stage3_effect_sound[6].play(1)
                 self.pattern11_state = 1
-                self.change_phase_2_frame = 0.0
+                self.change_phase_2_frame=0.0
                 canvas_size.start_shake(3.0, 5.0)
+
         elif self.pattern11_state == 1:
-            self.change_phase_2_frame = min((self.change_phase_2_frame + self.animation_speed * frame_time), 7)
+            self.change_phase_2_frame = min((self.change_phase_2_frame + self.animation_speed * frame_time),7)
             self.change_phase_2_frame_timer += frame_time
             if self.change_phase_2_frame_timer >= self.change_phase_2_frame_duration:
                 self.pattern11_state = 2
@@ -725,62 +760,60 @@ class Boss_Siho:
         self.burn_idle_timer += frame_time
         if self.burn_idle_timer >= self.burn_idle_time:
             self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
-            self.pattern_num = 13
+            self.pattern_num=13
             self.burn_idle_timer = 0.0
             if self.hp<=0:
                 self.pattern_num=14
-                canvas_size.start_shake(4.0, 5.0)
+                start_shake(4.0, 5.0)
+
 
     def pattern13(self, frame_time):
         if self.pattern13_state == 0:
             self.rush_frame = (self.rush_frame + self.animation_speed * frame_time)
             if self.rush_frame >= 2.8:
                 del self.rush_direction
-                if randint(0, 1) == 0:
-                    self.rush_direction = [0, 1, 0]  # 아래 위 아래
+                if randint(0,1)==0:
+                    self.rush_direction = [0,1,0] # 아래 위 아래
                 else:
-                    self.rush_direction = [1, 0, 1]  # 위 아래 위
+                    self.rush_direction = [1,0,1] # 위 아래 위
                 self.pattern13_state = 1
-                self.x = -500 if self.dir == 'h' else 2480
-                self.y = 300 if self.rush_direction[0] == 0 else 380
+                self.x= -500 if self.dir == 'h' else 2480
+                self.y=300 if self.rush_direction[0]==0 else 380
                 self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
                 self.check = self.x < 0
                 self.rush_frame = 0
-                self.rush_fire_direction = randint(0, 1)
-                self.rush_fire_num = 15
+                self.rush_fire_direction = randint(0,1)
+                self.rush_fire_num=15
         elif self.pattern13_state < 4:
             self.rush_prepare_timer += frame_time
             self.ramonatosiho_rush()
             if self.rush_prepare_timer >= self.rush_prepare_time:
 
-                if not self.sound_check:
-                    self.sound_check = True
+                if  not self.sound_check:
+                    self.sound_check=True
                     resource.stage3_effect_sound[12].set_volume(
                         (resource.stage3_effect_sound_offset[12] * resource.effect) // 2)
                     resource.stage3_effect_sound[12].play(1)
 
-
-
                 if self.check:
-                    self.x += self.rush_speed * frame_time
+                    self.x+= self.rush_speed * frame_time
                 else:
-                    self.x -= self.rush_speed * frame_time
+                    self.x-= self.rush_speed * frame_time
 
-                if self.pattern13_state == 3 and (
-                        (self.check and self.x >= 2480) or (not self.check and self.x <= -500)):
+                if self.pattern13_state == 3 and ((self.check and self.x >= 2480) or (not self.check and self.x <= -500)):
                     self.pattern13_state = 4
                     self.rush_frame = 0.0
-                    self.rush_prepare_timer = 0.0
-                    self.x = 1000
-                    self.y = 300
+                    self.rush_prepare_timer=0.0
+                    self.x=1000
+                    self.y=300
 
                 elif (self.check and self.x >= 2480) or (not self.check and self.x <= -500):
                     self.pattern13_state += 1
-                    self.rush_prepare_timer = 0.0
-                    self.y = 300 if self.rush_direction[self.pattern13_state - 1] == 0 else 380
+                    self.rush_prepare_timer=0.0
+                    self.y = 300 if self.rush_direction[ self.pattern13_state-1] == 0 else 380
                     self.dir = '' if ramona.Ramona_POS_X > self.x else 'h'
                     self.check = self.x < 0
-                    self.sound_check = False
+                    self.sound_check=False
         elif self.pattern13_state == 4:
             self.rush_frame = (self.rush_frame + self.animation_speed * frame_time)
             if self.rush_frame >= 7:
@@ -790,7 +823,7 @@ class Boss_Siho:
 
     def ramonatosiho_rush(self):
         if collide([ramona.Ramona_POS_X, ramona.Ramona_POS_Y, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
-                   [self.x, self.y, 192, 64]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+                   [self.x, self.y, 192,64]) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
                 ramona.Ramona_invincible = True
@@ -798,51 +831,47 @@ class Boss_Siho:
                 canvas_size.start_shake(0.5, 5.0)
 
     def update_pattern13_rush(self, frame_time):
-        if self.rush_fire_num == 15:
+        if self.rush_fire_num==15:
             # x y 프레임 방향 스테이트 갈지말지
-            self.rush_fire.append(
-                [100 if self.rush_fire_direction == 0 else 1900, 50, 0.0, self.rush_fire_direction, 0, False])
-            self.rush_fire_num -= 1
+            self.rush_fire.append([100 if self.rush_fire_direction==0 else 1900, 50, 0.0, self.rush_fire_direction, 0,False])
+            self.rush_fire_num-=1
             resource.stage3_effect_sound[16].set_volume(
                 (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
             resource.stage3_effect_sound[16].play(1)
         for i in range(len(self.rush_fire) - 1, -1, -1):
-            if self.rush_fire[i][4] == 0:
+            if self.rush_fire[i][4]==0:
                 self.rush_fire[i][2] = self.rush_fire[i][2] + self.animation_speed * frame_time
-                if self.rush_fire[i][2] >= 4 and self.rush_fire_num > 0:
-                    if self.rush_fire_num > 1:
-                        self.rush_fire.append(
-                            [self.rush_fire[i][0] - 30 if self.rush_fire_num % 2 == 1 else self.rush_fire[i][0] + 30,
-                             50 + (15 - self.rush_fire_num) * 50, 0.0, self.rush_fire_direction, 0, False])
+                if self.rush_fire[i][2]>=4 and self.rush_fire_num>0:
+                    if self.rush_fire_num>1:
+                        self.rush_fire.append([self.rush_fire[i][0]-30 if self.rush_fire_num%2==1 else self.rush_fire[i][0]+30, 50+(15-self.rush_fire_num)*50, 0.0, self.rush_fire_direction, 0,False])
                         resource.stage3_effect_sound[16].set_volume(
                             (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
                         resource.stage3_effect_sound[16].play(1)
-                    self.rush_fire_num -= 1
-                    self.rush_fire[i][4] = 1
+                    self.rush_fire_num-=1
+                    self.rush_fire[i][4]=1
                     self.rush_fire[i][2] = 0.0
-                    if self.rush_fire_num == 0:
+                    if self.rush_fire_num==0:
                         for j in range(len(self.rush_fire) - 1, -1, -1):
-                            self.rush_fire[j][5] = True
+                            self.rush_fire[j][5]=True
 
-            elif self.rush_fire[i][4] == 1:
-                self.rush_fire[i][2] = (self.rush_fire[i][2] + self.animation_speed * frame_time) % 4
+            elif self.rush_fire[i][4]==1:
+                self.rush_fire[i][2] = (self.rush_fire[i][2] + self.animation_speed * frame_time)%4
                 self.ramonatofireballs(self.rush_fire[i])
                 if self.rush_fire[i][5]:
-                    if self.rush_fire[i][3] == 0:
-                        self.rush_fire[i][0] += self.rush_fire_speed * frame_time
+                    if self.rush_fire[i][3]==0:
+                        self.rush_fire[i][0]+= self.rush_fire_speed * frame_time
                     else:
-                        self.rush_fire[i][0] -= self.rush_fire_speed * frame_time
-                    if self.rush_fire[i][0] < -50 or self.rush_fire[i][0] > 2100:
+                        self.rush_fire[i][0]-= self.rush_fire_speed * frame_time
+                    if self.rush_fire[i][0]<-50 or self.rush_fire[i][0]>2100:
                         self.rush_fire.pop(i)
                         continue
 
     def pattern14(self, frame_time):
         if self.pattern14_state == 0:
-            self.die_frame = min((self.die_frame + self.animation_speed * frame_time), 8)
+            self.die_frame = min((self.die_frame + self.animation_speed * frame_time),8)
             resource.stage3_effect_sound[18].set_volume(
                 (resource.stage3_effect_sound_offset[18] * resource.effect) // 2)
             resource.stage3_effect_sound[18].play(1)
-
             if self.die_frame >= 8:
                 self.die_timer += frame_time
 
@@ -852,31 +881,49 @@ class Boss_Siho:
                 resource.stage3_effect_sound[9].set_volume(
                     (resource.stage3_effect_sound_offset[9] * resource.effect) // 2)
                 resource.stage3_effect_sound[9].play(1)
-
         elif self.pattern14_state == 1:
-            self.die_frame = min((self.die_frame + self.animation_speed * frame_time), 17)
+            self.die_frame = min((self.die_frame + self.animation_speed * frame_time),17)
             if self.die_frame >= 17:
                 self.die_timer += frame_time
-            if self.die_timer >= self.die_time / 2:
-                self.die = True
+            if  self.die_timer >= self.die_time/2:
+                self.die=True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def draw(self):
         if not self.hit or (self.hit and (get_time() % 0.2) > 0.1):
             if not self.appear_animation:
-                boss_siho_appear_image[int(self.appear_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
-                                                                                   self.x - canvas_size.camera_x,
-                                                                                   self.y - canvas_size.camera_y,
-                                                                                   64 * SIZE, 64 * SIZE)
-            elif self.appear_animation and self.pattern_num == 0:
+                boss_siho_appear_image[int(self.appear_frame)].clip_composite_draw(0, 0, 64, 64,0,self.dir, self.x - canvas_size.camera_x,
+                                                                         self.y - canvas_size.camera_y,
+                                                                         64 * SIZE, 64 * SIZE)
+            elif self.appear_animation and self.pattern_num==0:
                 boss_siho_appear_image[int(self.appear_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
                                                                                    self.x - canvas_size.camera_x,
                                                                                    self.y - canvas_size.camera_y,
                                                                                    64 * SIZE, 64 * SIZE)
             elif self.appear_animation and self.pattern_num == 1:
                 boss_siho_idle_image[int(self.idle_frame)].clip_composite_draw(0, 0, 64, 64, 0, self.dir,
-                                                                               self.x - canvas_size.camera_x,
-                                                                               self.y - canvas_size.camera_y,
-                                                                               64 * SIZE, 64 * SIZE)
+                                                                                   self.x - canvas_size.camera_x,
+                                                                                   self.y - canvas_size.camera_y,
+                                                                                   64 * SIZE, 64 * SIZE)
             elif self.appear_animation and self.pattern_num == 2:
                 # 0: 준비 (3프레임), 1: 상승 (1프레임), 2: 착지/발사 (4프레임), 3: 정리 (5프레임)
                 if self.pattern2_state == 0:
@@ -932,19 +979,15 @@ class Boss_Siho:
                                                   self.y - canvas_size.camera_y,
                                                   64 * SIZE, 64 * SIZE)
                 if self.pattern4_attack:
-                    resource.boss_siho_rush_scratch_image[int(self.pattern4_attack_frame)].clip_composite_draw(0, 0,
-                                                                                                               128, 128,
-                                                                                                               0,
-                                                                                                               self.dir,
-                                                                                                               self.x - canvas_size.camera_x,
-                                                                                                               self.y - canvas_size.camera_y,
-                                                                                                               128 * 2,
-                                                                                                               128 * 2)
+                    resource.boss_siho_rush_scratch_image[int(self.pattern4_attack_frame)].clip_composite_draw(0, 0, 128, 128, 0, self.dir,
+                                                                                                                  self.x - canvas_size.camera_x,
+                                                                                                                  self.y - canvas_size.camera_y,
+                                                                                                                  128 * 2, 128 * 2)
                     if canvas_size.collide_check:
-                        draw_rectangle(self.x - canvas_size.camera_x - 128,
-                                       self.y - canvas_size.camera_y - 128,
-                                       self.x - canvas_size.camera_x + 128,
-                                       self.y - canvas_size.camera_y + 128)
+                        draw_rectangle(self.x - canvas_size.camera_x -128,
+                                       self.y - canvas_size.camera_y-128,
+                                       self.x - canvas_size.camera_x+128,
+                                       self.y - canvas_size.camera_y+128)
             elif self.appear_animation and self.pattern_num == 5:
                 if self.pattern5_state == 0:
                     frame_list = resource.boss_siho_scratch_prepare_image
@@ -960,14 +1003,10 @@ class Boss_Siho:
                                                   self.y - canvas_size.camera_y,
                                                   64 * SIZE, 64 * SIZE)
                 if self.pattern5_attack:
-                    resource.boss_siho_scratch_image[int(self.pattern5_attack_frame)].clip_composite_draw(0, 0, 128,
-                                                                                                          256,
-                                                                                                          math.radians(
-                                                                                                              -30), '',
-                                                                                                          self.pattern5_player_x - canvas_size.camera_x,
-                                                                                                          300 - canvas_size.camera_y,
-                                                                                                          128 * 2,
-                                                                                                          256 * 2)
+                    resource.boss_siho_scratch_image[int(self.pattern5_attack_frame)].clip_composite_draw(0, 0, 128, 256, math.radians(-30), '',
+                                                                                                                  self.pattern5_player_x - canvas_size.camera_x,
+                                                                                                                    300 - canvas_size.camera_y,
+                                                                                                                  128 * 2, 256 * 2)
                     if canvas_size.collide_check:
                         draw_rectangle(self.pattern5_player_x - canvas_size.camera_x - 54,
                                        300 - canvas_size.camera_y - 220,
@@ -975,17 +1014,15 @@ class Boss_Siho:
                                        300 - canvas_size.camera_y + 220)
 
             elif self.appear_animation and self.pattern_num == 6:
-                resource.boss_fox_change_image[int(self.change_phase_1_frame)].clip_composite_draw(0, 0, 128, 64, 0,
-                                                                                                   self.dir,
-                                                                                                   self.x - canvas_size.camera_x,
-                                                                                                   self.y - canvas_size.camera_y,
-                                                                                                   128 * SIZE,
-                                                                                                   64 * SIZE)
+                resource.boss_fox_change_image[int(self.change_phase_1_frame)].clip_composite_draw(0, 0, 128, 64, 0, self.dir,
+                                                                                                                  self.x - canvas_size.camera_x,
+                                                                                                                  self.y - canvas_size.camera_y,
+                                                                                                                  128 * SIZE, 64 * SIZE)
             elif self.appear_animation and self.pattern_num == 7:
                 resource.boss_fox_idle_image[int(self.fox_idle_frame)].clip_composite_draw(0, 0, 96, 64, 0, self.dir,
-                                                                                           self.x - canvas_size.camera_x,
-                                                                                           self.y - canvas_size.camera_y,
-                                                                                           96 * SIZE, 64 * SIZE)
+                                                                                                                  self.x - canvas_size.camera_x,
+                                                                                                                  self.y - canvas_size.camera_y,
+                                                                                                                  96 * SIZE, 64 * SIZE)
             elif self.appear_animation and self.pattern_num == 8:
                 if self.pattern8_state == 0:
                     frame_list = resource.boss_fox_jump_prepare_image
@@ -1002,21 +1039,21 @@ class Boss_Siho:
 
                 if self.pattern8_state == 0:
                     current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
-                                                      self.x - canvas_size.camera_x,
-                                                      self.y - canvas_size.camera_y,
-                                                      96 * SIZE, 64 * SIZE)
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  96 * SIZE, 64 * SIZE)
                 else:
                     current_frame.clip_composite_draw(0, 0, 96, 96, 0, self.dir,
-                                                      self.x - canvas_size.camera_x,
-                                                      self.y - canvas_size.camera_y,
-                                                      96 * SIZE, 96 * SIZE)
+                                                  self.x - canvas_size.camera_x,
+                                                  self.y - canvas_size.camera_y,
+                                                  96 * SIZE, 96 * SIZE)
 
             elif self.appear_animation and self.pattern_num == 9:
                 if self.pattern9_state == 0:
                     frame_list = resource.boss_fox_scratch_prepare_image
                 elif self.pattern9_state == 1:
                     frame_list = resource.boss_fox_scratch_cast_a_image
-                elif self.pattern9_state == 2:
+                elif  self.pattern9_state ==2:
                     frame_list = resource.boss_fox_scratch_cast_b_image
                 elif self.pattern9_state == 3:
                     frame_list = resource.boss_fox_scratch_over_image
@@ -1043,9 +1080,9 @@ class Boss_Siho:
                 current_frame = frame_list[min(int(self.bite_frame), len(frame_list) - 1)]
 
                 current_frame.clip_composite_draw(0, 0, 96 if self.pattern10_state != 1 else 128, 64,
-                                                  0, self.dir,
-                                                  self.x - canvas_size.camera_x,
-                                                  self.y - canvas_size.camera_y,
+                                                    0, self.dir,
+                                                    self.x - canvas_size.camera_x,
+                                                    self.y - canvas_size.camera_y,
                                                   (96 if self.pattern10_state != 1 else 128) * SIZE, 64 * SIZE)
 
             elif self.appear_animation and self.pattern_num == 11:
@@ -1059,19 +1096,17 @@ class Boss_Siho:
                     return
                 current_frame = frame_list[min(int(self.change_phase_2_frame), len(frame_list) - 1)]
                 current_frame.clip_composite_draw(0, 0, 96, 64, 0, self.dir,
-                                                  self.x - canvas_size.camera_x,
-                                                  self.y - canvas_size.camera_y,
-                                                  96 * SIZE, 64 * SIZE)
+                                                    self.x - canvas_size.camera_x,
+                                                    self.y - canvas_size.camera_y,
+                                                    96 * SIZE, 64 * SIZE)
 
             elif self.appear_animation and self.pattern_num == 12:
-                resource.boss_fox_burning_idle_image[int(self.burn_idle_frame)].clip_composite_draw(0, 0, 96, 64, 0,
-                                                                                                    self.dir,
-                                                                                                    self.x - canvas_size.camera_x,
-                                                                                                    self.y - canvas_size.camera_y,
-                                                                                                    96 * SIZE,
-                                                                                                    64 * SIZE)
+                resource.boss_fox_burning_idle_image[int(self.burn_idle_frame)].clip_composite_draw(0, 0, 96, 64, 0, self.dir,
+                                                                                                                  self.x - canvas_size.camera_x,
+                                                                                                                  self.y - canvas_size.camera_y,
+                                                                                                                  96 * SIZE, 64 * SIZE)
             elif self.appear_animation and self.pattern_num == 13:
-                if self.pattern13_state < 4:
+                if self.pattern13_state <4:
                     frame_list = resource.boss_fox_rush_prepare_image
                 elif self.pattern13_state == 4:
                     frame_list = resource.boss_fox_rush_over_image
@@ -1085,27 +1120,34 @@ class Boss_Siho:
                                                   self.y - canvas_size.camera_y,
                                                   192 * SIZE, 64 * SIZE)
                 if self.rush_prepare_timer <= self.rush_prepare_time and 4 > self.pattern13_state > 0:
-                    x = 0
-                    y = self.y
+                    x =0
+                    y =self.y
                     for i in range(40):
                         boss_siho_rush_warning_image[0].clip_composite_draw(0, 0, 32, 32, 0, self.dir,
-                                                                            x - canvas_size.camera_x + i * 64,
-                                                                            y - canvas_size.camera_y,
-                                                                            32 * 2, 32 * 2)
+                                                          x - canvas_size.camera_x+ i*64,
+                                                          y - canvas_size.camera_y,
+                                                          32* 2, 32 * 2)
+
+
 
                 if canvas_size.collide_check and 4 > self.pattern13_state > 0:
-                    draw_rectangle(self.x - canvas_size.camera_x - 192 / 2,
-                                   self.y - canvas_size.camera_y - 64 / 2,
-                                   self.x - canvas_size.camera_x + 192 / 2,
-                                   self.y - canvas_size.camera_y + 64 / 2)
+                    draw_rectangle(self.x - canvas_size.camera_x - 192/2,
+                                   self.y - canvas_size.camera_y - 64/2,
+                                   self.x - canvas_size.camera_x + 192/2,
+                                   self.y - canvas_size.camera_y + 64/2)
 
             elif self.appear_animation and self.pattern_num == 14:
                 resource.boss_fox_die_image[int(self.die_frame)].clip_composite_draw(0, 0, 96, 64, 0, self.dir,
-                                                                                     self.x - canvas_size.camera_x,
-                                                                                     self.y - canvas_size.camera_y,
-                                                                                     96 * SIZE, 64 * SIZE)
+                                                                                  self.x - canvas_size.camera_x,
+                                                                                  self.y - canvas_size.camera_y,
+                                                                                  96 * SIZE, 64 * SIZE)
 
-        if self.hp >= 0 and self.pattern_num != 14:
+
+
+
+
+
+        if self.hp >= 0 and self.pattern_num!=14:
             for ball_a in self.fireballs:
                 if ball_a[6]:
                     frame_idx = int(ball_a[5])
@@ -1125,8 +1167,7 @@ class Boss_Siho:
                 frame_idx = int(ball_b[4])
                 if ball_b[5]:
                     fire_image = resource.boss_siho_fire_b_image[frame_idx]
-                else:
-                    fire_image = resource.boss_siho_fire_b_appear_image[frame_idx]
+                else: fire_image = resource.boss_siho_fire_b_appear_image[frame_idx]
 
                 fire_image.draw(ball_b[0] - canvas_size.camera_x,
                                 ball_b[1] - canvas_size.camera_y,
@@ -1139,11 +1180,10 @@ class Boss_Siho:
                                    ball_b[1] + 16 - canvas_size.camera_y)
 
             for attack in self.pattern9_attack:
-                resource.boss_siho_scratch_image[int(attack[2])].clip_composite_draw(0, 0, 128, 256, math.radians(-30),
-                                                                                     '',
-                                                                                     attack[0] - canvas_size.camera_x,
-                                                                                     attack[1] - canvas_size.camera_y,
-                                                                                     128 * 2, 256 * 2)
+                resource.boss_siho_scratch_image[int(attack[2])].clip_composite_draw(0, 0, 128, 256, math.radians(-30), '',
+                                                                                                                  attack[0] - canvas_size.camera_x,
+                                                                                                                    attack[1] - canvas_size.camera_y,
+                                                                                                                  128 * 2, 256 * 2)
                 if canvas_size.collide_check:
                     draw_rectangle(attack[0] - canvas_size.camera_x - 54,
                                    attack[1] - canvas_size.camera_y - 220,
@@ -1152,9 +1192,9 @@ class Boss_Siho:
 
             for bite in self.pattern10_attack:
                 resource.boss_siho_bite_image[int(bite[2])].clip_composite_draw(0, 0, 160, 160, 0, '',
-                                                                                bite[0] - canvas_size.camera_x,
+                                                                              bite[0] - canvas_size.camera_x,
                                                                                 bite[1] - canvas_size.camera_y,
-                                                                                160 * 2, 160 * 2)
+                                                                              160 * 2, 160 * 2)
                 if canvas_size.collide_check:
                     draw_rectangle(bite[0] - canvas_size.camera_x - 80,
                                    bite[1] - canvas_size.camera_y - 80,
@@ -1162,9 +1202,9 @@ class Boss_Siho:
                                    bite[1] - canvas_size.camera_y + 80)
 
             for fire in self.rush_fire:
-                if fire[4] == 0:
+                if fire[4]==0:
                     frame_list = resource.boss_siho_fire_a_appear_image
-                elif fire[4] == 1:
+                elif fire[4]==1:
                     frame_list = resource.boss_siho_fire_a_image
                 else:
                     continue
@@ -1174,14 +1214,19 @@ class Boss_Siho:
                                    fire[1] - canvas_size.camera_y,
                                    32 * 2, 32 * 2)
 
-                if canvas_size.collide_check and fire[4] == 1:
+                if canvas_size.collide_check and fire[4]==1:
                     draw_rectangle(fire[0] - canvas_size.camera_x - 16,
                                    fire[1] - canvas_size.camera_y - 16,
                                    fire[0] - canvas_size.camera_x + 16,
                                    fire[1] - canvas_size.camera_y + 16)
 
+
+
             self.shape.draw(0.4, 0.4)
             self.hp_bar.draw(self.hp, self.boss_hp)
+
+
+
 
     def hit_shio_animation(self):
         self.shape = self.pattern_set[randint(0, resource.pattern_number)]
@@ -1189,6 +1234,7 @@ class Boss_Siho:
         self.shape.y = self.y + self.height * 0.2
         self.hit_animation = False
         self.hit = True
+
 
     def hit_timer(self, frame_time):
         self.hit_time += frame_time
