@@ -16,6 +16,10 @@ def init():
         black_background = load_image('배경\\black_background.png')
     current_image = 0
     alpha = 0
+    resource.background_sound[1].stop()
+    resource.background_sound[9].set_volume(
+        (resource.background_sound_offset[9] * resource.effect) // 2)
+    resource.background_sound[9].play(-1)
 
 def update(frame_time, events):
     global current_image, alpha
