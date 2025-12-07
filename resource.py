@@ -395,6 +395,10 @@ boss3=False
 end_image=[]
 ending=False
 
+#사운드
+background_sound=[]
+background_sound_offset=[]
+
 #블록
 blocks=[]
 
