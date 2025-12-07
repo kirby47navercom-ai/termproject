@@ -305,6 +305,10 @@ class DieState:
             self.die_frame = (self.die_frame + self.die_animation_speed * frame_time * 2) % 4
             canvas_size.start_shake(0.5, 5)
 
+            resource.stage2_effect_sound[3].set_volume(
+                (resource.stage2_effect_sound_offset[3] * resource.effect) // 2)
+            resource.stage2_effect_sound[3].play(1)
+
     def draw(self):
         left, bottom, width, height = boss_kitty_die_coordinate[0:4]
         self.die_image[int(self.die_frame)].draw(self.x - canvas_size.shake_x, self.y - canvas_size.shake_y,
@@ -314,7 +318,6 @@ class DieState:
                            self.y - height * SIZE * 1.5 / 2,
                            self.x + width * SIZE * 1.5 / 2,
                            self.y + height * SIZE * 1.5 / 2)
-
 
 class Boss_Kitty:
     image = None
