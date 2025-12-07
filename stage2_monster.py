@@ -2,11 +2,16 @@ import draw_gesture
 import background_2stage
 import hellkitty
 import ramona
+import resource
 
 
 class Stage2_Monster:
     def __init__(self):
         self.boss = hellkitty.Boss_Kitty()
+        self.game_start = False
+        resource.background_sound[5].set_volume(
+            (resource.background_sound_offset[5] * resource.bgm) // 2)
+        resource.background_sound[5].play(-1)
 
     def update(self, frame_time, events=None):
         if '하트' == draw_gesture.result:
