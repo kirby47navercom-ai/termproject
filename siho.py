@@ -391,6 +391,9 @@ class Boss_Siho:
             if not self.pattern4_enter:
                 self.pattern4_player_x = ramona.Ramona_POS_X
                 self.pattern4_enter = True
+                resource.stage3_effect_sound[16].set_volume(
+                    (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
+                resource.stage3_effect_sound[16].play(1)
 
             self.pattern4_move_timer += frame_time
             if math.fabs(self.x - ramona.Ramona_POS_X) > 0.5:
