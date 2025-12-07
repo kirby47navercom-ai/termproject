@@ -28,6 +28,9 @@ def update(frame_time, events):
         if event.type == SDL_MOUSEBUTTONDOWN:
             if alpha < 255:
                 alpha = 255  # 현재 이미지 바로 다 보이게
+                resource.ui_effect_sound[0].set_volume(
+                    (resource.ui_effect_sound_offset[0] * resource.effect) // 2)
+                resource.ui_effect_sound[0].play(1)
 
             else:
                 if current_image < 6:
