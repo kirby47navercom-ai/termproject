@@ -540,6 +540,9 @@ class Boss_Siho:
             if self.y_velocity < 0:
                 self.pattern8_state = 2
                 self.jump_frame = 0
+                resource.stage3_effect_sound[4].set_volume(
+                    (resource.stage3_effect_sound_offset[4] * resource.effect) // 2)
+                resource.stage3_effect_sound[4].play(1)
 
         elif self.pattern8_state == 2:
             self.x += self.v_x * frame_time
