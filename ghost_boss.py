@@ -1,14 +1,14 @@
 from boss_hp import Boss_HP
 from pattern import *
 from resource import *
+import resource
 from random import randint
-from canvas_size import *
 import canvas_size
 import ramona
-import resource
 
 
 SIZE = 1.2
+
 
 class CutsceneState:
     def enter(self, event):
@@ -33,7 +33,6 @@ class CutsceneState:
         left, bottom, width, height, jx, jy = a
         self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
                                        self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
-
 
         if canvas_size.collide_check:
             draw_rectangle(self.x - width * SIZE / 2,
@@ -169,7 +168,6 @@ class Pattern1State:
                            self.y + height * SIZE / 2)
 
 
-
 class Pattern2State:
     def enter(self, event):
         self.attack_timer = 0.0
@@ -208,6 +206,7 @@ class Pattern2State:
 
         self.shape.draw()
 
+
 class HitState:
     def enter(self, event):
         self.hit_frame = 0
@@ -233,13 +232,11 @@ class HitState:
         left, bottom, width, height, jx, jy = a
         self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
                                        self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
-
         if canvas_size.collide_check:
             draw_rectangle(self.x - width * SIZE / 2,
                            self.y - height * SIZE / 2,
                            self.x + width * SIZE / 2,
                            self.y + height * SIZE / 2)
-
 
 
 class DieState:
@@ -266,6 +263,11 @@ class DieState:
         left, bottom, width, height, jx, jy = a
         self.image.clip_composite_draw(left, bottom, width, height, 0, 'h', self.x + jx - canvas_size.shake_x,
                                        self.y + jy - canvas_size.shake_y, width * SIZE, height * SIZE)
+        if canvas_size.collide_check:
+            draw_rectangle(self.x - width * SIZE / 2,
+                           self.y - height * SIZE / 2,
+                           self.x + width * SIZE / 2,
+                           self.y + height * SIZE / 2)
 
 
 class Boss_Ghost:
