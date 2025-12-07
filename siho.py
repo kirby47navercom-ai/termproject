@@ -849,6 +849,9 @@ class Boss_Siho:
             if self.die_timer >= self.die_time:
                 self.pattern14_state = 1
                 self.die_timer = 0.0
+                resource.stage3_effect_sound[9].set_volume(
+                    (resource.stage3_effect_sound_offset[9] * resource.effect) // 2)
+                resource.stage3_effect_sound[9].play(1)
 
         elif self.pattern14_state == 1:
             self.die_frame = min((self.die_frame + self.animation_speed * frame_time), 17)
