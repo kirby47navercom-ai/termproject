@@ -24,27 +24,37 @@ def update(frame_time,events):
             x, y = event.x, get_canvas_height() - 1 - event.y
             if 410 <= x <= 618 and 30 <= y <= 100:
                 game_framework.change_mode(home_mode)
-
+                resource.ui_effect_sound[0].set_volume(
+                    (resource.ui_effect_sound_offset[0] * resource.effect) // 2)
+                resource.ui_effect_sound[0].play(1)
 
             elif 660 <= x <= 868 and 30 <= y <= 100:
                 game_framework.push_mode(option_mode)
-
+                resource.ui_effect_sound[0].set_volume(
+                    (resource.ui_effect_sound_offset[0] * resource.effect) // 2)
+                resource.ui_effect_sound[0].play(1)
 
 def draw():
     # 로고 이미지를 그려준다
-    image.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    image.draw(canvas_size.canvaswidth//2, canvas_size.canvasheight//2)
     if canvas_size.collide_check:
         i = 120
-        j = 100
-        draw_rectangle(410, 30, 618, 100)  # 시작
-        draw_rectangle(660, 30, 868, 100)  # 설정
+        j=100
+        draw_rectangle(410, 30, 618, 100)#시작
+        draw_rectangle(660, 30, 868, 100)#설정
+
+    pass
 
 def finish():
     global image
     del image
+    resource.background_sound[0].stop()
+    pass
+
+
+
 
 def pause():
     pass
-
 def resume():
     pass
