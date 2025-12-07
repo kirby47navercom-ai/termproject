@@ -5,19 +5,20 @@ import home_mode
 import ramona
 import resource
 
+
 black_background = None
 clear = None
 food = []
 perfect = None
 
-def init(): # 로고 이미지를 로드
+
+def init():
+    # 로고 이미지를 로드
     global black_background,clear,food,perfect
 
     resource.ui_effect_sound[9].set_volume(
         (resource.ui_effect_sound_offset[9] * resource.effect) // 2)
     resource.ui_effect_sound[9].play(1)
-
-
 
     if black_background == None:
         black_background = load_image('배경\\black_background.png')
@@ -25,7 +26,6 @@ def init(): # 로고 이미지를 로드
         food = [load_image('배경\\sugar.png'),load_image('배경\\water.png'),
                 load_image('배경\\lemon.png')]
         perfect = load_image('배경\\perfect_no.png')
-
 
     if resource.boss1:
         if ramona.MAX_HP != ramona.CURRENT_HP:
@@ -73,6 +73,10 @@ def init(): # 로고 이미지를 로드
                 resource.coin += 1
                 resource.stage3_coin = 2
 
+
+
+
+
 def update(frame_time,events):
     for event in events:
         if event.type == SDL_MOUSEBUTTONDOWN:
@@ -84,28 +88,40 @@ def update(frame_time,events):
                     resource.boss2 = False
                 elif resource.boss3:
                     resource.boss3 = False
-
+                resource.ui_effect_sound[4].set_volume(
+                    (resource.ui_effect_sound_offset[4] * resource.effect) // 2)
+                resource.ui_effect_sound[4].play(1)
                 game_framework.pop_mode()
                 game_framework.change_mode(home_mode)
-        elif 678 <= x <= 784 and 67 <= y <= 175:
-            import stage1_manager
-            import stage2_manager
-            import stage3_manager
-            if resource.boss1:
-                resource.boss1 = False
-                game_framework.pop_mode()
+            elif 678 <= x <= 784 and 67 <= y <= 175:
+                import stage1_manager
+                import stage2_manager
+                import stage3_manager
+                if resource.boss1:
+                    resource.boss1 = False
+                    game_framework.pop_mode()
+                    resource.ui_effect_sound[4].set_volume(
+                        (resource.ui_effect_sound_offset[4] * resource.effect) // 2)
+                    resource.ui_effect_sound[4].play(1)
+                    game_framework.change_mode(stage1_manager)
+                elif resource.boss2:
+                    resource.boss2 = False
+                    game_framework.pop_mode()
+                    resource.ui_effect_sound[4].set_volume(
+                        (resource.ui_effect_sound_offset[4] * resource.effect) // 2)
+                    resource.ui_effect_sound[4].play(1)
+                    game_framework.change_mode(stage2_manager)
+                elif resource.boss3:
+                    resource.boss3 = False
+                    game_framework.pop_mode()
+                    resource.ui_effect_sound[4].set_volume(
+                        (resource.ui_effect_sound_offset[4] * resource.effect) // 2)
+                    resource.ui_effect_sound[4].play(1)
+                    game_framework.change_mode(stage3_manager)
 
-                game_framework.change_mode(stage1_manager)
-            elif resource.boss2:
-                resource.boss2 = False
-                game_framework.pop_mode()
 
-                game_framework.change_mode(stage2_manager)
-            elif resource.boss3:
-                resource.boss3 = False
-                game_framework.pop_mode()
 
-                game_framework.change_mode(stage3_manager)
+
 
 def draw():
     if black_background:
@@ -130,9 +146,15 @@ def draw():
 
         draw_rectangle(678, 67, 784, 175)
 
+
+
+
+
 def finish():
 
     pass
+
+
 
 def pause():
     pass
