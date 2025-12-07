@@ -230,6 +230,9 @@ class DieState:
         self.die_frame = 0
         self.shape.name = 'No'
         self.pattern_num = -1
+        resource.stage1_effect_sound[2].set_volume(
+            (resource.stage1_effect_sound_offset[2] * resource.effect) // 2)
+        resource.stage1_effect_sound[2].play(1)
 
     def exit(self, event):
         pass
