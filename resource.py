@@ -698,6 +698,17 @@ def load_resources():
         attack_effect_sound.append(load_wav('sound\\mixkit-samurai-sword-impact-2789.wav'))
         attack_effect_sound_offset.append(32)
 
+        ramona_effect_sound.append(load_wav('sound\\[31] hop.ogg'))
+        ramona_effect_sound_offset.append(64)
+        ramona_effect_sound.append(load_wav('sound\\[32] hop2.ogg'))
+        ramona_effect_sound_offset.append(64)
+        ramona_effect_sound.append(load_wav('sound\\Dash.wav'))
+        ramona_effect_sound_offset.append(32)
+        ramona_effect_sound.append(load_wav('sound\\Hit.wav'))
+        ramona_effect_sound_offset.append(32)
+        ramona_effect_sound.append(load_wav('sound\\Explode #32055.wav'))
+        ramona_effect_sound_offset.append(32)
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
