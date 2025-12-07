@@ -9,14 +9,15 @@ circle0 = []
 circle1 = []
 
 def init():
-    global option, circle0, circle1, black_background
+    # 로고 이미지를 로드
+    global option,circle0,circle1,black_background
 
     if black_background == None:
         option = load_image('배경\\option.png')
         circle0 = [load_image(f'배경\\circle{str(i + 1)}.png') for i in range(5)]
         circle1 = [load_image(f'배경\\circle{str(i + 6)}.png') for i in range(5)]
         black_background = load_image('배경\\black_background.png')
-
+    pass
 
 def update(frame_time,events):
     for event in events:
@@ -79,6 +80,7 @@ def update(frame_time,events):
                 game_framework.pop_mode()
 
 
+
 def draw():
     black_background.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
     option.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
@@ -98,9 +100,15 @@ def draw():
         draw_rectangle(955, 190, 1025, 260)  # 10
         draw_rectangle(1055, 515, 1185, 640)  # 끄기
 
+
+
+
 def finish():
 
     pass
+
+
+
 def pause():
     pass
 def resume():
