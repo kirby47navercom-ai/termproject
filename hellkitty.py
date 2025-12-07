@@ -239,6 +239,9 @@ class Pattern3_State:  # 부채꼴 탄막
             self.attack4_duration_timer += frame_time
             if self.attack4_spawn_time >= self.attack4_spawn_interval:
                 self.attack4_spawn_time = 0.0
+                resource.stage2_effect_sound[1].set_volume(
+                    (resource.stage2_effect_sound_offset[1] * resource.effect) // 2)
+                resource.stage2_effect_sound[1].play(1)
                 spawn_x = self.x
                 spawn_y = canvas_size.canvasheight // 2
                 angle_deg = random.uniform(135, 225)
