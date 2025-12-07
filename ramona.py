@@ -320,6 +320,10 @@ class HitState:
     def enter(self, event):
         self.frame = 0
         self.hit_timer = 0.2
+        if draw_gesture.f_pressed:
+            resource.ramona_effect_sound[3].set_volume(
+                (resource.ramona_effect_sound_offset[3] * resource.effect) // 2)
+            resource.ramona_effect_sound[3].play(1)
 
     def exit(self, event):
         pass
