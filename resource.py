@@ -658,6 +658,37 @@ def load_resources():
     for i in range(5):
         fox_flame_ball_image.append(load_image(f'3stage\\Fox Flame Ball{str(i + 1)}.png'))
 
+        # 사운드
+        background_sound.append(load_music('sound\\Main Menu.wav'))
+        background_sound_offset.append(64)
+
+        background_sound.append(load_music('sound\\02. Menu.mp3'))
+        background_sound_offset.append(4)
+
+        background_sound.append(load_music('sound\\16. Cascade.mp3'))
+        background_sound_offset.append(10)
+
+        background_sound.append(load_music('sound\\source_Resources_backgroundsound.mp3'))
+        background_sound_offset.append(10)
+
+        background_sound.append(load_music('sound\\01. Final Boss Theme.mp3'))
+        background_sound_offset.append(10)
+
+        background_sound.append(load_music('2stage\\hellokitty.ogg'))
+        background_sound_offset.append(10)
+
+        background_sound.append(load_wav('2stage\\boss_scene.ogg'))
+        background_sound_offset.append(10)
+
+        background_sound.append(load_music('2stage\\Boss1.mp3'))
+        background_sound_offset.append(10)
+
+        background_sound.append(load_music('3stage\\Battle with Fox.wav'))
+        background_sound_offset.append(10)
+
+        background_sound.append(load_music('sound\\mari.mp3'))
+        background_sound_offset.append(32)
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
