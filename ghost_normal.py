@@ -81,6 +81,11 @@ class Ghost:
         if self.hp <= 0 and not self.die_animation:
             self.die_animation = True
             self.shape.name = 'No'
+            resource.stage1_effect_sound[1].set_volume(
+                (resource.stage1_effect_sound_offset[1] * resource.effect) // 2)
+            resource.stage1_effect_sound[1].play(1)
+
+        pass
 
     def die_ghost_animation(self, frame_time):
         self.die_frame = (self.die_frame + self.die_animation_speed * frame_time) % 4
