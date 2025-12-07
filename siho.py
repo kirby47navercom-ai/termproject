@@ -699,6 +699,9 @@ class Boss_Siho:
                 resource.stage3_effect_sound[10].play(1)
             self.change_phase_2_frame = self.change_phase_2_frame + self.animation_speed * frame_time
             if self.change_phase_2_frame >= 8:
+                resource.stage3_effect_sound[6].set_volume(
+                    (resource.stage3_effect_sound_offset[6] * resource.effect) // 2)
+                resource.stage3_effect_sound[6].play(1)
                 self.pattern11_state = 1
                 self.change_phase_2_frame = 0.0
                 canvas_size.start_shake(3.0, 5.0)
