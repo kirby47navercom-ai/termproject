@@ -273,6 +273,16 @@ class JumpState:
             if self.jump_count == 0:
                 self.jump_count = 1
 
+        if self.jump_count == 1 and draw_gesture.f_pressed:
+            resource.ramona_effect_sound[0].set_volume(
+                (resource.ramona_effect_sound_offset[0] * resource.effect) // 2)
+            resource.ramona_effect_sound[0].play(1)
+
+        if self.jump_count == 2 and draw_gesture.f_pressed:
+            resource.ramona_effect_sound[1].set_volume(
+                (resource.ramona_effect_sound_offset[1] * resource.effect) // 2)
+            resource.ramona_effect_sound[1].play(1)
+
     def exit(self, event):
         pass
 
