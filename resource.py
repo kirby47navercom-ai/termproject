@@ -398,6 +398,25 @@ ending=False
 #사운드
 background_sound=[]
 background_sound_offset=[]
+#메인, 인게임, 상점,
+# 스테이지1,스테이지 1 보스, 스테이지2, 스테이지3
+#엔딩
+attack_effect_sound=[]
+attack_effect_sound_offset=[]
+ramona_effect_sound=[]
+ramona_effect_sound_offset=[]
+ui_effect_sound=[]
+ui_effect_sound_offset=[]
+main_effect_sound=[]
+main_effect_sound_offset=[]
+shop_effect_sound=[]
+shop_effect_sound_offset=[]
+stage1_effect_sound=[]
+stage1_effect_sound_offset=[]
+stage2_effect_sound=[]
+stage2_effect_sound_offset=[]
+stage3_effect_sound=[]
+stage3_effect_sound_offset=[]
 
 #블록
 blocks=[]
