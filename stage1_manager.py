@@ -14,11 +14,12 @@ import stage_fail_mode
 ramona_instance = None
 monster_instance = None
 
+
 def init():
     global ramona_instance, monster_instance
     game_world.clear()
 
-    canvas_size.start_shake(0, 0)
+    canvas_size.start_shake(0,0)
 
     stage_background = background_1stage.Background()
     ramona.GROUND_LEVEL = 100
@@ -47,11 +48,11 @@ def init():
     ramona.Ramona_dead = False
 
 
-def update(frame_time,events):
+def update(frame_time, events):
     if not ramona.Ramona_dead:
         game_world.update(frame_time, events)
     elif ramona.Ramona_retry:
-        resource.boss1 = True
+        resource.boss1 =True
         ramona.Ramona_dead = False
         ramona.CURRENT_HP = ramona.MAX_HP
         game_framework.push_mode(stage_fail_mode)
@@ -60,8 +61,11 @@ def update(frame_time,events):
         if ramona_instance:
             ramona_instance.update(frame_time, events)
 
+
     if resource.boss1 and not ramona.Ramona_retry:
         game_framework.push_mode(stage_clear_mode)
+
+
 
     if canvas_size.shake_timer > 0:
         canvas_size.update_shake(frame_time)
@@ -69,13 +73,16 @@ def update(frame_time,events):
 
 
 
-
 def draw():
     game_world.render()
 
+
 def finish():
     game_world.clear()
+    resource.background_sound[3].stop()
+    resource.background_sound[4].stop()
 
 def pause(): pass
+
 
 def resume(): pass
