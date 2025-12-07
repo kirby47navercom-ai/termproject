@@ -18,18 +18,18 @@ talk = []
 
 def init():
     # 로고 이미지를 로드
-    global coin, coin_font, background, nanahira, inventory, weapon1, weapon2, weapon3, weapon4, talk
+    global coin,coin_font,background,nanahira, inventory,weapon1,weapon2,weapon3,weapon4,talk
 
     if background == None:
         background = load_image('배경\\na25_background.png')
-        nanahira = [load_image('배경\\na1.png'), load_image('배경\\na2.png')]
+        nanahira = [load_image('배경\\na1.png'),load_image('배경\\na2.png')]
         inventory = load_image('배경\\inventory.png')
         weapon1 = load_image('배경\\weapon1_on.png')
-        weapon2 = [load_image('배경\\weapon2_on.png'), load_image('배경\\weapon2_buy.png')]
-        weapon3 = [load_image('배경\\weapon3_on.png'), load_image('배경\\weapon3_buy.png')]
-        weapon4 = [load_image('배경\\weapon4_on.png'), load_image('배경\\weapon4_buy.png')]
-        talk = [load_image('배경\\talk1.png'), load_image('배경\\talk2.png'),
-                load_image('배경\\talk3.png'), load_image('배경\\talk4.png')]
+        weapon2 = [load_image('배경\\weapon2_on.png'),load_image('배경\\weapon2_buy.png')]
+        weapon3 = [load_image('배경\\weapon3_on.png'),load_image('배경\\weapon3_buy.png')]
+        weapon4 = [load_image('배경\\weapon4_on.png'),load_image('배경\\weapon4_buy.png')]
+        talk = [load_image('배경\\talk1.png'),load_image('배경\\talk2.png'),
+                load_image('배경\\talk3.png'),load_image('배경\\talk4.png')]
         coin = load_image('배경\\coin.png')
         coin_font = load_font('Font\\경기천년바탕_Bold.ttf', 80)
 
@@ -165,6 +165,8 @@ def update(frame_time,events):
                 resource.nanahira = 0
                 resource.talk = 0
 
+
+
 def draw():
     background.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
 
@@ -193,39 +195,44 @@ def draw():
     elif resource.weapon4 == 1:
         weapon4[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
 
-    if resource.talk == 1:
+    if resource.talk==1:
         talk[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    elif resource.talk == 2:
+    elif resource.talk==2:
         talk[1].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    elif resource.talk == 3:
+    elif resource.talk==3:
         talk[2].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    elif resource.talk == 4:
+    elif resource.talk==4:
         talk[3].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
 
     coin.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    coin_font.draw(80, canvas_size.canvasheight - 40, 'X ' + str(resource.coin), (0, 0, 0))
+    coin_font.draw(80, canvas_size.canvasheight-40, 'X '+str(resource.coin), (0, 0, 0))
     if canvas_size.collide_check:
-        draw_rectangle(495, 605, 855, 670)  # 집
+        draw_rectangle(495, 605, 855, 670)  #집
 
-        draw_rectangle(833, 540, 873, 580)  # 망치 1 ?
+        draw_rectangle(833, 540, 873, 580)  #망치 1 ?
 
-        draw_rectangle(1060, 540, 1100, 580)  # 망치 2 ?
+        draw_rectangle(1060, 540, 1100, 580)    #망치 2 ?
 
-        draw_rectangle(835, 245, 875, 285)  # 망치 3 ?
+        draw_rectangle(835, 245, 875, 285)  #망치 3 ?
 
-        draw_rectangle(1060, 245, 1100, 285)  # 망치 4 ?
+        draw_rectangle(1060, 245, 1100, 285)    #망치 4 ?
 
-        draw_rectangle(860, 318, 1010, 390)  # 망치 1 고르기
+        draw_rectangle(860, 318, 1010, 390) #망치 1 고르기
 
-        draw_rectangle(1090, 318, 1240, 390)  # 망치 2 고르기
+        draw_rectangle(1090, 318, 1240, 390)    #망치 2 고르기
 
-        draw_rectangle(860, 28, 1010, 100)  # 망치 3 고르기
+        draw_rectangle(860, 28, 1010, 100)    # 망치 3 고르기
 
         draw_rectangle(1090, 28, 1240, 100)  # 망치 4 고르기
 
-def finish():
 
+
+
+def finish():
+    resource.background_sound[2].stop()
     pass
+
+
 
 def pause():
     pass
