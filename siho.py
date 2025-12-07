@@ -619,6 +619,10 @@ class Boss_Siho:
         for i in range(len(self.pattern9_attack) - 1, -1, -1):
             self.pattern9_attack[i][3] += frame_time
             if self.pattern9_attack[i][3] >= self.pattern9_attack_prepare_duration:
+                if self.pattern9_attack[i][2] == 0.0:
+                    resource.stage3_effect_sound[15].set_volume(
+                        (resource.stage3_effect_sound_offset[15] * resource.effect) // 2)
+                    resource.stage3_effect_sound[15].play(1)
                 self.pattern9_attack[i][2] = min((self.pattern9_attack[i][2] + self.animation_speed * frame_time * 2),
                                                  3)
                 if self.pattern9_attack[i][2] >= 3:
