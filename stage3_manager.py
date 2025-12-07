@@ -14,6 +14,7 @@ import stage_fail_mode
 ramona_instance = None
 monster_instance = None
 
+
 def init():
     global ramona_instance, monster_instance
     game_world.clear()
@@ -47,7 +48,7 @@ def init():
     ramona.Ramona_dead = False
 
 
-def update(frame_time,events):
+def update(frame_time, events):
     if not ramona.Ramona_dead:
         game_world.update(frame_time, events)
     elif ramona.Ramona_retry:
@@ -70,15 +71,16 @@ def update(frame_time,events):
     canvas_size.camera_y = canvas_size.scroll_y + canvas_size.shake_y
 
 
-
-
 def draw():
     game_world.render()
 
+
 def finish():
     game_world.clear()
+    resource.background_sound[8].stop()
+
 
 def pause(): pass
 
-def resume(): pass
 
+def resume(): pass
