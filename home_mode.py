@@ -34,6 +34,10 @@ def init():
         lemon = load_image('배경\\clear3.png')
         coin_font = load_font('Font\\경기천년바탕_Bold.ttf', 80)
 
+    resource.background_sound[1].set_volume(
+        (resource.background_sound_offset[1] * resource.bgm) // 2)
+    resource.background_sound[1].play(-1)
+
 
 def update(frame_time,events):
     if not resource.ending and resource.stage1_clear != 0 and resource.stage2_clear != 0 and resource.stage3_clear != 0:
