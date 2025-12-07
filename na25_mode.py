@@ -33,6 +33,10 @@ def init():
         coin = load_image('배경\\coin.png')
         coin_font = load_font('Font\\경기천년바탕_Bold.ttf', 80)
 
+    resource.background_sound[2].set_volume(
+        (resource.background_sound_offset[2] * resource.bgm) // 2)
+    resource.background_sound[2].play(-1)
+
 def update(frame_time,events):
     for event in events:
         if event.type == SDL_MOUSEBUTTONDOWN:
