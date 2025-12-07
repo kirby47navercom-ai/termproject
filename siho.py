@@ -357,6 +357,9 @@ class Boss_Siho:
                             [self.x + ball_idx[self.current_idx][0], self.y + ball_idx[self.current_idx][1], 0, 0, 0,
                              False, False])
                         self.current_idx += 1
+                        resource.stage3_effect_sound[16].set_volume(
+                            (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
+                        resource.stage3_effect_sound[16].play(1)
 
             elif self.pattern3_fireball[i][6]:
                 self.pattern3_fireball[i][:4] = canvas_size.distance_funtion2(self.pattern3_fireball[i][0],
