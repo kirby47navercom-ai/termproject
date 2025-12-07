@@ -6,7 +6,6 @@ from pattern import *
 from resource import *
 from random import randint
 import canvas_size
-from canvas_size import cout
 import ramona
 import resource
 import math
