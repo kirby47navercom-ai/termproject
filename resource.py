@@ -198,8 +198,7 @@ image_action4 = None
 image_action5 = None
 image_action6 = None
 
-ramona_image = {}# 비어있는 dict 준비
-
+ramona_image = {}  # 비어있는 dict 준비
 image_pattern = []
 pattern_string_dict = {}
 pattern_index_dict = {}
@@ -253,8 +252,10 @@ fox_water_wave_image = []
 fox_flame_ball_coordinate = [0,0,64,80,0,0]
 fox_flame_ball_image = []
 
+
 #시호 인간
 boss_siho_coordinate = [0,0,64,64,0,0]
+
 
 boss_siho_appear_image = []
 
@@ -277,6 +278,7 @@ boss_siho_fire_prepare_image = []
 boss_siho_fire_cast_a_image = []
 boss_siho_fire_cast_b_image = []
 boss_siho_fire_over_image = []
+
 
 #시호 여우
 boss_fox_change_coordinate = [0,0,128,64,0,0]
@@ -316,6 +318,7 @@ boss_fox_spread_cast_image = []
 boss_fox_spread_over_coordinate = [0,0,96,64,0,0]
 boss_fox_spread_over_image = []
 
+
 boss_fox_burning_coordinate =  [0,0,96,64,0,0]
 boss_fox_burning_a_image = []
 boss_fox_burning_b_image = []
@@ -331,6 +334,9 @@ boss_fox_rush_over_image = []
 
 boss_fox_die_coordinate = [0,0,96,64,0,0]
 boss_fox_die_image = []
+
+
+
 
 #공격
 boss_siho_scratch_coordinate = [0,0,128,256,0,0]
@@ -357,6 +363,7 @@ boss_siho_rush_particle_image = []
 #씬전환용
 white_image=[]
 
+
 #소리 설정
 bgm=2
 bgm_volume=[0,32,64,96,128]
@@ -367,33 +374,30 @@ effect_volume=[0,32,64,128,256]
 stage1_clear=0
 stage2_clear=0
 stage3_clear=0
-
 #coin
 coin=0
 stage1_coin=0
 stage2_coin=0
 stage3_coin=0
-
 #weapon
 weapon1=1
 weapon2=2
 weapon3=2
 weapon4=2
-
 #talk
 talk = 0
-
 #nanahira
 nanahira = 0
-
 #보스 죽었는지 확인
 boss1=False
 boss2=False
 boss3=False
+#누구한테 죽었는지
 
 #엔딩
 end_image=[]
 ending=False
+
 
 #사운드
 background_sound=[]
@@ -418,8 +422,13 @@ stage2_effect_sound_offset=[]
 stage3_effect_sound=[]
 stage3_effect_sound_offset=[]
 
+
+
+
+
 #블록
 blocks=[]
+
 
 def collide(a, b):
     left_a, bottom_a, right_a, top_a = a[0] - a[2]/2, a[1] - a[3]/2, a[0] + a[2]/2, a[1] + a[3]/2
@@ -432,8 +441,9 @@ def collide(a, b):
 
     return True
 
+
 def collide2(a, b):
-    left_a, bottom_a, right_a, top_a = a[0] - a[2] / 2, a[1] - a[3] / 2, a[0] + a[2] / 2, a[1] + a[3] / 2
+    left_a, bottom_a, right_a, top_a = a[0] - a[2]/2, a[1] - a[3]/2, a[0] + a[2]/2, a[1] + a[3]/2
     left_b, bottom_b, right_b, top_b = b[0], b[1], b[2], b[3]
 
     if left_a > right_b: return False
@@ -443,15 +453,21 @@ def collide2(a, b):
 
     return True
 
+def collide3(mouse_pos, a):
+    mx, my = mouse_pos
+    x1, y1, x2, y2 = a
+    return x1 <= mx <= x2 and y1 <= my <= y2
+
 
 # 함수로 묶기
 def load_resources():
-    # 캐릭터
+
+    #캐릭터
     global image_idle, image_walk, image_run, image_jump, image_double_jump
     global image_hit, image_evade, image_getup, image_dead, image_revived
     global image_stageclear, image_gameclear
     global image_action1, image_action2, image_action3, image_action4, image_action5, image_action6
-    global ramona_image, ghost_image
+    global ramona_image,ghost_image
     global image_pattern, pattern_string_dict, pattern_index_dict
     image_idle = load_image('Ramona\\Ramona_idle.png')
     image_walk = load_image('Ramona\\Ramona_walk.png')
@@ -472,11 +488,11 @@ def load_resources():
     image_action5 = load_image('Ramona\\Ramona_action5.png')
     image_action6 = load_image('Ramona\\Ramona_action6.png')
 
+
     for i in range(16):
         image_pattern.append(load_image(f'Pattern\\{str(i + 1)}.png'))
         pattern_index_dict[i + 1] = image_pattern[i]
         pattern_string_dict[pattern_name[i]] = i + 1
-
 
     for i in range(28):
         boss_kitty_attack_image.append(load_image(f'2stage\\attack_{str(i+1)}.png'))
@@ -487,15 +503,16 @@ def load_resources():
     for i in range(4):
         boss_kitty_die_image.append(load_image(f'2stage\\blast{str(i+1)}.png'))
 
-        # 시호 인간
+
+    #시호 인간
     for i in range(8):
-        boss_siho_appear_image.append(load_image(f'3stage\\Appear{str(i + 1)}.png'))
+        boss_siho_appear_image.append(load_image(f'3stage\\Appear{str(i+1)}.png'))
 
     for i in range(2):
-        boss_siho_idle_image.append(load_image(f'3stage\\Fox Human Idle{str(i + 1)}.png'))
+        boss_siho_idle_image.append(load_image(f'3stage\\Fox Human Idle{str(i+1)}.png'))
 
     for i in range(3):
-        boss_siho_jump_prepare_image.append(load_image(f'3stage\\Fox Human Jump Prepare{str(i + 1)}.png'))
+        boss_siho_jump_prepare_image.append(load_image(f'3stage\\Fox Human Jump Prepare{str(i+1)}.png'))
 
     boss_siho_jump_up_image.append(load_image(f'3stage\\Fox Human Jump Cast a.png'))
 
@@ -516,6 +533,8 @@ def load_resources():
     for i in range(3):
         boss_siho_scratch_over_image.append(load_image(f'3stage\\Fox Human Scratch Over{str(i + 1)}.png'))
 
+
+
     for i in range(3):
         boss_siho_scratch_rush_prepare_image.append(load_image(f'3stage\\Fox Human Scratch Rush Prepare{str(i + 1)}.png'))
 
@@ -524,6 +543,8 @@ def load_resources():
 
     for i in range(3):
         boss_siho_scratch_rush_over_image.append(load_image(f'3stage\\Fox Human Scratch Rush Over{str(i + 1)}.png'))
+
+
 
     for i in range(4):
         boss_siho_fire_prepare_image.append(load_image(f'3stage\\Fox Human Spread Fire Prepare{str(i + 1)}.png'))
@@ -537,7 +558,7 @@ def load_resources():
     for i in range(3):
         boss_siho_fire_over_image.append(load_image(f'3stage\\Fox Human Spread Fire Over{str(i + 1)}.png'))
 
-        # 시호 여우
+    # 시호 여우
     for i in range(18):
         boss_fox_change_image.append(load_image(f'3stage\\Change Phase 1-{str(i + 1)}.png'))
 
@@ -554,6 +575,7 @@ def load_resources():
 
     for i in range(2):
         boss_fox_jump_prepare_image.append(load_image(f'3stage\\Jump Prepare{str(i + 1)}.png'))
+
 
     boss_fox_jump_up_image.append(load_image(f'3stage\\Jump Cast a1.png'))
 
@@ -593,6 +615,7 @@ def load_resources():
     for i in range(8):
         boss_fox_burning_c_image.append(load_image(f'3stage\\Change Phase 2-c{str(i + 1)}.png'))
 
+
     for i in range(8):
         boss_fox_burning_idle_image.append(load_image(f'3stage\\Fox Burning Idle{str(i + 1)}.png'))
 
@@ -602,7 +625,8 @@ def load_resources():
     for i in range(8):
         boss_fox_rush_over_image.append(load_image(f'3stage\\Rush Over{str(i + 1)}.png'))
 
-        # 시호 공격
+
+    # 시호 공격
     boss_siho_scratch_image.append(load_image(f'3stage\\Fox Scratch Warning.png'))
     for i in range(3):
         boss_siho_scratch_image.append(load_image(f'3stage\\Fox Scratch{str(i + 1)}.png'))
@@ -629,9 +653,14 @@ def load_resources():
     for i in range(18):
         boss_fox_die_image.append(load_image(f'3stage\\Die{str(i + 1)}.png'))
 
+
+
     boss_siho_rush_warning_image.append(load_image(f'3stage\\Rush Warning.png'))
 
     boss_siho_rush_particle_image.append(load_image(f'3stage\\Rush Particle.png'))
+
+
+
 
     white_image.append(load_image(f'3stage\\White.png'))
 
@@ -658,145 +687,159 @@ def load_resources():
     for i in range(5):
         fox_flame_ball_image.append(load_image(f'3stage\\Fox Flame Ball{str(i + 1)}.png'))
 
-        # 사운드
-        background_sound.append(load_music('sound\\Main Menu.wav'))
-        background_sound_offset.append(64)
+    for i in range(7):
+        end_image.append(load_image(f'배경\\end_{str(i)}.png'))
 
-        background_sound.append(load_music('sound\\02. Menu.mp3'))
-        background_sound_offset.append(4)
+    #사운드
+    background_sound.append(load_music('sound\\Main Menu.wav'))
+    background_sound_offset.append(64)
 
-        background_sound.append(load_music('sound\\16. Cascade.mp3'))
-        background_sound_offset.append(10)
+    background_sound.append(load_music('sound\\02. Menu.mp3'))
+    background_sound_offset.append(4)
 
-        background_sound.append(load_music('sound\\source_Resources_backgroundsound.mp3'))
-        background_sound_offset.append(10)
 
-        background_sound.append(load_music('sound\\01. Final Boss Theme.mp3'))
-        background_sound_offset.append(10)
+    background_sound.append(load_music('sound\\16. Cascade.mp3'))
+    background_sound_offset.append(10)
 
-        background_sound.append(load_music('2stage\\hellokitty.ogg'))
-        background_sound_offset.append(10)
+    background_sound.append(load_music('sound\\source_Resources_backgroundsound.mp3'))
+    background_sound_offset.append(10)
 
-        background_sound.append(load_wav('2stage\\boss_scene.ogg'))
-        background_sound_offset.append(10)
+    background_sound.append(load_music('sound\\01. Final Boss Theme.mp3'))
+    background_sound_offset.append(10)
 
-        background_sound.append(load_music('2stage\\Boss1.mp3'))
-        background_sound_offset.append(10)
 
-        background_sound.append(load_music('3stage\\Battle with Fox.wav'))
-        background_sound_offset.append(10)
+    background_sound.append(load_music('2stage\\hellokitty.ogg'))
+    background_sound_offset.append(10)
 
-        background_sound.append(load_music('sound\\mari.mp3'))
-        background_sound_offset.append(32)
+    background_sound.append(load_wav('2stage\\boss_scene.ogg'))
+    background_sound_offset.append(10)
 
-        attack_effect_sound.append(load_wav('sound\\hamer-90566.mp3'))
-        attack_effect_sound_offset.append(32)
-        attack_effect_sound.append(load_wav('sound\\Hammer.wav'))
-        attack_effect_sound_offset.append(32)
-        attack_effect_sound.append(load_wav('sound\\Needle Sound.wav'))
-        attack_effect_sound_offset.append(32)
-        attack_effect_sound.append(load_wav('sound\\mixkit-samurai-sword-impact-2789.wav'))
-        attack_effect_sound_offset.append(32)
+    background_sound.append(load_music('2stage\\Boss1.mp3'))
+    background_sound_offset.append(10)
 
-        ramona_effect_sound.append(load_wav('sound\\[31] hop.ogg'))
-        ramona_effect_sound_offset.append(64)
-        ramona_effect_sound.append(load_wav('sound\\[32] hop2.ogg'))
-        ramona_effect_sound_offset.append(64)
-        ramona_effect_sound.append(load_wav('sound\\Dash.wav'))
-        ramona_effect_sound_offset.append(32)
-        ramona_effect_sound.append(load_wav('sound\\Hit.wav'))
-        ramona_effect_sound_offset.append(32)
-        ramona_effect_sound.append(load_wav('sound\\Explode #32055.wav'))
-        ramona_effect_sound_offset.append(32)
+    background_sound.append(load_music('3stage\\Battle with Fox.wav'))
+    background_sound_offset.append(10)
 
-        stage1_effect_sound.append(load_wav('sound\\NPC_Hit_52.wav'))
-        stage1_effect_sound_offset.append(32)
-        stage1_effect_sound.append(load_wav('sound\\NPC_Killed_52.wav'))
-        stage1_effect_sound_offset.append(32)
-        stage1_effect_sound.append(load_wav('sound\\NPC_Killed_59.wav'))
-        stage1_effect_sound_offset.append(32)
-        stage1_effect_sound.append(load_wav('sound\\EoC_Expert_Roar.wav'))
-        stage1_effect_sound_offset.append(32)
-        stage1_effect_sound.append(load_wav('sound\\NPC_Killed_6.wav'))
-        stage1_effect_sound_offset.append(32)
+    background_sound.append(load_music('sound\\mari.mp3'))
+    background_sound_offset.append(32)
 
-        stage2_effect_sound.append(load_wav('sound\\Acorn Dead.wav'))
-        stage2_effect_sound_offset.append(32)
-        stage2_effect_sound.append(load_wav('sound\\Tiny Drill.wav'))
-        stage2_effect_sound_offset.append(32)
-        stage2_effect_sound.append(load_wav('2stage\\BLAAHLouder.ogg'))
-        stage2_effect_sound_offset.append(32)
-        stage2_effect_sound.append(load_wav('2stage\\explosion.ogg'))
-        stage2_effect_sound_offset.append(32)
 
-        stage3_effect_sound.append(load_wav('3stage\\Fox Vine Needle.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Flame.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Water.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Land.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Jump.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Bite.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Fire.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Catch Fire.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Extinguish Fire.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Fall Down.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Howl.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Prepare.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Rush Burning.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Rush Plain.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Scratch Rush.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Scratch.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Summon Fire.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('3stage\\Fox Transformation.wav'))
-        stage3_effect_sound_offset.append(32)
-        stage3_effect_sound.append(load_wav('sound\\Explode.wav'))
-        stage3_effect_sound_offset.append(8)
+    attack_effect_sound.append(load_wav('sound\\hamer-90566.mp3'))
+    attack_effect_sound_offset.append(32)
+    attack_effect_sound.append(load_wav('sound\\Hammer.wav'))
+    attack_effect_sound_offset.append(32)
+    attack_effect_sound.append(load_wav('sound\\Needle Sound.wav'))
+    attack_effect_sound_offset.append(32)
+    attack_effect_sound.append(load_wav('sound\\mixkit-samurai-sword-impact-2789.wav'))
+    attack_effect_sound_offset.append(32)
 
-        ui_effect_sound.append(load_wav('sound\\Minimum_11.wav'))
-        ui_effect_sound_offset.append(96)
+    ramona_effect_sound.append(load_wav('sound\\[31] hop.ogg'))
+    ramona_effect_sound_offset.append(64)
+    ramona_effect_sound.append(load_wav('sound\\[32] hop2.ogg'))
+    ramona_effect_sound_offset.append(64)
+    ramona_effect_sound.append(load_wav('sound\\Dash.wav'))
+    ramona_effect_sound_offset.append(32)
+    ramona_effect_sound.append(load_wav('sound\\Hit.wav'))
+    ramona_effect_sound_offset.append(32)
+    ramona_effect_sound.append(load_wav('sound\\Explode #32055.wav'))
+    ramona_effect_sound_offset.append(32)
 
-        ui_effect_sound.append(load_wav('sound\\Minimum_50.wav'))
-        ui_effect_sound_offset.append(32)
 
-        ui_effect_sound.append(load_wav('sound\\Minimum_1.wav'))
-        ui_effect_sound_offset.append(64)
+    stage1_effect_sound.append(load_wav('sound\\NPC_Hit_52.wav'))
+    stage1_effect_sound_offset.append(32)
+    stage1_effect_sound.append(load_wav('sound\\NPC_Killed_52.wav'))
+    stage1_effect_sound_offset.append(32)
+    stage1_effect_sound.append(load_wav('sound\\NPC_Killed_59.wav'))
+    stage1_effect_sound_offset.append(32)
+    stage1_effect_sound.append(load_wav('sound\\EoC_Expert_Roar.wav'))
+    stage1_effect_sound_offset.append(32)
+    stage1_effect_sound.append(load_wav('sound\\NPC_Killed_6.wav'))
+    stage1_effect_sound_offset.append(32)
 
-        ui_effect_sound.append(load_wav('sound\\Minimum_5.wav'))
-        ui_effect_sound_offset.append(64)
 
-        ui_effect_sound.append(load_wav('sound\\Transition.wav'))
-        ui_effect_sound_offset.append(32)
 
-        ui_effect_sound.append(load_wav('sound\\Paper.wav'))
-        ui_effect_sound_offset.append(32)
+    stage2_effect_sound.append(load_wav('sound\\Acorn Dead.wav'))
+    stage2_effect_sound_offset.append(32)
+    stage2_effect_sound.append(load_wav('sound\\Tiny Drill.wav'))
+    stage2_effect_sound_offset.append(32)
+    stage2_effect_sound.append(load_wav('2stage\\BLAAHLouder.ogg'))
+    stage2_effect_sound_offset.append(32)
+    stage2_effect_sound.append(load_wav('2stage\\explosion.ogg'))
+    stage2_effect_sound_offset.append(32)
 
-        ui_effect_sound.append(load_wav('sound\\Chat.wav'))
-        ui_effect_sound_offset.append(64)
 
-        ui_effect_sound.append(load_wav('sound\\Coin.wav'))
-        ui_effect_sound_offset.append(16)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Vine Needle.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Flame.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Water.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Land.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Jump.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Bite.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Fire.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Catch Fire.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Extinguish Fire.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Fall Down.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Howl.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Prepare.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Rush Burning.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Rush Plain.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Scratch Rush.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Scratch.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Summon Fire.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('3stage\\Fox Transformation.wav'))
+    stage3_effect_sound_offset.append(32)
+    stage3_effect_sound.append(load_wav('sound\\Explode.wav'))
+    stage3_effect_sound_offset.append(8)
 
-        ui_effect_sound.append(load_wav('sound\\Switch Weapon.wav'))
-        ui_effect_sound_offset.append(16)
 
-        ui_effect_sound.append(load_wav('sound\\Message.wav'))
-        ui_effect_sound_offset.append(32)
+    ui_effect_sound.append(load_wav('sound\\Minimum_11.wav'))
+    ui_effect_sound_offset.append(96)
+
+    ui_effect_sound.append(load_wav('sound\\Minimum_50.wav'))
+    ui_effect_sound_offset.append(32)
+
+    ui_effect_sound.append(load_wav('sound\\Minimum_1.wav'))
+    ui_effect_sound_offset.append(64)
+
+    ui_effect_sound.append(load_wav('sound\\Minimum_5.wav'))
+    ui_effect_sound_offset.append(64)
+
+    ui_effect_sound.append(load_wav('sound\\Transition.wav'))
+    ui_effect_sound_offset.append(32)
+
+    ui_effect_sound.append(load_wav('sound\\Paper.wav'))
+    ui_effect_sound_offset.append(32)
+
+    ui_effect_sound.append(load_wav('sound\\Chat.wav'))
+    ui_effect_sound_offset.append(64)
+
+    ui_effect_sound.append(load_wav('sound\\Coin.wav'))
+    ui_effect_sound_offset.append(16)
+
+    ui_effect_sound.append(load_wav('sound\\Switch Weapon.wav'))
+    ui_effect_sound_offset.append(16)
+
+    ui_effect_sound.append(load_wav('sound\\Message.wav'))
+    ui_effect_sound_offset.append(32)
+
+
+
 
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
@@ -806,59 +849,3 @@ def load_resources():
         'action2': image_action2, 'action3': image_action3, 'action4': image_action4,
         'action5': image_action5, 'action6': image_action6
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
