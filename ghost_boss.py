@@ -81,7 +81,7 @@ class Pattern0State:
     def do(self, frame_time):
         if not self.pattern_ready:
             x, y = self.width, self.height
-            self.x, self.y = distance_funtion(self.x, self.y, x, y, frame_time, self.pattern_ready_speed)
+            self.x, self.y = canvas_size.distance_funtion(self.x, self.y, x, y, frame_time, self.pattern_ready_speed)
             if abs(self.x - x) <= 5 and abs(self.y - y) <= 5:
                 self.pattern_ready = True
         elif self.pattern0_ready_timer < self.pattern0_ready_time:
@@ -131,7 +131,7 @@ class Pattern1State:
 
     def do(self, frame_time):
         if not self.pattern_ready:
-            self.x, self.y = distance_funtion(self.x, self.y, self.pattern1_x, self.pattern1_y, frame_time,
+            self.x, self.y = canvas_size.distance_funtion(self.x, self.y, self.pattern1_x, self.pattern1_y, frame_time,
                                               self.pattern_ready_speed)
             if abs(self.x - self.pattern1_x) <= 5 and abs(self.y - self.pattern1_y) <= 5:
                 self.pattern_ready = True
@@ -146,7 +146,7 @@ class Pattern1State:
                 self.sound=True
 
             self.pattern_state = 3
-            self.x, self.y = distance_funtion(self.x, self.y, self.pattern1_x, self.pattern1_y, frame_time,
+            self.x, self.y = canvas_size.distance_funtion(self.x, self.y, self.pattern1_x, self.pattern1_y, frame_time,
                                               self.speed * 6 * self.pattern_speed)
             self.pattern1_frame = (self.pattern1_frame + self.die_animation_speed * frame_time) % 5
             if abs(self.x - self.pattern1_x) <= 5 and abs(self.y - self.pattern1_y) <= 5:
@@ -178,7 +178,7 @@ class Pattern2State:
         pass
 
     def do(self, frame_time):
-        self.x, self.y = distance_funtion(self.x, self.y, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, frame_time,
+        self.x, self.y = canvas_size.istance_funtion(self.x, self.y, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, frame_time,
                                           self.speed)
         self.shape.x = self.x
         self.shape.y = self.y + self.height * 0.7
