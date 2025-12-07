@@ -488,7 +488,10 @@ class Boss_Siho:
         if self.change_phase_1_frame_timer < self.change_phase_1_frame_duration:
             self.change_phase_1_frame = min((self.change_phase_1_frame + self.animation_speed * frame_time), 2)
             self.change_phase_1_frame_timer += frame_time
-
+            if self.change_phase_1_frame_timer >= self.change_phase_1_frame_duration:
+                resource.stage3_effect_sound[17].set_volume(
+                    (resource.stage3_effect_sound_offset[17] * resource.effect) // 2)
+                resource.stage3_effect_sound[17].play(1)
         elif self.change_phase_1_frame_timer >= self.change_phase_1_frame_duration:
             self.change_phase_1_frame = self.change_phase_1_frame + self.animation_speed * frame_time
             if self.change_phase_1_frame >= 17:
