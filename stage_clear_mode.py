@@ -13,6 +13,10 @@ perfect = None
 def init(): # 로고 이미지를 로드
     global black_background,clear,food,perfect
 
+    resource.ui_effect_sound[9].set_volume(
+        (resource.ui_effect_sound_offset[9] * resource.effect) // 2)
+    resource.ui_effect_sound[9].play(1)
+
 
 
     if black_background == None:
