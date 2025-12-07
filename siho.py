@@ -564,6 +564,10 @@ class Boss_Siho:
                 self.jump_frame = 0
                 canvas_size.start_shake(0.5, 2.5)
 
+                resource.stage3_effect_sound[3].set_volume(
+                    (resource.stage3_effect_sound_offset[3] * resource.effect) // 2)
+                resource.stage3_effect_sound[3].play(1)
+
         elif self.pattern8_state == 3:
             self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 6
 
