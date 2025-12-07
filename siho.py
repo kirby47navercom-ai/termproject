@@ -409,6 +409,9 @@ class Boss_Siho:
             self.scratch_frame = min((self.scratch_frame + self.animation_speed * frame_time), 2)
             if int(self.scratch_frame) == 2 and not self.pattern4_attack:
                 self.pattern4_attack = True
+                resource.stage3_effect_sound[14].set_volume(
+                    (resource.stage3_effect_sound_offset[14] * resource.effect) // 2)
+                resource.stage3_effect_sound[14].play(1)
 
             if self.pattern4_attack:
                 self.pattern4_attack_frame = (self.pattern4_attack_frame + self.animation_speed * frame_time * 2)
