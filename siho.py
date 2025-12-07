@@ -670,6 +670,10 @@ class Boss_Siho:
             if self.pattern10_attack[i][4] or self.pattern10_attack[i - 1][3] > 0.2:
                 self.pattern10_attack[i][3] += frame_time
             if self.pattern10_attack[i][3] >= self.pattern10_attack_prepare_duration:
+                if self.pattern10_attack[i][2] == 0.0:
+                    resource.stage3_effect_sound[5].set_volume(
+                        (resource.stage3_effect_sound_offset[5] * resource.effect) // 2)
+                    resource.stage3_effect_sound[5].play(1)
                 self.pattern10_attack[i][2] = self.pattern10_attack[i][2] + self.animation_speed * frame_time
                 if self.pattern10_attack[i][2] < 3:
                     self.ramonatobite(self.pattern10_attack[i])
