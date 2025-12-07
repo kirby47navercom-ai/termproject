@@ -50,7 +50,7 @@ def init():
     ramona.Ramona_dead = False
 
 
-def update(frame_time,events):
+def update(frame_time, events):
     if not ramona.Ramona_dead:
         game_world.update(frame_time, events)
     elif ramona.Ramona_retry:
@@ -70,12 +70,18 @@ def update(frame_time,events):
         game_framework.push_mode(stage_clear_mode)
 
 
+
 def draw():
     game_world.render()
 
+
 def finish():
     game_world.clear()
+    resource.background_sound[5].stop()
+    resource.background_sound[7].stop()
+
 
 def pause(): pass
+
 
 def resume(): pass
