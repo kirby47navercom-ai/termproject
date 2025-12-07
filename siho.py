@@ -327,6 +327,9 @@ class Boss_Siho:
                 self.pattern3_state = 2
                 self.spread_frame = 0
                 self.pattern3_fireball.append([self.x + 50, self.y + 100, 0, 0, 0, False, False])
+                resource.stage3_effect_sound[16].set_volume(
+                    (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
+                resource.stage3_effect_sound[16].play(1)
 
         elif self.pattern3_state == 2:
             self.spread_frame = (self.spread_frame + self.animation_speed * frame_time) % 4
