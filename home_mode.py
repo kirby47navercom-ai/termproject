@@ -40,26 +40,36 @@ def init():
 
 
 def update(frame_time,events):
-    if not resource.ending and resource.stage1_clear != 0 and resource.stage2_clear != 0 and resource.stage3_clear != 0:
+    if not resource.ending and resource.stage1_clear !=0 and resource.stage2_clear !=0 and resource.stage3_clear !=0:
         resource.ending = True
         game_framework.push_mode(ending_mode)
     for event in events:
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, canvas_size.canvasheight - 1 - event.y
             if 15 <= x <= 305 and 130 <= y <= 545:
-
+                resource.ui_effect_sound[5].set_volume(
+                    (resource.ui_effect_sound_offset[5] * resource.effect) // 2)
+                resource.ui_effect_sound[5].play(1)
                 game_framework.push_mode(stage1_ready_mode)
             elif 500 <= x <= 790 and 130 <= y <= 545:
-
+                resource.ui_effect_sound[5].set_volume(
+                    (resource.ui_effect_sound_offset[5] * resource.effect) // 2)
+                resource.ui_effect_sound[5].play(1)
                 game_framework.push_mode(stage2_ready_mode)
             elif 965 <= x <= 1255 and 130 <= y <= 545:
-
+                resource.ui_effect_sound[5].set_volume(
+                    (resource.ui_effect_sound_offset[5] * resource.effect) // 2)
+                resource.ui_effect_sound[5].play(1)
                 game_framework.push_mode(stage3_ready_mode)
             elif 1145 <= x <= 1255 and 585 <= y <= 690:
-
+                resource.ui_effect_sound[3].set_volume(
+                    (resource.ui_effect_sound_offset[3] * resource.effect) // 2)
+                resource.ui_effect_sound[3].play(1)
                 game_framework.push_mode(option_mode)
             elif 495 <= x <= 855 and 605 <= y <= 670:
-
+                resource.ui_effect_sound[4].set_volume(
+                    (resource.ui_effect_sound_offset[4] * resource.effect) // 2)
+                resource.ui_effect_sound[4].play(1)
                 game_framework.change_mode(na25_mode)
 
 def draw():
