@@ -753,6 +753,12 @@ class Boss_Siho:
             self.ramonatosiho_rush()
             if self.rush_prepare_timer >= self.rush_prepare_time:
 
+                if not self.sound_check:
+                    self.sound_check = True
+                    resource.stage3_effect_sound[12].set_volume(
+                        (resource.stage3_effect_sound_offset[12] * resource.effect) // 2)
+                    resource.stage3_effect_sound[12].play(1)
+
 
 
                 if self.check:
