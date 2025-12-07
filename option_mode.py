@@ -23,38 +23,61 @@ def update(frame_time,events):
         if event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, canvas_size.canvasheight - 1 - event.y
             if 475 <= x <= 545 and 360 <= y <= 430:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.bgm = 0
             elif 585 <= x <= 655 and 360 <= y <= 430:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.bgm = 1
             elif 705 <= x <= 775 and 360 <= y <= 430:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.bgm = 2
             elif 830 <= x <= 905 and 360 <= y <= 430:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.bgm = 3
             elif 955 <= x <= 1025 and 360 <= y <= 430:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.bgm = 4
             elif 475 <= x <= 545 and 190 <= y <= 260:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.effect = 0
             elif 585 <= x <= 655 and 190 <= y <= 260:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.effect = 1
             elif 705 <= x <= 775 and 190 <= y <= 260:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.effect = 2
             elif 830 <= x <= 905 and 190 <= y <= 260:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.effect = 3
             elif 955 <= x <= 1025 and 190 <= y <= 260:
-
+                resource.ui_effect_sound[2].set_volume(
+                    (resource.ui_effect_sound_offset[2] * resource.effect) // 2)
+                resource.ui_effect_sound[2].play(1)
                 resource.effect = 4
             elif 1055 <= x <= 1185 and 515 <= y <= 640:
-
+                resource.ui_effect_sound[1].set_volume(
+                    (resource.ui_effect_sound_offset[1] * resource.effect) // 2)
+                resource.ui_effect_sound[1].play(1)
                 game_framework.pop_mode()
+
 
 def draw():
     black_background.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
