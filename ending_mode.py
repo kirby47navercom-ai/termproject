@@ -41,7 +41,10 @@ def update(frame_time, events):
                     resource.ui_effect_sound[0].play(1)
 
                 else:
-
+                    resource.background_sound[9].stop()
+                    resource.background_sound[1].set_volume(
+                        (resource.background_sound_offset[1] * resource.effect) // 2)
+                    resource.background_sound[1].play(-1)
                     game_framework.pop_mode()
 
     if alpha < 255:
