@@ -105,6 +105,10 @@ class AttackState:
         attack_num = random.randint(1, 6)
         self.attack_motion = f'action{attack_num}'
         self.dir = 0
+        random_number = random.randint(0, resource.attack_effect_sound_offset.__len__() - 1)
+        resource.attack_effect_sound[random_number].set_volume(
+            (resource.attack_effect_sound_offset[random_number] * resource.effect) // 2)
+        resource.attack_effect_sound[random_number].play(1)
 
     def exit(self, event):
         global Ramona_smash_toggle
