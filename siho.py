@@ -241,6 +241,9 @@ class Boss_Siho:
             self.jump_frame = (self.jump_frame + self.animation_speed * frame_time) % 4
 
             if self.y <= self.boss_ground_level:
+                resource.stage3_effect_sound[3].set_volume(
+                    (resource.stage3_effect_sound_offset[3] * resource.effect) // 2)
+                resource.stage3_effect_sound[3].play(1)
                 self.y = self.boss_ground_level  #
                 self.y_velocity = 0
                 self.v_x = 0
