@@ -56,6 +56,9 @@ class Pattern0_State:  # 하트 유도탄
         if not self.attack_init:
             self.attack1.append([self.x, self.y, 0, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, 0.0])
             canvas_size.start_shake(0.1, 5)
+            resource.stage2_effect_sound[1].set_volume(
+                (resource.stage2_effect_sound_offset[1] * resource.effect) // 2)
+            resource.stage2_effect_sound[1].play(1)
             self.attack_init = True
 
         for i in range(len(self.attack1) - 1, -1, -1):
@@ -76,7 +79,9 @@ class Pattern0_State:  # 하트 유도탄
                 self.attack1.pop(i)
                 if self.attack1_num > 0:
                     self.attack1.append([self.x, self.y, 0, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, 0.0])
-
+                    resource.stage2_effect_sound[1].set_volume(
+                        (resource.stage2_effect_sound_offset[1] * resource.effect) // 2)
+                    resource.stage2_effect_sound[1].play(1)
         if self.attack1_num == 0:
             self.change_state(Pattern1_State, None)
 
