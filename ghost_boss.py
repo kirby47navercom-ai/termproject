@@ -200,6 +200,11 @@ class HitState:
     def enter(self, event):
         self.hit_frame = 0
 
+        if self.hp > 0:
+            resource.stage1_effect_sound[0].set_volume(
+                (resource.stage1_effect_sound_offset[0] * resource.effect) // 2)
+            resource.stage1_effect_sound[0].play(1)
+
     def exit(self, event):
         self.hit_animation = False
         self.shape = self.pattern_set[randint(0, resource.pattern_number)]
