@@ -709,6 +709,17 @@ def load_resources():
         ramona_effect_sound.append(load_wav('sound\\Explode #32055.wav'))
         ramona_effect_sound_offset.append(32)
 
+        stage1_effect_sound.append(load_wav('sound\\NPC_Hit_52.wav'))
+        stage1_effect_sound_offset.append(32)
+        stage1_effect_sound.append(load_wav('sound\\NPC_Killed_52.wav'))
+        stage1_effect_sound_offset.append(32)
+        stage1_effect_sound.append(load_wav('sound\\NPC_Killed_59.wav'))
+        stage1_effect_sound_offset.append(32)
+        stage1_effect_sound.append(load_wav('sound\\EoC_Expert_Roar.wav'))
+        stage1_effect_sound_offset.append(32)
+        stage1_effect_sound.append(load_wav('sound\\NPC_Killed_6.wav'))
+        stage1_effect_sound_offset.append(32)
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
