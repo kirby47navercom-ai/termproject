@@ -5,6 +5,7 @@ import canvas_size
 import ramona
 import resource
 import random
+import math
 
 width = 1980
 
@@ -22,14 +23,13 @@ class Stage3_Terrain:
         self.terrain_x = [randint(100, background_3stage.width - 100) for _ in range(5)]
         self.terrain_width = 960
         self.terrain_height = 128
-        self.pattern = [1, 2, 3]
+        self.pattern = [1,2,3]
         random.shuffle(self.pattern)
         self.current_pattern = 0
         self.old_pattern = 0
         self.speed = 15
         self.camerax = canvas_size.camera_x
         self.cameray = canvas_size.camera_y
-
         if Stage3_Terrain.vine_image == None:
             Stage3_Terrain.vine_image = resource.fox_vine_background_image
             Stage3_Terrain.water_image = resource.fox_water_background_image
@@ -46,36 +46,32 @@ class Stage3_Terrain:
         self.vine_needle_speed = 8
         self.vine_needle_duration_timer = 0.0
         self.vine_needle_duration_time = 4.0
-        self.vine_needle_mode = 0  # 0: 등장 1: 지속 2: 사라짐
-        self.vine_needle_getbb = [int(self.vine_needle_x) - self.camerax - 88, 140 - self.cameray - 176,
+        self.vine_needle_mode = 0 # 0: 등장 1: 지속 2: 사라짐
+        self.vine_needle_getbb = [int(self.vine_needle_x) - self.camerax - 88, 140-self.cameray - 176,
                                   int(self.vine_needle_x) - self.camerax + 88,
-                                  140 - self.cameray + 146]
+                                  140-self.cameray + 146]
 
         self.water_frame = 0
         self.water_wave_frame = 0
-        self.water_wave_x = -200
+        self.water_wave_x=-200
         self.water_wave_speed = 400
-        self.water_wave_dir = 1
-        self.water_wave_getbb1 = [int(self.water_wave_x) - self.camerax - 20, 260 - self.cameray - 40,
-                                  int(self.water_wave_x) - self.camerax + 150, 260 - self.cameray + 20]
-        self.water_wave_getbb2 = [int(self.water_wave_x) - self.camerax + 70, 260 - self.cameray - 50,
-                                  int(self.water_wave_x) - self.camerax + 170, 260 - self.cameray + 0]
-        self.water_wave_getbb3 = [int(self.water_wave_x) - self.camerax + 10, 260 - self.cameray - 40,
-                                  int(self.water_wave_x) - self.camerax + 120, 260 - self.cameray + 40]
-        self.water_wave_getbb4 = [int(self.water_wave_x) - self.camerax - 40, 260 - self.cameray - 160,
-                                  int(self.water_wave_x) - self.camerax + 60, 260 - self.cameray + 0]
+        self.water_wave_dir=1
+        self.water_wave_getbb1=[int(self.water_wave_x)- self.camerax - 20, 260- self.cameray-40,int(self.water_wave_x)- self.camerax + 150, 260- self.cameray+20]
+        self.water_wave_getbb2=[int(self.water_wave_x)- self.camerax + 70, 260- self.cameray - 50,int(self.water_wave_x)- self.camerax + 170, 260- self.cameray + 0]
+        self.water_wave_getbb3=[int(self.water_wave_x) - self.camerax + 10, 260 - self.cameray - 40,int(self.water_wave_x) - self.camerax + 120, 260 - self.cameray + 40]
+        self.water_wave_getbb4=[int(self.water_wave_x) - self.camerax - 40, 260 - self.cameray - 160,int(self.water_wave_x) - self.camerax + 60, 260 - self.cameray + 0]
 
-        self.flame_frame = 0
+
+
+        self.flame_frame=0
         self.flame_ball_frame = 0
         self.flame_ball_x = -100
-        self.flame_ball_y = -50
+        self.flame_ball_y = 1050
         self.flame_ball_speed = 800
         self.flame_ball_getbb1 = [int(self.flame_ball_x) - self.camerax - 34, int(self.flame_ball_y) - self.cameray + 4,
-                                  int(self.flame_ball_x) - self.camerax + 34,
-                                  int(self.flame_ball_y) - self.cameray + 64]
+                                  int(self.flame_ball_x) - self.camerax + 34, int(self.flame_ball_y) - self.cameray + 64]
         self.flame_ball_getbb2 = [int(self.flame_ball_x) - self.camerax - 19, int(self.flame_ball_y) - self.cameray + 4,
-                                  int(self.flame_ball_x) - self.camerax + 19,
-                                  int(self.flame_ball_y) - self.cameray + 74]
+                                  int(self.flame_ball_x) - self.camerax + 19,int(self.flame_ball_y) - self.cameray + 74]
 
         self.pattern_transition = False
         self.pattern_start = False
@@ -120,6 +116,9 @@ class Stage3_Terrain:
             if int(self.vine_needle_appear_frame) == 11:
                 self.vine_needle_mode = 1  # 지속 모드로 전환
                 self.vine_needle_appear_frame = 0  # 프레임 초기화
+                resource.stage3_effect_sound[0].set_volume(
+                    (resource.stage3_effect_sound_offset[0] * resource.effect) // 2)
+                resource.stage3_effect_sound[0].play(1)
         elif self.vine_needle_mode == 1:
             self.vine_needle_duration_timer += frame_time
             self.ramonatoneedle()
@@ -137,10 +136,8 @@ class Stage3_Terrain:
                                   140 - self.cameray + 146]
 
     def ramonatoneedle(self):
-        if resource.collide2(
-                [ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray, ramona.Ramona_SIZE_X,
-                 ramona.Ramona_SIZE_Y],
-                self.vine_needle_getbb) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
+        if resource.collide2([ramona.Ramona_POS_X- self.camerax, ramona.Ramona_POS_Y- self.cameray, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
+                   self.vine_needle_getbb) and not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible:
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
                 ramona.Ramona_invincible = True
@@ -151,41 +148,31 @@ class Stage3_Terrain:
         self.water_wave_x += self.water_wave_speed * frame_time * self.water_wave_dir
         if self.water_wave_x > 2780:
             self.water_wave_dir = -1
+            resource.stage3_effect_sound[2].set_volume(
+                (resource.stage3_effect_sound_offset[2] * resource.effect) // 2)
+            resource.stage3_effect_sound[2].play(1)
         elif self.water_wave_x < -800:
             self.water_wave_dir = 1
+            resource.stage3_effect_sound[2].set_volume(
+                (resource.stage3_effect_sound_offset[2] * resource.effect) // 2)
+            resource.stage3_effect_sound[2].play(1)
 
-        self.water_wave_getbb1 = [
-            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax - 20,
-            260 - self.cameray - 40,
-            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 150,
-            260 - self.cameray + 20]
-        self.water_wave_getbb2 = [
-            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 70,
-            260 - self.cameray - 50,
-            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 170,
-            260 - self.cameray + 0]
-        self.water_wave_getbb3 = [
-            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 10,
-            260 - self.cameray - 40,
-            int(self.water_wave_x) - (130 if self.water_wave_dir == -1 else 0) - self.camerax + 120,
-            260 - self.cameray + 40]
-        self.water_wave_getbb4 = [int(self.water_wave_x) - self.camerax - 40, 260 - self.cameray - 160,
-                                  int(self.water_wave_x) - self.camerax + 60, 260 - self.cameray + 0]
+        self.water_wave_getbb1=[int(self.water_wave_x)-(130 if self.water_wave_dir==-1 else 0)- self.camerax - 20, 260- self.cameray-40,int(self.water_wave_x)-(130 if self.water_wave_dir==-1 else 0)- self.camerax + 150, 260- self.cameray+20]
+        self.water_wave_getbb2=[int(self.water_wave_x)-(130 if self.water_wave_dir==-1 else 0)- self.camerax + 70, 260- self.cameray - 50,int(self.water_wave_x)-(130 if self.water_wave_dir==-1 else 0)- self.camerax + 170, 260- self.cameray + 0]
+        self.water_wave_getbb3=[int(self.water_wave_x)-(130 if self.water_wave_dir==-1 else 0) - self.camerax + 10, 260 - self.cameray - 40,int(self.water_wave_x) -(130 if self.water_wave_dir==-1 else 0)- self.camerax + 120, 260 - self.cameray + 40]
+        self.water_wave_getbb4=[int(self.water_wave_x) - self.camerax - 40, 260 - self.cameray - 160,int(self.water_wave_x) - self.camerax + 60, 260 - self.cameray + 0]
+
+
 
     def ramonatowave(self):
-        if ((resource.collide2(
-                [ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray, ramona.Ramona_SIZE_X,
-                 ramona.Ramona_SIZE_Y],
-                self.water_wave_getbb1) or
-             resource.collide2([ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray,
-                                ramona.Ramona_SIZE_X - self.camerax, ramona.Ramona_SIZE_Y - self.cameray],
-                               self.water_wave_getbb2) or
-             resource.collide2([ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray,
-                                ramona.Ramona_SIZE_X - self.camerax, ramona.Ramona_SIZE_Y - self.cameray],
-                               self.water_wave_getbb3) or
-             resource.collide2([ramona.Ramona_POS_X - self.camerax, ramona.Ramona_POS_Y - self.cameray,
-                                ramona.Ramona_SIZE_X - self.camerax, ramona.Ramona_SIZE_Y - self.cameray],
-                               self.water_wave_getbb4)) and
+        if ((resource.collide2([ramona.Ramona_POS_X- self.camerax, ramona.Ramona_POS_Y- self.cameray, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
+                   self.water_wave_getbb1) or
+                resource.collide2([ramona.Ramona_POS_X- self.camerax, ramona.Ramona_POS_Y- self.cameray, ramona.Ramona_SIZE_X- self.camerax, ramona.Ramona_SIZE_Y- self.cameray],
+                                 self.water_wave_getbb2) or
+                resource.collide2([ramona.Ramona_POS_X- self.camerax, ramona.Ramona_POS_Y- self.cameray, ramona.Ramona_SIZE_X- self.camerax, ramona.Ramona_SIZE_Y- self.cameray],
+                                 self.water_wave_getbb3) or
+                resource.collide2([ramona.Ramona_POS_X- self.camerax, ramona.Ramona_POS_Y- self.cameray, ramona.Ramona_SIZE_X- self.camerax, ramona.Ramona_SIZE_Y- self.cameray],
+                                 self.water_wave_getbb4)) and
                 not ramona.Ramona_invincible and not ramona.Ramona_roll_invincible):
             if ramona.CURRENT_HP > 0:
                 ramona.CURRENT_HP -= 1
@@ -196,16 +183,16 @@ class Stage3_Terrain:
     def ball_move(self, frame_time):
         self.flame_ball_y += self.flame_ball_speed * frame_time
         if self.flame_ball_y > 900:
+            resource.stage3_effect_sound[1].set_volume(
+                (resource.stage3_effect_sound_offset[1] * resource.effect) // 2)
+            resource.stage3_effect_sound[1].play(1)
             self.flame_ball_x = ramona.Ramona_POS_X
             self.flame_ball_y = -50
             self.flame_ball_speed = 200
 
-        self.flame_ball_getbb1 = [int(self.flame_ball_x) - self.camerax - 34, int(self.flame_ball_y) - self.cameray + 4,
-                                  int(self.flame_ball_x) - self.camerax + 34,
-                                  int(self.flame_ball_y) - self.cameray + 64]
-        self.flame_ball_getbb2 = [int(self.flame_ball_x) - self.camerax - 19, int(self.flame_ball_y) - self.cameray + 4,
-                                  int(self.flame_ball_x) - self.camerax + 19,
-                                  int(self.flame_ball_y) - self.cameray + 74]
+        self.flame_ball_getbb1 = [int(self.flame_ball_x) - self.camerax - 34, int(self.flame_ball_y) - self.cameray + 4,int(self.flame_ball_x) - self.camerax + 34,int(self.flame_ball_y) - self.cameray + 64]
+        self.flame_ball_getbb2 = [int(self.flame_ball_x) - self.camerax - 19, int(self.flame_ball_y) - self.cameray + 4,int(self.flame_ball_x) - self.camerax + 19,int(self.flame_ball_y) - self.cameray + 74]
+
 
     def ramonatoball(self):
         if (resource.collide2([ramona.Ramona_POS_X- self.camerax, ramona.Ramona_POS_Y- self.cameray, ramona.Ramona_SIZE_X, ramona.Ramona_SIZE_Y],
@@ -239,38 +226,29 @@ class Stage3_Terrain:
 
     def draw(self):
         self.camerax = canvas_size.camera_x
-        self.cameray = canvas_size.camera_y
-
-        if self.pattern[self.current_pattern] == 1:
+        self.cameray= canvas_size.camera_y
+        if self.pattern[self.current_pattern]==1:
             if self.vine_needle_mode == 0:
-                self.vine_needle_appear_image[int(self.vine_needle_appear_frame)].clip_draw(0, 0, 128, 176,
-                                                                                            int(self.vine_needle_x) - self.camerax,
-                                                                                            140 - self.cameray, 128 * 2,
-                                                                                            176 * 2)
+                self.vine_needle_appear_image[int(self.vine_needle_appear_frame)].clip_draw(0, 0, 128, 176, int(self.vine_needle_x) - self.camerax,140 - self.cameray,128 * 2, 176 * 2)
             elif self.vine_needle_mode == 1:
-                self.vine_needle_appear_image[11].clip_draw(0, 0, 128, 176, int(self.vine_needle_x) - self.camerax,
-                                                            140 - self.cameray, 128 * 2, 176 * 2)
+                self.vine_needle_appear_image[11].clip_draw(0, 0, 128, 176, int(self.vine_needle_x) - self.camerax,140 - self.cameray,128 * 2, 176 * 2)
             elif self.vine_needle_mode == 2:
-                self.vine_needle_disappear_image[int(self.vine_needle_disappear_frame)].clip_draw(0, 0, 128, 176,
-                                                                                                  int(self.vine_needle_x) - self.camerax,
-                                                                                                  140 - self.cameray,
-                                                                                                  128 * 2, 176 * 2)
+                self.vine_needle_disappear_image[int(self.vine_needle_disappear_frame)].clip_draw(0, 0, 128, 176,int(self.vine_needle_x) - self.camerax,140 - self.cameray,128 * 2, 176 * 2)
 
             if canvas_size.collide_check:
                 draw_rectangle(*self.vine_needle_getbb)
 
             self.vine_image[0].clip_draw(0, 0, self.terrain_width, self.terrain_height,
-                                         width // 2 - self.camerax,
-                                         -10 - self.cameray,
-                                         self.terrain_width * 2.5, self.terrain_height * 2)
+                                                width // 2 - self.camerax,
+                                                -10 - self.cameray,
+                                                self.terrain_width*2.5, self.terrain_height*2)
 
-        elif self.pattern[self.current_pattern] == 2:
-            self.water_wave_image[int(self.water_wave_frame)].clip_composite_draw(0, 0, 224, 160, 0,
-                                                                              '' if self.water_wave_dir == 1 else 'h',
-                                                                              int(self.water_wave_x) - self.camerax,
-                                                                              200 - self.cameray,
-                                                                              224 * 2,
-                                                                              160 * 2)
+        elif self.pattern[self.current_pattern]==2:
+            self.water_wave_image[int(self.water_wave_frame)].clip_composite_draw(0, 0, 224, 160,0,'' if self.water_wave_dir==1 else 'h',
+                                                                        int(self.water_wave_x) - self.camerax,
+                                                                        200- self.cameray,
+                                                                        224 * 2,
+                                                                        160 * 2)
             if canvas_size.collide_check:
                 draw_rectangle(*self.water_wave_getbb1)
                 draw_rectangle(*self.water_wave_getbb2)
@@ -278,25 +256,24 @@ class Stage3_Terrain:
                 draw_rectangle(*self.water_wave_getbb4)
 
             self.water_image[int(self.water_frame)].clip_draw(0, 0, self.terrain_width, self.terrain_height,
-                                                              width // 2 - self.camerax,
-                                                              -10 - self.cameray,
-                                                              self.terrain_width * 2.5, self.terrain_height * 2)
+                                                width // 2 - self.camerax,
+                                                -10 - self.cameray,
+                                                self.terrain_width*2.5, self.terrain_height*2)
 
 
-        elif self.pattern[self.current_pattern] == 3:
-            self.flame_ball_image[int(self.flame_ball_frame)].clip_draw(0, 0, 64, 80,
-                                                                        int(self.flame_ball_x) - self.camerax,
+        elif self.pattern[self.current_pattern]==3:
+            self.flame_ball_image[int(self.flame_ball_frame)].clip_draw(0,0,64,80,int(self.flame_ball_x) - self.camerax,
                                                                         int(self.flame_ball_y) - self.cameray,
-                                                                        64 * 2, 80 * 2)
+                                                                        64*2,80*2)
 
             if canvas_size.collide_check:
                 draw_rectangle(*self.flame_ball_getbb1)
                 draw_rectangle(*self.flame_ball_getbb2)
 
             self.flame_image[int(self.flame_frame)].clip_draw(0, 0, self.terrain_width, self.terrain_height,
-                                                              width // 2 - self.camerax,
-                                                              -10 - self.cameray,
-                                                              self.terrain_width * 2.5, self.terrain_height * 2)
+                                                width // 2 - self.camerax,
+                                                -10 - self.cameray,
+                                                self.terrain_width*2.5, self.terrain_height*2)
         if canvas_size.collide_check:
             draw_rectangle(self.terrain_width- self.camerax-self.terrain_width*2.5/2, -self.terrain_height+10- self.cameray,
                        self.terrain_width- self.camerax+self.terrain_width*2.5/2, self.terrain_height-10- self.cameray)
@@ -309,23 +286,6 @@ class Stage3_Terrain:
                 canvas_size.canvaswidth,
                 canvas_size.canvasheight
             )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
