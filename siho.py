@@ -449,9 +449,12 @@ class Boss_Siho:
             self.scratch_frame2 = min((self.scratch_frame2 + self.animation_speed * frame_time),2)
             self.pattern5_attack_prepare_timer += frame_time
             if self.pattern5_attack_prepare_timer >= self.pattern5_attack_prepare_duration:
+                resource.stage3_effect_sound[15].set_volume(
+                    (resource.stage3_effect_sound_offset[15] * resource.effect) // 2)
+                resource.stage3_effect_sound[15].play(1)
                 self.pattern5_state = 1
                 self.pattern5_attack_prepare_timer = 0.0
-                self.scratch_frame2=0
+                self.scratch_frame2 = 0
                 self.pattern5_enter = False
         elif self.pattern5_state == 1:
             self.scratch_frame2 = self.scratch_frame2 + self.animation_speed * frame_time
