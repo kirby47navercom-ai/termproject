@@ -178,7 +178,7 @@ class Pattern2State:
         pass
 
     def do(self, frame_time):
-        self.x, self.y = canvas_size.istance_funtion(self.x, self.y, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, frame_time,
+        self.x, self.y = canvas_size.distance_funtion(self.x, self.y, ramona.Ramona_POS_X, ramona.Ramona_POS_Y, frame_time,
                                           self.speed)
         self.shape.x = self.x
         self.shape.y = self.y + self.height * 0.7
