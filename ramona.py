@@ -2,9 +2,9 @@ from pico2d import *
 import time
 import resource
 import canvas_size
-import draw_gesture
 import random
 
+import draw_gesture
 
 # 물리
 GRAVITY = 2000.0
@@ -35,7 +35,7 @@ Ramona_roll_invincible=False
 Ramona_invincible=False
 hit_toggle=False
 #플레이어의 공격력
-Ramona_attack=300
+Ramona_attack=20
 #플레이어의 공격
 Ramona_smash=False
 Ramona_smash_toggle=False
@@ -102,7 +102,9 @@ class DeadState:
 class AttackState:
     def enter(self, event):
         self.frame = 0
-        attack_num = random.randint(1, 6)
+        attack_num = random.randint(1, 5)
+        if attack_num ==5:
+            attack_num=6
         self.attack_motion = f'action{attack_num}'
         self.dir = 0
         random_number = random.randint(0, resource.attack_effect_sound_offset.__len__() - 1)
@@ -110,9 +112,13 @@ class AttackState:
             (resource.attack_effect_sound_offset[random_number] * resource.effect) // 2)
         resource.attack_effect_sound[random_number].play(1)
 
+
+
     def exit(self, event):
         global Ramona_smash_toggle
         Ramona_smash_toggle = False
+
+
 
     def do(self, frame_time):
         global Ramona_smash, Ramona_smash_toggle
@@ -235,6 +241,7 @@ class EvadeState:
         Ramona_roll_invincible = True
 
         if draw_gesture.f_pressed:
+
             resource.ramona_effect_sound[2].set_volume(
                 (resource.ramona_effect_sound_offset[2] * resource.effect) // 2)
             resource.ramona_effect_sound[2].play(1)
@@ -274,6 +281,7 @@ class JumpState:
                 self.jump_count = 1
 
         if self.jump_count == 1 and draw_gesture.f_pressed:
+
             resource.ramona_effect_sound[0].set_volume(
                 (resource.ramona_effect_sound_offset[0] * resource.effect) // 2)
             resource.ramona_effect_sound[0].play(1)
@@ -321,6 +329,7 @@ class HitState:
         self.frame = 0
         self.hit_timer = 0.2
         if draw_gesture.f_pressed:
+
             resource.ramona_effect_sound[3].set_volume(
                 (resource.ramona_effect_sound_offset[3] * resource.effect) // 2)
             resource.ramona_effect_sound[3].play(1)
