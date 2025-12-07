@@ -768,6 +768,36 @@ def load_resources():
         stage3_effect_sound.append(load_wav('sound\\Explode.wav'))
         stage3_effect_sound_offset.append(8)
 
+        ui_effect_sound.append(load_wav('sound\\Minimum_11.wav'))
+        ui_effect_sound_offset.append(96)
+
+        ui_effect_sound.append(load_wav('sound\\Minimum_50.wav'))
+        ui_effect_sound_offset.append(32)
+
+        ui_effect_sound.append(load_wav('sound\\Minimum_1.wav'))
+        ui_effect_sound_offset.append(64)
+
+        ui_effect_sound.append(load_wav('sound\\Minimum_5.wav'))
+        ui_effect_sound_offset.append(64)
+
+        ui_effect_sound.append(load_wav('sound\\Transition.wav'))
+        ui_effect_sound_offset.append(32)
+
+        ui_effect_sound.append(load_wav('sound\\Paper.wav'))
+        ui_effect_sound_offset.append(32)
+
+        ui_effect_sound.append(load_wav('sound\\Chat.wav'))
+        ui_effect_sound_offset.append(64)
+
+        ui_effect_sound.append(load_wav('sound\\Coin.wav'))
+        ui_effect_sound_offset.append(16)
+
+        ui_effect_sound.append(load_wav('sound\\Switch Weapon.wav'))
+        ui_effect_sound_offset.append(16)
+
+        ui_effect_sound.append(load_wav('sound\\Message.wav'))
+        ui_effect_sound_offset.append(32)
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
