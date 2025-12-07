@@ -23,11 +23,18 @@ class Stage1_Monster:
             (resource.background_sound_offset[3] * resource.bgm) // 2)
         resource.background_sound[3].play(-1)
 
+        self.bgm_change = False
+
 
     def update(self, frame_time, events=None):
         self.phase[self.phase_num].update(frame_time, events)
 
-        if self.phase_num == 4:
+        if self.phase_num == 4 and not self.bgm_change:
+            resource.background_sound[3].stop()
+            resource.background_sound[4].set_volume(
+                (resource.background_sound_offset[3] * resource.bgm) // 2)
+            resource.background_sound[4].play(-1)
+            self.bgm_change = True
             pass
         elif self.phase[self.phase_num].phase.__len__() == 0:
             self.phase_num += 1
