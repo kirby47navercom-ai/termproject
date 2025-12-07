@@ -3,6 +3,7 @@ import stage1_phase2
 import stage1_phase3
 import stage1_phase4
 import stage1_phase5
+import resource
 
 
 
@@ -17,6 +18,10 @@ class Stage1_Monster:
         self.phase.append(stage1_phase3.Stage1_Phase3())
         self.phase.append(stage1_phase4.Stage1_Phase4())
         self.phase.append(stage1_phase5.Stage1_Phase5())
+
+        resource.background_sound[3].set_volume(
+            (resource.background_sound_offset[3] * resource.bgm) // 2)
+        resource.background_sound[3].play(-1)
 
 
     def update(self, frame_time, events=None):
