@@ -9,6 +9,7 @@ import stage1_ready_mode
 import stage2_ready_mode
 import stage3_ready_mode
 
+
 home = None
 stage1 = []
 stage2 = []
@@ -21,13 +22,13 @@ coin_font = None
 
 def init():
     # 로고 이미지를 로드
-    global home, stage1, stage2, stage3, coin, sugar, water, lemon, coin_font
+    global home,stage1,stage2,stage3,coin,sugar,water,lemon,coin_font
 
     if home == None:
         home = load_image('배경\\stage_memu.png')
-        stage1 = [load_image('배경\\normal1.png'), load_image('배경\\perfect1.png')]
-        stage2 = [load_image('배경\\normal2.png'), load_image('배경\\perfect2.png')]
-        stage3 = [load_image('배경\\normal3.png'), load_image('배경\\perfect3.png')]
+        stage1 = [load_image('배경\\normal1.png'),load_image('배경\\perfect1.png')]
+        stage2 = [load_image('배경\\normal2.png'),load_image('배경\\perfect2.png')]
+        stage3 = [load_image('배경\\normal3.png'),load_image('배경\\perfect3.png')]
         coin = load_image('배경\\coin.png')
         sugar = load_image('배경\\clear1.png')
         water = load_image('배경\\clear2.png')
@@ -37,6 +38,7 @@ def init():
     resource.background_sound[1].set_volume(
         (resource.background_sound_offset[1] * resource.bgm) // 2)
     resource.background_sound[1].play(-1)
+
 
 
 def update(frame_time,events):
@@ -72,34 +74,37 @@ def update(frame_time,events):
                 resource.ui_effect_sound[4].play(1)
                 game_framework.change_mode(na25_mode)
 
+
+
 def draw():
-    home.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
 
-    # print(resource.stage1_clear,resource.stage2_clear,resource.stage3_clear)
+    home.draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
 
-    if resource.stage1_clear == 1:
-        stage1[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    elif resource.stage1_clear == 2:
-        stage1[1].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    if resource.stage1_clear >= 1:
-        sugar.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    #print(resource.stage1_clear,resource.stage2_clear,resource.stage3_clear)
 
-    if resource.stage2_clear == 1:
-        stage2[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    elif resource.stage2_clear == 2:
-        stage2[1].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    if resource.stage2_clear >= 1:
-        water.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
+    if resource.stage1_clear==1:
+        stage1[0].draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
+    elif resource.stage1_clear==2:
+        stage1[1].draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
+    if resource.stage1_clear>=1:
+        sugar.draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
 
-    if resource.stage3_clear == 1:
-        stage3[0].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    elif resource.stage3_clear == 2:
-        stage3[1].draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    if resource.stage3_clear >= 1:
+    if resource.stage2_clear==1:
+        stage2[0].draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
+    elif resource.stage2_clear==2:
+        stage2[1].draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
+    if resource.stage2_clear>=1:
+        water.draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
+
+    if resource.stage3_clear==1:
+        stage3[0].draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
+    elif resource.stage3_clear==2:
+        stage3[1].draw(canvas_size.canvaswidth//2,canvas_size.canvasheight//2)
+    if resource.stage3_clear>=1:
         lemon.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
 
     coin.draw(canvas_size.canvaswidth // 2, canvas_size.canvasheight // 2)
-    coin_font.draw(80, canvas_size.canvasheight - 40, 'X ' + str(resource.coin), (0, 0, 0))
+    coin_font.draw(80, canvas_size.canvasheight-40, 'X '+str(resource.coin), (0, 0, 0))
     if canvas_size.collide_check:
         draw_rectangle(15, 130, 305, 545)
         draw_rectangle(500, 130, 790, 545)
@@ -107,9 +112,15 @@ def draw():
         draw_rectangle(1145, 585, 1255, 690)
         draw_rectangle(495, 605, 855, 670)
 
-def finish():
 
+
+
+def finish():
+    resource.background_sound[1].stop()
     pass
+
+
+
 
 
 def pause():
