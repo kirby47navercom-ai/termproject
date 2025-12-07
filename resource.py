@@ -720,6 +720,15 @@ def load_resources():
         stage1_effect_sound.append(load_wav('sound\\NPC_Killed_6.wav'))
         stage1_effect_sound_offset.append(32)
 
+        stage2_effect_sound.append(load_wav('sound\\Acorn Dead.wav'))
+        stage2_effect_sound_offset.append(32)
+        stage2_effect_sound.append(load_wav('sound\\Tiny Drill.wav'))
+        stage2_effect_sound_offset.append(32)
+        stage2_effect_sound.append(load_wav('2stage\\BLAAHLouder.ogg'))
+        stage2_effect_sound_offset.append(32)
+        stage2_effect_sound.append(load_wav('2stage\\explosion.ogg'))
+        stage2_effect_sound_offset.append(32)
+
     ramona_image = {
         'idle': image_idle, 'walk': image_walk, 'run': image_run, 'jump': image_jump,
         'double_jump': image_double_jump, 'hit': image_hit, 'evade': image_evade,
