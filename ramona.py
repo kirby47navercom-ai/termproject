@@ -234,6 +234,11 @@ class EvadeState:
         self.evade_cooldown_timer = EVADE_COOLDOWN
         Ramona_roll_invincible = True
 
+        if draw_gesture.f_pressed:
+            resource.ramona_effect_sound[2].set_volume(
+                (resource.ramona_effect_sound_offset[2] * resource.effect) // 2)
+            resource.ramona_effect_sound[2].play(1)
+
     def exit(self, event):
         global Ramona_roll_invincible
         Ramona_roll_invincible = False
