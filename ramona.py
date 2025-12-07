@@ -71,6 +71,10 @@ class DeadState:
         Ramona_dead = True
         self.knockback_timer = 2.0
 
+        resource.ramona_effect_sound[4].set_volume(
+            (resource.ramona_effect_sound_offset[4] * resource.effect) // 2)
+        resource.ramona_effect_sound[4].play(1)
+
     def exit(self, event):
         pass
 
