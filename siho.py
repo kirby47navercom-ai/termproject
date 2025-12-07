@@ -803,6 +803,9 @@ class Boss_Siho:
             self.rush_fire.append(
                 [100 if self.rush_fire_direction == 0 else 1900, 50, 0.0, self.rush_fire_direction, 0, False])
             self.rush_fire_num -= 1
+            resource.stage3_effect_sound[16].set_volume(
+                (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
+            resource.stage3_effect_sound[16].play(1)
         for i in range(len(self.rush_fire) - 1, -1, -1):
             if self.rush_fire[i][4] == 0:
                 self.rush_fire[i][2] = self.rush_fire[i][2] + self.animation_speed * frame_time
@@ -811,6 +814,9 @@ class Boss_Siho:
                         self.rush_fire.append(
                             [self.rush_fire[i][0] - 30 if self.rush_fire_num % 2 == 1 else self.rush_fire[i][0] + 30,
                              50 + (15 - self.rush_fire_num) * 50, 0.0, self.rush_fire_direction, 0, False])
+                        resource.stage3_effect_sound[16].set_volume(
+                            (resource.stage3_effect_sound_offset[16] * resource.effect) // 2)
+                        resource.stage3_effect_sound[16].play(1)
                     self.rush_fire_num -= 1
                     self.rush_fire[i][4] = 1
                     self.rush_fire[i][2] = 0.0
